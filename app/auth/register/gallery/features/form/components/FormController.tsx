@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import Input, { InputProps } from "./Input";
-import { useSearchParams } from "next/navigation";
+import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
+
 const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
   {
     label: "What's the gallery name?",
@@ -11,7 +12,6 @@ const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
     buttonType: "button",
     buttonText: "Next",
     labelText: "name",
-    key: 1,
   },
   {
     label: "What's the gallery location?",
@@ -20,7 +20,6 @@ const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
     buttonType: "button",
     buttonText: "Next",
     labelText: "location",
-    key: 2,
   },
   {
     label: "What's the admin name? (Account controller)",
@@ -29,7 +28,6 @@ const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
     buttonType: "button",
     buttonText: "Next",
     labelText: "admin",
-    key: 3,
   },
   {
     label: "What email can we reach you on?",
@@ -38,22 +36,42 @@ const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
     buttonType: "button",
     buttonText: "Next",
     labelText: "email",
-    key: 4,
   },
   {
     label: "Can you give a short description of the gallery?",
     type: "text",
     placeholder: "lorem ipsum dolor amit dans emit",
+    buttonType: "button",
+    buttonText: "Next",
+    labelText: "description",
+  },
+  {
+    label: "Setup a password to secure your account",
+    type: "password",
+    placeholder: "********",
+    buttonType: "button",
+    buttonText: "Next",
+    labelText: "password",
+  },
+  {
+    label: "Just to be sure, please confirm your password",
+    type: "password",
+    placeholder: "********",
     buttonType: "submit",
     buttonText: "Submit",
-    labelText: "description",
-    key: 5,
+    labelText: "conformPassword",
   },
 ];
 export default function FormController() {
-  const [currentFormIndex, setCurrentFormIndex] = useState<number>(0);
+  const [
+    currentGallerySignupFormIndex,
+    incrementCurrentGallerySignupFormIndex,
+  ] = useGalleryAuthStore((state) => [
+    state.currentGallerySignupFormIndex,
+    state.incrementCurrentGallerySignupFormIndex,
+  ]);
 
-  let form = inputProperties[currentFormIndex];
+  let form = inputProperties[currentGallerySignupFormIndex];
 
   return (
     <>
@@ -64,18 +82,9 @@ export default function FormController() {
         buttonType={form.buttonType}
         buttonText={form.buttonText}
         labelText={form.labelText}
-        key={form.key}
-        onClick={
-          form.buttonText === "Next"
-            ? () => {
-                setCurrentFormIndex((prev) => prev + 1);
-              }
-            : () => {}
+        onClick={() =>
+          form.buttonText === "Next" && incrementCurrentGallerySignupFormIndex
         }
-        prev={currentFormIndex > 0 ? true : false}
-        onClickPrev={() => {
-          setCurrentFormIndex((prev) => prev - 1);
-        }}
       />
     </>
   );

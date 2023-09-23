@@ -1,6 +1,6 @@
 import Image from "next/image";
-import FormInput from "./components/FormInput";
 import Action from "../actions/Action";
+import FormInput from "./components/FormInput";
 
 export default function Form() {
   return (
@@ -17,9 +17,8 @@ export default function Form() {
           <p className="text-base">
             Sign up for an account, don&apos;t worry, it&apos;s quick and easy
           </p>
-          <p className="text-sm">Let&apos;s get to know you</p>
+          <p className="text-sm">Individual account</p>
         </div>
-
         <FormInput />
       </div>
       <Action />

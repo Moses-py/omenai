@@ -1,12 +1,12 @@
-import FormBlock from "./features/form/FormBlock";
+import Form from "./features/form/Form";
 import ImageBlock from "./features/image/Image";
 
-export default function GallerySignup() {
+export default function IndividualSignup() {
   return (
     <section className="h-[100vh] w-full">
       <div className="h-full flex w-full">
         {/* Form section */}
-        <FormBlock />
+        <Form />
         {/* Image section */}
         <ImageBlock />
       </div>
