@@ -16,8 +16,7 @@
         "titleBar.activeBackground": "#b2721b",
         "titleBar.activeForeground": "#e7e7e7",
         "titleBar.inactiveBackground": "#b2721b99",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        
+        "titleBar.inactiveForeground": "#e7e7e799"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnPaste": false, // required 
