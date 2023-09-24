@@ -55,7 +55,7 @@ export const useIndividualAuthStore = create<IndividualAuthStoreTypes>(
       name: "",
       email: "",
       password: "",
-      preferences: [],
+      confirmPassword: "",
     },
 
     // UPDATE SIGNUP FORM DATA ON INPUT CHANGE

@@ -1,22 +1,10 @@
 "use client";
 
+import { validate } from "@/lib/auth/validatorGroup";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChangeEvent, HTMLInputTypeAttribute } from "react";
+import { useState } from "react";
 
-export type InputProps = {
-  label: string;
-  labelText: string;
-  type: HTMLInputTypeAttribute;
-  placeholder: string;
-  disabled?: boolean;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  buttonType: "button" | "submit";
-  buttonText: "Next" | "Submit";
-  onClick?: () => void;
-  id: number;
-  onClickPrev?: () => void;
-};
 export default function Input({
   label,
   labelText,
@@ -24,15 +12,45 @@ export default function Input({
   placeholder,
   disabled = false,
   onChange,
-  onClick,
-  buttonText,
-  buttonType,
   id,
-  onClickPrev,
 }: InputProps) {
-  const [currentSignupFormIndex, individualSignupData] = useIndividualAuthStore(
-    (state) => [state.currentSignupFormIndex, state.individualSignupData]
-  );
+  const [
+    currentSignupFormIndex,
+    individualSignupData,
+    incrementCurrentSignupFormIndex,
+    decrementCurrentSignupFormIndex,
+  ] = useIndividualAuthStore((state) => [
+    state.currentSignupFormIndex,
+    state.individualSignupData,
+    state.incrementCurrentSignupFormIndex,
+    state.decrementCurrentSignupFormIndex,
+  ]);
+
+  const [errorList, setErrorList] = useState<string[]>([]);
+
+  const handleClickPrev = () => {
+    setErrorList([]);
+    decrementCurrentSignupFormIndex();
+  };
+
+  const handleClick = (value: string, label: string) => {
+    setErrorList([]);
+    const { success, errors }: { success: boolean; errors: string[] | [] } =
+      validate(
+        value,
+        label,
+        labelText === "confirmPassword" &&
+          (individualSignupData as Record<string, any>)["password"]
+      );
+    if (!success) setErrorList(errors);
+    else incrementCurrentSignupFormIndex();
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && currentSignupFormIndex !== 4) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <AnimatePresence key={id}>
@@ -51,24 +69,40 @@ export default function Input({
           disabled={disabled}
           onChange={onChange}
           name={labelText}
-          value={(individualSignupData as Record<string, any>)[labelText]}
+          onKeyDown={handleKeyPress}
+          value={(individualSignupData as Record<string, string>)[labelText]}
         />
+
+        {errorList.length > 0 &&
+          errorList.map((error, index) => {
+            return (
+              <p key={index} className="text-red-600 text-xs">
+                {error}
+              </p>
+            );
+          })}
+
         <div className="self-end flex gap-4">
           <button
             className={`${
               currentSignupFormIndex > 0 ? "block" : "hidden"
             } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
-            type={buttonType}
-            onClick={onClickPrev}
+            type={"button"}
+            onClick={handleClickPrev}
           >
             Back
           </button>
           <button
             className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
-            type={buttonType}
-            onClick={onClick}
+            type={"button"}
+            onClick={() =>
+              handleClick(
+                (individualSignupData as Record<string, any>)[labelText],
+                labelText
+              )
+            }
           >
-            {buttonText}
+            {"Next"}
           </button>
         </div>
       </motion.div>
