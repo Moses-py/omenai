@@ -5,7 +5,7 @@ import FormInput from "./components/FormInput";
 export default function Form() {
   return (
     <div className="flex-1 grid place-items-center h-full font-normal p-5 relative">
-      <div className="flex flex-col gap-[5rem] text-secondary w-full">
+      <div className="flex flex-col gap-[3rem] text-secondary w-full">
         <div className="flex flex-col gap-8 text-center items-center">
           <Image
             src={"/omenai_logo.png"}

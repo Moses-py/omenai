@@ -2,7 +2,7 @@
 
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 import { AnimatePresence, motion } from "framer-motion";
-import { HTMLInputTypeAttribute } from "react";
+import { ChangeEvent, HTMLInputTypeAttribute } from "react";
 
 export type InputProps = {
   label: string;
@@ -10,7 +10,7 @@ export type InputProps = {
   type: HTMLInputTypeAttribute;
   placeholder: string;
   disabled?: boolean;
-  onChange?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   buttonType: "button" | "submit";
   buttonText: "Next" | "Submit";
   onClick?: () => void;
@@ -30,9 +30,9 @@ export default function Input({
   id,
   onClickPrev,
 }: InputProps) {
-  const [currentSignupFormIndex] = useIndividualAuthStore((state) => [
-    state.currentSignupFormIndex,
-  ]);
+  const [currentSignupFormIndex, individualSignupData] = useIndividualAuthStore(
+    (state) => [state.currentSignupFormIndex, state.individualSignupData]
+  );
 
   return (
     <AnimatePresence key={id}>
@@ -50,19 +50,21 @@ export default function Input({
           placeholder={`e.g ${placeholder}`}
           disabled={disabled}
           onChange={onChange}
+          name={labelText}
+          value={(individualSignupData as Record<string, any>)[labelText]}
         />
         <div className="self-end flex gap-4">
           <button
             className={`${
               currentSignupFormIndex > 0 ? "block" : "hidden"
-            } rounded-full px-[2rem] py-[0.5rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+            } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
             type={buttonType}
             onClick={onClickPrev}
           >
             Back
           </button>
           <button
-            className="rounded-full px-[2rem] py-[0.5rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+            className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
             type={buttonType}
             onClick={onClick}
           >

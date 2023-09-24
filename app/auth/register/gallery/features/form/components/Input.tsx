@@ -53,14 +53,14 @@ export default function Input({
           <button
             className={`${
               currentGallerySignupFormIndex > 0 ? "block" : "hidden"
-            } rounded-full px-[2rem] py-[0.5rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+            } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
             type={buttonType}
             onClick={decrementCurrentGallerySignupFormIndex}
           >
             back
           </button>
           <button
-            className="rounded-full px-[2rem] py-[0.5rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+            className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
             type={buttonType}
             onClick={onClick}
           >
