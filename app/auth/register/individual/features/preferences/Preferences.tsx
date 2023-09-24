@@ -5,29 +5,32 @@ import Pill from "./components/Pill";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 
 let artTypes = [
-  "Western",
-  "Contemporary",
-  "Eastern",
-  "Modern",
-  "Eastern",
-  "Western",
-  "Modern",
-  "Contemporary",
-  "Modern",
-  "Contemporary",
-  "Western",
-  "Eastern",
+  "Surrealism",
+  "Minimalism",
+  "Sculpture",
+  "Painting",
+  "Installation art",
+  "Abstract art",
+  "Perfomance art",
+  "Pop art",
+  "Digital",
+  "Mixed media",
+  "Drawing",
+  "Figurative",
 ];
 function Preferences() {
-  const [decrementCurrentSignupFormIndex] = useIndividualAuthStore((state) => [
-    state.decrementCurrentSignupFormIndex,
-  ]);
+  const [decrementCurrentSignupFormIndex, preferences] = useIndividualAuthStore(
+    (state) => [state.decrementCurrentSignupFormIndex, state.preferences]
+  );
   return (
     <AnimatePresence>
       <div className="container">
-        <p className="text-base font-semibold text-center mb-[3rem]">
+        <p className="text-base font-semibold text-center">
           We would like understand your art interests, please select up to 3
           types of artworks you’re most interested in
+        </p>
+        <p className="text-center text-base font-semibol my-[1.5rem]">
+          Selected: {preferences.length}/3
         </p>
 
         <motion.div
@@ -44,14 +47,14 @@ function Preferences() {
           {/* Submit */}
           <div className="flex gap-4 justify-end my-5">
             <button
-              className={` rounded-full px-[2rem] py-[0.5rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+              className={` rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
               type={"button"}
               onClick={decrementCurrentSignupFormIndex}
             >
               Back
             </button>
             <button
-              className="rounded-full px-[2rem] py-[0.5rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+              className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
               type={"submit"}
             >
               Submit

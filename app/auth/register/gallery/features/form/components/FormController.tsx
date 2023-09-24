@@ -1,6 +1,5 @@
 "use client";
 
-import { FormEvent, useState } from "react";
 import Input, { InputProps } from "./Input";
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 

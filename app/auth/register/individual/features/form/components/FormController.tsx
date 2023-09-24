@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Input, { InputProps } from "./Input";
 import Preferences from "../../preferences/Preferences";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
+import { ChangeEvent } from "react";
+import { validate } from "@/lib/auth/validator";
 const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
   {
     label: "What's your full name please?",
@@ -38,22 +39,32 @@ const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
     placeholder: "********",
     buttonType: "button",
     buttonText: "Next",
-    labelText: "conformPassword",
+    labelText: "confirmPassword",
     id: 3,
   },
 ];
+
 export default function FormController() {
   const [
     currentSignupFormIndex,
     incrementCurrentSignupFormIndex,
     decrementCurrentSignupFormIndex,
+    updateSignUpData,
+    individualSignupData,
   ] = useIndividualAuthStore((state) => [
     state.currentSignupFormIndex,
     state.incrementCurrentSignupFormIndex,
     state.decrementCurrentSignupFormIndex,
+    state.updateSignUpData,
+    state.individualSignupData,
   ]);
 
   let form = inputProperties[currentSignupFormIndex];
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    let fieldName = e.target.name;
+    updateSignUpData(fieldName, e.target.value);
+  }
 
   return (
     <>
@@ -66,8 +77,11 @@ export default function FormController() {
           buttonText={form.buttonText}
           labelText={form.labelText}
           id={form.id}
-          onClick={incrementCurrentSignupFormIndex}
+          onClick={() =>
+            console.log(validate(individualSignupData.name, "name"))
+          }
           onClickPrev={decrementCurrentSignupFormIndex}
+          onChange={handleChange}
         />
       )}
 
