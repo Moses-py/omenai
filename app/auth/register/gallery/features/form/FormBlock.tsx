@@ -20,7 +20,7 @@ export default function FormBlock() {
           <p className="text-base">
             Sign up for an account, don&apos;t worry, it&apos;s quick and easy
           </p>
-          <p className="text-sm">Gallery account</p>
+          <p className="text-base font-medium">Gallery account</p>
         </div>
 
         <FormInput />

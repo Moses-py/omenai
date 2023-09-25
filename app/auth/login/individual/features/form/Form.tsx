@@ -1,12 +1,13 @@
 import Image from "next/image";
-import Action from "../actions/Action";
-import FormInput from "./components/FormInput";
+
 import Link from "next/link";
+import FormInput from "./components/FormInput";
+import Action from "../actions/Action";
 
 export default function Form() {
   return (
     <div className="flex-1 grid place-items-center h-full font-normal p-5 relative">
-      <div className="flex flex-col gap-[3rem] text-secondary w-full">
+      <div className="flex flex-col gap-[1rem] text-secondary w-full">
         <div className="flex flex-col gap-8 text-center items-center">
           <Link href={"/"}>
             <Image
@@ -18,11 +19,13 @@ export default function Form() {
           </Link>
 
           <p className="text-base">
-            Sign up for an account, don&apos;t worry, it&apos;s quick and easy
+            Welcome back. Login to your account to gain access
           </p>
           <p className="text-base font-medium">Individual account</p>
         </div>
-        <FormInput />
+        <div className="lg:px-[2rem] xl:px-[4rem] 2xl:px-[7rem]">
+          <FormInput />
+        </div>
       </div>
       <Action />
     </div>
