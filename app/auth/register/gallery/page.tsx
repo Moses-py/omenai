@@ -4,7 +4,7 @@ import ImageBlock from "./features/image/Image";
 export default function GallerySignup() {
   return (
     <section className="h-[100vh] w-full">
-      <div className="h-full flex w-full">
+      <div className="h-full md:flex w-full">
         {/* Form section */}
         <FormBlock />
         {/* Image section */}
