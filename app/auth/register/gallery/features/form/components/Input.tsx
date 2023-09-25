@@ -9,8 +9,8 @@ export type InputProps = {
   placeholder: string;
   disabled?: boolean;
   onChange?: () => void;
-  buttonType: "button" | "submit";
-  buttonText: "Next" | "Submit";
+  buttonType: "button" | "submit" | undefined;
+  buttonText: "Next" | "Submit" | undefined;
   onClick?: () => void;
 };
 export default function Input({
