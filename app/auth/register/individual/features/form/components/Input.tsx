@@ -1,6 +1,7 @@
 "use client";
 
 import { validate } from "@/lib/auth/validatorGroup";
+import { handleKeyPress } from "@/lib/utils/disableSubmitOnEnter";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -44,12 +45,6 @@ export default function Input({
       );
     if (!success) setErrorList(errors);
     else incrementCurrentSignupFormIndex();
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && currentSignupFormIndex !== 4) {
-      e.preventDefault();
-    }
   };
 
   return (

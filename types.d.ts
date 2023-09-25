@@ -18,3 +18,13 @@ type IndividualSignupData = {
   password: string;
   confirmPassword: string;
 };
+
+type GallerySignupData = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  location: string;
+  admin: string;
+  description: string;
+};

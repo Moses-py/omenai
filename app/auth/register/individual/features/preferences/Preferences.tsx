@@ -13,10 +13,6 @@ let artTypes = [
   "Abstract art",
   "Perfomance art",
   "Pop art",
-  "Digital",
-  "Mixed media",
-  "Drawing",
-  "Figurative",
 ];
 function Preferences() {
   const [decrementCurrentSignupFormIndex, preferences] = useIndividualAuthStore(
