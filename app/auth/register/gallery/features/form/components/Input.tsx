@@ -1,6 +1,8 @@
+import { validate } from "@/lib/auth/validatorGroup";
+import { handleKeyPress } from "@/lib/utils/disableSubmitOnEnter";
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 import { AnimatePresence, motion } from "framer-motion";
-import { HTMLInputTypeAttribute } from "react";
+import { ChangeEvent, HTMLInputTypeAttribute, useState } from "react";
 
 export type InputProps = {
   label: string;
@@ -8,10 +10,16 @@ export type InputProps = {
   type: HTMLInputTypeAttribute;
   placeholder: string;
   disabled?: boolean;
-  onChange?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   buttonType: "button" | "submit" | undefined;
   buttonText: "Next" | "Submit" | undefined;
   onClick?: () => void;
+};
+
+type Externals = {
+  location: string;
+  admin: string;
+  description: string;
 };
 export default function Input({
   label,
@@ -20,17 +28,40 @@ export default function Input({
   placeholder,
   disabled = false,
   onChange,
-  onClick,
   buttonText,
   buttonType,
 }: InputProps) {
   const [
+    gallerySignupData,
     currentGallerySignupFormIndex,
+    incrementCurrentGallerySignupFormIndex,
     decrementCurrentGallerySignupFormIndex,
   ] = useGalleryAuthStore((state) => [
+    state.gallerySignupData,
     state.currentGallerySignupFormIndex,
+    state.incrementCurrentGallerySignupFormIndex,
     state.decrementCurrentGallerySignupFormIndex,
   ]);
+
+  const [errorList, setErrorList] = useState<string[]>([]);
+
+  const handleClickPrev = () => {
+    setErrorList([]);
+    decrementCurrentGallerySignupFormIndex();
+  };
+
+  const handleClick = (value: string, label: string) => {
+    setErrorList([]);
+    const { success, errors }: { success: boolean; errors: string[] | [] } =
+      validate(
+        value,
+        label,
+        labelText === "confirmPassword" &&
+          (gallerySignupData as Record<string, any>)["password"]
+      );
+    if (!success) setErrorList(errors);
+    else incrementCurrentGallerySignupFormIndex();
+  };
 
   return (
     <AnimatePresence key={currentGallerySignupFormIndex}>
@@ -48,23 +79,39 @@ export default function Input({
           placeholder={`e.g ${placeholder}`}
           disabled={disabled}
           onChange={onChange}
+          onKeyDown={handleKeyPress}
+          name={labelText}
+          value={(gallerySignupData as Record<string, string>)[labelText]}
         />
+        {errorList.length > 0 &&
+          errorList.map((error, index) => {
+            return (
+              <p key={index} className="text-red-600 text-xs">
+                {error}
+              </p>
+            );
+          })}
         <div className="self-end flex gap-4">
           <button
             className={`${
               currentGallerySignupFormIndex > 0 ? "block" : "hidden"
             } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
-            type={buttonType}
-            onClick={decrementCurrentGallerySignupFormIndex}
+            type={"button"}
+            onClick={handleClickPrev}
           >
             back
           </button>
           <button
             className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
-            type={buttonType}
-            onClick={onClick}
+            type={"button"}
+            onClick={() =>
+              handleClick(
+                (gallerySignupData as Record<string, string>)[labelText],
+                labelText
+              )
+            }
           >
-            {buttonText}
+            Next
           </button>
         </div>
       </motion.div>

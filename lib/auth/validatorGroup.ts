@@ -2,24 +2,25 @@ import { validatePassword } from "./passwordValidator";
 import { validateConfirmPassword } from "./confirmPasswordValidator";
 import { validateEmail } from "./emailValidator";
 import { validateText } from "./textValidator";
+import { validataGeneralText } from "./generalValidator";
+import { checkLabel } from "./checkLabel";
 
-type ValidationFunction<T> = (value: T) => string[];
+type ValidationFunction<T> = (value: string) => string[];
 
-export function validate<T>(
-  value: T,
+export function validate<T extends string | number>(
+  value: string,
   label: string,
   confirm?: string
 ): { success: boolean; errors: string[] | [] } {
   const validationFunctions: Record<string, ValidationFunction<T>> = {
-    name: (value: T) => validateText(value),
-    email: (value: T) => validateEmail(value),
-    password: (value: T) => validatePassword(value),
-    confirmPassword: (value: T) => validateConfirmPassword(value, confirm),
+    name: (value: string) => validateText(value),
+    email: (value: string) => validateEmail(value),
+    password: (value: string) => validatePassword(value),
+    confirmPassword: (value: string) => validateConfirmPassword(value, confirm),
+    general: (value: string) => validataGeneralText(value),
   };
 
-  const validationFunction = validationFunctions[label];
-
-  if (!validationFunction) throw new Error(`Invalid label: ${label}`);
+  const validationFunction = validationFunctions[checkLabel(label)];
 
   let nameErrors = validationFunction(value);
 

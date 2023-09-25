@@ -8,7 +8,7 @@ export const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
   },
   {
     label: "What email can we reach you on?",
-    type: "text",
+    type: "email",
     placeholder: "Louvre museum",
     labelText: "email",
     id: 1,
