@@ -5,14 +5,14 @@ import { validateText } from "./textValidator";
 import { validataGeneralText } from "./generalValidator";
 import { checkLabel } from "./checkLabel";
 
-type ValidationFunction<T> = (value: string) => string[];
+type ValidationFunction = (value: string) => string[];
 
 export function validate<T extends string | number>(
   value: string,
   label: string,
   confirm?: string
 ): { success: boolean; errors: string[] | [] } {
-  const validationFunctions: Record<string, ValidationFunction<T>> = {
+  const validationFunctions: Record<string, ValidationFunction> = {
     name: (value: string) => validateText(value),
     email: (value: string) => validateEmail(value),
     password: (value: string) => validatePassword(value),
