@@ -1,17 +1,9 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-export default async function mongoConnect() {
-  const client = new MongoClient(process.env.MONGODB_URI as string);
-  try {
-    await client.connect();
-    const db = client.db("omenai");
-    return { db, client };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: "/505",
-        permanent: false,
-      },
-    };
+export const connectMongoDB = async () => {
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection.asPromise();
   }
-}
+
+  return await mongoose.connect(process.env.MONGODB_URI as string);
+};

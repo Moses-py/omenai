@@ -28,3 +28,7 @@ type GallerySignupData = {
   admin: string;
   description: string;
 };
+
+type IndividualRegisterData = IndividualSignupData & {
+  preferences: string[];
+};

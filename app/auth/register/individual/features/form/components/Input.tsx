@@ -1,6 +1,6 @@
 "use client";
 
-import { validate } from "@/lib/auth/validatorGroup";
+import { validate } from "@/lib/validations/validatorGroup";
 import { handleKeyPress } from "@/lib/utils/disableSubmitOnEnter";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 import { AnimatePresence, motion } from "framer-motion";
