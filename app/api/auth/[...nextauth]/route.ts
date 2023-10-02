@@ -8,10 +8,10 @@ const authOptions: NextAuthOptions = {
   providers: [IndividualLoginProvider, GalleryLoginProvider],
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       return { ...token, ...user };
     },
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       session.user = token as any;
 
       return session;

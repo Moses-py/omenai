@@ -7,7 +7,7 @@ import { checkLabel } from "./checkLabel";
 
 type ValidationFunction = (value: string) => string[];
 
-export function validate<T extends string | number>(
+export function validate(
   value: string,
   label: string,
   confirm?: string
