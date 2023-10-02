@@ -2,7 +2,7 @@ import { GalleryLoginProvider } from "@/services/gallery-login";
 import { IndividualLoginProvider } from "@/services/individual-login";
 import nextAuth, { type NextAuthOptions } from "next-auth";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
 
   secret: process.env.NEXTAUTH_SECRET,
@@ -20,4 +20,6 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-export default nextAuth(authOptions);
+const handler = nextAuth(authOptions);
+
+export { handler as GET, handler as POST };
