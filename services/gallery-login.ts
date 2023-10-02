@@ -18,7 +18,7 @@ export const GalleryLoginProvider = CredentialsProvider({
       const data = await response.json();
 
       return {
-        id: data.uid,
+        id: data._id,
         ...data,
       };
     } catch (error) {

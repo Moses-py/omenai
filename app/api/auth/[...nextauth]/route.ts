@@ -3,8 +3,7 @@ import { IndividualLoginProvider } from "@/services/individual-login";
 import nextAuth, { type NextAuthOptions } from "next-auth";
 
 const authOptions: NextAuthOptions = {
-  session: { strategy: "jwt" },
-
+  session: { strategy: "jwt", maxAge: 3600 },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [IndividualLoginProvider, GalleryLoginProvider],
 

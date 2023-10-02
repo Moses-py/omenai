@@ -18,7 +18,7 @@ export const IndividualLoginProvider = CredentialsProvider({
       const data = await response.json();
 
       return {
-        id: data.uid,
+        id: data._id,
         ...data,
       };
     } catch (error) {
@@ -26,3 +26,5 @@ export const IndividualLoginProvider = CredentialsProvider({
     }
   },
 });
+
+// email,name, id
