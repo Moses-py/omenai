@@ -1,5 +1,5 @@
 import { validate } from "@/lib/validations/validatorGroup";
-import { handleKeyPress } from "@/lib/utils/disableSubmitOnEnter";
+import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChangeEvent, HTMLInputTypeAttribute, useState } from "react";

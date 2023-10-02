@@ -1,5 +1,6 @@
 import { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
+
 const individualSignupSchema = new Schema({
   name: {
     type: String,
@@ -27,8 +28,19 @@ const individualSignupSchema = new Schema({
     type: Date,
     default: () => new Date(),
   },
+  email_token: {
+    type: String,
+  },
+  verified: {
+    type: Boolean,
+    required: true,
+    default: () => false,
+  },
+  verification_token: {
+    type: String,
+  },
 });
 
-export const IndividualSignupSchema =
-  models.IndividualSignupSchema ||
-  model("Account-individual", individualSignupSchema);
+export const AccountIndividual =
+  models.AccountIndividual ||
+  model("AccountIndividual", individualSignupSchema);

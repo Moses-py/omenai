@@ -4,7 +4,7 @@ type data =
   | Omit<IndividualRegisterData, "confirmPassword">
   | Omit<GallerySignupData, "confirmPassword">;
 
-export function parseRegisterData(data: data) {
+export async function parseRegisterData(data: data) {
   // Validate data before extracting password
   if (!data || typeof data !== "object") {
     throw new Error("Invalid data");

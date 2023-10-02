@@ -1,7 +1,7 @@
 "use client";
 import { FormEvent } from "react";
 import FormActions from "./FormActions";
-import { handleKeyPress } from "@/lib/utils/disableSubmitOnEnter";
+import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
 
 export default function FormInput() {
   const handleChange = () => {};
