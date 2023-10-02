@@ -5,7 +5,7 @@ export const IndividualLoginProvider = CredentialsProvider({
   name: "Credentials",
   type: "credentials",
   credentials: {},
-  authorize: async (credentials, req) => {
+  authorize: async (credentials) => {
     try {
       const response = await fetch("/api/individual-login", {
         method: "POST",
