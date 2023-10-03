@@ -5,6 +5,7 @@ import generateString from "@/utils/generateString";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { sendGalleryMail } from "@/emails/models/gallery/sendGalleryMail";
+import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 
 export async function POST(request: Request) {
   try {
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
     });
 
     if (!saveData)
-      return res.json({ status: 400, message: "Unsuccessful operation" });
+      throw new ServerError("A server error has occured, please try again");
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
     });
 
     if (!storeVerificationCode)
-      return res.json({ status: 400, message: "Unsuccessful operation" });
+      throw new ServerError("A server error has occured, please try again");
 
     const { user_id, email, name } = saveData;
 
@@ -41,11 +42,11 @@ export async function POST(request: Request) {
 
     return res.json({
       status: 201,
-      message: "Successfully registered",
-      data: saveData,
+      message: "Account successfully registered",
+      data: user_id,
     });
   } catch (error) {
     console.log(error);
-    return new res("Error encountered");
+    return res.json(error, { status: 500 });
   }
 }
