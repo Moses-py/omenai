@@ -4,6 +4,7 @@ import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { NextResponse as res } from "next/server";
 import generateString from "@/utils/generateString";
 import { sendMail } from "@/emails/email_models/individuals/sendMail";
+import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
 
 export async function POST(request: Request) {
   try {
@@ -17,13 +18,19 @@ export async function POST(request: Request) {
 
     const saveData = await AccountIndividual.create({
       ...parsedData,
-      verification_token: email_token,
     });
 
     if (!saveData)
       return res.json({ status: 400, message: "Unsuccessful operation" });
 
-    const url_string = `${process.env.customUrl}/verify/auth/${saveData.verification_token}`;
+    const url_string = `${process.env.customUrl}/verify/auth/${email_token}`;
+
+    const storeVerificationCode = await VerificationCodes.create({
+      code: email_token,
+    });
+
+    if (!storeVerificationCode)
+      return res.json({ status: 400, message: "Unsuccessful operation" });
 
     await sendMail({
       name: saveData.name,
