@@ -1,15 +1,9 @@
 // program to generate random strings
 
-// declare all characters
-const characters =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+import { v4 as uuidv4 } from "uuid";
 
-export default async function generateString(length: number) {
-  let result = " ";
-  const charactersLength = characters.length;
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
+export default async function generateString() {
+  let result = uuidv4();
 
   return result;
 }

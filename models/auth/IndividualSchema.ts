@@ -36,6 +36,11 @@ const individualSignupSchema = new Schema(
       required: true,
       default: () => false,
     },
+
+    role: {
+      type: String,
+      default: "user",
+    },
   },
   { timestamps: true }
 );
