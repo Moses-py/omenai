@@ -9,6 +9,7 @@ const verificationCodeSchema = new Schema(
     },
     author: {
       type: String,
+      required: true,
     },
   },
   { timestamps: true }

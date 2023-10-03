@@ -1,10 +1,10 @@
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountIndividual } from "@/models/auth/register/IndividualSignupSchema";
 import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { NextResponse as res } from "next/server";
 import generateString from "@/utils/generateString";
-import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
+import { AccountGallery } from "@/models/auth/register/GallerySignupSchema";
+import { sendGalleryMail } from "@/emails/models/gallery/sendGalleryMail";
 
 export async function POST(request: Request) {
   try {
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     const email_token = await generateString();
 
-    const saveData = await AccountIndividual.create({
+    const saveData = await AccountGallery.create({
       ...parsedData,
     });
 
@@ -25,24 +25,24 @@ export async function POST(request: Request) {
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
-      author: saveData.user_id,
+      author: saveData.gallery_id,
     });
 
     if (!storeVerificationCode)
       return res.json({ status: 400, message: "Unsuccessful operation" });
 
-    await sendIndividualMail({
-      name: saveData.name,
-      email: saveData.email,
+    const { user_id, email, name } = saveData;
+
+    await sendGalleryMail({
+      name: name,
+      email: email,
       token: email_token,
     });
-
-    const { user_id } = saveData;
 
     return res.json({
       status: 201,
       message: "Successfully registered",
-      data: user_id,
+      data: saveData,
     });
   } catch (error) {
     console.log(error);
