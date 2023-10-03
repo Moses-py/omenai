@@ -1,5 +1,5 @@
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountIndividual } from "@/models/auth/register/IndividualSignupSchema";
+import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { NextResponse as res } from "next/server";
 import generateString from "@/utils/generateString";

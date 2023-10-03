@@ -3,7 +3,7 @@ import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { NextResponse as res } from "next/server";
 import generateString from "@/utils/generateString";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import { AccountGallery } from "@/models/auth/register/GallerySignupSchema";
+import { AccountGallery } from "@/models/auth/GallerySchema";
 import { sendGalleryMail } from "@/emails/models/gallery/sendGalleryMail";
 
 export async function POST(request: Request) {
