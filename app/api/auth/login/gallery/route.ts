@@ -16,7 +16,13 @@ export async function POST(request: Request) {
 
     const { email, password } = data;
 
-    const user = await AccountGallery.findOne<GallerySchemaTypes>({ email });
+    const user = await AccountGallery.findOne<GallerySchemaTypes>(
+      { email },
+      {
+        gallery_id: 1,
+        password: 1,
+      }
+    );
 
     if (!user) throw new ConflictError("Invalid credentials");
 

@@ -1,11 +1,11 @@
+import { MongoServerError } from "mongodb";
+import { MongooseError } from "mongoose";
 import { NextResponse } from "next/server";
 import {
   ForbiddenError,
   NotFoundError,
   ServerError,
 } from "../dictionary/errorDictionary";
-import { MongoServerError } from "mongodb";
-import { MongooseError } from "mongoose";
 
 export const handleErrorEdgeCases = (error: unknown) => {
   if (error instanceof NotFoundError) {
