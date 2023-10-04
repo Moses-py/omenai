@@ -7,7 +7,7 @@ export const IndividualLoginProvider = CredentialsProvider({
   credentials: {},
   authorize: async (credentials) => {
     try {
-      const response = await fetch("/api/individual-login", {
+      const response = await fetch("/api/auth/login/individual", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,12 +17,11 @@ export const IndividualLoginProvider = CredentialsProvider({
 
       const data = await response.json();
 
-      return {
-        id: data._id,
-        ...data,
-      };
+      return { id: data.id };
     } catch (error) {
       console.log(error);
+
+      return null;
     }
   },
 });

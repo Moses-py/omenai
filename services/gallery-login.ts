@@ -7,7 +7,7 @@ export const GalleryLoginProvider = CredentialsProvider({
   credentials: {},
   authorize: async (credentials) => {
     try {
-      const response = await fetch("/api/gallery-login", {
+      const response = await fetch("/api/auth/login/gallery", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,12 +17,11 @@ export const GalleryLoginProvider = CredentialsProvider({
 
       const data = await response.json();
 
-      return {
-        id: data._id,
-        ...data,
-      };
+      return { id: data.id };
     } catch (error) {
       console.log(error);
+
+      return null;
     }
   },
 });
