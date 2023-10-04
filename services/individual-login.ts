@@ -1,4 +1,6 @@
+import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { NextResponse } from "next/server";
 
 export const IndividualLoginProvider = CredentialsProvider({
   id: "individual-login",
@@ -18,12 +20,8 @@ export const IndividualLoginProvider = CredentialsProvider({
       const data = await response.json();
 
       return { id: data.id };
-    } catch (error) {
-      console.log(error);
-
-      return null;
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   },
 });
-
-// email,name, id
