@@ -1,5 +1,5 @@
-import { GalleryLoginProvider } from "@/services/gallery-login";
-import { IndividualLoginProvider } from "@/services/individual-login";
+import { GalleryLoginProvider } from "@/services/GalleryLogin";
+import { IndividualLoginProvider } from "@/services/IndividualLogin";
 import nextAuth, { type NextAuthOptions } from "next-auth";
 
 const authOptions: NextAuthOptions = {

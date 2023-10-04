@@ -1,6 +1,4 @@
-import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { NextResponse } from "next/server";
 
 export const IndividualLoginProvider = CredentialsProvider({
   id: "individual-login",
