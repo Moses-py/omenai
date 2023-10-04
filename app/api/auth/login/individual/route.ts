@@ -1,7 +1,10 @@
 import { ConflictError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountIndividual } from "@/models/auth/IndividualSchema";
+import {
+  AccountIndividual,
+  type IndividualSchemaTypes,
+} from "@/models/auth/IndividualSchema";
 import bcrypt from "bcrypt";
 import { NextResponse as res } from "next/server";
 
@@ -13,7 +16,9 @@ export async function POST(request: Request) {
 
     const { email, password } = data;
 
-    const user = await AccountIndividual.findOne<AccountIndividual>({ email });
+    const user = await AccountIndividual.findOne<IndividualSchemaTypes>({
+      email,
+    });
 
     if (!user) throw new ConflictError("Invalid credentials");
 
@@ -25,7 +30,7 @@ export async function POST(request: Request) {
 
     return res.json({
       status: 201,
-      message: "Successfully registered",
+      message: "Login successfull",
       id: user_id,
     });
   } catch (error) {

@@ -1,7 +1,10 @@
 import { ConflictError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountGallery } from "@/models/auth/GallerySchema";
+import {
+  AccountGallery,
+  type GallerySchemaTypes,
+} from "@/models/auth/GallerySchema";
 import bcrypt from "bcrypt";
 import { NextResponse as res } from "next/server";
 
@@ -13,7 +16,7 @@ export async function POST(request: Request) {
 
     const { email, password } = data;
 
-    const user = await AccountGallery.findOne<AccountGallery>({ email });
+    const user = await AccountGallery.findOne<GallerySchemaTypes>({ email });
 
     if (!user) throw new ConflictError("Invalid credentials");
 
@@ -25,7 +28,7 @@ export async function POST(request: Request) {
 
     return res.json({
       status: 201,
-      message: "Successfully registered",
+      message: "Login successfull",
       id: gallery_id,
     });
   } catch (error) {
