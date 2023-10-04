@@ -17,13 +17,8 @@ export async function POST(request: Request) {
     const { email, password } = data;
 
     const user = await AccountIndividual.findOne<IndividualSchemaTypes>(
-      {
-        email,
-      },
-      {
-        user_id: 1,
-        password: 1,
-      }
+      { email },
+      "user_id password"
     );
 
     if (!user) throw new ConflictError("Invalid credentials");
