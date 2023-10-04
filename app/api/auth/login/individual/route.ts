@@ -17,7 +17,9 @@ export async function POST(request: Request) {
     const remainingRequests = await limiter.removeTokens(1);
 
     if (remainingRequests < 0)
-      throw new RateLimitExceededError("Too many Requests");
+      throw new RateLimitExceededError(
+        "Request limit exceeded - try again after 10 minutes"
+      );
 
     await connectMongoDB();
 

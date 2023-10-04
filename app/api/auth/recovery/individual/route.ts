@@ -1,10 +1,12 @@
 import {
   ForbiddenError,
   NotFoundError,
+  RateLimitExceededError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
@@ -13,6 +15,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
+    const remainingRequests = await limiter.removeTokens(1);
+
+    if (remainingRequests < 0)
+      throw new RateLimitExceededError(
+        "Request limit exceeded - try again after 10 minutes"
+      );
     await connectMongoDB();
 
     const { recoveryEmail } = await request.json();
@@ -50,7 +58,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { message: "Verification code sent" },
+      { message: "Verification code sent", id: user_id },
       { status: 200 }
     );
   } catch (error) {
