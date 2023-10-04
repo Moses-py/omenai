@@ -1,7 +1,7 @@
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { parseRegisterData } from "@/lib/auth/parseRegisterData";
-import { NextResponse as res } from "next/server";
+import { NextResponse, NextResponse as res } from "next/server";
 import generateString from "@/utils/generateToken";
 import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
@@ -57,6 +57,11 @@ export async function POST(request: Request) {
       data: user_id,
     });
   } catch (error) {
-    return handleErrorEdgeCases(error);
+    const error_response = handleErrorEdgeCases(error);
+
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
+    );
   }
 }

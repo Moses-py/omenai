@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
     const { email, user_id, name } = data;
 
-    const email_token = generateDigit(6);
+    const email_token = await generateDigit(6);
 
     const isVerificationTokenActive = await VerificationCodes.findOne({
       author: user_id,
@@ -54,6 +54,11 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    return handleErrorEdgeCases(error);
+    const error_response = handleErrorEdgeCases(error);
+
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
+    );
   }
 }
