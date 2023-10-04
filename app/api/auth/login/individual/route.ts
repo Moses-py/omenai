@@ -6,7 +6,7 @@ import {
   type IndividualSchemaTypes,
 } from "@/models/auth/IndividualSchema";
 import bcrypt from "bcrypt";
-import { NextResponse as res } from "next/server";
+import { NextResponse, NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
   try {
@@ -40,6 +40,10 @@ export async function POST(request: Request) {
       id: user_id,
     });
   } catch (error) {
-    return handleErrorEdgeCases(error);
+    const error_response = handleErrorEdgeCases(error);
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
+    );
   }
 }
