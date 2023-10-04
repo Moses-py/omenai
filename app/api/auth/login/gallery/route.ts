@@ -1,6 +1,6 @@
 import {
   ConflictError,
-  TooManyRequestError,
+  RateLimitExceededError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { limiter } from "@/lib/auth/limiter";
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     const remainingRequests = await limiter.removeTokens(1);
 
     if (remainingRequests < 0)
-      throw new TooManyRequestError("Too many Requests");
+      throw new RateLimitExceededError("Too many Requests");
 
     await connectMongoDB();
 

@@ -4,7 +4,7 @@ import {
   FORBIDDEN_STATUS,
   NOT_FOUND_STATUS,
   SERVER_ERROR_STATUS,
-  TOO_MANY_REQUESTS_STATUS,
+  Rate_Limit_Exceeded_STATUS,
 } from "@/constants/statusCodes/codes";
 
 const createErrorObject = (message: string, status: number) => {
@@ -21,8 +21,8 @@ export const handleErrorEdgeCases = (error: any) => {
       return createErrorObject(error.message, FORBIDDEN_STATUS);
     case "ConflictError":
       return createErrorObject(error.message, CONFLICT_STATUS);
-    case "TooManyRequestError":
-      return createErrorObject(error.message, TOO_MANY_REQUESTS_STATUS);
+    case "RateLimitExceededError":
+      return createErrorObject(error.message, Rate_Limit_Exceeded_STATUS);
     default:
       if (error?.code === ACCOUNT_ALREADY_EXISTS_ERROR_CODE) {
         return createErrorObject("Account already exists", CONFLICT_STATUS);
