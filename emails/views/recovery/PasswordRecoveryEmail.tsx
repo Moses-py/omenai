@@ -11,9 +11,8 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
-import { Img } from "@react-email/img";
 
-const UserVerificationEmail = (username: string, token: string) => {
+const PasswordRecoveryEmail = (username: string, token: string) => {
   return (
     <Html>
       <Head />
@@ -21,26 +20,33 @@ const UserVerificationEmail = (username: string, token: string) => {
         <Body className="bg-white my-auto mx-auto font-sans">
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
             <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
-              Welcome on board to <strong>Omenai</strong>
+              Password Reset verification
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
-              Hello {username},
+              Dear {username},
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              We, at <strong>Omenai Inc.</strong>, are thrilled to have you on
-              board and eagerly await the beginning of your journey with us
+              We have received a request to reset your password. Below, you will
+              find your verification token. Please note that the validity of
+              this token will expire in <strong>10 minutes.</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px]">
-              Your email verification token is located below. Enter this code
-              into the designated input field on the verification page. Please
-              be aware that the validity of this token will expire in{" "}
-              <strong>10 minutes.</strong>
-            </Text>
+
             <Section className="text-center mt-[32px] mb-[32px]">
               <Text className="text-black text-[14px] font-bold leading-[24px]">
                 <strong>{token}</strong>
               </Text>
             </Section>
+
+            <Text className="text-black text-[14px] leading-[24px]">
+              If you did not authorize this action. Please contact us
+              immediately on{" "}
+              <Link
+                href="mailto:contact@omeani.net"
+                className="underline text-blue-800"
+              >
+                contact@omeani.net
+              </Link>
+            </Text>
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-secondary text-[12px] leading-[24px]">
               Please be advised that the information contained within this email
@@ -63,4 +69,4 @@ const UserVerificationEmail = (username: string, token: string) => {
   );
 };
 
-export default UserVerificationEmail;
+export default PasswordRecoveryEmail;

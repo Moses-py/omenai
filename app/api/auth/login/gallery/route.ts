@@ -1,4 +1,5 @@
 import { ConflictError } from "@/custom/errors/dictionary/errorDictionary";
+import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import bcrypt from "bcrypt";
@@ -28,6 +29,6 @@ export async function POST(request: Request) {
       id: gallery_id,
     });
   } catch (error) {
-    return res.json(error, { status: 409 });
+    return handleErrorEdgeCases(error);
   }
 }

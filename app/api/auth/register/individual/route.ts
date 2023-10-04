@@ -1,10 +1,14 @@
-import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
+import {
+  ForbiddenError,
+  ServerError,
+} from "@/custom/errors/dictionary/errorDictionary";
+import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
 import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString from "@/utils/generateString";
+import generateString from "@/utils/generateToken";
 import { NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
@@ -21,8 +25,17 @@ export async function POST(request: Request) {
       ...parsedData,
     });
 
+    const { user_id } = saveData;
+
     if (!saveData)
       throw new ServerError("A server error has occured, please try again");
+
+    const isVerificationTokenActive = await VerificationCodes.findOne({
+      author: user_id,
+    });
+
+    if (isVerificationTokenActive)
+      throw new ForbiddenError("Token is active. Please provide token");
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
@@ -38,14 +51,12 @@ export async function POST(request: Request) {
       token: email_token,
     });
 
-    const { user_id } = saveData;
-
     return res.json({
       status: 201,
       message: "User successfully registered",
       data: user_id,
     });
   } catch (error) {
-    return res.json(error, { status: 500 });
+    return handleErrorEdgeCases(error);
   }
 }
