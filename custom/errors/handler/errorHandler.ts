@@ -1,17 +1,25 @@
 import {
-  ForbiddenError,
-  NotFoundError,
-  ServerError,
-} from "../dictionary/errorDictionary";
+  ACCOUNT_ALREADY_EXISTS_ERROR_CODE,
+  FORBIDDEN_STATUS,
+  NOT_FOUND_STATUS,
+  SERVER_ERROR_STATUS,
+} from "@/constants/statusCodes/codes";
+
+const createErrorObject = (message: string, status: number) => {
+  return { message, status };
+};
 
 export const handleErrorEdgeCases = (error: any) => {
-  if (error instanceof NotFoundError) {
-    return { message: error.message, status: 404 };
-  } else if (error instanceof ServerError) {
-    return { message: error.message, status: 500 };
-  } else if (error instanceof ForbiddenError) {
-    return { message: error.message, status: 403 };
-  } else if (error && error.code === 11000) {
-    return { message: "Account already exists", status: 409 };
+  switch (error.constructor.name) {
+    case "NotFoundError":
+      return createErrorObject(error.message, NOT_FOUND_STATUS);
+    case "ServerError":
+      return createErrorObject(error.message, SERVER_ERROR_STATUS);
+    case "ForbiddenError":
+      return createErrorObject(error.message, FORBIDDEN_STATUS);
+    default:
+      if (error?.code === ACCOUNT_ALREADY_EXISTS_ERROR_CODE) {
+        return createErrorObject("Account already exists", 409);
+      }
   }
 };
