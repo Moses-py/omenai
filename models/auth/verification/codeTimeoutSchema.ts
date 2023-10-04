@@ -1,6 +1,10 @@
 import { Schema, model, models } from "mongoose";
 
-const verificationCodeSchema = new Schema(
+type CodeSchemaTypes = {
+  code: string;
+  author: string;
+};
+const verificationCodeSchema = new Schema<CodeSchemaTypes>(
   {
     code: {
       type: String,
@@ -15,7 +19,7 @@ const verificationCodeSchema = new Schema(
   { timestamps: true }
 );
 
-verificationCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 600 });
+verificationCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 });
 
 export const VerificationCodes =
   models.VerificationCodes ||
