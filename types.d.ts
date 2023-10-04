@@ -32,3 +32,26 @@ type GallerySignupData = {
 type IndividualRegisterData = IndividualSignupData & {
   preferences: string[];
 };
+
+type AccountIndividual = {
+  name: string;
+  email: string;
+  password: string;
+  user_id: string;
+  preferences: string[];
+  verified: boolean;
+  role: string;
+};
+
+type AccountGallery = {
+  name: string;
+  location: string;
+  description: string;
+  admin: string;
+  email: string;
+  password: string;
+  email_verified: boolean;
+  gallery_verified: boolean;
+  role: string;
+  gallery_id: string;
+};

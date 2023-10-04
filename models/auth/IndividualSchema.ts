@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
-const individualSignupSchema = new Schema(
+const individualSignupSchema = new Schema<AccountIndividual>(
   {
     name: {
       type: String,
@@ -47,4 +47,4 @@ const individualSignupSchema = new Schema(
 
 export const AccountIndividual =
   models.AccountIndividual ||
-  model("AccountIndividual", individualSignupSchema);
+  model<AccountIndividual>("AccountIndividual", individualSignupSchema);

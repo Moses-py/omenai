@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
-const gallerySignupSchema = new Schema(
+const gallerySignupSchema = new Schema<AccountGallery>(
   {
     name: {
       type: String,
@@ -59,4 +59,5 @@ const gallerySignupSchema = new Schema(
 );
 
 export const AccountGallery =
-  models.AccountGallery || model("AccountGallery", gallerySignupSchema);
+  models.AccountGallery ||
+  model<AccountGallery>("AccountGallery", gallerySignupSchema);
