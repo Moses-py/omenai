@@ -12,7 +12,11 @@ import {
   Text,
 } from "@react-email/components";
 
-const PasswordRecoveryEmail = (username: string, token: string) => {
+const PasswordRecoveryEmail = (
+  username: string,
+  token: string,
+  gallery_name?: string
+) => {
   return (
     <Html>
       <Head />
@@ -26,9 +30,14 @@ const PasswordRecoveryEmail = (username: string, token: string) => {
               Dear {username},
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              We have received a request to reset your password. Below, you will
-              find your verification token. Please note that the validity of
-              this token will expire in <strong>10 minutes.</strong>
+              We have received a request to reset your{" "}
+              {gallery_name && `admin `}
+              password
+              {gallery_name &&
+                ` for your gallery account (${gallery_name} gallery)`}
+              . Below, you will find your verification token. Please note that
+              the validity of this token will expire in{" "}
+              <strong>10 minutes.</strong>
             </Text>
 
             <Section className="text-center mt-[32px] mb-[32px]">
