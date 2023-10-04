@@ -1,7 +1,16 @@
 import { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
-const individualSignupSchema = new Schema(
+type IndividualSchemaTypes = {
+  name: string;
+  email: string;
+  password: string;
+  user_id: string;
+  preferences: string[];
+  verified: boolean;
+  role: string;
+};
+const individualSignupSchema = new Schema<IndividualSchemaTypes>(
   {
     name: {
       type: String,

@@ -1,11 +1,15 @@
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { parseRegisterData } from "@/lib/auth/parseRegisterData";
-import { NextResponse as res } from "next/server";
-import generateString from "@/utils/generateString";
+import { NextResponse, NextResponse as res } from "next/server";
+import generateString from "@/utils/generateToken";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { sendGalleryMail } from "@/emails/models/gallery/sendGalleryMail";
-import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
+import {
+  ForbiddenError,
+  ServerError,
+} from "@/custom/errors/dictionary/errorDictionary";
+import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 
 export async function POST(request: Request) {
   try {
@@ -21,8 +25,17 @@ export async function POST(request: Request) {
       ...parsedData,
     });
 
+    const { gallery_id, email, name } = saveData;
+
     if (!saveData)
       throw new ServerError("A server error has occured, please try again");
+
+    const isVerificationTokenActive = await VerificationCodes.findOne({
+      author: gallery_id,
+    });
+
+    if (isVerificationTokenActive)
+      throw new ForbiddenError("Token is active. Please provide token");
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
@@ -31,8 +44,6 @@ export async function POST(request: Request) {
 
     if (!storeVerificationCode)
       throw new ServerError("A server error has occured, please try again");
-
-    const { user_id, email, name } = saveData;
 
     await sendGalleryMail({
       name: name,
@@ -43,10 +54,9 @@ export async function POST(request: Request) {
     return res.json({
       status: 201,
       message: "Account successfully registered",
-      data: user_id,
+      data: gallery_id,
     });
   } catch (error) {
-    console.log(error);
-    return res.json(error, { status: 500 });
+    return handleErrorEdgeCases(error);
   }
 }

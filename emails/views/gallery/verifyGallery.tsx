@@ -30,7 +30,7 @@ const GalleryVerificationEmail = (galleryName: string, token: string) => {
             <Text className="text-black text-[14px] leading-[24px]">
               Your email verification token is located below. Enter this code
               into the designated input field on the verification page. Please
-              be aware that the viability of this token will expire in{" "}
+              be aware that the validity of this token will expire in{" "}
               <strong>10 minutes.</strong>
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
