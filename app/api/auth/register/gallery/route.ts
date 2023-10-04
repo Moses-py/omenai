@@ -57,6 +57,11 @@ export async function POST(request: Request) {
       data: gallery_id,
     });
   } catch (error) {
-    return handleErrorEdgeCases(error);
+    const error_response = handleErrorEdgeCases(error);
+
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
+    );
   }
 }

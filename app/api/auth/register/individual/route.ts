@@ -8,8 +8,8 @@ import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString from "@/utils/generateToken";
-import { NextResponse as res } from "next/server";
+import { default as generateString } from "@/utils/generateToken";
+import { NextResponse, NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
   try {
@@ -57,6 +57,11 @@ export async function POST(request: Request) {
       data: user_id,
     });
   } catch (error) {
-    return handleErrorEdgeCases(error);
+    const error_response = handleErrorEdgeCases(error);
+
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
+    );
   }
 }
