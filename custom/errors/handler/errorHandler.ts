@@ -1,5 +1,6 @@
 import {
   ACCOUNT_ALREADY_EXISTS_ERROR_CODE,
+  CONFLICT_STATUS,
   FORBIDDEN_STATUS,
   NOT_FOUND_STATUS,
   SERVER_ERROR_STATUS,
@@ -19,7 +20,7 @@ export const handleErrorEdgeCases = (error: any) => {
       return createErrorObject(error.message, FORBIDDEN_STATUS);
     default:
       if (error?.code === ACCOUNT_ALREADY_EXISTS_ERROR_CODE) {
-        return createErrorObject("Account already exists", 409);
+        return createErrorObject("Account already exists", CONFLICT_STATUS);
       }
   }
 };

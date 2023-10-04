@@ -56,12 +56,9 @@ export async function POST(request: Request) {
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
 
-    return (
-      error_response?.status !== undefined &&
-      NextResponse.json(
-        { message: error_response.message },
-        { status: error_response.status }
-      )
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
     );
   }
 }
