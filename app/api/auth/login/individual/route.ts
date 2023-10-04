@@ -1,5 +1,9 @@
-import { ConflictError } from "@/custom/errors/dictionary/errorDictionary";
+import {
+  ConflictError,
+  RateLimitExceededError,
+} from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import {
   AccountIndividual,
@@ -10,6 +14,11 @@ import { NextResponse, NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
   try {
+    const remainingRequests = await limiter.removeTokens(1);
+
+    if (remainingRequests < 0)
+      throw new RateLimitExceededError("Too many Requests");
+
     await connectMongoDB();
 
     const data = await request.json();
@@ -34,7 +43,7 @@ export async function POST(request: Request) {
       message: "Login successfull",
       id: user_id,
     });
-  } catch (error) {
+  } catch (error: any) {
     const error_response = handleErrorEdgeCases(error);
     return NextResponse.json(
       { message: error_response?.message },

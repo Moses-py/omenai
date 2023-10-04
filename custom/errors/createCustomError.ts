@@ -1,6 +1,6 @@
 function createCustomErrorClass(name: string) {
   return class CustomError extends Error {
-    public readonly name: string;
+    public readonly name: string = name;
 
     constructor(message: string) {
       super(message);

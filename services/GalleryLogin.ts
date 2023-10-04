@@ -18,10 +18,8 @@ export const GalleryLoginProvider = CredentialsProvider({
       const data = await response.json();
 
       return { id: data.id };
-    } catch (error) {
-      console.log(error);
-
-      return null;
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   },
 });
