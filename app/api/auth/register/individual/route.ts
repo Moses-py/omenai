@@ -1,11 +1,11 @@
+import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
+import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
+import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
-import { parseRegisterData } from "@/lib/auth/parseRegisterData";
-import { NextResponse as res } from "next/server";
-import generateString from "@/utils/generateString";
-import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
+import generateString from "@/utils/generateString";
+import { NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
   try {
