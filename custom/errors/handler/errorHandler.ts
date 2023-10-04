@@ -1,4 +1,5 @@
 import {
+  ConflictError,
   ForbiddenError,
   NotFoundError,
   ServerError,
@@ -11,6 +12,8 @@ export const handleErrorEdgeCases = (error: any) => {
     return { message: error.message, status: 500 };
   } else if (error instanceof ForbiddenError) {
     return { message: error.message, status: 403 };
+  } else if (error instanceof ConflictError) {
+    return { message: error.message, status: 409 };
   } else if (error && error.code === 11000) {
     return { message: "Account already exists", status: 409 };
   }
