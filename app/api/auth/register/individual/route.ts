@@ -5,6 +5,7 @@ import { NextResponse as res } from "next/server";
 import generateString from "@/utils/generateString";
 import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
+import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 
 export async function POST(request: Request) {
   try {
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
     });
 
     if (!saveData)
-      return res.json({ status: 400, message: "Unsuccessful operation" });
+      throw new ServerError("A server error has occured, please try again");
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
     });
 
     if (!storeVerificationCode)
-      return res.json({ status: 400, message: "Unsuccessful operation" });
+      throw new ServerError("A server error has occured, please try again");
 
     await sendIndividualMail({
       name: saveData.name,
@@ -41,11 +42,10 @@ export async function POST(request: Request) {
 
     return res.json({
       status: 201,
-      message: "Successfully registered",
+      message: "User successfully registered",
       data: user_id,
     });
   } catch (error) {
-    console.log(error);
-    return new res("Error encountered");
+    return res.json(error, { status: 500 });
   }
 }
