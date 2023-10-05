@@ -9,7 +9,7 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const connection = await connectMongoDB();
+  await connectMongoDB();
   try {
     let id;
     try {
@@ -34,9 +34,5 @@ export async function GET(request: Request) {
       { message: error_response?.message },
       { status: error_response?.status }
     );
-  } finally {
-    if (connection) {
-      mongoose.disconnect();
-    }
   }
 }
