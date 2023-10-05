@@ -28,21 +28,21 @@ export default async function VerifyEmail({
   );
 }
 
-export async function generateStaticParams() {
-  const url = getApiUrl();
+// export async function generateStaticParams() {
+//   const url = getApiUrl();
 
-  try {
-    const response = await fetch(`${url}/api/requests/individual/getUserIds`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
+//   try {
+//     const response = await fetch(`${url}/api/requests/individual/getUserIds`, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }).then((res) => res.json());
 
-    return response.ids.map((id: { _id: string; user_id: string }) => ({
-      token: id.user_id,
-    }));
-  } catch (error: any) {
-    console.log(error);
-  }
-}
+//     return response.ids.map((id: { _id: string; user_id: string }) => ({
+//       token: id.user_id,
+//     }));
+//   } catch (error: any) {
+//     console.log(error);
+//   }
+// }
