@@ -29,7 +29,6 @@ export async function GET(request: Request) {
     return NextResponse.json({ data: isVerified.verified }, { status: 200 });
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
-    // console.log(error);
 
     return NextResponse.json(
       { message: error_response?.message },
