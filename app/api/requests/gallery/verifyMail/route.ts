@@ -1,0 +1,52 @@
+import {
+  BadRequestError,
+  RateLimitExceededError,
+} from "@/custom/errors/dictionary/errorDictionary";
+import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
+import { limiter } from "@/lib/auth/limiter";
+import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
+import { AccountGallery } from "@/models/auth/GallerySchema";
+import { AccountIndividual } from "@/models/auth/IndividualSchema";
+import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
+import { NextResponse } from "next/server";
+
+export async function POST(request: Request) {
+  try {
+    const remainingRequests = await limiter.removeTokens(1);
+
+    if (remainingRequests < 0)
+      throw new RateLimitExceededError(
+        "Request limit exceeded - try again after 10 minutes"
+      );
+
+    await connectMongoDB();
+
+    const { params, token } = await request.json();
+
+    const isTokenActive = await VerificationCodes.findOne({
+      author: params,
+      code: token,
+    }).exec();
+
+    if (!isTokenActive) throw new BadRequestError("Invalid token data");
+
+    await AccountGallery.updateOne(
+      { gallery_id: params },
+      { email_verified: true }
+    );
+
+    await VerificationCodes.deleteOne({ code: token, author: params });
+
+    return NextResponse.json(
+      { message: "Verification complete" },
+      { status: 200 }
+    );
+  } catch (error) {
+    const error_response = handleErrorEdgeCases(error);
+
+    return NextResponse.json(
+      { message: error_response?.message },
+      { status: error_response?.status }
+    );
+  }
+}

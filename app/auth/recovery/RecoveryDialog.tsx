@@ -18,10 +18,10 @@ export default function Recovery() {
       <motion.div
         className={` ${
           recoveryModal.value ? "fixed" : "hidden"
-        } fixed inset-0 grid place-items-center p-5 z-50 bg-black/90`}
+        } fixed inset-0 grid place-items-center p-2 z-50 bg-black/90`}
       >
         <div className="flex flex-col gap-8 items-center">
-          <div className="bg-white min-w-auto  flex flex-col gap-y-8 px-[2rem] py-[2rem] rounded-xl relative">
+          <div className="bg-white w-fit flex flex-col gap-y-8 p-[2rem] rounded-xl relative">
             <div className="absolute top-5 right-5">
               <GrClose
                 className="cursor-pointer"
@@ -39,9 +39,7 @@ export default function Recovery() {
             </div>
             <div className="flex flex-col gap-6">
               <RecoveryEmailInputField />
-              <RecoveryCodeInputField
-                onClick={() => setShowPasswordState(!showPasswordState)}
-              />
+              <RecoveryCodeInputField />
             </div>
 
             {recoveryModal.value && showPasswordState && (
