@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import TokenBlock from "./components/TokenBlock";
+import { getApiUrl } from "@/config";
 
 export const dynamicParams = false;
 export default async function VerifyEmail({
@@ -27,25 +28,21 @@ export default async function VerifyEmail({
   );
 }
 
-export async function generateStaticParams() {
-  try {
-    const result = await fetch(
-      "http://localhost:3000/api/requests/individual/getUserIds",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((res) => res.json());
-    if (!result || !result.ids) {
-      throw new Error("Failed to fetch user ids");
-    }
+// export async function generateStaticParams() {
+//   const url = getApiUrl();
 
-    return result.ids.map((id: { _id: string; user_id: string }) => ({
-      token: id.user_id,
-    }));
-  } catch (error: any) {
-    console.log(error);
-  }
-}
+//   try {
+//     const response = await fetch(`${url}/api/requests/individual/getUserIds`, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }).then((res) => res.json());
+
+//     return response.ids.map((id: { _id: string; user_id: string }) => ({
+//       token: id.user_id,
+//     }));
+//   } catch (error: any) {
+//     console.log(error);
+//   }
+// }
