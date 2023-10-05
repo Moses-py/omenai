@@ -44,6 +44,6 @@ export async function generateStaticParams() {
       token: id.user_id,
     }));
   } catch (error: any) {
-    toast(error.message);
+    console.log(error);
   }
 }
