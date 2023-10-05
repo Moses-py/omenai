@@ -1,14 +1,15 @@
 import {
+  ConflictError,
   ForbiddenError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
-import { sendGalleryMail } from "@/emails/models/gallery/sendGalleryMail";
+import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
 import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountGallery } from "@/models/auth/GallerySchema";
+import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString from "@/utils/generateToken";
+import { default as generateString } from "@/utils/generateToken";
 import { NextResponse, NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
@@ -17,21 +18,29 @@ export async function POST(request: Request) {
 
     const data = await request.json();
 
+    const isAccountRegistered = await AccountIndividual.findOne(
+      { email: data.email },
+      "email"
+    ).exec();
+
+    if (isAccountRegistered)
+      throw new ConflictError("Account already exists, please login");
+
     const parsedData = await parseRegisterData(data);
 
     const email_token = await generateString();
 
-    const saveData = await AccountGallery.create({
+    const saveData = await AccountIndividual.create({
       ...parsedData,
     });
 
-    const { gallery_id, email, name } = saveData;
+    const { user_id } = saveData;
 
     if (!saveData)
       throw new ServerError("A server error has occured, please try again");
 
     const isVerificationTokenActive = await VerificationCodes.findOne({
-      author: gallery_id,
+      author: user_id,
     });
 
     if (isVerificationTokenActive)
@@ -39,22 +48,22 @@ export async function POST(request: Request) {
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
-      author: saveData.gallery_id,
+      author: saveData.user_id,
     });
 
     if (!storeVerificationCode)
       throw new ServerError("A server error has occured, please try again");
 
-    await sendGalleryMail({
-      name: name,
-      email: email,
+    await sendIndividualMail({
+      name: saveData.name,
+      email: saveData.email,
       token: email_token,
     });
 
     return res.json({
       status: 201,
-      message: "Account successfully registered",
-      data: gallery_id,
+      message: "User successfully registered",
+      data: user_id,
     });
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);

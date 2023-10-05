@@ -8,6 +8,9 @@ type IndividualAuthStoreTypes = {
   updatePreference: (value: string) => void;
   individualSignupData: IndividualSignupData;
   updateSignUpData: (label: string, value: string) => void;
+  isLoading: boolean;
+  setIsloading: () => void;
+  clearData: () => void;
 };
 
 export const useIndividualAuthStore = create<IndividualAuthStoreTypes>(
@@ -70,6 +73,25 @@ export const useIndividualAuthStore = create<IndividualAuthStoreTypes>(
 
         set({ individualSignupData: updatedData as IndividualSignupData });
       }
+    },
+    isLoading: false,
+    setIsloading: () => {
+      const loadingState = get().isLoading;
+
+      set({ isLoading: !loadingState });
+    },
+
+    clearData: () => {
+      set({
+        individualSignupData: {
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        },
+        preferences: [],
+        currentSignupFormIndex: 0,
+      });
     },
   })
 );

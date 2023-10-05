@@ -6,6 +6,9 @@ type GalleryAuthStoreTypes = {
   decrementCurrentGallerySignupFormIndex: () => void;
   gallerySignupData: GallerySignupData;
   updateGallerySignupData: (label: string, value: string) => void;
+  isLoading: boolean;
+  setIsloading: () => void;
+  clearData: () => void;
 };
 export const useGalleryAuthStore = create<GalleryAuthStoreTypes>(
   (set, get) => ({
@@ -52,6 +55,26 @@ export const useGalleryAuthStore = create<GalleryAuthStoreTypes>(
 
         set({ gallerySignupData: updatedData as GallerySignupData });
       }
+    },
+    isLoading: false,
+    setIsloading: () => {
+      const loadingState = get().isLoading;
+
+      set({ isLoading: !loadingState });
+    },
+    clearData: () => {
+      set({
+        gallerySignupData: {
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          location: "",
+          admin: "",
+          description: "",
+        },
+        currentGallerySignupFormIndex: 0,
+      });
     },
   })
 );
