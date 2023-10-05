@@ -1,4 +1,5 @@
 import {
+  ConflictError,
   ForbiddenError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
@@ -9,13 +10,21 @@ import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
 import generateString from "@/utils/generateToken";
-import { NextResponse, NextResponse as res } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
     await connectMongoDB();
 
     const data = await request.json();
+
+    const isAccountRegistered = await AccountGallery.findOne(
+      { email: data.email },
+      "email"
+    ).exec();
+
+    if (isAccountRegistered)
+      throw new ConflictError("Account already exists, please login");
 
     const parsedData = await parseRegisterData(data);
 
@@ -51,11 +60,13 @@ export async function POST(request: Request) {
       token: email_token,
     });
 
-    return res.json({
-      status: 201,
-      message: "Account successfully registered",
-      data: gallery_id,
-    });
+    return NextResponse.json(
+      {
+        message: "Account successfully registered",
+        data: gallery_id,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
 

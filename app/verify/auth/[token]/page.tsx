@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { toast } from "sonner";
 import Image from "next/image";
 import TokenBlock from "./components/TokenBlock";
 
@@ -39,6 +38,9 @@ export async function generateStaticParams() {
         },
       }
     ).then((res) => res.json());
+    if (!result || !result.ids) {
+      throw new Error("Failed to fetch user ids");
+    }
 
     return result.ids.map((id: { _id: string; user_id: string }) => ({
       token: id.user_id,

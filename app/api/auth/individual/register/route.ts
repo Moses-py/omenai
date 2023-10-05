@@ -1,4 +1,5 @@
 import {
+  ConflictError,
   ForbiddenError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
@@ -16,6 +17,14 @@ export async function POST(request: Request) {
     await connectMongoDB();
 
     const data = await request.json();
+
+    const isAccountRegistered = await AccountIndividual.findOne(
+      { email: data.email },
+      "email"
+    ).exec();
+
+    if (isAccountRegistered)
+      throw new ConflictError("Account already exists, please login");
 
     const parsedData = await parseRegisterData(data);
 

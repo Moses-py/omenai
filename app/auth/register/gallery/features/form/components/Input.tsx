@@ -36,11 +36,13 @@ export default function Input({
     currentGallerySignupFormIndex,
     incrementCurrentGallerySignupFormIndex,
     decrementCurrentGallerySignupFormIndex,
+    isLoading,
   ] = useGalleryAuthStore((state) => [
     state.gallerySignupData,
     state.currentGallerySignupFormIndex,
     state.incrementCurrentGallerySignupFormIndex,
     state.decrementCurrentGallerySignupFormIndex,
+    state.isLoading,
   ]);
 
   const [errorList, setErrorList] = useState<string[]>([]);

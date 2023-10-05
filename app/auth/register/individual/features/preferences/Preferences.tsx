@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Pill from "./components/Pill";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
-
+import { ClipLoader, FadeLoader } from "react-spinners";
 let artTypes = [
   "Surrealism",
   "Minimalism",
@@ -15,9 +15,12 @@ let artTypes = [
   "Pop art",
 ];
 function Preferences() {
-  const [decrementCurrentSignupFormIndex, preferences] = useIndividualAuthStore(
-    (state) => [state.decrementCurrentSignupFormIndex, state.preferences]
-  );
+  const [decrementCurrentSignupFormIndex, preferences, isLoading] =
+    useIndividualAuthStore((state) => [
+      state.decrementCurrentSignupFormIndex,
+      state.preferences,
+      state.isLoading,
+    ]);
   return (
     <AnimatePresence>
       <div className="container">
@@ -50,10 +53,11 @@ function Preferences() {
               Back
             </button>
             <button
-              className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+              disabled={isLoading}
+              className="rounded-full disabled:bg-gray-400 px-[1.5rem] py-[0.4rem] mt-[1rem] flex justify-center items-end bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
               type={"submit"}
             >
-              Submit
+              {isLoading ? <ClipLoader size={20} /> : "Submit"}
             </button>
           </div>
         </motion.div>

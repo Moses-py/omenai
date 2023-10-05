@@ -29,6 +29,8 @@ type GallerySignupData = {
   description: string;
 };
 
-type IndividualRegisterData = IndividualSignupData & {
+type IndividualRegisterData = Omit<IndividualSignupData, "confirmPassword"> & {
   preferences: string[];
 };
+
+type GalleryRegisterData = Omit<GallerySignupData, "confirmPassword">;

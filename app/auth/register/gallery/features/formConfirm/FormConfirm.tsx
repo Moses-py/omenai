@@ -2,11 +2,14 @@
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { ClipLoader } from "react-spinners";
 
 export default function FormConfirm() {
-  const [decrementCurrentGallerySignupFormIndex] = useGalleryAuthStore(
-    (state) => [state.decrementCurrentGallerySignupFormIndex]
-  );
+  const [decrementCurrentGallerySignupFormIndex, isLoading] =
+    useGalleryAuthStore((state) => [
+      state.decrementCurrentGallerySignupFormIndex,
+      state.isLoading,
+    ]);
   return (
     <AnimatePresence>
       <div className="flex flex-col gap-4">
@@ -39,10 +42,11 @@ export default function FormConfirm() {
             Back
           </button>
           <button
-            className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+            disabled={isLoading}
+            className="rounded-full disabled:bg-gray-400 px-[1.5rem] py-[0.4rem] mt-[1rem] flex justify-center items-end bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
             type={"submit"}
           >
-            Submit
+            {isLoading ? <ClipLoader size={20} /> : "Submit"}
           </button>
         </div>
       </div>
