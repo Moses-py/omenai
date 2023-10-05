@@ -7,3 +7,4 @@ export const ForbiddenError = createCustomErrorClass("ForbiddenError");
 export const RateLimitExceededError = createCustomErrorClass(
   "RateLimitExceededError"
 );
+export const BadRequestError = createCustomErrorClass("BadRequestError");
