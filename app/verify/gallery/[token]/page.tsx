@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import TokenBlock from "./components/TokenBlock";
-import { getApiUrl } from "@/config";
+import { getIds } from "@/services/verify/getAllIds";
 
 export const dynamicParams = false;
 export default async function VerifyEmail({
@@ -9,7 +9,7 @@ export default async function VerifyEmail({
 }: {
   params: { token: string };
 }) {
-  // Check if user is verified and then redirect
+  // Check if gallery is verified and then redirect
   return (
     <div className="w-full h-[100vh] grid place-items-center">
       <div className="flex flex-col gap-5 items-center p-5">
@@ -28,21 +28,14 @@ export default async function VerifyEmail({
   );
 }
 
-// export async function generateStaticParams() {
-//   const url = getApiUrl();
+export async function generateStaticParams() {
+  const result: Promise<any> = getIds("gallery");
 
-//   try {
-//     const response = await fetch(`${url}/api/requests/individual/getUserIds`, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }).then((res) => res.json());
+  const results = await result;
 
-//     return response.ids.map((id: { _id: string; user_id: string }) => ({
-//       token: id.user_id,
-//     }));
-//   } catch (error: any) {
-//     console.log(error);
-//   }
-// }
+  return results.ids.map((id: { _id: string; gallery_id: string }) => {
+    return {
+      token: id.gallery_id,
+    };
+  });
+}
