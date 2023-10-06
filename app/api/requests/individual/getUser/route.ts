@@ -9,8 +9,8 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  await connectMongoDB();
   try {
+    await connectMongoDB();
     let id;
     try {
       const { accountId } = await request.json();
