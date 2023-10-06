@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <NextTopLoader color="#6246EA" height={6} />
-        <Toaster richColors position="top-center" />
+        <Toaster richColors position="top-center" visibleToasts={1} />
         {children}
       </body>
     </html>
