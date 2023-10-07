@@ -3,7 +3,6 @@ import { FormEvent } from "react";
 import FormController from "./FormController";
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 import { registerAccount } from "@/services/register/registerAccount";
-import router from "next/router";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -31,7 +30,7 @@ export default function FormInput() {
       if (res.isOk) {
         toast.success(res.body.message + " redirecting...");
         clearData();
-        router.push(`/verify/auth/${res.body.data}`);
+        router.push(`/verify/gallery/${res.body.data}`);
       } else {
         toast.error(res.body.message);
       }

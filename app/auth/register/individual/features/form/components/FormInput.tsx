@@ -39,7 +39,7 @@ export default function FormInput() {
       if (res.isOk) {
         toast.success(res.body.message + " redirecting...");
         clearData();
-        router.push(`/verify/auth/${res.body.data}`);
+        router.push(`/verify/individual/${res.body.data}`);
       } else {
         toast.error(res.body.message);
       }
