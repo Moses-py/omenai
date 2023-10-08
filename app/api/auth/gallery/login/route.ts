@@ -5,12 +5,15 @@ import {
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import {
-  AccountGallery,
-  type GallerySchemaTypes,
-} from "@/models/auth/GallerySchema";
+import { AccountGallery } from "@/models/auth/GallerySchema";
 import bcrypt from "bcrypt";
 import { NextResponse, NextResponse as res } from "next/server";
+
+type UserReturn = {
+  gallery_id: string;
+  verified: boolean;
+  password: string;
+};
 
 export async function POST(request: Request) {
   try {
@@ -27,9 +30,9 @@ export async function POST(request: Request) {
 
     const { email, password } = data;
 
-    const user = await AccountGallery.findOne<GallerySchemaTypes>(
+    const user = await AccountGallery.findOne<UserReturn>(
       { email },
-      "gallery_id password"
+      "gallery_id verified password"
     );
 
     if (!user) throw new ConflictError("Invalid credentials");
@@ -37,6 +40,11 @@ export async function POST(request: Request) {
     const isPasswordMatch = bcrypt.compareSync(password, user.password);
 
     if (!isPasswordMatch) throw new ConflictError("Invalid credentials");
+
+    if (!user.verified)
+      return NextResponse.redirect(
+        new URL("/verify/individual/user_id", request.url)
+      );
 
     const { gallery_id } = user;
 

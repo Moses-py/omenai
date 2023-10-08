@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 import Link from "next/link";
-import FormInput from "./components/FormInput";
 import Action from "../actions/Action";
+import FormInput from "./components/FormInput";
 
 export default function Form() {
   return (
