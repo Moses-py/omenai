@@ -53,11 +53,13 @@ export async function POST(request: Request) {
       token: email_token,
     });
 
-    return res.json({
-      status: 201,
-      message: "User successfully registered",
-      data: user_id,
-    });
+    return res.json(
+      {
+        message: "User successfully registered",
+        data: user_id,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
 

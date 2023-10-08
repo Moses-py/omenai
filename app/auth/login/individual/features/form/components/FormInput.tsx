@@ -28,8 +28,7 @@ export default function FormInput() {
         if (ok) {
           router.replace("/dashboard");
         } else {
-          console.log(error);
-          toast.error("Something went wrong!");
+          toast.error(error);
         }
       }
     );

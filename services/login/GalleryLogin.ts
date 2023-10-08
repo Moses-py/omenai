@@ -1,3 +1,4 @@
+import { getApiUrl } from "@/config";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const GalleryLoginProvider = CredentialsProvider({
@@ -7,7 +8,8 @@ export const GalleryLoginProvider = CredentialsProvider({
   credentials: {},
   authorize: async (credentials) => {
     try {
-      const response = await fetch("/api/auth/gallery/login", {
+      const url = getApiUrl();
+      const response = await fetch(`${url}/api/auth/gallery/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,8 +19,9 @@ export const GalleryLoginProvider = CredentialsProvider({
 
       const data = await response.json();
 
-      return { id: data.id };
+      return { id: data.id, verified: data.verified };
     } catch (error: any) {
+      console.log("ProviderError: ", error);
       throw new Error(error.message);
     }
   },
