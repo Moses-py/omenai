@@ -25,11 +25,8 @@ export default function FormInput() {
 
     await signIn("individual-login", { redirect: false, ...form }).then(
       ({ ok, error }: any) => {
-        if (ok) {
-          router.replace("/dashboard");
-        } else {
-          toast.error(error);
-        }
+        if (ok) router.replace("/dashboard");
+        else toast.error(error);
       }
     );
   };

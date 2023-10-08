@@ -6,6 +6,7 @@ export const GalleryLoginProvider = CredentialsProvider({
   name: "Credentials",
   type: "credentials",
   credentials: {},
+
   authorize: async (credentials) => {
     try {
       const url = getApiUrl();
@@ -19,7 +20,9 @@ export const GalleryLoginProvider = CredentialsProvider({
 
       const data = await response.json();
 
-      return { id: data.id, verified: data.verified };
+      if (!response.ok) throw new Error(data.message);
+
+      return { id: data.id, verified: data.verified, type: data.type };
     } catch (error: any) {
       console.log("ProviderError: ", error);
       throw new Error(error.message);

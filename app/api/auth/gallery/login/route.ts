@@ -48,6 +48,7 @@ export async function POST(request: Request) {
         message: "Login successfull",
         id: gallery_id,
         verified,
+        type: "gallery",
       },
       { status: 201 }
     );

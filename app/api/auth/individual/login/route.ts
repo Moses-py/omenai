@@ -48,6 +48,7 @@ export async function POST(request: Request) {
         message: "Login successfull",
         id: user_id,
         verified,
+        type: "individual",
       },
       { status: 201 }
     );

@@ -1,5 +1,6 @@
 import { getApiUrl } from "@/config";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { RedirectType, redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 type Input = {
@@ -38,8 +39,9 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
 
       if (!response.ok) throw new Error(data.message);
 
-      return { id: data.id, verified: data.verified };
+      return { id: data.id, verified: data.verified, type: data.type };
     } catch (error: any) {
+      console.log(error);
       throw new Error(error.message);
     }
   },
