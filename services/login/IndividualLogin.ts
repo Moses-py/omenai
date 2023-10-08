@@ -36,7 +36,9 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
 
       const data = await response.json();
 
-      return { id: data.id };
+      if (!response.ok) throw new Error(data.message);
+
+      return { id: data.id, verified: data.verified };
     } catch (error: any) {
       throw new Error(error.message);
     }
