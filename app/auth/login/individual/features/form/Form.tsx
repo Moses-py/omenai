@@ -1,6 +1,3 @@
-import Image from "next/image";
-
-import Link from "next/link";
 import Action from "../actions/Action";
 import FormInput from "./components/FormInput";
 import { IndividualLogo } from "@/components/logo/Logo";
