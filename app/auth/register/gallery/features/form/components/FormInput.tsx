@@ -15,7 +15,9 @@ export default function FormInput() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     setIsLoading();
+
     const { name, email, password, admin, location, description } =
       gallerySignupData;
     const payload = { name, email, password, admin, location, description };
@@ -29,8 +31,8 @@ export default function FormInput() {
       setIsLoading();
       if (res.isOk) {
         toast.success(res.body.message + " redirecting...");
-        clearData();
         router.push(`/verify/gallery/${res.body.data}`);
+        clearData();
       } else {
         toast.error(res.body.message);
       }

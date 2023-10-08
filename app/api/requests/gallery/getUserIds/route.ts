@@ -19,7 +19,10 @@ export async function GET() {
 
     await connectMongoDB();
 
-    const ids: string[] = await AccountGallery.find({}, "gallery_id");
+    const ids: string[] = await AccountGallery.find(
+      {},
+      "gallery_id verified"
+    ).exec();
 
     if (!ids) throw new NotFoundError("No data available");
 

@@ -1,5 +1,6 @@
 import {
   BadRequestError,
+  ForbiddenError,
   RateLimitExceededError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
@@ -22,6 +23,13 @@ export async function POST(request: Request) {
 
     const { params, token } = await request.json();
 
+    const user = await AccountIndividual.findOne(
+      { user_id: params },
+      "verified"
+    ).exec();
+
+    if (user.verified) throw new ForbiddenError("This action is not permitted");
+
     const isTokenActive = await VerificationCodes.findOne({
       author: params,
       code: token,
@@ -34,7 +42,7 @@ export async function POST(request: Request) {
     await VerificationCodes.deleteOne({ code: token, author: params });
 
     return NextResponse.json(
-      { message: "Verification complete" },
+      { message: "Verification was successful. Please login" },
       { status: 200 }
     );
   } catch (error) {

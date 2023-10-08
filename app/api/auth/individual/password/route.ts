@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
     const filter = { user_id: id };
 
-    const user = await AccountIndividual.findOne(filter, "password");
+    const user = await AccountIndividual.findOne(filter, "password").exec();
 
     const isPasswordMatch = bcrypt.compareSync(password, user.password);
 
