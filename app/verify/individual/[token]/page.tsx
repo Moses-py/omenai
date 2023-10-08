@@ -3,7 +3,6 @@ import TokenBlock from "./components/TokenBlock";
 import { getIds } from "@/services/verify/getAllIds";
 import { IndividualLogo } from "@/components/logo/Logo";
 
-export const dynamicParams = false;
 export default async function VerifyEmail({
   params,
 }: {
@@ -29,16 +28,16 @@ export default async function VerifyEmail({
   );
 }
 
-export async function generateStaticParams() {
-  const result: Promise<any> = getIds("individual");
+// export async function generateStaticParams() {
+//   const result: Promise<any> = getIds("individual");
 
-  const results = await result;
+//   const results = await result;
 
-  return results.map(
-    (id: { _id: string; user_id: string; verified: boolean }) => {
-      return {
-        token: id.user_id,
-      };
-    }
-  );
-}
+//   return results.map(
+//     (id: { _id: string; user_id: string; verified: boolean }) => {
+//       return {
+//         token: id.user_id,
+//       };
+//     }
+//   );
+// }
