@@ -48,11 +48,13 @@ export async function POST(request: Request) {
         new URL(`/verify/individual/${gallery_id}`, request.url)
       );
 
-    return res.json({
-      status: 201,
-      message: "Login successfull",
-      id: gallery_id,
-    });
+    return res.json(
+      {
+        message: "Login successfull",
+        id: gallery_id,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
     return NextResponse.json(
