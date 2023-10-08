@@ -41,12 +41,12 @@ export async function POST(request: Request) {
 
     if (!isPasswordMatch) throw new ConflictError("Invalid credentials");
 
+    const { gallery_id } = user;
+
     if (!user.verified)
       return NextResponse.redirect(
-        new URL("/verify/individual/user_id", request.url)
+        new URL(`/verify/individual/${gallery_id}`, request.url)
       );
-
-    const { gallery_id } = user;
 
     return res.json({
       status: 201,
