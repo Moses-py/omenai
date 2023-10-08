@@ -23,11 +23,8 @@ export default function FormInput() {
     e.preventDefault();
     await signIn("gallery-login", { redirect: false, ...form }).then(
       ({ ok, error }: any) => {
-        if (ok) {
-          router.replace("/dashboard");
-        } else {
-          toast.error(error);
-        }
+        if (ok) router.replace("/dashboard");
+        else toast.error(error);
       }
     );
   };
@@ -42,6 +39,7 @@ export default function FormInput() {
         </label>
         <input
           type="email"
+          name="email"
           value={form.email}
           className="border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-1"
           onKeyDown={handleKeyPress}
@@ -54,6 +52,7 @@ export default function FormInput() {
           Password
         </label>
         <input
+          name="password"
           value={form.password}
           type="password"
           className="border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-1"
