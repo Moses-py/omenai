@@ -18,7 +18,10 @@ export async function GET() {
       );
     await connectMongoDB();
 
-    const ids: string[] = await AccountIndividual.find({}, "user_id");
+    const ids: string[] = await AccountIndividual.find(
+      {},
+      "user_id verified"
+    ).exec();
 
     if (!ids) throw new NotFoundError("No data available");
 

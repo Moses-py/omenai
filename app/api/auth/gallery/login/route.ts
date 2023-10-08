@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const user = await AccountGallery.findOne<GallerySchemaTypes>(
       { email },
       "gallery_id password"
-    );
+    ).exec();
 
     if (!user) throw new ConflictError("Invalid credentials");
 

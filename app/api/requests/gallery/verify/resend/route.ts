@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const { admin, email } = await AccountGallery.findOne(
       { gallery_id: author },
       "admin email"
-    );
+    ).exec();
 
     const email_token = await generateString();
 
@@ -46,9 +46,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "User successfully registered",
+        message: "Verification code resent",
       },
-      { status: 201 }
+      { status: 200 }
     );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);

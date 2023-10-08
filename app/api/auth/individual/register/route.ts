@@ -39,13 +39,6 @@ export async function POST(request: Request) {
     if (!saveData)
       throw new ServerError("A server error has occured, please try again");
 
-    const isVerificationTokenActive = await VerificationCodes.findOne({
-      author: user_id,
-    });
-
-    if (isVerificationTokenActive)
-      throw new ForbiddenError("Token is active. Please provide token");
-
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
       author: saveData.user_id,

@@ -17,7 +17,7 @@ export async function POST(request: Request) {
 
     const filter = { gallery_id: id };
 
-    const gallery = await AccountGallery.findOne(filter, "password");
+    const gallery = await AccountGallery.findOne(filter, "password").exec();
 
     const isPasswordMatch = bcrypt.compareSync(password, gallery.password);
 

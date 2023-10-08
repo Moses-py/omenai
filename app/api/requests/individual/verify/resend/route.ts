@@ -1,6 +1,7 @@
 import {
   ServerError,
   ForbiddenError,
+  NotFoundError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
@@ -19,7 +20,9 @@ export async function POST(request: Request) {
     const { name, email } = await AccountIndividual.findOne(
       { user_id: author },
       "name email"
-    );
+    ).exec();
+
+    if (!name || !email) throw new NotFoundError("Error authenticating user");
 
     const email_token = await generateString();
 
@@ -49,9 +52,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "User successfully registered",
+        message: "Verification code resent",
       },
-      { status: 201 }
+      { status: 200 }
     );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);

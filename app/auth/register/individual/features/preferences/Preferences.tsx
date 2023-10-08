@@ -53,8 +53,8 @@ function Preferences() {
               Back
             </button>
             <button
-              disabled={isLoading}
-              className="rounded-full disabled:bg-gray-400 px-[1.5rem] py-[0.4rem] mt-[1rem] flex justify-center items-end bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+              disabled={isLoading || preferences.length < 3}
+              className="rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed px-[1.5rem] py-[0.4rem] mt-[1rem] flex justify-center items-end bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
               type={"submit"}
             >
               {isLoading ? <ClipLoader size={20} /> : "Submit"}
