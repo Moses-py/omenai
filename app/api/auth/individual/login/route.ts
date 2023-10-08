@@ -5,12 +5,15 @@ import {
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import {
-  AccountIndividual,
-  type IndividualSchemaTypes,
-} from "@/models/auth/IndividualSchema";
+import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import bcrypt from "bcrypt";
 import { NextResponse, NextResponse as res } from "next/server";
+
+type UserReturn = {
+  user_id: string;
+  verified: boolean;
+  password: string;
+};
 
 export async function POST(request: Request) {
   try {
@@ -27,9 +30,9 @@ export async function POST(request: Request) {
 
     const { email, password } = data;
 
-    const user = await AccountIndividual.findOne<IndividualSchemaTypes>(
+    const user = await AccountIndividual.findOne<UserReturn>(
       { email },
-      "user_id password"
+      "user_id verified password"
     ).exec();
 
     if (!user) throw new ConflictError("Invalid credentials");
@@ -40,11 +43,18 @@ export async function POST(request: Request) {
 
     const { user_id } = user;
 
-    return res.json({
-      status: 201,
-      message: "Login successfull",
-      id: user_id,
-    });
+    if (!user.verified)
+      return NextResponse.redirect(
+        new URL(`/verify/individual/${user_id}`, request.url)
+      );
+
+    return res.json(
+      {
+        message: "Login successfull",
+        id: user_id,
+      },
+      { status: 201 }
+    );
   } catch (error: any) {
     const error_response = handleErrorEdgeCases(error);
     return NextResponse.json(

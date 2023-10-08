@@ -1,11 +1,11 @@
 "use client";
 
-import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
-import FormController from "./FormController";
-import { FormEvent } from "react";
 import { registerAccount } from "@/services/register/registerAccount";
-import { toast } from "sonner";
+import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
+import { toast } from "sonner";
+import FormController from "./FormController";
 
 export default function FormInput() {
   const [individualSignupData, preferences, setIsLoading, clearData] =
