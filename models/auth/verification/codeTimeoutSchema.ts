@@ -19,7 +19,7 @@ const verificationCodeSchema = new Schema<CodeSchemaTypes>(
   { timestamps: true }
 );
 
-verificationCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 });
+verificationCodeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 600 });
 
 export const VerificationCodes =
   models.VerificationCodes ||

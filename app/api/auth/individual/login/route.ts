@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     const user = await AccountIndividual.findOne<UserReturn>(
       { email },
       "user_id verified password"
-    );
+    ).exec();
 
     if (!user) throw new ConflictError("Invalid credentials");
 

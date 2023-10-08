@@ -18,7 +18,7 @@ export default function FormInput() {
 
   const router = useRouter();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading();
     const { name, email, password } = individualSignupData;
@@ -29,21 +29,16 @@ export default function FormInput() {
       preferences,
     };
 
-    const response: Promise<{
-      isOk: boolean;
-      body: { _id: string; message: string; data: string };
-    }> = Promise.resolve(registerAccount(data, "individual"));
+    const response = await registerAccount(data, "individual");
 
-    response.then((res) => {
-      setIsLoading();
-      if (res.isOk) {
-        toast.success(res.body.message + " redirecting...");
-        clearData();
-        router.push(`/verify/auth/${res.body.data}`);
-      } else {
-        toast.error(res.body.message);
-      }
-    });
+    if (response.isOk) {
+      toast.success(response.body.message + " redirecting...");
+      router.push(`/verify/individual/${response.body.data}`);
+      clearData();
+    } else {
+      toast.error(response.body.message);
+    }
+    setIsLoading();
   };
   return (
     <div className="container">

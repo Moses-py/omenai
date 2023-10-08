@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     const user = await AccountGallery.findOne<UserReturn>(
       { email },
       "gallery_id verified password"
-    );
+    ).exec();
 
     if (!user) throw new ConflictError("Invalid credentials");
 

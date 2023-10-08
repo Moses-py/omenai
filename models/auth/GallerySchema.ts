@@ -9,7 +9,6 @@ export type GallerySchemaTypes = {
   admin: string;
   location: string;
   description: string;
-  email_verified: boolean;
   gallery_verified: boolean;
   verified: boolean;
   role: string;
@@ -50,7 +49,7 @@ const gallerySignupSchema = new Schema<GallerySchemaTypes>(
       min: 8,
       max: 16,
     },
-    email_verified: {
+    verified: {
       type: Boolean,
       required: true,
       default: () => false,

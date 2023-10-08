@@ -3,7 +3,6 @@ import { FormEvent } from "react";
 import FormController from "./FormController";
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 import { registerAccount } from "@/services/register/registerAccount";
-import router from "next/router";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -14,28 +13,25 @@ export default function FormInput() {
 
   const router = useRouter();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     setIsLoading();
+
     const { name, email, password, admin, location, description } =
       gallerySignupData;
     const payload = { name, email, password, admin, location, description };
 
-    const response: Promise<{
-      isOk: boolean;
-      body: { _id: string; message: string; data: string };
-    }> = Promise.resolve(registerAccount(payload, "gallery"));
+    const response = await registerAccount(payload, "gallery");
 
-    response.then((res) => {
-      setIsLoading();
-      if (res.isOk) {
-        toast.success(res.body.message + " redirecting...");
-        clearData();
-        router.push(`/verify/auth/${res.body.data}`);
-      } else {
-        toast.error(res.body.message);
-      }
-    });
+    if (response.isOk) {
+      toast.success(response.body.message + " redirecting...");
+      router.push(`/verify/gallery/${response.body.data}`);
+      clearData();
+    } else {
+      toast.error(response.body.message);
+    }
+    setIsLoading();
   };
   return (
     <div className="container">
