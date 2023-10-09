@@ -1,6 +1,5 @@
 import Link from "next/link";
 import TokenBlock from "./components/TokenBlock";
-import { getIds } from "@/services/verify/getAllIds";
 import { IndividualLogo } from "@/components/logo/Logo";
 
 export default async function VerifyEmail({
