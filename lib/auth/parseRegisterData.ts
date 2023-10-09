@@ -15,7 +15,7 @@ export async function parseRegisterData(data: data) {
   let hashedPassword;
   try {
     //   Hash password with bcrypt
-    hashedPassword = hashPassword(password);
+    hashedPassword = await hashPassword(password);
   } catch (error) {
     // Handle error
     console.error("Error hashing password:", error);
