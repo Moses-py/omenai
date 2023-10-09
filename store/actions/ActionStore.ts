@@ -2,17 +2,18 @@ import { create } from "zustand";
 
 type ActionStoreTypes = {
   recoveryModal: {
-    type: "individual" | "gallery" | string;
+    type: "individual" | "gallery";
     value: boolean;
   };
-  updateRecoveryModal: (label: string) => void;
+  updateRecoveryModal: (label: RouteIdentifier) => void;
 };
+
 export const actionStore = create<ActionStoreTypes>((set, get) => ({
   recoveryModal: {
-    type: "",
+    type: "individual",
     value: false,
   },
-  updateRecoveryModal: (label: string) => {
+  updateRecoveryModal: (label: RouteIdentifier) => {
     const modalState = get().recoveryModal;
     set({ recoveryModal: { type: label, value: !modalState.value } });
   },

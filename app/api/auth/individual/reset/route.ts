@@ -8,58 +8,55 @@ import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
 import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountGallery } from "@/models/auth/GallerySchema";
+import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import { generateDigit } from "@/utils/generateToken";
+import generateString, { generateDigit } from "@/utils/generateToken";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const remainingRequests = await limiter.removeTokens(1);
-
-    if (remainingRequests < 0)
-      throw new RateLimitExceededError(
-        "Request limit exceeded - try again after 10 minutes"
-      );
     await connectMongoDB();
 
     const { recoveryEmail } = await request.json();
 
-    const data = await AccountGallery.findOne(
+    const data = await AccountIndividual.findOne(
       { email: recoveryEmail },
-      "email gallery_id admin name"
+      "email user_id name"
     ).exec();
 
-    if (!data) throw new NotFoundError("Email does not exist");
+    if (!data)
+      throw new NotFoundError("Email is not associated to any account");
 
-    const { email, gallery_id, admin, name } = data;
+    const { email, user_id, name } = data;
 
-    const email_token = await generateDigit(6);
+    const email_token = await generateString();
 
     const isVerificationTokenActive = await VerificationCodes.findOne({
-      author: gallery_id,
+      author: user_id,
     });
 
     if (isVerificationTokenActive)
-      throw new ForbiddenError("Token is active. Please provide token");
+      throw new ForbiddenError(
+        "Token link active. Please visit link to continue"
+      );
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
-      author: gallery_id,
+      author: user_id,
     });
 
     if (!storeVerificationCode)
       throw new ServerError("A server error has occured, please try again");
 
     await sendPasswordRecoveryMail({
-      name: admin,
+      name: name,
       email: email,
       token: email_token,
-      gallery_name: name,
+      route: "individual",
     });
 
     return NextResponse.json(
-      { message: "Verification code sent", id: gallery_id },
+      { message: "Verification link sent" },
       { status: 200 }
     );
   } catch (error) {

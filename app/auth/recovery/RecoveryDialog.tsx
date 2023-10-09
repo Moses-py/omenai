@@ -1,18 +1,14 @@
 "use client";
 import { GrClose } from "react-icons/gr";
 import RecoveryEmailInputField from "./components/RecoveryEmailInputField";
-import RecoveryCodeInputField from "./components/RecoveryCodeInputField";
 import { actionStore } from "@/store/actions/ActionStore";
 import { AnimatePresence, motion } from "framer-motion";
-import PasswordUpdate from "./components/PasswordUpdate";
-import { useState } from "react";
 export default function Recovery() {
   const [recoveryModal, updateRecoveryModal] = actionStore((state) => [
     state.recoveryModal,
     state.updateRecoveryModal,
   ]);
 
-  const [showPasswordState, setShowPasswordState] = useState(true);
   return (
     <AnimatePresence>
       <motion.div
@@ -21,13 +17,12 @@ export default function Recovery() {
         } fixed inset-0 grid place-items-center p-2 z-50 bg-black/90`}
       >
         <div className="flex flex-col gap-8 items-center">
-          <div className="bg-white w-fit flex flex-col gap-y-8 p-[2rem] rounded-xl relative">
+          <div className="bg-white max-w-[450px] flex flex-col gap-y-8 p-[2rem] rounded-xl relative">
             <div className="absolute top-5 right-5">
               <GrClose
                 className="cursor-pointer"
                 onClick={() => {
-                  setShowPasswordState(false);
-                  updateRecoveryModal("");
+                  updateRecoveryModal("individual");
                 }}
               />
             </div>
@@ -39,21 +34,13 @@ export default function Recovery() {
             </div>
             <div className="flex flex-col gap-6">
               <RecoveryEmailInputField />
-              <RecoveryCodeInputField />
             </div>
-
-            {recoveryModal.value && showPasswordState && (
-              <AnimatePresence>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                  transition={{ duration: 0.33, ease: "easeInOut" }}
-                >
-                  <PasswordUpdate />
-                </motion.div>
-              </AnimatePresence>
-            )}
+            <div>
+              <p className="text-xs sm:text-base font-light sm:font-normal text-red-600">
+                Kindly note that a link will be sent to your email address.
+                Click the link to complete this process.
+              </p>
+            </div>
           </div>
         </div>
       </motion.div>
