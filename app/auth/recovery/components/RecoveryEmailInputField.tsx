@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function RecoveryEmailInputField() {
   return (
     <form className="flex sm:flex-row flex-col gap-4 w-full">

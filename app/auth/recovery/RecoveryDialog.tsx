@@ -12,7 +12,7 @@ export default function Recovery() {
     state.updateRecoveryModal,
   ]);
 
-  const [showPasswordState, setShowPasswordState] = useState(false);
+  const [showPasswordState, setShowPasswordState] = useState(true);
   return (
     <AnimatePresence>
       <motion.div

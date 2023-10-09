@@ -8,8 +8,8 @@ export const GalleryLoginProvider = CredentialsProvider({
   credentials: {},
 
   authorize: async (credentials) => {
+    const url = getApiUrl();
     try {
-      const url = getApiUrl();
       const response = await fetch(`${url}/api/auth/gallery/login`, {
         method: "POST",
         headers: {

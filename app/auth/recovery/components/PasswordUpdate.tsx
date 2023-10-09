@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function PasswordUpdate() {
   return (
     <form className="flex flex-col gap-4 w-full">
