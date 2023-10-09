@@ -1,3 +1,4 @@
+import { getApiUrl } from "@/config";
 import {
   Body,
   Button,
@@ -15,8 +16,10 @@ import {
 const PasswordRecoveryEmail = (
   username: string,
   token: string,
+  route: string,
   gallery_name?: string
 ) => {
+  const url = getApiUrl();
   return (
     <Html>
       <Head />
@@ -35,14 +38,14 @@ const PasswordRecoveryEmail = (
               password
               {gallery_name &&
                 ` for your gallery account (${gallery_name} gallery)`}
-              . Below, you will find your verification token. Please note that
-              the validity of this token will expire in{" "}
+              . Below, you will find your verification link. Please note that
+              the validity of this link will expire in{" "}
               <strong>10 minutes.</strong>
             </Text>
 
             <Section className="text-center mt-[32px] mb-[32px]">
               <Text className="text-black text-[14px] font-bold leading-[24px]">
-                <strong>{token}</strong>
+                <strong>{`${url}/auth/reset/${route}/${token}`}</strong>
               </Text>
             </Section>
 

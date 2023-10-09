@@ -13,8 +13,8 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
   name: "Credentials",
   type: "credentials",
   credentials: {
-    email: "",
-    password: "",
+    email: {},
+    password: {},
   },
   authorize: async (credentials) => {
     const url = getApiUrl();

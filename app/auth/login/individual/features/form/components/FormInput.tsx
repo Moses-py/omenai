@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
+import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 
 type Form = {
   email: string;
@@ -13,6 +14,7 @@ type Form = {
 
 export default function FormInput() {
   const router = useRouter();
+  const [setIsLoading] = individualLoginStore((state) => [state.setIsloading]);
 
   const [form, setForm] = useState<Form>({ email: "", password: "" });
 
@@ -22,11 +24,14 @@ export default function FormInput() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading();
 
     await signIn("individual-login", { redirect: false, ...form }).then(
       ({ ok, error }: any) => {
         if (ok) router.replace("/dashboard");
         else toast.error(error);
+
+        setIsLoading();
       }
     );
   };

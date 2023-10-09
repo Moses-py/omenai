@@ -34,3 +34,5 @@ type IndividualRegisterData = Omit<IndividualSignupData, "confirmPassword"> & {
 };
 
 type GalleryRegisterData = Omit<GallerySignupData, "confirmPassword">;
+
+type RouteIdentifier = "individual" | "gallery";
