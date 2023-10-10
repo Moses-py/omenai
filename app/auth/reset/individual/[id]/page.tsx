@@ -1,11 +1,13 @@
 import Link from "next/link";
-import TokenBlock from "./components/TokenBlock";
-import { IndividualLogo } from "@/components/logo/Logo";
 
-export default async function VerifyEmail({
+import { IndividualLogo } from "@/components/logo/Logo";
+import PasswordBlock from "./components/PasswordBlock";
+import { getAllTokens } from "@/services/verify/getAllTokens";
+
+export default async function ResetPassword({
   params,
 }: {
-  params: { token: string };
+  params: { id: string };
 }) {
   // Check if user is verified and then redirect
   return (
@@ -21,22 +23,29 @@ export default async function VerifyEmail({
         </div>
         <hr className="bg-gray-400/20 my-8" />
         {/* Body */}
-        <TokenBlock token={params.token} />
+        <PasswordBlock token={params.id} />
       </div>
     </div>
   );
 }
 
 // export async function generateStaticParams() {
-//   const result: Promise<any> = getIds("individual");
+//   const result: Promise<any> = getAllTokens();
 
 //   const results = await result;
-
-//   return results.map(
-//     (id: { _id: string; user_id: string; verified: boolean }) => {
+//   if (results === undefined) {
+//     return [].map(() => {
 //       return {
-//         token: id.user_id,
+//         id: "",
 //       };
-//     }
-//   );
+//     });
+//   } else {
+//     return results.tokens.map((token: any) => {
+//       return {
+//         id: token.code,
+//       };
+//     });
+//   }
 // }
+
+// export const revalidate = 1;

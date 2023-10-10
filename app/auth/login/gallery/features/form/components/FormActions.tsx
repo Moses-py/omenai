@@ -1,11 +1,14 @@
 "use client";
 import { actionStore } from "@/store/actions/ActionStore";
-import React from "react";
+import { galleryLoginStore } from "@/store/auth/login/GalleryLoginStore";
+import { ClipLoader } from "react-spinners";
 
 export default function FormActions() {
   const [updateRecoveryModal] = actionStore((state) => [
     state.updateRecoveryModal,
   ]);
+
+  const [isLoading] = galleryLoginStore((state) => [state.isLoading]);
   return (
     <div className="flex flex-col mt-[1rem] gap-4 self-end">
       <p className="font-medium text-base">
@@ -18,10 +21,11 @@ export default function FormActions() {
         </span>
       </p>
       <button
-        className="rounded-full self-end w-fit px-[1.5rem] py-[0.4rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
-        type={"submit"}
+        disabled={isLoading}
+        type="submit"
+        className="grid self-end disabled:cursor-not-allowed disabled:bg-secondary/20 place-items-center w-full sm:w-fit px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base"
       >
-        Login
+        {isLoading ? <ClipLoader size={20} color="#fff" /> : "Login"}
       </button>
     </div>
   );

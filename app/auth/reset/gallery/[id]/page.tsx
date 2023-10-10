@@ -1,15 +1,14 @@
 import Link from "next/link";
-import TokenBlock from "./components/TokenBlock";
-import { getIds } from "@/services/verify/getAllIds";
-import { GalleryLogo } from "@/components/logo/Logo";
 
-// export const dynamicParams = false;
-export default async function VerifyEmail({
+import { GalleryLogo } from "@/components/logo/Logo";
+import PasswordBlock from "./components/PasswordBlock";
+
+export default async function ResetPassword({
   params,
 }: {
-  params: { token: string };
+  params: { id: string };
 }) {
-  // Check if gallery is verified and then redirect
+  // Check if user is verified and then redirect
   return (
     <div className="w-full h-full font-secondary p-5">
       <div className="container lg:w-50% my-4">
@@ -17,30 +16,35 @@ export default async function VerifyEmail({
         <div className="flex xxs:flex-row flex-col gap-y-4 justify-between items-center">
           <GalleryLogo />
 
-          <Link href={"/auth/login/gallery"} className="underline">
+          <Link href={"/auth/login/gallery."} className="underline">
             Back to login
           </Link>
         </div>
         <hr className="bg-gray-400/20 my-8" />
         {/* Body */}
-        <TokenBlock token={params.token} />
+        <PasswordBlock token={params.id} />
       </div>
     </div>
   );
 }
 
 // export async function generateStaticParams() {
-//   const result: Promise<any> = getIds("gallery");
+//   const result: Promise<any> = getAllTokens();
 
 //   const results = await result;
-
-//   return results.map(
-//     (id: { _id: string; gallery_id: string; verified: boolean }) => {
+//   if (results === null) {
+//     return [].map(() => {
 //       return {
-//         token: id.gallery_id,
+//         id: "",
 //       };
-//     }
-//   );
+//     });
+//   } else {
+//     return results.tokens.map((token: any) => {
+//       return {
+//         id: token.code,
+//       };
+//     });
+//   }
 // }
 
 // export const revalidate = 1;

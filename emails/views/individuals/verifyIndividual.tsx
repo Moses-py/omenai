@@ -11,7 +11,6 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
-import { Img } from "@react-email/img";
 
 const UserVerificationEmail = (username: string, token: string) => {
   return (

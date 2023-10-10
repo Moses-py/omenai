@@ -1,19 +1,14 @@
 import { getApiUrl } from "@/config";
 
-export async function getIds(route: "individual" | "gallery") {
+export async function getAllTokens() {
   try {
     const url = getApiUrl();
     const response = await fetch(
-      `${url}/api/requests/${route}/getUserIds`
+      `${url}/api/requests/verify/getAllVerificationTokens`
     ).then(async (res) => {
       if (!res.ok) undefined;
       const result = await res.json();
-
-      const params_list = result.ids.filter((id: any) => {
-        return id.verified !== true;
-      });
-
-      return params_list;
+      return result.data;
     });
 
     return response;

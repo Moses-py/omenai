@@ -7,17 +7,19 @@ type EmailData = {
   email: string;
   token: string;
   gallery_name?: string;
+  route: "individual" | "gallery";
 };
 export const sendPasswordRecoveryMail = async ({
   name,
   email,
   token,
   gallery_name,
+  route,
 }: EmailData) => {
   await sendMailVerification({
     to: email,
     subject: "Reset your password",
-    html: render(PasswordRecoveryEmail(name, token, gallery_name), {
+    html: render(PasswordRecoveryEmail(name, token, route, gallery_name), {
       pretty: true,
     }),
   });

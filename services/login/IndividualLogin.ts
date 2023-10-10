@@ -1,7 +1,5 @@
 import { getApiUrl } from "@/config";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { RedirectType, redirect } from "next/navigation";
-import { NextResponse } from "next/server";
 
 type Input = {
   email: string;
@@ -18,11 +16,10 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
     email: {},
     password: {},
   },
-  authorize: async (credentials, req) => {
+  authorize: async (credentials) => {
+    const url = getApiUrl();
     try {
       if (!credentials) throw new Error("Credentials Required");
-
-      const url = getApiUrl();
 
       const response = await fetch(`${url}/api/auth/individual/login`, {
         method: "POST",
@@ -41,7 +38,6 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
 
       return { id: data.id, verified: data.verified, type: data.type };
     } catch (error: any) {
-      console.log(error);
       throw new Error(error.message);
     }
   },
