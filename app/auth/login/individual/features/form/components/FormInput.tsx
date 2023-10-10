@@ -26,16 +26,14 @@ export default function FormInput() {
     e.preventDefault();
     setIsLoading();
 
-    await signIn("individual-login", { redirect: false, ...form }).then(
-      ({ ok, error }: any) => {
+    await signIn("individual-login", { redirect: false, ...form })
+      .then(({ ok, error }: any) => {
         if (ok) {
           router.replace("/dashboard");
           toast.success("Login successfull redirecting...");
         } else toast.error(error);
-
-        setIsLoading();
-      }
-    );
+      })
+      .finally(() => setIsLoading());
   };
 
   return (
