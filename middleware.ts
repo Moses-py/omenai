@@ -11,7 +11,6 @@ export default withAuth(
         return NextResponse.redirect(new URL(`/dashboard`, req.url));
       }
       if (!token.verified) {
-        console.log(token.type);
         const url = new URL(`/verify/${token.type}/${token.id}`, req.url);
         return NextResponse.redirect(url);
       }
