@@ -1,11 +1,11 @@
 "use client";
+import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
 import { SignInResponse, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
-import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 
 type Form = {
   email: string;
@@ -28,8 +28,10 @@ export default function FormInput() {
 
     await signIn("individual-login", { redirect: false, ...form }).then(
       ({ ok, error }: any) => {
-        if (ok) router.replace("/dashboard");
-        else toast.error(error);
+        if (ok) {
+          router.replace("/dashboard");
+          toast.success("Login successfull redirecting...");
+        } else toast.error(error);
 
         setIsLoading();
       }
