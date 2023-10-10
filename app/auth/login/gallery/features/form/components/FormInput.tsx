@@ -1,11 +1,11 @@
 "use client";
+import { galleryLoginStore } from "@/store/auth/login/GalleryLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
-import { galleryLoginStore } from "@/store/auth/login/GalleryLoginStore";
 
 type Form = {
   email: string;
@@ -27,8 +27,10 @@ export default function FormInput() {
     setIsLoading();
     await signIn("gallery-login", { redirect: false, ...form }).then(
       ({ ok, error }: any) => {
-        if (ok) router.replace("/dashboard");
-        else toast.error(error);
+        if (ok) {
+          toast.success("Login successfull redirecting...");
+          router.replace("/dashboard");
+        } else toast.error(error);
         setIsLoading();
       }
     );
