@@ -1,6 +1,6 @@
+import { IndividualLogo } from "@/components/logo/Logo";
 import Link from "next/link";
 import TokenBlock from "./components/TokenBlock";
-import { IndividualLogo } from "@/components/logo/Logo";
 
 export default async function VerifyEmail({
   params,
