@@ -1,3 +1,4 @@
+import { getApiUrl } from "@/config";
 import {
   ConflictError,
   RateLimitExceededError,
@@ -40,6 +41,11 @@ export async function POST(request: Request) {
     if (!isPasswordMatch) throw new ConflictError("Invalid credentials");
 
     const { user_id, verified } = user;
+
+    if (!verified)
+      return NextResponse.redirect(
+        new URL(`/verify/individual/${user_id}`, request.url)
+      );
 
     return res.json(
       {
