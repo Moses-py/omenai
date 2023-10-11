@@ -6,14 +6,10 @@ export async function getIds(route: "individual" | "gallery") {
     const response = await fetch(`${url}/api/requests/${route}/getUserIds`, {
       next: { revalidate: 0 },
     }).then(async (res) => {
-      if (!res.ok) undefined;
+      if (!res.ok) return undefined;
       const result = await res.json();
 
-      const params_list = result.ids.filter((id: any) => {
-        return id.verified !== true;
-      });
-
-      return params_list;
+      return result;
     });
 
     return response;

@@ -22,7 +22,7 @@ export const withAuthorization: MiddlewareFactory = (next) => {
 
     if (token) {
       // redirect if user is authenticated
-      if (["/auth"].some((path) => pathname.startsWith(path))) {
+      if (["/auth", "/verify"].some((path) => pathname.startsWith(path))) {
         return NextResponse.redirect(new URL("/dashboard", request.url));
       }
     }

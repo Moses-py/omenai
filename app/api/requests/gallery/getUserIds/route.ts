@@ -12,11 +12,11 @@ export async function GET() {
     await connectMongoDB();
 
     const ids: string[] = await AccountGallery.find(
-      {},
-      "gallery_id verified"
+      { verified: false },
+      "gallery_id"
     ).exec();
 
-    if (!ids) throw new NotFoundError("No data available");
+    if (ids.length === 0) throw new NotFoundError("No data available");
 
     return NextResponse.json({ ids }, { status: 200 });
   } catch (error) {

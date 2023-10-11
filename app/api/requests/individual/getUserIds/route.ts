@@ -9,11 +9,11 @@ export async function GET() {
     await connectMongoDB();
 
     const ids: string[] = await AccountIndividual.find(
-      {},
-      "user_id verified"
+      { verified: false },
+      "user_id"
     ).exec();
 
-    if (!ids) throw new NotFoundError("No data available");
+    if (ids.length === 0) throw new NotFoundError("No data available");
 
     return NextResponse.json({ ids }, { status: 200 });
   } catch (error) {

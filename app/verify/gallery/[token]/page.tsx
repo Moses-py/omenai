@@ -29,18 +29,18 @@ export default async function VerifyEmail({
   );
 }
 
-export async function generateStaticParams() {
-  const result: Promise<any> = getIds("gallery");
+// export async function generateStaticParams() {
+//   const result: Promise<any> = getIds("gallery");
 
-  const results = await result;
+//   const results = await result;
 
-  return results.map(
-    (id: { _id: string; gallery_id: string; verified: boolean }) => {
-      return {
-        token: id.gallery_id,
-      };
-    }
-  );
-}
+//   return results.map(
+//     (id: { _id: string; gallery_id: string; verified: boolean }) => {
+//       return {
+//         token: id.gallery_id,
+//       };
+//     }
+//   );
+// }
 
-export const revalidate = 0;
+// export const revalidate = 0;
