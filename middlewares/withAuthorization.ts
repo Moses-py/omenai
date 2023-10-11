@@ -22,7 +22,7 @@ export const withAuthorization: MiddlewareFactory = (next) => {
 
     if (token) {
       // redirect to verify page if user is account is not verified
-      if (!token.verified) {
+      if (!token.verified && !pathname.startsWith("/verify")) {
         const url = new URL(`/verify/${token.type}/${token.id}`, request.url);
         return NextResponse.redirect(url);
       }
