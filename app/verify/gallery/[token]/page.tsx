@@ -3,7 +3,7 @@ import TokenBlock from "./components/TokenBlock";
 import { getIds } from "@/services/verify/getAllIds";
 import { GalleryLogo } from "@/components/logo/Logo";
 
-// export const dynamicParams = false;
+export const dynamicParams = false;
 export default async function VerifyEmail({
   params,
 }: {
@@ -29,18 +29,18 @@ export default async function VerifyEmail({
   );
 }
 
-// export async function generateStaticParams() {
-//   const result: Promise<any> = getIds("gallery");
+export async function generateStaticParams() {
+  const result: Promise<any> = getIds("gallery");
 
-//   const results = await result;
+  const results = await result;
 
-//   return results.map(
-//     (id: { _id: string; gallery_id: string; verified: boolean }) => {
-//       return {
-//         token: id.gallery_id,
-//       };
-//     }
-//   );
-// }
+  return results.map(
+    (id: { _id: string; gallery_id: string; verified: boolean }) => {
+      return {
+        token: id.gallery_id,
+      };
+    }
+  );
+}
 
-// export const revalidate = 1;
+export const revalidate = 0;
