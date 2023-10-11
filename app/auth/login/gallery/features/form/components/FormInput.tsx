@@ -10,7 +10,6 @@ import FormActions from "./FormActions";
 type Form = {
   email: string;
   password: string;
-  ip: string;
 };
 
 export default function FormInput({ ip }: { ip: string }) {
@@ -18,7 +17,7 @@ export default function FormInput({ ip }: { ip: string }) {
 
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
 
-  const [form, setForm] = useState<Form>({ email: "", password: "", ip });
+  const [form, setForm] = useState<Form>({ email: "", password: "" });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -26,7 +25,7 @@ export default function FormInput({ ip }: { ip: string }) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading();
-    await signIn("gallery-login", { redirect: false, ...form }).then(
+    await signIn("gallery-login", { redirect: false, ...form, ip }).then(
       ({ ok, error }: any) => {
         if (ok) {
           toast.success("Login successfull redirecting...");

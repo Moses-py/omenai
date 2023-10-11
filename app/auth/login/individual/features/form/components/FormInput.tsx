@@ -26,7 +26,7 @@ export default function FormInput({ ip }: { ip: string }) {
     e.preventDefault();
     setIsLoading();
 
-    await signIn("individual-login", { redirect: false, ...form })
+    await signIn("individual-login", { redirect: false, ...form, ip })
       .then(({ ok, error }: any) => {
         if (ok) {
           router.replace("/dashboard");
