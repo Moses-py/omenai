@@ -42,12 +42,12 @@ export async function POST(request: Request) {
 
     const { user_id, verified } = user;
 
-    const url = getApiUrl();
+    // const url = getApiUrl();
 
-    if (!verified)
-      return NextResponse.redirect(
-        new URL(`${url}/verify/individual/${user_id}`)
-      );
+    // if (!verified)
+    //   return NextResponse.redirect(
+    //     new URL(`${url}/verify/individual/${user_id}`)
+    //   );
 
     return res.json(
       {
