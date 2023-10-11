@@ -42,11 +42,11 @@ export async function POST(request: Request) {
 
     const { gallery_id, verified } = user;
 
-    const url = getApiUrl();
-    if (!verified)
-      return NextResponse.redirect(
-        new URL(`${url}/verify/gallery/${gallery_id}`)
-      );
+    // const url = getApiUrl();
+    // if (!verified)
+    //   return NextResponse.redirect(
+    //     new URL(`${url}/verify/gallery/${gallery_id}`)
+    //   );
 
     return res.json(
       {
