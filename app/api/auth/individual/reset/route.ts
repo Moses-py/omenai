@@ -6,7 +6,6 @@ import {
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
-import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
