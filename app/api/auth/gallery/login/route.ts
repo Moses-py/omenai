@@ -3,6 +3,7 @@ import {
   RateLimitExceededError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import bcrypt from "bcrypt";
@@ -16,11 +17,16 @@ type UserReturn = {
 
 export async function POST(request: Request) {
   try {
-    await connectMongoDB();
-
     const data = await request.json();
 
-    const { email, password } = data;
+    const { email, password, ip } = data;
+
+    const { success } = await limiter.limit(ip);
+
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
+
+    await connectMongoDB();
 
     const user = await AccountGallery.findOne<UserReturn>(
       { email },

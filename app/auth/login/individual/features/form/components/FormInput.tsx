@@ -1,7 +1,7 @@
 "use client";
 import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
-import { SignInResponse, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ type Form = {
   password: string;
 };
 
-export default function FormInput() {
+export default function FormInput({ ip }: { ip: string }) {
   const router = useRouter();
   const [setIsLoading] = individualLoginStore((state) => [state.setIsloading]);
 

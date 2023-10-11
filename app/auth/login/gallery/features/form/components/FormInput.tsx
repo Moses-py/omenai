@@ -10,14 +10,15 @@ import FormActions from "./FormActions";
 type Form = {
   email: string;
   password: string;
+  ip: string;
 };
 
-export default function FormInput() {
+export default function FormInput({ ip }: { ip: string }) {
   const router = useRouter();
 
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
 
-  const [form, setForm] = useState<Form>({ email: "", password: "" });
+  const [form, setForm] = useState<Form>({ email: "", password: "", ip });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
