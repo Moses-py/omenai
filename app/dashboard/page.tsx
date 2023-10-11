@@ -7,10 +7,6 @@ export default function Dashboard() {
   return (
     <div>
       <h1 className="text-2xl">{status}</h1>
-
-      <span className="">
-        {JSON.stringify(data)} <br />
-      </span>
       <button
         className="bg-red-500 rounded-lg px-3 py-2 m-3"
         onClick={() => signOut({})}
