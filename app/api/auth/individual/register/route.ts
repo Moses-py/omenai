@@ -1,6 +1,5 @@
 import {
   ConflictError,
-  ForbiddenError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
