@@ -11,12 +11,28 @@ export default function Home() {
           Individual signup
         </button>
       </Link>
+      <Link href={"/auth/login/individual"}>
+        <button
+          className={` rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+          type={"button"}
+        >
+          Individual signin
+        </button>
+      </Link>
       <Link href={"/auth/register/gallery"}>
         <button
           className={` rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
           type={"button"}
         >
           Gallery signup
+        </button>
+      </Link>
+      <Link href={"/auth/login/gallery"}>
+        <button
+          className={` rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+          type={"button"}
+        >
+          Gallery signin
         </button>
       </Link>
     </main>
