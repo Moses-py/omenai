@@ -30,7 +30,6 @@ export default function FormInput({ ip }: { ip: string }) {
       .then(({ ok, error }: any) => {
         if (ok) {
           router.replace("/dashboard");
-          toast.success("Login successfull redirecting...");
         } else toast.error(error);
       })
       .finally(() => setIsLoading());

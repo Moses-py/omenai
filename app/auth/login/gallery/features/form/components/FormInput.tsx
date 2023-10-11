@@ -28,7 +28,6 @@ export default function FormInput({ ip }: { ip: string }) {
     await signIn("gallery-login", { redirect: false, ...form, ip }).then(
       ({ ok, error }: any) => {
         if (ok) {
-          toast.success("Login successfull redirecting...");
           router.replace("/dashboard");
         } else toast.error(error);
         setIsLoading();
