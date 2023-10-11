@@ -1,7 +1,7 @@
 "use client";
 import { galleryLoginStore } from "@/store/auth/login/GalleryLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
-import { signIn } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -26,9 +26,17 @@ export default function FormInput({ ip }: { ip: string }) {
     e.preventDefault();
     setIsLoading();
     await signIn("gallery-login", { redirect: false, ...form, ip }).then(
-      ({ ok, error }: any) => {
+      async ({ ok, error }: any) => {
         if (ok) {
-          router.replace("/dashboard");
+          const session = await getSession();
+          if (session?.user) {
+            if (session?.user.verified) router.replace("/dashboard");
+            else {
+              await signOut({
+                callbackUrl: `/verify/gallery/${session?.user.id}`,
+              });
+            }
+          }
         } else toast.error(error);
         setIsLoading();
       }
