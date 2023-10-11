@@ -1,7 +1,7 @@
 "use client";
 import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
-import { SignInResponse, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ type Form = {
   password: string;
 };
 
-export default function FormInput() {
+export default function FormInput({ ip }: { ip: string }) {
   const router = useRouter();
   const [setIsLoading] = individualLoginStore((state) => [state.setIsloading]);
 
@@ -26,11 +26,10 @@ export default function FormInput() {
     e.preventDefault();
     setIsLoading();
 
-    await signIn("individual-login", { redirect: false, ...form })
+    await signIn("individual-login", { redirect: false, ...form, ip })
       .then(({ ok, error }: any) => {
         if (ok) {
           router.replace("/dashboard");
-          toast.success("Login successfull redirecting...");
         } else toast.error(error);
       })
       .finally(() => setIsLoading());

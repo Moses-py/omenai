@@ -1,3 +1,4 @@
+import { getApiUrl } from "@/config";
 import {
   ConflictError,
   RateLimitExceededError,
@@ -17,18 +18,16 @@ type UserReturn = {
 
 export async function POST(request: Request) {
   try {
-    const remainingRequests = await limiter.removeTokens(1);
-
-    if (remainingRequests < 0)
-      throw new RateLimitExceededError(
-        "Request limit exceeded - try again after 10 minutes"
-      );
-
-    await connectMongoDB();
-
     const data = await request.json();
 
-    const { email, password } = data;
+    const { email, password, ip } = data;
+
+    const { success } = await limiter.limit(ip);
+
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
+
+    await connectMongoDB();
 
     const user = await AccountIndividual.findOne<UserReturn>(
       { email },
@@ -42,6 +41,13 @@ export async function POST(request: Request) {
     if (!isPasswordMatch) throw new ConflictError("Invalid credentials");
 
     const { user_id, verified } = user;
+
+    // const url = getApiUrl();
+
+    // if (!verified)
+    //   return NextResponse.redirect(
+    //     new URL(`${url}/verify/individual/${user_id}`)
+    //   );
 
     return res.json(
       {

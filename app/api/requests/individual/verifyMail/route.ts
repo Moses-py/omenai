@@ -4,7 +4,6 @@ import {
   RateLimitExceededError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
-import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
@@ -12,13 +11,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const remainingRequests = await limiter.removeTokens(1);
-
-    if (remainingRequests < 0)
-      throw new RateLimitExceededError(
-        "Request limit exceeded - try again after 10 minutes"
-      );
-
     await connectMongoDB();
 
     const { params, token } = await request.json();
