@@ -1,8 +1,8 @@
 "use client";
 import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { getSession, signIn, signOut } from "next-auth/react";
+import { redirect, useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
@@ -27,9 +27,17 @@ export default function FormInput({ ip }: { ip: string }) {
     setIsLoading();
 
     await signIn("individual-login", { redirect: false, ...form, ip })
-      .then(({ ok, error }: any) => {
+      .then(async ({ ok, error }: any) => {
         if (ok) {
-          router.replace("/dashboard");
+          const session = await getSession();
+          if (session?.user) {
+            if (session?.user.verified) router.replace("/dashboard");
+            else {
+              await signOut({
+                callbackUrl: `/verify/individual/${session?.user.id}`,
+              });
+            }
+          }
         } else toast.error(error);
       })
       .finally(() => setIsLoading());
