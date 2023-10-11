@@ -12,7 +12,7 @@ type Form = {
   password: string;
 };
 
-export default function FormInput() {
+export default function FormInput({ ip }: { ip: string }) {
   const router = useRouter();
 
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
@@ -25,7 +25,7 @@ export default function FormInput() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading();
-    await signIn("gallery-login", { redirect: false, ...form }).then(
+    await signIn("gallery-login", { redirect: false, ...form, ip }).then(
       ({ ok, error }: any) => {
         if (ok) {
           toast.success("Login successfull redirecting...");

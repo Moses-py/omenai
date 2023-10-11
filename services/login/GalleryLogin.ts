@@ -1,11 +1,21 @@
 import { getApiUrl } from "@/config";
 import CredentialsProvider from "next-auth/providers/credentials";
+type Input = {
+  email: string;
+  password: string;
+  ip: string;
+};
 
-export const GalleryLoginProvider = CredentialsProvider({
+type Credentials = Record<keyof Input, any>;
+export const GalleryLoginProvider = CredentialsProvider<Credentials>({
   id: "gallery-login",
   name: "Credentials",
   type: "credentials",
-  credentials: {},
+  credentials: {
+    email: {},
+    password: {},
+    ip: {},
+  },
 
   authorize: async (credentials) => {
     const url = getApiUrl();
@@ -24,7 +34,6 @@ export const GalleryLoginProvider = CredentialsProvider({
 
       return { id: data.id, verified: data.verified, type: data.type };
     } catch (error: any) {
-      console.log("ProviderError: ", error);
       throw new Error(error.message);
     }
   },
