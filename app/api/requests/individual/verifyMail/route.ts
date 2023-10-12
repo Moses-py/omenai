@@ -4,6 +4,8 @@ import {
   RateLimitExceededError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
+import { getIp } from "@/lib/auth/getIp";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
@@ -11,9 +13,15 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    await connectMongoDB();
+    const ip = await getIp();
+
+    const { success } = await limiter.limit(ip);
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
 
     const { params, token } = await request.json();
+
+    await connectMongoDB();
 
     const user = await AccountIndividual.findOne(
       { user_id: params },

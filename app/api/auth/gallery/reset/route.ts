@@ -8,7 +8,7 @@ import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordR
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString, { generateDigit } from "@/utils/generateToken";
+import generateString from "@/utils/generateToken";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -19,13 +19,16 @@ export async function POST(request: Request) {
 
     const data = await AccountGallery.findOne(
       { email: recoveryEmail },
-      "email gallery_id admin name"
+      "email gallery_id admin name verified"
     ).exec();
 
     if (!data)
       throw new NotFoundError("Email is not associated to any account");
 
-    const { email, gallery_id, admin, name } = data;
+    const { email, gallery_id, admin, name, verified } = data;
+
+    if (!verified)
+      throw new ForbiddenError("Please verifiy your account first.");
 
     const email_token = await generateString();
 

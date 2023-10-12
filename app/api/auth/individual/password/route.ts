@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import {
   BadRequestError,
   ConflictError,
+  RateLimitExceededError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
@@ -10,9 +11,17 @@ import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { NextResponse } from "next/server";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
+import { getIp } from "@/lib/auth/getIp";
+import { limiter } from "@/lib/auth/limiter";
 
 export async function POST(request: Request) {
   try {
+    const ip = await getIp();
+
+    const { success } = await limiter.limit(ip);
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
+
     await connectMongoDB();
 
     const { password, id } = await request.json();

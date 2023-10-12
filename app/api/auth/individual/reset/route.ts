@@ -6,27 +6,38 @@ import {
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
+import { getIp } from "@/lib/auth/getIp";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString, { generateDigit } from "@/utils/generateToken";
+import generateString from "@/utils/generateToken";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
+    const ip = await getIp();
+
+    const { success } = await limiter.limit(ip);
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
+
     await connectMongoDB();
 
     const { recoveryEmail } = await request.json();
 
     const data = await AccountIndividual.findOne(
       { email: recoveryEmail },
-      "email user_id name"
+      "email user_id name verified"
     ).exec();
 
     if (!data)
       throw new NotFoundError("Email is not associated to any account");
 
-    const { email, user_id, name } = data;
+    const { email, user_id, name, verified } = data;
+
+    if (!verified)
+      throw new ForbiddenError("Please verify your account first.");
 
     const email_token = await generateString();
 
