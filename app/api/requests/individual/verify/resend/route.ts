@@ -25,12 +25,18 @@ export async function POST(request: Request) {
 
     const { author } = await request.json();
 
-    const { name, email } = await AccountIndividual.findOne(
+    const { name, email, verified } = await AccountIndividual.findOne(
       { user_id: author },
-      "name email"
+      "name email verified"
     ).exec();
 
-    if (!name || !email) throw new NotFoundError("Error authenticating user");
+    if (!name || !email)
+      throw new NotFoundError("Unable to authenticate account");
+
+    if (verified)
+      throw new ForbiddenError(
+        "This action is not permitted. User already verified"
+      );
 
     const email_token = await generateString();
 

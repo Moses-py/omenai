@@ -28,13 +28,16 @@ export async function POST(request: Request) {
 
     const data = await AccountIndividual.findOne(
       { email: recoveryEmail },
-      "email user_id name"
+      "email user_id name verified"
     ).exec();
 
     if (!data)
       throw new NotFoundError("Email is not associated to any account");
 
-    const { email, user_id, name } = data;
+    const { email, user_id, name, verified } = data;
+
+    if (!verified)
+      throw new ForbiddenError("Please verify your account first.");
 
     const email_token = await generateString();
 

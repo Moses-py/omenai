@@ -1,4 +1,6 @@
 import {
+  ForbiddenError,
+  NotFoundError,
   RateLimitExceededError,
   ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
@@ -24,10 +26,18 @@ export async function POST(request: Request) {
 
     const { author } = await request.json();
 
-    const { admin, email } = await AccountGallery.findOne(
+    const { admin, email, verified } = await AccountGallery.findOne(
       { gallery_id: author },
-      "admin email"
+      "admin email verified"
     ).exec();
+
+    if (!admin || !email)
+      throw new NotFoundError("Unable to authenticate account");
+
+    if (verified)
+      throw new ForbiddenError(
+        "This action is not permitted. User already verified"
+      );
 
     const email_token = await generateString();
 
