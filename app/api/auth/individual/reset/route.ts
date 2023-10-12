@@ -6,14 +6,22 @@ import {
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
+import { getIp } from "@/lib/auth/getIp";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString, { generateDigit } from "@/utils/generateToken";
+import generateString from "@/utils/generateToken";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
+    const ip = await getIp();
+
+    const { success } = await limiter.limit(ip);
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
+
     await connectMongoDB();
 
     const { recoveryEmail } = await request.json();

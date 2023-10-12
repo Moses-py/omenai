@@ -8,7 +8,7 @@ import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordR
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString, { generateDigit } from "@/utils/generateToken";
+import generateString from "@/utils/generateToken";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

@@ -1,6 +1,11 @@
-import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
+import {
+  RateLimitExceededError,
+  ServerError,
+} from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { sendGalleryMail } from "@/emails/models/gallery/sendGalleryMail";
+import { getIp } from "@/lib/auth/getIp";
+import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
@@ -9,6 +14,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
+    const ip = await getIp();
+
+    const { success } = await limiter.limit(ip);
+    if (!success)
+      throw new RateLimitExceededError("Too many requests, try again later.");
+
     await connectMongoDB();
 
     const { author } = await request.json();

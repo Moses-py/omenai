@@ -8,14 +8,14 @@ export async function POST(request: Request) {
   try {
     await connectMongoDB();
 
-    const { code, email } = await request.json();
+    const { email } = await request.json();
 
     const isCodeActive = await VerificationCodes.findOne(
       { author: email },
       "code"
     ).exec();
 
-    if (!isCodeActive) throw new ConflictError("Invald code");
+    if (!isCodeActive) throw new ConflictError("Invalid code");
 
     return NextResponse.json(
       {
