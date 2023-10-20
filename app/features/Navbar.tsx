@@ -14,7 +14,7 @@ export const Navbar = () => {
 
       {/* menu */}
 
-      <ul className="flex items-center gap-5">
+      <ul className="flex items-center gap-8">
         {navigations.map(({ name }, index) => (
           <li key={index} className="">
             <Link href="#" className="text-base text-black font-light">

@@ -32,6 +32,13 @@ const config: Config = {
         xs: "460px",
         xxs: "320px",
       },
+      fontFamily: {
+        sans: ["var(--font-outfit)"],
+      },
+
+      backgroundImage: {
+        "hero-image": "url('/images/e96e5841821e79f985088d21e301bed7.jpeg')",
+      },
     },
   },
 
