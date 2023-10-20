@@ -1,4 +1,10 @@
-import { HeroSection, Navbar, ProductsGrid, ProductsSlide } from "./features";
+import {
+  Footer,
+  HeroSection,
+  Navbar,
+  ProductsGrid,
+  ProductsSlide,
+} from "./features";
 
 export default function Home() {
   return (
@@ -11,6 +17,8 @@ export default function Home() {
       <ProductsGrid items={artworksGrid} title="Latest art shows" overlay />
       <ProductsSlide items={artworks} title="Trending artists on Omenai" />
       <ProductsGrid items={editorialGrid} title="Omenai editorial picks" />
+
+      <Footer />
     </main>
   );
 }

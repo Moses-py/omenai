@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
-import React from "react";
+import React, { CSSProperties } from "react";
 type Props = {
   title: string;
   items: {
@@ -20,7 +20,7 @@ export const ProductsGrid = (props: Props) => {
       <div
         className={clsx(
           "grid mt-8  [grid-template-areas:_'card-1_card-1_card-2_card-3'_'card-1_card-1_card-2_card-3'_'card-1_card-1_card-4_card-4']  gap-5",
-          overlay ? "h-[600px]" : "h-[500px]"
+          overlay ? "h-[600px]" : ""
         )}
       >
         {items.slice(0, 4).map((item, index) => (
@@ -30,10 +30,8 @@ export const ProductsGrid = (props: Props) => {
             overlay={overlay}
             isSmall={index !== 0}
             isLast={index === 3}
-            className={clsx(
-              `[grid-area:_card-${index + 1}]`,
-              overlay ? "overflow-hidden" : ""
-            )}
+            className={clsx(overlay ? "overflow-hidden" : "")}
+            style={{ gridArea: `card-${index + 1}` }}
           />
         ))}
       </div>
@@ -46,21 +44,13 @@ type CardProps = Props["items"][0] & {
   overlay?: boolean;
   isSmall?: boolean;
   isLast?: boolean;
+  style?: CSSProperties;
 };
 const Card = (props: CardProps) => {
-  const {
-    author,
-    date,
-    image,
-    name,
-    className,
-    overlay,
-    isSmall,
-    isLast = false,
-  } = props;
+  const { image, className, overlay, isLast = false, style } = props;
 
   return (
-    <div className={clsx("relative", className)}>
+    <div className={clsx("relative", className)} style={style}>
       <div
         className={clsx(
           "relative ",
@@ -71,7 +61,7 @@ const Card = (props: CardProps) => {
       </div>
 
       {overlay ? (
-        <div className="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/40 flex ">
+        <div className="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/40 flex">
           <InfoCard {...props} />
         </div>
       ) : (
@@ -81,7 +71,7 @@ const Card = (props: CardProps) => {
   );
 };
 
-const InfoCard = (props: CardProps) => {
+const InfoCard = (props: Omit<CardProps, "image" | "className" | "isLast">) => {
   const { overlay, author, date, name, isSmall } = props;
 
   return (
