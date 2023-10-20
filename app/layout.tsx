@@ -4,10 +4,15 @@ import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Outfit } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+import "react-slideshow-image/dist/styles.css";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Omenai",
@@ -22,7 +27,7 @@ export default async function RootLayout({
   const session = await getServerSession(nextAuthOptions);
   return (
     <html lang="en">
-      <body className={outfit.className}>
+      <body className={`${outfit.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
 

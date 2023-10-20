@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.page-center {
+  @apply mx-auto w-full max-w-7xl;
+}

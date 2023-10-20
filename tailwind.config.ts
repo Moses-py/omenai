@@ -24,10 +24,20 @@ const config: Config = {
       colors: {
         primary: "#2A9EDF",
         secondary: "#535353",
+        gray: {
+          light: "#818181",
+        },
       },
       screens: {
         xs: "460px",
         xxs: "320px",
+      },
+      fontFamily: {
+        sans: ["var(--font-outfit)"],
+      },
+
+      backgroundImage: {
+        "hero-image": "url('/images/e96e5841821e79f985088d21e301bed7.jpeg')",
       },
     },
   },
