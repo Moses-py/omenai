@@ -24,6 +24,9 @@ const config: Config = {
       colors: {
         primary: "#2A9EDF",
         secondary: "#535353",
+        gray: {
+          light: "#818181",
+        },
       },
       screens: {
         xs: "460px",

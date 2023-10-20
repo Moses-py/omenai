@@ -22,7 +22,7 @@ export default async function RootLayout({
   const session = await getServerSession(nextAuthOptions);
   return (
     <html lang="en">
-      <body className={outfit.className}>
+      <body className={`${outfit.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
 
