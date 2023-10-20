@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Fade, type SlideshowRef } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
 
 export const HeroSection = () => {
   const ref = useRef<SlideshowRef>(null);
