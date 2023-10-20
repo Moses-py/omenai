@@ -27,6 +27,8 @@ const config: Config = {
         gray: {
           light: "#818181",
         },
+
+        line: "#DEDEDE",
       },
       screens: {
         xs: "460px",
