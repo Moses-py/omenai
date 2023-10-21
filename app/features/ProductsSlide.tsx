@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { IoHeartOutline } from "react-icons/io5";
 import { Slide, type SlideshowRef } from "react-slideshow-image";

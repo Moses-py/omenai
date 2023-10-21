@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
@@ -8,8 +8,14 @@ export const Navbar = () => {
     <nav className="flex items-center justify-between px-5 lg:px-10 py-2">
       {/* logo */}
 
-      <Link href="/" className="w-auto h-[30px] ">
-        <img src="/logo.svg" alt="" className="h-full w-full object-contain" />
+      <Link href="/" className="">
+        <Image
+          src={"/logo.svg"}
+          alt="icon"
+          width={120}
+          height={30}
+          className="ml-5"
+        />
       </Link>
 
       {/* menu */}

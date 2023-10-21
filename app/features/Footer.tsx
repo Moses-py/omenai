@@ -1,14 +1,19 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
-export const Footer = (props: Props) => {
+export const Footer = () => {
   return (
     <footer className="page-center ">
       <div className="bg-[#391035] p-5 lg:p-10 lg:pb-5">
         <Link href="/" className="">
-          <img src="/logo-white.svg" alt="" className="w-auto h-[30px]" />
+          <Image
+            src={"/logo-white.svg"}
+            alt="logo"
+            width={120}
+            height={30}
+            className=""
+          />
         </Link>
 
         <div className="grid grid-cols-2 lg:grid-cols-5 mt-8 gap-5">

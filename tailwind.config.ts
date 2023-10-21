@@ -25,8 +25,14 @@ const config: Config = {
         primary: "#2A9EDF",
         secondary: "#535353",
         gray: {
+          200: "#47748E",
+          300: "#F6F6F6",
+          400: "#F4F4F4",
+          800: "#FCFCFC",
           light: "#818181",
         },
+
+        line: "#DEDEDE",
       },
       screens: {
         xs: "460px",
