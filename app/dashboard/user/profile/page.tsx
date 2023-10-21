@@ -6,7 +6,7 @@ export default function Profile() {
     <Fragment>
       <UserImage />
 
-      <p className="text-gray-200 pt-8 px-5 lg:px-0">Personal information</p>
+      <p className="text-gray-200 pt-8 px-5 lg:px-2">Personal information</p>
 
       <FormCard />
     </Fragment>

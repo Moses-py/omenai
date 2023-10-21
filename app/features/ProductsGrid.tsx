@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
+import Image from "next/image";
 import React, { CSSProperties } from "react";
 type Props = {
   title: string;
@@ -51,14 +51,16 @@ const Card = (props: CardProps) => {
 
   return (
     <div className={clsx("relative", className)} style={style}>
-      <div
+      <Image
+        src={image}
+        alt="image"
+        width={200}
+        height={200}
         className={clsx(
-          "relative ",
+          "relative w-full object-cover",
           overlay ? "h-full" : isLast ? "h-[60%]" : "h-[80%]"
         )}
-      >
-        <img src={image} alt="" className="h-full w-full object-cover" />
-      </div>
+      />
 
       {overlay ? (
         <div className="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/40 flex">

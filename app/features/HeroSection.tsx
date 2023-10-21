@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
 import React, { useRef } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Fade, type SlideshowRef } from "react-slideshow-image";
@@ -11,12 +11,14 @@ export const HeroSection = () => {
       <div className="relative h-full">
         <Fade ref={ref} autoplay={false} arrows={false}>
           {images.map((image, index) => (
-            <div
+            <Image
               key={index}
-              className="w-full h-[500px] lg:h-full overflow-hidden lg:max-h-screen 2xl:max-h-[700px]"
-            >
-              <img className="w-full h-full object-cover" src={image} alt="" />
-            </div>
+              src={image}
+              alt="hero image"
+              width={500}
+              height={500}
+              className="object-cover w-full h-[500px] lg:h-full overflow-hidden lg:max-h-screen 2xl:max-h-[700px]"
+            />
           ))}
         </Fade>
       </div>
