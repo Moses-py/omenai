@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;

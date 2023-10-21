@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
+import Image from "next/image";
 
 type RowCardProps = {
   image: string;
@@ -23,7 +23,7 @@ export const RowCard = (props: RowCardProps) => {
           isActive ? "bg-primary" : "group-hover:bg-primary"
         )}
       ></div>
-      <img src={image} alt="" className="ml-5 h-6 w-6 shrink-0 " />
+      <Image src={image} alt="icon" width={24} height={24} className="ml-5" />
 
       <p className="pl-3 text-gray-200">{label}</p>
     </div>

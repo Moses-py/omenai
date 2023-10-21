@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
-import React, { Fragment } from "react";
+import Image from "next/image";
 
 export const ProfileInfo = () => {
   const { setIsOpen, isOpen } = useMenuCardStore();
@@ -21,7 +20,13 @@ export const ProfileInfo = () => {
         type="button"
         className="hidden md:flex bg-gray-300 text-gray-200 rounded-full h-fit p-2 px-4"
       >
-        <img src="/icons/logout.png" alt="" className="h-6 w-6 shrink-0 mr-2" />
+        <Image
+          src={"/icons/logout.png"}
+          alt="logout icon"
+          width={24}
+          height={24}
+          className="shrink-0 mr-2"
+        />
         Logout
       </button>
       <button
@@ -29,10 +34,12 @@ export const ProfileInfo = () => {
         className="md:hidden rounded-full h-fit w-fit p-2 my-auto"
         onClick={() => setIsOpen()}
       >
-        <img
+        <Image
           src={isOpen ? "/icons/close.png" : "/icons/menu.png"}
-          alt=""
-          className="h-6 w-6 shrink-0 mr-2"
+          alt="icon"
+          width={24}
+          height={24}
+          className="hrink-0 mr-2"
         />
       </button>
     </div>

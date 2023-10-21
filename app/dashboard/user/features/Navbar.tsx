@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { IndividualLogo } from "@/components/logo/Logo";
-import React from "react";
 import { IoPersonCircleOutline } from "react-icons/io5";
 
 export const Navbar = () => {

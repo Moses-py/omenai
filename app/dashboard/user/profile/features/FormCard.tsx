@@ -1,11 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { FormEvent } from "react";
+import Image from "next/image";
+import { FormEvent } from "react";
 import { InputCard } from "./InputCard";
 import { TextareaCard } from "./TextareaCard";
 
-type Props = {};
-export const FormCard = (props: Props) => {
+export const FormCard = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -63,10 +62,12 @@ const Card = (props: CardProps) => {
             type="button"
             className="hidden md:flex bg-gray-300 text-gray-200 rounded-full h-fit p-2 px-4"
           >
-            <img
-              src="/icons/plus.png"
-              alt=""
-              className="h-6 w-6 shrink-0 mr-2"
+            <Image
+              src={"/icons/plus.png"}
+              alt="plus icon"
+              width={24}
+              height={24}
+              className="mr-2 shrink-0"
             />
             Logout
           </button>

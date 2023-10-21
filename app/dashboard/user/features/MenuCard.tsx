@@ -1,6 +1,6 @@
 "use client";
 import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { RowCard } from "./RowCard";
 
 export const MenuCard = () => {
@@ -13,7 +13,7 @@ export const MenuCard = () => {
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="w-[80%] h-full border border-line rounded-r-[30px] bg-[#FCFCFC] px-6 py-10 space-y-5"
+            className="w-[80%] h-full border border-line rounded-r-[30px] bg-gray-800 px-6 py-10 space-y-5"
             onClick={(e) => e.stopPropagation()}
           >
             <RowCard

@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import React, { useState } from "react";
+import { useState } from "react";
 
 type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;

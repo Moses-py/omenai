@@ -1,21 +1,25 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react";
+import Image from "next/image";
 
-type Props = {};
-export const UserImage = (props: Props) => {
+export const UserImage = () => {
   return (
     <div className="my-5 mx-5 lg:mx-0 flex items-center flex-col justify-center">
-      <div className="h-[150px] rounded-2xl overflow-hidden w-full">
-        <img
-          src="/images/0d18a68a68b46a499cbf5a78126d31fc.png"
-          alt=""
-          className="h-full w-full object-cover"
-        />
-      </div>
+      <Image
+        src={"/images/0d18a68a68b46a499cbf5a78126d31fc.png"}
+        alt="user banner"
+        width={500}
+        height={150}
+        className="ml-5 w-full rounded-2xl overflow-hidden"
+      />
 
       <div className="h-[70px] bg-gray-400 rounded-xl w-[95%] -mt-10 px-5 flex items-center justify-between">
         <div className="flex gap-3">
-          <Avatar image="/images/58c10e001b87b62387f583fc59601928.jpeg" />
+          <Image
+            src={"/images/58c10e001b87b62387f583fc59601928.jpeg"}
+            alt="icon"
+            width={45}
+            height={45}
+            className="rounded-2xl overflow-hidden"
+          />
 
           <div className="">
             <p className="text-black text-base">Johnathan Wick</p>
@@ -24,21 +28,19 @@ export const UserImage = (props: Props) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <img src="/icons/status.png" alt="" className="h-6 w-6" />
+          <Image
+            src="/icons/status.png"
+            alt="icon"
+            width={24}
+            height={24}
+            className=""
+          />
 
           <p className="">
             Status: <span className="text-red-500">Incomplete</span>
           </p>
         </div>
       </div>
-    </div>
-  );
-};
-
-const Avatar = ({ image }: { image: string }) => {
-  return (
-    <div className="h-[45px] w-[45px] rounded-2xl overflow-hidden">
-      <img src={image} alt="" className="h-full w-full object-cover" />
     </div>
   );
 };
