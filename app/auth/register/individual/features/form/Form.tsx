@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Action from "../actions/Action";
 import FormInput from "./components/FormInput";
-import Link from "next/link";
 import { IndividualLogo } from "@/components/logo/Logo";
 
 export default function Form() {

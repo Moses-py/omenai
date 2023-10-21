@@ -1,10 +1,14 @@
 "use client";
+import navigations from "@/app/dashboard/user/data/navigations.json";
 import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
+import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
 import { RowCard } from "./RowCard";
 
 export const MenuCard = () => {
   const { setIsOpen, isOpen } = useMenuCardStore();
+  const router = useRouter();
+  const pathname = usePathname();
   return (
     <Fragment>
       {isOpen ? (
@@ -16,17 +20,15 @@ export const MenuCard = () => {
             className="w-[80%] h-full border border-line rounded-r-[30px] bg-gray-800 px-6 py-10 space-y-5"
             onClick={(e) => e.stopPropagation()}
           >
-            <RowCard
-              image="/icons/profile.png"
-              label="Profile information"
-              isActive
-            />
-
-            <RowCard image="/icons/heart.png" label="Favorites" />
-            <RowCard image="/icons/auction.png" label="Auction bids" />
-            <RowCard image="/icons/history.png" label="Order history" />
-            <RowCard image="/icons/setting.png" label="Settings" />
-            <RowCard image="/icons/logout.png" label="Logout" />
+            {navigations.map(({ image, label, href }, index) => (
+              <RowCard
+                key={index}
+                image={image}
+                label={label}
+                isActive={pathname.startsWith(href)}
+                onClick={() => router.push(href)}
+              />
+            ))}
           </div>
         </div>
       ) : null}

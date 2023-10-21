@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { IoHeartOutline } from "react-icons/io5";
@@ -37,10 +37,13 @@ export const ProductsSlide = (props: Props) => {
       >
         {items.map(({ image, name, date, gallery, price }, index) => (
           <div key={index} className="mr-5">
-            <div className="h-[300px]">
-              <img src={image} alt="" className="h-full w-full object-cover" />
-            </div>
-
+            <Image
+              src={image}
+              alt="image"
+              width={200}
+              height={300}
+              className="h-[300px] w-full object-cover"
+            />
             <p className="pt-2 underline text-black font-light text-sm">
               {name}
             </p>

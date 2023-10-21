@@ -1,7 +1,5 @@
-import Image from "next/image";
-import FormInput from "./components/FormInput";
 import Action from "../actions/Action";
-import Link from "next/link";
+import FormInput from "./components/FormInput";
 import { GalleryLogo } from "@/components/logo/Logo";
 
 export default function FormBlock() {

@@ -1,0 +1,27 @@
+[
+  {
+    "image": "/icons/profile.png",
+    "label": "Profile information",
+    "href": "/dashboard/user/profile"
+  },
+  {
+    "image": "/icons/heart.png",
+    "label": "Favorites",
+    "href": "/dashboard/user/favorites"
+  },
+  {
+    "image": "/icons/auction.png",
+    "label": "Auction bids",
+    "href": "/dashboard/user/auctions"
+  },
+  {
+    "image": "/icons/history.png",
+    "label": "Order history",
+    "href": "/dashboard/user/orders"
+  },
+  {
+    "image": "/icons/setting.png",
+    "label": "Settings",
+    "href": "/dashboard/user/settings"
+  }
+]

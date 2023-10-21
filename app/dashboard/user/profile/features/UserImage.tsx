@@ -8,14 +8,14 @@ export const UserImage = () => {
         alt="user banner"
         width={500}
         height={150}
-        className="ml-5 w-full rounded-2xl overflow-hidden"
+        className="ml-5 w-full h-[150px] rounded-2xl overflow-hidden"
       />
 
       <div className="h-[70px] bg-gray-400 rounded-xl w-[95%] -mt-10 px-5 flex items-center justify-between">
         <div className="flex gap-3">
           <Image
             src={"/images/58c10e001b87b62387f583fc59601928.jpeg"}
-            alt="icon"
+            alt="user avatar"
             width={45}
             height={45}
             className="rounded-2xl overflow-hidden"

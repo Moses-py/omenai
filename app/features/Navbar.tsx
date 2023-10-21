@@ -11,7 +11,7 @@ export const Navbar = () => {
       <Link href="/" className="">
         <Image
           src={"/logo.svg"}
-          alt="icon"
+          alt="logo"
           width={120}
           height={30}
           className="ml-5"
