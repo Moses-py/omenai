@@ -1,16 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
+import { IndividualLogo } from "@/components/logo/Logo";
 import React from "react";
 import { IoPersonCircleOutline } from "react-icons/io5";
-type Props = {};
-export const Navbar = (props: Props) => {
+
+export const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-5 lg:px-10 py-2 border-b lg:border-b-0 border-line">
-      <Link href="/user/dashboard">
-        <div className="w-[202px]">
-          <img src="/omenai_logo.png" alt="" className="" />
-        </div>
-      </Link>
+      <IndividualLogo />
 
       <div className="flex items-center gap-3">
         <IoPersonCircleOutline className="h-10 w-10" />
