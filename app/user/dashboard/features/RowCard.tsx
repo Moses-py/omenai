@@ -13,7 +13,7 @@ export const RowCard = (props: RowCardProps) => {
     <div
       className={clsx(
         "flex items-center h-[50px] rounded-r-full cursor-pointer transition-all duration-300 group",
-        isActive ? "bg-[#F6F6F6]" : "hover:bg-[#F6F6F6]"
+        isActive ? "bg-gray-300" : "hover:bg-gray-300"
       )}
       onClick={onClick}
     >
@@ -25,7 +25,7 @@ export const RowCard = (props: RowCardProps) => {
       ></div>
       <img src={image} alt="" className="ml-5 h-6 w-6 shrink-0 " />
 
-      <p className="pl-3 text-[#454545]">{label}</p>
+      <p className="pl-3 text-gray-200">{label}</p>
     </div>
   );
 };

@@ -7,7 +7,7 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Fragment>
+    <div className="bg-gray-800">
       <Navbar />
 
       <main className="grid grid-cols-10 lg:px-10 lg:pt-16 lg:gap-10">
@@ -20,6 +20,6 @@ export default function UserLayout({
       </main>
 
       <MenuCard />
-    </Fragment>
+    </div>
   );
 }

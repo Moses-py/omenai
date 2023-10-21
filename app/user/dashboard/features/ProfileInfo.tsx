@@ -13,13 +13,13 @@ export const ProfileInfo = () => {
 
         <div className="pl-3">
           <p className="text-sm text-black">Hello, Johnathan Wick</p>
-          <p className="text-[#454545] text-base font-light">Welcome back</p>
+          <p className="text-gray-200 text-base font-light">Welcome back</p>
         </div>
       </div>
 
       <button
         type="button"
-        className="hidden md:flex bg-[#F6F6F6] text-[#454545] rounded-full h-fit p-2 px-4"
+        className="hidden md:flex bg-gray-300 text-gray-200 rounded-full h-fit p-2 px-4"
       >
         <img src="/icons/logout.png" alt="" className="h-6 w-6 shrink-0 mr-2" />
         Logout
