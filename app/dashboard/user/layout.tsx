@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { MenuCard, Navbar, ProfileInfo, Sidebar } from "./features";
 
 export default function UserLayout({
