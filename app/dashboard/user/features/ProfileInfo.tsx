@@ -1,5 +1,6 @@
 "use client";
 import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 
 export const ProfileInfo = () => {
@@ -18,6 +19,7 @@ export const ProfileInfo = () => {
 
       <button
         type="button"
+        onClick={() => signOut({})}
         className="hidden md:flex bg-gray-300 text-gray-200 rounded-full h-fit p-2 px-4"
       >
         <Image
