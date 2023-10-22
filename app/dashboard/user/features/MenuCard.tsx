@@ -1,6 +1,7 @@
 "use client";
 import navigations from "@/app/dashboard/user/data/navigations.json";
 import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
+import { signOut } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
 import { RowCard } from "./RowCard";
@@ -29,6 +30,12 @@ export const MenuCard = () => {
                 onClick={() => router.push(href)}
               />
             ))}
+
+            <RowCard
+              image={"/icons/logout.png"}
+              label="Logout"
+              onClick={() => signOut({})}
+            />
           </div>
         </div>
       ) : null}
