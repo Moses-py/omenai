@@ -8,7 +8,7 @@ export const UserImage = () => {
         alt="user banner"
         width={500}
         height={150}
-        className="ml-5 w-full h-[150px] rounded-2xl overflow-hidden"
+        className="w-full h-[150px] rounded-2xl overflow-hidden"
       />
 
       <div className="h-[70px] bg-gray-400 rounded-xl w-[95%] -mt-10 px-5 flex items-center justify-between">
