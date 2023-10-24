@@ -32,7 +32,17 @@ export const GalleryLoginProvider = CredentialsProvider<Credentials>({
 
       if (!response.ok) throw new Error(data.message);
 
-      return { id: data.id, verified: data.verified };
+      return {
+        id: data.id,
+        verified: data.verified,
+        admin: data.admin,
+        description: data.description,
+        location: data.location,
+        gallery_verified: data.gallery_verified,
+        name: data.name,
+        email: data.email,
+        role: data.role,
+      };
     } catch (error: any) {
       throw new Error(error.message);
     }

@@ -39,7 +39,14 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
 
       if (!response.ok) throw new Error(data.message);
 
-      return { id: data.id, verified: data.verified };
+      return {
+        id: data.id,
+        verified: data.verified,
+        email: data.email,
+        name: data.name,
+        preferences: data.preferences,
+        role: data.role,
+      };
     } catch (error: any) {
       throw new Error(error.message);
     }

@@ -1,9 +1,11 @@
 "use client";
 import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 export const ProfileInfo = () => {
+  const session = useSession();
+
   const { setIsOpen, isOpen } = useMenuCardStore();
 
   return (
@@ -13,7 +15,7 @@ export const ProfileInfo = () => {
 
         <div className="pl-3">
           <h3 className="text-base xs:text-sm text-base-theme">
-            Hello, Johnathan Wick
+            Hello, {session.data?.user.name}
           </h3>
           <p className="text-base-theme text-base font-light">Welcome back</p>
         </div>

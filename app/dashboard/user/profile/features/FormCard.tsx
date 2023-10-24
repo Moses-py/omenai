@@ -1,22 +1,32 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FormEvent } from "react";
 import { InputCard } from "./InputCard";
 import { TextareaCard } from "./TextareaCard";
 
 export const FormCard = () => {
+  const session = useSession();
+
+  const user = session.data?.user;
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-5 space-y-8 lg:px-2">
-      <InputCard label="Full name" />
+      <InputCard label="Full name" value={user?.name} />
       <InputCard
         label="Email address"
+        value={user?.email}
         rightComponent={
           <div>
-            <p className="text-green-400">Verified</p>
+            {user?.verified ? (
+              <p className="text-green-400">Verified</p>
+            ) : (
+              <p className="text-red-500">Verify</p>
+            )}
           </div>
         }
       />

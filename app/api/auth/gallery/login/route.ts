@@ -9,12 +9,6 @@ import { AccountGallery } from "@/models/auth/GallerySchema";
 import bcrypt from "bcrypt";
 import { NextResponse, NextResponse as res } from "next/server";
 
-type UserReturn = {
-  gallery_id: string;
-  verified: boolean;
-  password: string;
-};
-
 export async function POST(request: Request) {
   try {
     const data = await request.json();
@@ -28,10 +22,9 @@ export async function POST(request: Request) {
 
     await connectMongoDB();
 
-    const user = await AccountGallery.findOne<UserReturn>(
-      { email },
-      "gallery_id verified password"
-    ).exec();
+    const user = await AccountGallery.findOne<GallerySchemaTypes>({
+      email,
+    }).exec();
 
     if (!user) throw new ConflictError("Invalid credentials");
 
@@ -39,14 +32,29 @@ export async function POST(request: Request) {
 
     if (!isPasswordMatch) throw new ConflictError("Invalid credentials");
 
-    const { gallery_id, verified } = user;
+    const {
+      gallery_id,
+      verified,
+      admin,
+      description,
+      location,
+      gallery_verified,
+      name,
+      role,
+    } = user;
 
     return res.json(
       {
         message: "Login successfull",
         id: gallery_id,
         verified,
-        type: "gallery",
+        admin,
+        description,
+        location,
+        gallery_verified,
+        name,
+        email,
+        role,
       },
       { status: 201 }
     );
