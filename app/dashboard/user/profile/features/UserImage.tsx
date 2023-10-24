@@ -1,6 +1,10 @@
+import { nextAuthOptions } from "@/lib/auth/next-auth-options";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 
-export const UserImage = () => {
+export const UserImage = async () => {
+  const session = await getServerSession(nextAuthOptions);
+
   return (
     <div className="my-5 mx-5 lg:mx-0 flex items-center flex-col justify-center">
       <Image
@@ -23,7 +27,7 @@ export const UserImage = () => {
 
           <div className="">
             <p className="text-base-theme font-medium text-base">
-              Johnathan Wick
+              {session?.user.name}
             </p>
             <p className="text-base-theme text-xs font-light">San fransisco</p>
           </div>

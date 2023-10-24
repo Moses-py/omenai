@@ -10,7 +10,8 @@ export const nextAuthOptions: NextAuthOptions = {
     signIn: "/",
   },
   callbacks: {
-    async jwt({ token, user }: any) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") return { ...token, ...session.user };
       return { ...token, ...user };
     },
     async session({ session, token }: any) {

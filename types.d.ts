@@ -36,3 +36,26 @@ type IndividualRegisterData = Omit<IndividualSignupData, "confirmPassword"> & {
 type GalleryRegisterData = Omit<GallerySignupData, "confirmPassword">;
 
 type RouteIdentifier = "individual" | "gallery";
+
+type GallerySchemaTypes = {
+  name: string;
+  email: string;
+  password: string;
+  gallery_id: string;
+  admin: string;
+  location: string;
+  description: string;
+  gallery_verified: boolean;
+  verified: boolean;
+  role: string;
+};
+
+type IndividualSchemaTypes = {
+  name: string;
+  email: string;
+  password: string;
+  user_id: string;
+  preferences: string[];
+  verified: boolean;
+  role: string;
+};

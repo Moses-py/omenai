@@ -1,19 +1,6 @@
 import { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
-export type GallerySchemaTypes = {
-  name: string;
-  email: string;
-  password: string;
-  gallery_id: string;
-  admin: string;
-  location: string;
-  description: string;
-  gallery_verified: boolean;
-  verified: boolean;
-  role: string;
-};
-
 const gallerySignupSchema = new Schema<GallerySchemaTypes>(
   {
     name: {

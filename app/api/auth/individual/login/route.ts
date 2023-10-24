@@ -9,12 +9,6 @@ import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import bcrypt from "bcrypt";
 import { NextResponse, NextResponse as res } from "next/server";
 
-type UserReturn = {
-  user_id: string;
-  verified: boolean;
-  password: string;
-};
-
 export async function POST(request: Request) {
   try {
     const data = await request.json();
@@ -28,10 +22,9 @@ export async function POST(request: Request) {
 
     await connectMongoDB();
 
-    const user = await AccountIndividual.findOne<UserReturn>(
-      { email },
-      "user_id verified password"
-    ).exec();
+    const user = await AccountIndividual.findOne<IndividualSchemaTypes>({
+      email,
+    }).exec();
 
     if (!user) throw new ConflictError("Invalid credentials");
 
@@ -39,14 +32,17 @@ export async function POST(request: Request) {
 
     if (!isPasswordMatch) throw new ConflictError("Invalid credentials");
 
-    const { user_id, verified } = user;
+    const { user_id, verified, name, preferences, role } = user;
 
     return res.json(
       {
         message: "Login successfull",
         id: user_id,
         verified,
-        type: "individual",
+        email,
+        name,
+        preferences,
+        role,
       },
       { status: 201 }
     );

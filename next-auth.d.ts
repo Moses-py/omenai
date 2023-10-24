@@ -9,7 +9,7 @@ declare global {
     }
   }
 }
-interface UserType {
+interface UserType extends GallerySchemaTypes, IndividualSchemaTypes {
   id: string;
   verified: boolean;
 }
