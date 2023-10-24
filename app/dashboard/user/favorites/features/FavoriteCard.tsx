@@ -21,7 +21,7 @@ export const FavoriteCard = (props: Props) => {
         />
 
         <div className="">
-          <p className="text-primary text-base sm:text-sm font-semibold">
+          <p className="text-primary text-base sm:text-sm font-medium">
             {name}
           </p>
           <p className="text-base text-base-theme">{author}</p>
