@@ -12,7 +12,7 @@ export default function Favorites() {
             width={100}
             height={100}
           />
-          <p className="text-lg text-gray-200 font-light">
+          <p className="text-lg text-base-theme font-light">
             Favorites tab is empty. Like some artworks to save them here
           </p>
         </div>

@@ -5,17 +5,16 @@ import React from "react";
 import { RowCard } from "./RowCard";
 
 export const Sidebar = () => {
-  const router = useRouter();
   const pathname = usePathname();
   return (
-    <div className="hidden md:block col-span-2 space-y-5">
+    <div className="space-y-5">
       {navigations.map(({ image, label, href }, index) => (
         <RowCard
           key={index}
           image={image}
           label={label}
           isActive={pathname.startsWith(href)}
-          onClick={() => router.push(href)}
+          route={href}
         />
       ))}
     </div>

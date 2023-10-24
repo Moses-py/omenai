@@ -55,12 +55,12 @@ const Card = (props: CardProps) => {
   return (
     <div className="">
       <div className="flex items-center justify-between mb-3 h-[35px] px-1">
-        <p className="text-base text-gray-200">{label}</p>
+        <p className="text-base text-base-theme">{label}</p>
 
         {showAddButton ? (
           <button
             type="button"
-            className="hidden md:flex bg-gray-300 text-gray-200 rounded-full h-fit p-2 px-4"
+            className="hidden md:flex bg-gray-300 text-base-theme rounded-full h-fit p-2 px-4"
           >
             <Image
               src={"/icons/plus.png"}
@@ -69,7 +69,7 @@ const Card = (props: CardProps) => {
               height={24}
               className="mr-2 shrink-0"
             />
-            Logout
+            Add new
           </button>
         ) : null}
       </div>
