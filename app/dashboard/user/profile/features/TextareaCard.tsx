@@ -17,7 +17,7 @@ export const TextareaCard = (props: Props) => {
       </label>
       <div
         className={clsx(
-          "flex items-center justify-between border-b-[1px] border-b-primary py-1",
+          "flex items-center justify-between border-b-[1px] border-b-base-theme/20 py-1",
           focus ? "outline-none border-b-secondary" : ""
         )}
       >

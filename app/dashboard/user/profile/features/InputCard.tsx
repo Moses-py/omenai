@@ -10,7 +10,6 @@ export const InputCard = (props: Props) => {
   const { label, className, id, onFocus, onBlur, rightComponent, ...rest } =
     props;
 
-  const [focus, setFocus] = useState(false);
   return (
     <div className="flex flex-col">
       <label htmlFor={id} className="text-base text-primary">
@@ -18,23 +17,14 @@ export const InputCard = (props: Props) => {
       </label>
       <div
         className={clsx(
-          "flex items-center justify-between border-b-[1px] border-b-primary py-1 px-1",
-          focus ? "outline-none border-b-secondary" : ""
+          "flex items-center justify-between border-b-[1px] border-b-base-theme/20 py-1 px-1"
         )}
       >
         <input
           className={clsx(
-            "w-full outline-none transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 ",
+            "w-full outline-none transition-all duration-200 ease-in-out ring-0 text-base-theme placeholder:text-secondary/40 ",
             className
           )}
-          onFocus={(e) => {
-            setFocus(true);
-            onFocus?.(e);
-          }}
-          onBlur={(e) => {
-            setFocus(true);
-            onBlur?.(e);
-          }}
           {...rest}
         />
         {rightComponent}

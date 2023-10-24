@@ -2,15 +2,14 @@ import { create } from "zustand";
 
 type MenuCardStoreTypes = {
   isOpen: boolean;
-  setIsOpen: (value?: boolean) => void;
+  setIsOpen: () => void;
 };
 
 export const useMenuCardStore = create<MenuCardStoreTypes>((set, get) => ({
   isOpen: false,
-  setIsOpen: (value) => {
+  setIsOpen: () => {
     const openState = get().isOpen;
 
-    if (typeof value === "boolean") set({ isOpen: value });
-    else set({ isOpen: !openState });
+    set({ isOpen: !openState });
   },
 }));

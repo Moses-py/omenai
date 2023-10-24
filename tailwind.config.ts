@@ -24,6 +24,7 @@ const config: Config = {
       colors: {
         primary: "#2A9EDF",
         secondary: "#535353",
+        "base-theme": "#67748E",
         gray: {
           200: "#47748E",
           300: "#F6F6F6",

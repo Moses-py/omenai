@@ -7,20 +7,22 @@ export const ProfileInfo = () => {
   const { setIsOpen, isOpen } = useMenuCardStore();
 
   return (
-    <div className="flex justify-between border-b lg:border-b-0 border-line p-2 ">
+    <div className="flex justify-between border-b border-line p-2 ">
       <div className="flex items-center ">
         <div className="h-full w-[5px] rounded-lg bg-primary"></div>
 
         <div className="pl-3">
-          <p className="text-sm text-black">Hello, Johnathan Wick</p>
-          <p className="text-gray-200 text-base font-light">Welcome back</p>
+          <h3 className="text-base xs:text-sm text-base-theme">
+            Hello, Johnathan Wick
+          </h3>
+          <p className="text-base-theme text-base font-light">Welcome back</p>
         </div>
       </div>
 
       <button
         type="button"
         onClick={() => signOut({})}
-        className="hidden md:flex bg-gray-300 text-gray-200 rounded-full h-fit p-2 px-4"
+        className="hidden md:flex bg-gray-300 text-base-theme rounded-full h-fit p-2 px-4"
       >
         <Image
           src={"/icons/logout.png"}

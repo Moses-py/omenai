@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import {
   IoCheckmark,
@@ -18,9 +19,7 @@ export default function Orders() {
             height={100}
           />
 
-          <p className="text-gray-200 text-center text-sm">
-            No order records available
-          </p>
+          <p className=" text-center text-sm">No order records available</p>
         </div>
       </div>
     );
@@ -44,12 +43,12 @@ export default function Orders() {
         ) => (
           <div key={index} className="border border-line">
             <div className="p-3 flex items-center justify-between border-b border-line">
-              <p className="text-base text-gray-200">{date}</p>
+              <p className="text-base text-base-theme">{date}</p>
 
               {StatusRender[status.toLowerCase() as keyof typeof StatusRender]}
             </div>
 
-            <div className="py-3 pl-8 mr-8 flex items-center border-b border-line gap-4">
+            <div className="p-3 flex items-center border-b border-line gap-4">
               <Image
                 src={image}
                 alt=""
@@ -58,34 +57,40 @@ export default function Orders() {
                 className="h-[60px] object-cover"
               />
 
-              <div className="">
-                <p className="text-primary text-sm font-semibold">{name}</p>
-                <p className="">{author}</p>
+              <div>
+                <p className="text-primary text-base font-medium">{name}</p>
+                <p className="text-base-theme">{author}</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 lg:items-center justify-between py-5 mx-6 px-2 border-b border-line gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 lg:items-center justify-between p-3 border-b text-base-theme border-line gap-4">
               <div className="">
-                <p className="text-base text-gray-200">Order no.</p>
+                <p className="text-base ">Order no.</p>
                 <p className="text-base text-[#969696]">{orderId}</p>
               </div>
               <div className="">
-                <p className="text-base text-gray-200">Price total</p>
+                <p className="text-base ">Price total</p>
                 <p className="text-base text-[#969696]">${price}</p>
               </div>
               <div className="">
-                <p className="text-base text-gray-200">Payment method</p>
+                <p className="text-base ">Payment method</p>
                 <p className="text-base text-[#969696]">{paymentMethod}</p>
               </div>
               <div className="">
-                <p className="text-base text-gray-200">Delivery method</p>
+                <p className="text-base ">Delivery method</p>
                 <p className="text-base text-[#969696]">{deliveryMethod}</p>
               </div>
             </div>
 
             <div className="py-5 px-8 flex items-end">
               <p className="text-[#969696] ml-auto">
-                Need some help? <b className="text-primary">Contact us</b>
+                Need some help?{" "}
+                <Link
+                  href="mailto:moses@omenai.net"
+                  className="text-primary underline font-medium"
+                >
+                  Contact us
+                </Link>
               </p>
             </div>
           </div>
@@ -105,7 +110,7 @@ const StatusRender = {
   cancelled: (
     <div className="flex gap-2 items-center">
       <IoCloseCircleOutline className="text-red-500 h-6 w-6" />
-      <p className="text-base text-red-500">Completed</p>
+      <p className="text-base text-red-500">Cancelled</p>
     </div>
   ),
   "in progress": (
@@ -117,7 +122,7 @@ const StatusRender = {
         height={24}
         className=""
       />
-      <p className="text-base text-gray-200">Completed</p>
+      <p className="text-base text-base-theme">In progress</p>
     </div>
   ),
 };
