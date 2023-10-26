@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Footer,
   HeroSection,
@@ -8,8 +9,14 @@ import {
 
 export default function Home() {
   return (
-    <main className="page-center">
-      <Navbar />
+    <main className="w-full h-[100vh] grid place-items-center">
+      <Link href={"/auth/login/individual"}>
+        <button className="py-2 px-3 bg-primary text-white rounded-md font-sans">
+          Login to individual account
+        </button>
+      </Link>
+
+      {/* <Navbar />
       <HeroSection />
 
       <ProductsSlide items={artworks} title="Featured artworks" />
@@ -18,7 +25,7 @@ export default function Home() {
       <ProductsSlide items={artworks} title="Trending artists on Omenai" />
       <ProductsGrid items={editorialGrid} title="Omenai editorial picks" />
 
-      <Footer />
+      <Footer /> */}
     </main>
   );
 }
