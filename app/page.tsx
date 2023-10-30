@@ -15,6 +15,11 @@ export default function Home() {
           Login to individual account
         </button>
       </Link>
+      <Link href={"/dashboard/gallery/overview"}>
+        <button className="py-2 px-3 bg-primary text-white rounded-md font-sans">
+          View gallery dashboard
+        </button>
+      </Link>
 
       {/* <Navbar />
       <HeroSection />

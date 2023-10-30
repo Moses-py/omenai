@@ -1,5 +1,4 @@
-import React from "react";
-import { MenuCard, Navbar, ProfileInfo, Sidebar } from "./user/features";
+import { MenuCard, Navbar, ProfileInfo, Sidebar } from "./features";
 import NextTopLoader from "nextjs-toploader";
 
 export default function UserLayout({
@@ -8,8 +7,9 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-gray-800">
+    <div className="bg-[#F8F9FA]">
       <NextTopLoader color="#6246EA" height={6} />
+      {/* @ts-expect-error Async Server Component */}
       <Navbar />
 
       <main className="flex">

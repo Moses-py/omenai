@@ -1,11 +1,10 @@
 "use client";
 import navigations from "@/app/dashboard/user/data/navigations.json";
-import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
+import { useMenuCardStore } from "@/store/user_menu_card/MenuCardStore";
 import { signOut } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 import { RowCard } from "./RowCard";
-import { IndividualLogo } from "@/components/logo/Logo";
 
 export const MenuCard = () => {
   const { setIsOpen, isOpen } = useMenuCardStore();
