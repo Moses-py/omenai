@@ -12,7 +12,9 @@ export default function DashboardIndicator() {
       </p>
       <p className="text-base-theme">
         <span className="font-light">Gallery</span>/
-        <span className="font-semibold capitalize">{lastPath}</span>
+        <span className="font-semibold capitalize text-primary">
+          {lastPath}
+        </span>
       </p>
     </div>
   );
