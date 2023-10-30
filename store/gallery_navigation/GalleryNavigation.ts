@@ -18,7 +18,7 @@ export const galleryNavigationActions = create<GalleryNavigationActionStore>(
         set({ open: !openState });
       }
     },
-    openMobileNav: true,
+    openMobileNav: false,
     setOpenMobileNav: () => {
       const openState = get().openMobileNav;
 
