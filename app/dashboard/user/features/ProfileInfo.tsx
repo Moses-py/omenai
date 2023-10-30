@@ -1,5 +1,5 @@
 "use client";
-import { useMenuCardStore } from "@/store/menu_card/MenuCardStore";
+import { useMenuCardStore } from "@/store/user_menu_card/MenuCardStore";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 

@@ -12,6 +12,8 @@ const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -30,7 +32,6 @@ export default async function RootLayout({
       <body className={`${outfit.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
-
         <AuthProvider session={session}>{children}</AuthProvider>
       </body>
     </html>
