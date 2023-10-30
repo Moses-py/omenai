@@ -16,7 +16,7 @@ export default function MobilePageLayout() {
       } left-0 duration-200 md:hidden flex justify-between`}
     >
       <div
-        className={` h-screen w-72 ${
+        className={` w-72 ${
           openMobileNav ? "opacity-1" : "opacity-0"
         } p-5 pt-4 duration-500 delay-200 border-r bg-white border-r-base-theme/20`}
       >
@@ -77,7 +77,7 @@ export default function MobilePageLayout() {
       {/* Close button */}
       <div
         onClick={() => setOpenMobileNav()}
-        className="p-3 bg-white w-fit h-fit my-2 rounded-md mr-5"
+        className="p-3 bg-white w-fit h-fit my-4 rounded-md mr-5"
       >
         <TfiClose>close</TfiClose>
       </div>

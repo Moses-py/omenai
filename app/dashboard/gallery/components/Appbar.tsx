@@ -13,10 +13,11 @@ export default function Appbar() {
     <>
       <div className="flex justify-between items-center w-full md:px-5">
         <DashboardIndicator />
-        <IconWrapper onClick={() => setOpenMobileNav()}>
-          <CiMenuFries
-            className={`${openMobileNav ? "hidden" : "false"} block md:hidden`}
-          />
+        <IconWrapper
+          onClick={() => setOpenMobileNav()}
+          className={`${openMobileNav ? "hidden" : "false"} block md:hidden`}
+        >
+          <CiMenuFries />
         </IconWrapper>
       </div>
     </>
