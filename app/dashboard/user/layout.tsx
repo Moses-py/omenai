@@ -9,7 +9,7 @@ export default function UserLayout({
   return (
     <div className="bg-[#F8F9FA]">
       <NextTopLoader color="#6246EA" height={6} />
-      {/* @ts-expect-error Async Server Component */}
+
       <Navbar />
 
       <main className="flex">

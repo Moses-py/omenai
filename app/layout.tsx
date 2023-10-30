@@ -32,7 +32,6 @@ export default async function RootLayout({
       <body className={`${outfit.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
-        {/* @ts-expect-error Async Server Component */}
         <AuthProvider session={session}>{children}</AuthProvider>
       </body>
     </html>
