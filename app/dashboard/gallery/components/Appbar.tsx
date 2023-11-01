@@ -11,7 +11,7 @@ export default function Appbar() {
   );
   return (
     <>
-      <div className="flex justify-between items-center w-full md:px-5">
+      <div className="flex justify-between items-center w-full px-5  rounded-md sticky top-0 z-10 bg-white py-5 border-b border-base-theme/10 ">
         <DashboardIndicator />
         <IconWrapper
           onClick={() => setOpenMobileNav()}

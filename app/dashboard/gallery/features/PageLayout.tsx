@@ -13,13 +13,13 @@ export default function PageLayout() {
 
   return (
     <div
-      className={` h-screen hidden sm:block ${
-        open ? "lg:w-72 md:w-56" : "w-24"
-      } p-5 pt-8 relative duration-200 border-r border-r-base-theme/20`}
+      className={` h-screen hidden fixed left-0 top-0 sm:block ${
+        open ? "xl:w-72 md:w-56" : "w-24"
+      } p-5 pt-8 duration-200 border-r border-r-base-theme/10`}
     >
       <BsArrowLeftShort
         onClick={() => setOpen()}
-        className={`bg-white  text-md absolute -right-3 top-9 border border-1 border-base-theme/20  cursor-pointer rounded-full ${
+        className={`bg-white  text-md absolute -right-3 top-9 z-50 border border-1 border-base-theme/20  cursor-pointer rounded-full ${
           !open && "rotate-180"
         } duration-200 `}
       />
