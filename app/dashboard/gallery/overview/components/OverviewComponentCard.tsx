@@ -10,10 +10,10 @@ export default function OverviewComponentCard({
   return (
     <div
       className={` ${
-        fullWidth ? "p-1" : "p-5"
-      } rounded-lg ring-1 ring-base-theme/20 my-5 w-full`}
+        fullWidth ? "p-1" : "p-4"
+      } rounded-lg ring-1 ring-base-theme/20 mt-5 w-full`}
     >
-      <h4 className="text-primary text-base sm:text-sm font-semibold mb-5">
+      <h4 className="text-primary text-base md:text-sm font-semibold mb-5">
         {title}
       </h4>
       {children}

@@ -4,8 +4,8 @@ import { popular_artworks } from "./mocks";
 
 export default function PopularArtworks() {
   return (
-    <OverviewComponentCard fullWidth={false} title="Popular artworks">
-      <div className="grid grid-cols-3 gap-5 justify-center items-center w-full">
+    <OverviewComponentCard fullWidth={false} title="Most Popular artworks">
+      <div className="flex flex-col gap-3 w-full">
         {popular_artworks.map((artwork, index) => {
           return (
             <PopulartArtworkCard
