@@ -1,11 +1,11 @@
 import Link from "next/link";
-import {
-  Footer,
-  HeroSection,
-  Navbar,
-  ProductsGrid,
-  ProductsSlide,
-} from "./features";
+// import {
+//   Footer,
+//   HeroSection,
+//   Navbar,
+//   ProductsGrid,
+//   ProductsSlide,
+// } from "./features";
 
 export default function Home() {
   return (

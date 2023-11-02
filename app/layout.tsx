@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Outfit } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import "react-slideshow-image/dist/styles.css";
 import { Toaster } from "sonner";
 import "./globals.css";
 
