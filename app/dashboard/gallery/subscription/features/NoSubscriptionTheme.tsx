@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { GoPlus } from "react-icons/go";
-export default function Subscription() {
+export default function NoSubscriptionTheme() {
   return (
     <div className=" w-full h-auto grid place-items-center">
       <div className="flex flex-col gap-3">
