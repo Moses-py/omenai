@@ -1,6 +1,6 @@
 "use client";
 import navigations from "@/app/dashboard/user/data/navigations.json";
-import { useMenuCardStore } from "@/store/user_menu_card/MenuCardStore";
+import { useMenuCardStore } from "@/store/user/user_menu_card/MenuCardStore";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";

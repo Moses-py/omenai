@@ -3,7 +3,7 @@ import { IndividualLogo } from "@/components/logo/Logo";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { navMockData } from "../mocks/NavigationMockData";
 import NavigationItem from "../components/NavigationItem";
-import { galleryNavigationActions } from "@/store/gallery_navigation/GalleryNavigation";
+import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/GalleryNavigation";
 
 export default function PageLayout() {
   const [open, setOpen] = galleryNavigationActions((state) => [
@@ -33,7 +33,7 @@ export default function PageLayout() {
         <div className="flex flex-col gap-y-8 mt-12">
           {/* General navigation */}
           <div>
-            <h4 className={`text-base-theme font-medium ${!open && "text-xs"}`}>
+            <h4 className={`text-base-theme font-normal ${!open && "text-xs"}`}>
               General
             </h4>
             <ul className="flex flex-col gap-y-1">
@@ -52,7 +52,7 @@ export default function PageLayout() {
           </div>
           {/* Account pages */}
           <div>
-            <h4 className={`text-base-theme font-medium ${!open && "text-xs"}`}>
+            <h4 className={`text-base-theme font-normal ${!open && "text-xs"}`}>
               Account
             </h4>
             <ul className="flex flex-col gap-y-1">

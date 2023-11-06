@@ -27,7 +27,7 @@ export default function OverviewOrdersCard({
           className="object-top object-contain rounded-lg"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-primary font-medium text-xs sm:text-base">
+          <p className="text-dark font-normal text-xs sm:text-base">
             {title.slice(0, 15)}
           </p>
           <span className="text-base-theme text-xs font-light">{artist}</span>
@@ -35,7 +35,7 @@ export default function OverviewOrdersCard({
         </div>
       </div>
       <div className="flex flex-col gap-y-1">
-        <span className="text-primary font-medium text-xs sm:text-base">
+        <span className="text-dark font-normal text-xs sm:text-base">
           {buyer}
         </span>
         <span className="text-base-theme text-xs font-light">{order_date}</span>

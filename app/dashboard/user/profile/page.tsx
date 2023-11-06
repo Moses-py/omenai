@@ -6,7 +6,7 @@ export default function Profile() {
     <Fragment>
       <UserImage />
 
-      <p className="text-base-theme text-base xs:text-sm font-medium pt-8 px-5 lg:px-2">
+      <p className="text-base-theme text-base xs:text-sm font-normal pt-8 px-5 lg:px-2">
         Personal information
       </p>
 

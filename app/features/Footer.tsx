@@ -19,7 +19,7 @@
 //         <div className="grid grid-cols-2 lg:grid-cols-5 mt-8 gap-5">
 //           {sections.map(({ items, title }, index) => (
 //             <div key={index} className="">
-//               <p className="font-medium text-sm text-white">{title}</p>
+//               <p className="font-normal text-sm text-white">{title}</p>
 
 //               <ul className="space-y-5 mt-8">
 //                 {items.map(({ name }, i) => (

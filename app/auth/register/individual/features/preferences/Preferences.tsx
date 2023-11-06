@@ -24,7 +24,7 @@ function Preferences() {
   return (
     <AnimatePresence>
       <div className="container">
-        <p className="text-base font-semibold text-center">
+        <p className="text-base font-normal text-center">
           We would like understand your art interests, please select up to 3
           types of artworks you’re most interested in
         </p>

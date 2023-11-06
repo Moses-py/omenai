@@ -12,7 +12,7 @@ export default function FormActions() {
 
   return (
     <div className="flex flex-col mt-[1rem] gap-4 self-end">
-      <p className="font-medium text-base">
+      <p className="font-normal text-base">
         Forgot password?{" "}
         <span
           className="text-primary cursor-pointer underline"

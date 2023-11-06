@@ -24,7 +24,7 @@ export default function PopulartArtworkCard({
           className="object-top object-contain rounded-lg"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-primary font-medium text-xs sm:text-base">
+          <p className="text-dark font-normal text-xs sm:text-base">
             {title.slice(0, 15)}
           </p>
           <span className="text-base-theme text-xs font-light">{artist}</span>

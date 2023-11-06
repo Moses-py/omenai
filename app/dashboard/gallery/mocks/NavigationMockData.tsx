@@ -9,14 +9,22 @@ import {
   CiExport,
 } from "react-icons/ci";
 
-const overview = <CiGrid41 className="text-base-theme" />;
-const order = <TfiPackage className="text-base-theme" />;
-const subscription = <BsCreditCard2Front className="text-base-theme" />;
-const auction = <RiAuctionLine className="text-base-theme" />;
-const upload = <CiExport className="text-base-theme" />;
-const profile = <CiUser className="text-base-theme" />;
-const settings = <CiSettings className="text-base-theme" />;
-const logout = <CiLogout className="text-base-theme" />;
+const overview = (
+  <CiGrid41 className="text-base-theme group-hover:text-white" />
+);
+const order = <TfiPackage className="text-base-theme group-hover:text-white" />;
+const subscription = (
+  <BsCreditCard2Front className="text-base-theme group-hover:text-white" />
+);
+const auction = (
+  <RiAuctionLine className="text-base-theme group-hover:text-white" />
+);
+const upload = <CiExport className="text-base-theme group-hover:text-white" />;
+const profile = <CiUser className="text-base-theme group-hover:text-white" />;
+const settings = (
+  <CiSettings className="text-base-theme group-hover:text-white" />
+);
+const logout = <CiLogout className="text-base-theme group-hover:text-white" />;
 
 export const navMockData: NavMockData = {
   general: [

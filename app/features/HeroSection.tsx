@@ -29,7 +29,7 @@
 //         </p>
 
 //         <div className="">
-//           <p className="font-semibold text-[120px] text-white -ml-20 ">
+//           <p className="font-normal text-[120px] text-white -ml-20 ">
 //             OMENAI{" "}
 //           </p>
 //           <p className="text-white text-[90px] font-light -mt-14 ml-10">

@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
+    "./node_modules/flowbite-react/**/*.js",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -25,6 +26,7 @@ const config: Config = {
         primary: "#2A9EDF",
         secondary: "#535353",
         "base-theme": "#67748E",
+        dark: "#15171E",
         gray: {
           200: "#47748E",
           300: "#F6F6F6",
@@ -45,10 +47,11 @@ const config: Config = {
 
       backgroundImage: {
         "hero-image": "url('/images/e96e5841821e79f985088d21e301bed7.jpeg')",
+        "billing-card": "url('/images/card_curve.jpg')",
       },
     },
   },
 
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };
 export default config;

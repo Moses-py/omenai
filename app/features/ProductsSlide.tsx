@@ -54,9 +54,9 @@
 
 //             <div className="flex items-center justify-between">
 //               {price ? (
-//                 <p className="text-[#696969] font-medium text-base">${price}</p>
+//                 <p className="text-[#696969] font-normal text-base">${price}</p>
 //               ) : (
-//                 <p className="text-[#696969] font-medium text-base underline">
+//                 <p className="text-[#696969] font-normal text-base underline">
 //                   Price on request
 //                 </p>
 //               )}
