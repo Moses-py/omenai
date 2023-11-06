@@ -11,7 +11,7 @@ export default function Form({ ip }: { ip: string }) {
           <p className="text-base">
             Welcome back. Login to your account to gain access
           </p>
-          <p className="text-base font-medium">Individual account</p>
+          <p className="text-base font-normal">Individual account</p>
         </div>
         <div className="lg:px-[2rem] xl:px-[4rem] 2xl:px-[7rem]">
           <FormInput ip={ip} />

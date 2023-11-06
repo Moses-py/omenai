@@ -21,17 +21,15 @@ export const FavoriteCard = (props: Props) => {
         />
 
         <div className="">
-          <p className="text-primary text-base sm:text-sm font-medium">
-            {name}
-          </p>
+          <p className="text-dark text-base sm:text-sm font-normal">{name}</p>
           <p className="text-base text-base-theme">{author}</p>
           {/* <p className="text-base text-[#B5B5B5]">{gallery}</p> */}
 
           <div className="flex items-center justify-between w-[250px]">
             {price ? (
-              <p className="text-[#696969] font-medium text-base">${price}</p>
+              <p className="text-[#696969] font-normal text-base">${price}</p>
             ) : (
-              <p className="text-[#696969] font-medium text-base underline">
+              <p className="text-[#696969] font-normal text-base underline">
                 Price on request
               </p>
             )}

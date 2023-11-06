@@ -76,7 +76,7 @@ export default function PasswordForm({ id }: IdProps) {
     <div>
       <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2">
-          <label className="self-start font-medium" htmlFor="password">
+          <label className="self-start font-normal" htmlFor="password">
             Password
           </label>
           <input
@@ -89,7 +89,7 @@ export default function PasswordForm({ id }: IdProps) {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="self-start font-medium" htmlFor="confirmpassword">
+          <label className="self-start font-normal" htmlFor="confirmpassword">
             Confirm password
           </label>
           <input

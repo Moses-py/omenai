@@ -26,7 +26,7 @@ export const UserImage = async () => {
           />
 
           <div className="">
-            <p className="text-base-theme font-medium text-base">
+            <p className="text-base-theme font-normal text-base">
               {session?.user.name}
             </p>
             <p className="text-base-theme text-xs font-light">San fransisco</p>

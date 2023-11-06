@@ -1,6 +1,6 @@
 "use client";
 
-import { galleryNavigationActions } from "@/store/gallery_navigation/GalleryNavigation";
+import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/GalleryNavigation";
 import { CiMenuFries } from "react-icons/ci";
 import DashboardIndicator from "./DashboardIndicator";
 import IconWrapper from "./IconWrapper";

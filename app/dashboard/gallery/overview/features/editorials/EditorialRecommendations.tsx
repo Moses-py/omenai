@@ -40,7 +40,7 @@ export default function EditorialRecommendations() {
           isPlaying
           interval={5000}
         >
-          {/* <h4 className="text-primary text-base md:text-sm font-semibold my-5">
+          {/* <h4 className="text-dark text-base md:text-sm font-normal my-5">
           Latest editorial articles
         </h4> */}
           <Slider>

@@ -14,16 +14,13 @@ export default function Help() {
 
       <div className="flex flex-col text-xs">
         <span>
-          email:{" "}
-          <span className="text-primary font-semibold">moses@omenai.net</span>
+          email: <span className="text-dark font-normal">moses@omenai.net</span>
         </span>
         <span>
-          whatsapp:{" "}
-          <span className="text-primary font-semibold">+1234567890</span>
+          whatsapp: <span className="text-dark font-normal">+1234567890</span>
         </span>
         <span>
-          instagram:{" "}
-          <span className="text-primary font-semibold">@omenai_Inc</span>
+          instagram: <span className="text-dark font-normal">@omenai_Inc</span>
         </span>
       </div>
     </div>

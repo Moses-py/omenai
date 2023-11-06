@@ -69,7 +69,7 @@ export function SalesActivity() {
         }}
       >
         <div
-          className="text-xs text-primary"
+          className="text-xs text-dark"
           style={{
             position: "absolute",
             left: 0,
@@ -80,7 +80,7 @@ export function SalesActivity() {
         >
           <ResponsiveContainer>
             <LineChart data={data} margin={{ top: 5, bottom: 35 }}>
-              {/* <CartesianGrid strokeDasharray="3 3" /> */}
+              <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" height={20} className="text-xs" />
               <YAxis width={50} className="text-xs " />
               <Tooltip />

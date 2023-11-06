@@ -3,7 +3,7 @@ import NextTopLoader from "nextjs-toploader";
 import PageLayout from "./features/PageLayout";
 import MobilePageLayout from "./features/MobilePageLayout";
 import Appbar from "./components/Appbar";
-import { galleryNavigationActions } from "@/store/gallery_navigation/GalleryNavigation";
+import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/GalleryNavigation";
 import { useWindowSize } from "usehooks-ts";
 import NoMobileView from "./components/NoMobileView";
 export default function GalleryDashboardLayout({

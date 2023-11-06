@@ -58,7 +58,7 @@ export default function Orders() {
               />
 
               <div>
-                <p className="text-primary text-base font-medium">{name}</p>
+                <p className="text-dark text-base font-normal">{name}</p>
                 <p className="text-base-theme">{author}</p>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function Orders() {
                 Need some help?{" "}
                 <Link
                   href="mailto:moses@omenai.net"
-                  className="text-primary underline font-medium"
+                  className="text-dark underline font-normal"
                 >
                   Contact us
                 </Link>

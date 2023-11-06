@@ -3,15 +3,15 @@ import { TbChartHistogram } from "react-icons/tb";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 
-const total_artworks_icon = <CiBoxList className="text-white text-md" />;
+const total_artworks_icon = <CiBoxList className="text-white text-sm" />;
 const total_impressions_icon = (
-  <TbChartHistogram className="text-white text-md" />
+  <TbChartHistogram className="text-white text-sm" />
 );
 const sold_artworks_icon = (
-  <RiMoneyDollarCircleLine className="text-white text-md" />
+  <RiMoneyDollarCircleLine className="text-white text-sm" />
 );
 const subscription_type_icon = (
-  <MdOutlineWorkspacePremium className="text-white text-md" />
+  <MdOutlineWorkspacePremium className="text-white text-sm" />
 );
 
 export const highlightCardEl: HighlightCardElProps[] = [

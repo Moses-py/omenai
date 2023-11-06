@@ -56,8 +56,8 @@ export default function TokenBlock({ token }: TokenProps) {
         <div className="flex flex-col gap-4 my-[2rem]">
           <p className="leading-32 text-base">
             Thank you for choosing to join{" "}
-            <span className="text-primary font-bold">Omenai inc.</span> We
-            extend our warmest welcome and look forward to providing you with an
+            <span className="text-dark font-bold">Omenai inc.</span> We extend
+            our warmest welcome and look forward to providing you with an
             enjoyable journey with us
           </p>
           <p className="leading-32 text-base">
@@ -75,7 +75,7 @@ export default function TokenBlock({ token }: TokenProps) {
       >
         <input
           type="text"
-          className="px-4 py-2 ring-1 ring-primary rounded-md w-full md:w-1/3"
+          className="px-4 py-2 ring-1 ring-dark rounded-md w-full md:w-1/3"
           placeholder="Verification token"
           required
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -93,7 +93,7 @@ export default function TokenBlock({ token }: TokenProps) {
       <p>
         Did not recieve a code?{" "}
         <span
-          className="text-primary underline font-bold cursor-pointer"
+          className="text-dark underline font-bold cursor-pointer"
           onClick={resendVerification}
         >
           Resend code
@@ -105,7 +105,7 @@ export default function TokenBlock({ token }: TokenProps) {
           Feel free to contact us should you have any issues on{" "}
           <Link
             href={"mailto:moses@omenai.net"}
-            className="text-primary font-bold underline"
+            className="text-dark font-bold underline"
           >
             moses@omenai.net
           </Link>

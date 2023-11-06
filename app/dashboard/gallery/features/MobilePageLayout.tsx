@@ -2,7 +2,7 @@
 import { IndividualLogo } from "@/components/logo/Logo";
 import NavigationItem from "../components/NavigationItem";
 import { navMockData } from "../mocks/NavigationMockData";
-import { galleryNavigationActions } from "@/store/gallery_navigation/GalleryNavigation";
+import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/GalleryNavigation";
 import { TfiClose } from "react-icons/tfi";
 
 export default function MobilePageLayout() {
@@ -29,7 +29,7 @@ export default function MobilePageLayout() {
           <div className="flex flex-col gap-y-8 mt-6">
             {/* General navigation */}
             <div>
-              <h4 className={`text-base-theme font-medium text-xs `}>
+              <h4 className={`text-base-theme font-normal text-xs `}>
                 General
               </h4>
               <ul className="flex flex-col gap-y-1">
@@ -49,7 +49,7 @@ export default function MobilePageLayout() {
             </div>
             {/* Account pages */}
             <div>
-              <h4 className={`text-base-theme font-medium text-xs`}>Account</h4>
+              <h4 className={`text-base-theme font-normal text-xs`}>Account</h4>
               <ul className="flex flex-col gap-y-1">
                 {navMockData.account.map((item, index) => {
                   return (

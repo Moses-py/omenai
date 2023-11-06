@@ -12,7 +12,7 @@ export const InputCard = (props: Props) => {
 
   return (
     <div className="flex flex-col">
-      <label htmlFor={id} className="text-base text-primary">
+      <label htmlFor={id} className="text-base text-dark">
         {label}
       </label>
       <div
