@@ -16,7 +16,7 @@ export default function ArtworkTextInput({
 }: ArtworkTextInputProps) {
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={name} className="text-base-theme font-light text-base">
+      <label htmlFor={name} className="text-dark font-light text-base">
         {label}
       </label>
       <input
