@@ -13,18 +13,17 @@ export default function UploadArtworkDetails() {
         <ArtworkInfoInputGroup />
         <ArtworkDimensionsInputGroup />
         <ArtworkPriceInputGroup />
-        <Link
-          href={"/dashboard/gallery/upload/image"}
-          className="w-full flex justify-end my-12"
-        >
-          <button
-            type="submit"
-            className="rounded-full bg-primary text-white px-4 py-2 flex gap-2 items-center justify-center hover:bg-primary/70"
-          >
-            Next
-            <BsArrowRight />
-          </button>
-        </Link>
+        <div className="w-full flex justify-end my-12">
+          <Link href={"/dashboard/gallery/upload/image"}>
+            <button
+              type="submit"
+              className="rounded-full bg-primary text-white px-4 py-2 flex gap-2 items-center justify-center hover:bg-primary/70"
+            >
+              Next
+              <BsArrowRight />
+            </button>
+          </Link>
+        </div>
       </form>
     </div>
   );
