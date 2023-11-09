@@ -11,7 +11,9 @@ export default function GalleryDashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [open] = galleryNavigationActions((state) => [state.open]);
+  const [open] = galleryNavigationActions((state: { open: any }) => [
+    state.open,
+  ]);
   const { width } = useWindowSize();
   return (
     <>
@@ -34,9 +36,7 @@ export default function GalleryDashboardLayout({
               } relative duration-200`}
             >
               <Appbar />
-              <div className="h-auto rounded-lg relative my-5 px-5">
-                {children}
-              </div>
+              <div className="h-auto rounded-lg relative my-5">{children}</div>
             </div>
           </main>
         </div>

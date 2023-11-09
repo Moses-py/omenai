@@ -26,8 +26,9 @@ export default function EditorialRecommendations() {
     return 300;
   };
   return (
-    <>
+    <div>
       <OverviewComponentCard
+        id="tour-external-links"
         fullWidth={false}
         title="Latest editorial articles"
       >
@@ -70,6 +71,6 @@ export default function EditorialRecommendations() {
 
         {/* </Carousel> */}
       </OverviewComponentCard>
-    </>
+    </div>
   );
 }
