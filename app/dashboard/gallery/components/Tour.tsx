@@ -50,6 +50,22 @@ const Tour = () => {
         showSkipButton={true}
         showProgress={true}
         styles={{
+          beacon: {},
+          beaconInner: {},
+          beaconOuter: {},
+          buttonBack: {},
+          buttonClose: {},
+          buttonNext: {},
+          buttonSkip: {},
+          overlay: {},
+          overlayLegacy: {},
+          overlayLegacyCenter: {},
+          spotlightLegacy: {},
+          tooltip: {},
+          tooltipContent: {},
+          tooltipFooter: {},
+          tooltipFooterSpacer: {},
+          tooltipTitle: {},
           options: {
             arrowColor: "#e3ffeb",
             backgroundColor: "white",
@@ -59,6 +75,7 @@ const Tour = () => {
             width: 400,
             zIndex: 1000,
             beaconSize: 0,
+            spotlightShadow: "",
           },
           spotlight: {
             background: "transparent",
