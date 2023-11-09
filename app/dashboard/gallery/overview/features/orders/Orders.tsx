@@ -5,7 +5,11 @@ import { overviewOrdersMock } from "./mocks";
 export default function Orders() {
   return (
     <>
-      <OverviewComponentCard fullWidth={false} title={"Recent orders"}>
+      <OverviewComponentCard
+        fullWidth={false}
+        title={"Recent orders"}
+        id="tour-footer"
+      >
         <div className="flex flex-col gap-3 w-full">
           {overviewOrdersMock.map((order, index) => {
             return (

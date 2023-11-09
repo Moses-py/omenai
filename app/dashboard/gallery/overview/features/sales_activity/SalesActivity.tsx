@@ -59,7 +59,11 @@ const data = [
 
 export function SalesActivity() {
   return (
-    <OverviewComponentCard fullWidth={false} title={"Sales activity"}>
+    <OverviewComponentCard
+      fullWidth={false}
+      title={"Sales activity"}
+      id="tour-orders"
+    >
       <div
         style={{
           position: "relative",

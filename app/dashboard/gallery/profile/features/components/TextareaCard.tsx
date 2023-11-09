@@ -8,8 +8,6 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 export const TextareaCard = (props: Props) => {
   const { label, className, id, onFocus, onBlur, ...rest } = props;
 
-  const [focus, setFocus] = useState(false);
-
   return (
     <div className="flex flex-col">
       <label htmlFor={id} className="text-base font-light text-dark">
@@ -21,14 +19,6 @@ export const TextareaCard = (props: Props) => {
             "w-full border-0 border-b border-b-base-theme/20 focus:ring-0 focus:outline-none focus:border-b-dark ring-0 placeholder:text-secondary/40 ",
             className
           )}
-          onFocus={(e) => {
-            setFocus(true);
-            onFocus?.(e);
-          }}
-          onBlur={(e) => {
-            setFocus(true);
-            onBlur?.(e);
-          }}
           {...rest}
         />
       </div>
