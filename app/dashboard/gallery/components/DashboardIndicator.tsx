@@ -3,9 +3,17 @@
 import { galleryDummyVerification } from "@/store/gallery/gallery_dummy_verification/GalleryDummyVerification";
 import { usePathname } from "next/navigation";
 import { RiAdminLine } from "react-icons/ri";
-
-export default function DashboardIndicator() {
-  const [open, updateOpen] = galleryDummyVerification((state) => [
+type AppbarTypes = {
+  admin_name?: string;
+  gallery_name?: string;
+  gallery_verified?: boolean;
+};
+export default function DashboardIndicator({
+  admin_name,
+  gallery_name,
+  gallery_verified,
+}: AppbarTypes) {
+  const [open] = galleryDummyVerification((state) => [
     state.open,
     state.updateOpen,
   ]);
@@ -14,9 +22,7 @@ export default function DashboardIndicator() {
   return (
     <div className="w-full flex justify-between items-center">
       <div className="text-xs xs:text-base">
-        <p className="font-normal text-base-theme">
-          Louvre museum&apos;s dashboard
-        </p>
+        <p className="font-normal text-base-theme">{gallery_name} dashboard</p>
         <p className="text-base-theme">
           <span className="font-light">Gallery</span>/
           <span className="font-normal capitalize text-primary">
@@ -25,7 +31,7 @@ export default function DashboardIndicator() {
         </p>
       </div>
       {/* Request verification */}
-      {!open ? (
+      {!gallery_verified ? (
         <div className="" id="gallery-verification">
           <button className="px-3 py-2 bg-dark text-white rounded-lg hover:bg-dark/90">
             Request gallery verification
@@ -35,8 +41,8 @@ export default function DashboardIndicator() {
         <div className="flex gap-2 items-center">
           <RiAdminLine className="text-lg font-light text-base-theme" />
           <div>
-            <p className="text-primary font-normal">Johnathan wick</p>
-            <p className="text-base-theme">Louvre d&apos;museum</p>
+            <p className="text-primary font-normal">{admin_name}</p>
+            <p className="text-base-theme">{gallery_name}</p>
           </div>
         </div>
       )}

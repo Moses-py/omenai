@@ -15,6 +15,7 @@ export default function GalleryDashboardLayout({
     state.open,
   ]);
   const { width } = useWindowSize();
+
   return (
     <>
       {width < 768 ? (
@@ -36,7 +37,9 @@ export default function GalleryDashboardLayout({
               } relative duration-200`}
             >
               <Appbar />
-              <div className="h-auto rounded-lg relative my-5">{children}</div>
+              <div className="h-auto rounded-lg relative my-5 px-5">
+                {children}
+              </div>
             </div>
           </main>
         </div>

@@ -4,12 +4,19 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import { navMockData } from "../mocks/NavigationMockData";
 import NavigationItem from "../components/NavigationItem";
 import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/GalleryNavigation";
+import { signOut } from "next-auth/react";
+import { toast } from "sonner";
 
 export default function PageLayout() {
   const [open, setOpen] = galleryNavigationActions((state) => [
     state.open,
     state.setOpen,
   ]);
+
+  function handleSignout() {
+    signOut({ callbackUrl: "/auth/login/gallery" });
+    toast.success("Successfully signed out...redirecting");
+  }
 
   return (
     <div
@@ -67,6 +74,7 @@ export default function PageLayout() {
                     key={index}
                     url={item.url}
                     mobile={false}
+                    onClick={() => item.title === "Sign out" && handleSignout()}
                   />
                 );
               })}

@@ -16,13 +16,13 @@ import { useWindowSize } from "usehooks-ts";
 export default function EditorialRecommendations() {
   const { width } = useWindowSize();
   const generateNaturalSlideWidth = () => {
-    if (width >= 1280) return 250;
-    if (width >= 1440) return 180;
+    if (width >= 1280) return 200;
+    if (width >= 1440) return 130;
     // if (width >= 1680) return 180;
     // if (width >= 1024) return 200;
-    if (width >= 1024) return 310;
-    if (width >= 768) return 250;
-    if (width >= 460) return 300;
+    if (width >= 1024) return 250;
+    if (width >= 768) return 200;
+    if (width >= 460) return 250;
     return 300;
   };
   return (
