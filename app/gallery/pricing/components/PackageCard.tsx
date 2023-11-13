@@ -5,10 +5,11 @@ import PackageTab from "./PackageTab";
 import AnnualPricingPlan from "./AnnualPricingPlan";
 
 export function PackageCard() {
-  const [activeTab, updateActiveTab] = galleryPricingStore((state) => [
+  const [activeTab] = galleryPricingStore((state) => [
     state.activeTab,
     state.updateActiveTab,
   ]);
+
   return (
     <div className="w-full">
       <div className="w-full flex justify-center">

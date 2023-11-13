@@ -2,7 +2,7 @@ import { getToken } from "next-auth/jwt";
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { MiddlewareFactory } from "./types";
 
-const protectedRoutes = ["/mashboard"];
+const protectedRoutes = ["/dashboard"];
 
 export const withAuthorization: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {

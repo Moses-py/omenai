@@ -1,6 +1,9 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 export const UserBanner = () => {
+  const session = useSession();
   return (
     <div className="my-5 mx-5 lg:mx-0 flex items-center flex-col justify-center">
       <Image
@@ -23,9 +26,11 @@ export const UserBanner = () => {
 
           <div className="">
             <p className="text-base-theme font-normal text-base">
-              Louvre d&apos;museum
+              {session.data?.user.name}
             </p>
-            <p className="text-base-theme text-xs font-light">San fransisco</p>
+            <p className="text-base-theme text-xs font-light">
+              {session.data?.user.location}
+            </p>
           </div>
         </div>
 
@@ -39,7 +44,18 @@ export const UserBanner = () => {
           />
 
           <p className="">
-            Status: <span className="text-red-500">Incomplete</span>
+            Status:{" "}
+            <span
+              className={`${
+                session.data?.user.gallery_verified
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
+              {session.data?.user.gallery_verified
+                ? "Verified"
+                : "Not verified"}
+            </span>
           </p>
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function UserLayout({
       <Navbar />
 
       <main className="flex">
-        <div className="flex-initial md:w-[250px] lg:w-[350px] p-2 hidden md:block">
+        <div className="flex-initial md:w-[250px] lg:w-[350px]  p-2 hidden md:block">
           <Sidebar />
         </div>
 
