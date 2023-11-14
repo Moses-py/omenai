@@ -27,10 +27,11 @@ export default function NavigationItem({
       {title === "Sign out" ? (
         <Tooltip
           content={title}
-          style="light"
-          placement="bottom"
+          style="dark"
           animation="duration-500"
-          className={`text-xs p-2 ${open && "hidden"}`}
+          className={`text-[0.7rem] border-primary p-2 relative  ${
+            open && "hidden"
+          }`}
         >
           <li
             onClick={onClick}
@@ -53,10 +54,11 @@ export default function NavigationItem({
       ) : (
         <Tooltip
           content={title}
-          style="light"
-          placement="bottom"
+          style="dark"
           animation="duration-500"
-          className={`text-xs p-2 ${open && "hidden"}`}
+          className={`text-[0.7rem] border-primary p-2 relative ${
+            open && "hidden"
+          }`}
         >
           <Link
             onClick={onClick}
