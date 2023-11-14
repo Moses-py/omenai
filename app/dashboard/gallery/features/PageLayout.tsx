@@ -22,7 +22,7 @@ export default function PageLayout() {
     <div
       className={` h-screen hidden fixed left-0 top-0 sm:block ${
         open ? "xl:w-72 md:w-56" : "w-24"
-      } p-5 pt-8 duration-200 border-r border-r-base-theme/10`}
+      } p-5 pt-8 duration-200 border-r border-r-base-theme/10 bg-white`}
     >
       <div
         className="bg-white absolute -right-3 top-9 z-50 border border-1 border-base-theme/20  cursor-pointer rounded-full w-fit"

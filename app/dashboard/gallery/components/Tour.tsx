@@ -1,5 +1,5 @@
-import JoyRide from "react-joyride";
-
+import React, { useReducer, useEffect } from "react";
+import JoyRide, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 // Tour steps
 const TOUR_STEPS = [
   {
@@ -12,89 +12,145 @@ const TOUR_STEPS = [
     target: "#tour-orders",
     content:
       "You can view your sales progress from this chart here, it keeps track of and shows how much revenue you've made from successful artwork sales.",
-    disableBeacon: true,
   },
   {
     target: "#tour-external-links",
     content:
       "We serve you the best and latest editorial articles here. Take a good read.",
-    disableBeacon: true,
   },
   {
     target: "#tour-footer",
     content:
       "This is where you can view the most recent list of orders made for various artworks you've uploaded.",
-    disableBeacon: true,
   },
   {
     target: "#navigation-items",
     content:
       "You can switch between your dashboard links or navigate to another dashboard page from here",
-    disableBeacon: true,
   },
   {
     target: "#expand",
     content:
       "You can expand or clam up the navigation bar by clicking this icon here.",
-    disableBeacon: true,
   },
   {
     target: "#gallery-verification",
     content:
       "Your account is in a pending state as it's being verified. You can expedite this process by clicking this button and an agent will reach out to you within 24 hours.",
-    disableBeacon: true,
   },
 ];
 
 // Tour component
+const INITIAL_STATE = {
+  key: new Date(), // This field makes the tour to re-render when we restart the tour
+  run: false,
+  continuous: true,
+  loading: false,
+  stepIndex: 0,
+  steps: TOUR_STEPS,
+};
+
+// Reducer will manage updating the local state
+const reducer = (
+  state = INITIAL_STATE,
+  action: { type: any; payload: any }
+) => {
+  switch (action.type) {
+    case "START":
+      return { ...state, run: true };
+    case "RESET":
+      return { ...state, stepIndex: 0 };
+    case "STOP":
+      return { ...state, run: false };
+    case "NEXT_OR_PREV":
+      return { ...state, ...action.payload };
+    case "RESTART":
+      return {
+        ...state,
+        stepIndex: 0,
+        run: true,
+        loading: false,
+        key: new Date(),
+      };
+    default:
+      return state;
+  }
+};
+
+// Tour component
 const Tour = () => {
-  const defaultOptions = {
-    arrowColor: "#fff",
-    backgroundColor: "#fff",
-    beaconSize: 36,
-    overlayColor: "rgba(0, 0, 0, 0.7)",
-    primaryColor: "#f04",
-    spotlightShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
-    textColor: "#333",
-    width: 400,
-    zIndex: 100,
+  // Tour state is the state which control the JoyRide component
+  const [tourState, dispatch] = useReducer(reducer, INITIAL_STATE);
+
+  useEffect(() => {
+    // Auto start the tour if the tour is not viewed before
+    if (!localStorage.getItem("tour")) {
+      dispatch({
+        type: "START",
+        payload: undefined,
+      });
+    }
+  }, []);
+
+  // Set once tour is viewed, skipped or closed
+  const setTourViewed = () => {
+    // localStorage.setItem("tour", "1");
   };
+
+  const callback = (data: {
+    action: any;
+    index: any;
+    type: any;
+    status: any;
+  }) => {
+    const { action, index, type, status } = data;
+
+    if (
+      // If close button clicked, then close the tour
+      action === ACTIONS.CLOSE ||
+      // If skipped or end tour, then close the tour
+      (status === STATUS.SKIPPED && tourState.run) ||
+      status === STATUS.FINISHED
+    ) {
+      setTourViewed();
+      dispatch({
+        type: "STOP",
+        payload: undefined,
+      });
+    } else if (type === EVENTS.STEP_AFTER || type === EVENTS.TARGET_NOT_FOUND) {
+      // Check whether next or back button click and update the step.
+      dispatch({
+        type: "NEXT_OR_PREV",
+        payload: { stepIndex: index + (action === ACTIONS.PREV ? -1 : 1) },
+      });
+    }
+  };
+
+  const startTour = () => {
+    // Start the tour manually
+    dispatch({
+      type: "RESTART",
+      payload: undefined,
+    });
+  };
+
   return (
     <>
       <JoyRide
-        steps={TOUR_STEPS}
-        continuous={true}
+        {...tourState}
+        callback={callback}
         showSkipButton={true}
         showProgress={true}
         styles={{
-          beacon: {},
-          beaconInner: {},
-          beaconOuter: {},
-          buttonBack: {},
-          buttonClose: {},
-          buttonNext: {},
-          buttonSkip: {},
-          overlay: {},
-          overlayLegacy: {},
-          overlayLegacyCenter: {},
-          spotlightLegacy: {},
-          tooltip: {},
-          tooltipContent: {},
-          tooltipFooter: {},
-          tooltipFooterSpacer: {},
-          tooltipTitle: {},
-          options: defaultOptions,
-
-          spotlight: {
-            borderRadius: "2rem",
-          },
           tooltipContainer: {
             textAlign: "left",
           },
+          buttonBack: {
+            marginRight: 10,
+          },
         }}
         locale={{
-          last: "Enjoy!",
-          skip: "Exit tour",
+          last: "End tour",
         }}
       />
     </>
