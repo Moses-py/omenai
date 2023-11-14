@@ -59,3 +59,28 @@ type IndividualSchemaTypes = {
   verified: boolean;
   role: string;
 };
+
+type ArtworkSchemaTypes = {
+  artist: string;
+  year: string;
+  title: string;
+  medium: string;
+  rarity: string;
+  materials: string;
+  dimensions: ArtoworkDimensions;
+  url: string;
+  pricing: ArtworkPricing;
+  art_id: string;
+  gallery_id: string;
+};
+
+type ArtoworkDimensions = {
+  width: string;
+  height: string;
+  depth?: string;
+};
+
+type ArtworkPricing = {
+  price: string;
+  shouldShowPrice: boolean;
+};
