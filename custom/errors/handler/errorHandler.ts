@@ -29,7 +29,7 @@ export const handleErrorEdgeCases = (error: any) => {
   if (errorName in errorStatusMap) {
     return createErrorObject(error.message, errorStatusMap[errorName]);
   } else if (errorCode === ACCOUNT_ALREADY_EXISTS_ERROR_CODE) {
-    return createErrorObject("Account already exists", CONFLICT_STATUS);
+    return createErrorObject("This resource already exists", CONFLICT_STATUS);
   } else {
     return createErrorObject(
       "An unexpected error occured",

@@ -1,3 +1,4 @@
+"use client";
 import React, { useReducer, useEffect } from "react";
 import JoyRide, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 // Tour steps
