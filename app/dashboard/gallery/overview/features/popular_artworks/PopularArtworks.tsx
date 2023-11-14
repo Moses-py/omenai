@@ -9,7 +9,6 @@ export default async function PopularArtworks() {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  await wait(15000);
   return (
     <div className="flex flex-col gap-3 w-full" id="tour-search">
       {popularArtworks.data.map((artwork: any, index: number) => {
