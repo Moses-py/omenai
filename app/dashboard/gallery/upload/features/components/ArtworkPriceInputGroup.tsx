@@ -8,7 +8,7 @@ export default function ArtworkPriceInputGroup() {
       <h2 className="text-primary font-normal text-base my-4">
         Artwork Pricing
       </h2>
-      <div className="grid grid-cols-2 gap-x-5 gap-y-10 ">
+      <div className="grid grid-cols-2 gap-5 ">
         {uploadArtworkPriceInputMocks.map((input, index) => {
           if (input.type === "text") {
             return (

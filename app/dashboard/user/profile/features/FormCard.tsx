@@ -16,10 +16,10 @@ export const FormCard = () => {
 
   return (
     <form onSubmit={handleSubmit} className="p-5 space-y-8 lg:px-2">
-      <InputCard label="Full name" value={user?.name} />
+      <InputCard label="Full name" defaultValue={user?.name} />
       <InputCard
         label="Email address"
-        value={user?.email}
+        defaultValue={user?.email}
         rightComponent={
           <div>
             {user?.verified ? (

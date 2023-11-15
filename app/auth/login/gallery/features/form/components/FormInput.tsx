@@ -30,10 +30,10 @@ export default function FormInput({ ip }: { ip: string }) {
         if (ok) {
           const session = await getSession();
           if (session?.user) {
-            toast.success("Login successful...redirecting!");
-            if (session?.user.verified)
+            if (session?.user.verified) {
+              toast.success("Login successful...redirecting!");
               router.replace("/dashboard/gallery/overview");
-            else {
+            } else {
               await signOut({
                 callbackUrl: `/verify/gallery/${session?.user.id}`,
               });
@@ -57,7 +57,7 @@ export default function FormInput({ ip }: { ip: string }) {
           type="email"
           name="email"
           value={form.email}
-          className="border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-1"
+          className="border-0 focus:ring-0 border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-1 px-0"
           onKeyDown={handleKeyPress}
           onChange={handleChange}
           required
@@ -71,7 +71,7 @@ export default function FormInput({ ip }: { ip: string }) {
           name="password"
           value={form.password}
           type="password"
-          className="border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-1"
+          className="border-0 focus:ring-0 border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-1 px-0"
           onKeyDown={handleKeyPress}
           onChange={handleChange}
           required

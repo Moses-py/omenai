@@ -1,15 +1,72 @@
 "use client";
 import { galleryArtworkUploadStore } from "@/store/gallery/gallery_artwork_upload/GalleryArtworkUpload";
-import { useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import Image from "next/image";
+import uploadImage from "@/services/artworks/uploadArtworkImage";
+import { createUploadedArtworkData } from "@/utils/createUploadedArtworkData";
+import { uploadArtworkData } from "@/services/artworks/uploadArtworkData";
+import { storage } from "@/appwrite";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { ClipLoader } from "react-spinners";
 export default function UploadArtworkImage() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
-  const [image, setImage] = galleryArtworkUploadStore((state) => [
-    state.image,
-    state.setImage,
-  ]);
+  const [image, setImage, artworkUploadData, clearData] =
+    galleryArtworkUploadStore((state) => [
+      state.image,
+      state.setImage,
+      state.artworkUploadData,
+      state.clearData,
+    ]);
+
+  const [loading, setLoading] = useState(false);
+  const session = useSession();
+  const router = useRouter();
+
+  async function handleArtworkUpload(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    if (image) {
+      const fileUploaded = await uploadImage(image);
+
+      if (fileUploaded) {
+        let file: { bucketId: string; fileId: string } = {
+          bucketId: fileUploaded.bucketId,
+          fileId: fileUploaded.$id,
+        };
+
+        const fileData = storage.getFilePreview(
+          process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
+          file.fileId
+        );
+
+        const data = createUploadedArtworkData(
+          artworkUploadData,
+          fileData.href,
+          session.data!.user.id
+        );
+
+        const upload_response = await uploadArtworkData(data);
+        if (!upload_response?.isOk) {
+          await storage.deleteFile(
+            process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
+            file.fileId
+          );
+          toast.error(upload_response!.body.message);
+          setImage(null);
+          setLoading(false);
+        } else {
+          setLoading(false);
+          toast.success(upload_response!.body.message);
+          clearData();
+          router.back();
+        }
+      }
+    }
+  }
   return (
-    <>
+    <form onSubmit={handleArtworkUpload}>
       <div className="w-full h-[40vh]">
         {image ? (
           <Image
@@ -61,12 +118,13 @@ export default function UploadArtworkImage() {
       </div>
       <div className="mt-4 flex justify-end">
         <button
-          className="inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 font-light hover:bg-primary foucs:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:bg-gray-100 disabled:text-gray-300 disabled:cursor-not-allowed text-white "
+          disabled={loading}
+          className="inline-flex justify-center rounded-md border border-transparent disabled:bg-secondary/30 bg-primary px-4 py-2 font-light hover:bg-primary foucs:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2  disabled:text-gray-300 disabled:cursor-not-allowed text-white "
           type="submit"
         >
-          Upload image
+          {loading ? <ClipLoader size={20} color="#fff" /> : "Upload artwork"}
         </button>
       </div>
-    </>
+    </form>
   );
 }

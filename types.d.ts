@@ -67,14 +67,14 @@ type ArtworkSchemaTypes = {
   medium: string;
   rarity: string;
   materials: string;
-  dimensions: ArtoworkDimensions;
+  dimensions: ArtworkDimensions;
   url: string;
   pricing: ArtworkPricing;
   art_id: string;
   gallery_id: string;
 };
 
-type ArtoworkDimensions = {
+type ArtworkDimensions = {
   width: string;
   height: string;
   depth?: string;
@@ -82,5 +82,24 @@ type ArtoworkDimensions = {
 
 type ArtworkPricing = {
   price: string;
-  shouldShowPrice: boolean;
+  shouldShowPrice: string;
 };
+
+type ArtworkUploadStateTypes = {
+  artist: string;
+  year: string;
+  title: string;
+  medium: string;
+  rarity: string;
+  materials: string;
+  height: string;
+  width: string;
+  depth?: string;
+  price: string;
+  shouldShowPrice: string;
+};
+
+interface Image {
+  bucketId: string;
+  fileId: string;
+}

@@ -4,7 +4,7 @@ import ArtworkTextInput from "./ArtworkTextInput";
 
 export default function ArtworkInfoInputGroup() {
   return (
-    <div className="grid grid-cols-2 gap-x-5 gap-y-10 mt-12">
+    <div className="grid grid-cols-2 gap-5 mt-12">
       {uploadArtworkDetailInputMocks.map((input, index) => {
         if (input.type === "text") {
           return (

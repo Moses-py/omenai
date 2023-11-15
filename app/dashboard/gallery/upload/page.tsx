@@ -4,8 +4,8 @@ import UploadArtworkDetails from "./features/UploadArtworkDetails";
 export default function UploadArtwork() {
   return (
     <div className="relative">
-      <div className="p-10">
-        <h1 className="text-base-theme font-light text-lg">
+      <div className="px-5 py-0">
+        <h1 className="text-base-theme font-light text-md">
           Upload an artwork
         </h1>
         <UploadArtworkDetails />
