@@ -59,7 +59,7 @@ export default function Input({
         <label htmlFor={labelText}>{label}</label>
         <input
           type={type}
-          className="border-b-[1px] border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-2"
+          className=" border-0 focus:ring-0 border-b-[1px] px-0 border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-2"
           placeholder={`e.g ${placeholder}`}
           disabled={disabled}
           onChange={onChange}

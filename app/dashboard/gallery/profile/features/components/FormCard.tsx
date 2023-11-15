@@ -15,10 +15,14 @@ export const FormCard = () => {
 
   return (
     <form onSubmit={handleSubmit} className="p-5 space-y-8 lg:px-2">
-      <InputCard label="Gallery name" value={user?.name} onChange={() => {}} />
+      <InputCard
+        label="Gallery name"
+        defaultValue={user?.name}
+        onChange={() => {}}
+      />
       <InputCard
         label="Email address"
-        value={user?.email}
+        defaultValue={user?.email}
         rightComponent={
           <div>
             {user?.verified ? (
@@ -29,13 +33,13 @@ export const FormCard = () => {
           </div>
         }
       />
-      <InputCard label="Location" value={user?.location} />
-      <InputCard label="Admin" value={user?.admin} />
+      <InputCard label="Location" defaultValue={user?.location} />
+      <InputCard label="Admin" defaultValue={user?.admin} />
       <TextareaCard
         label="Gallery description"
         rows={2}
         className="resize-none"
-        value={user?.description}
+        defaultValue={user?.description}
       />
 
       <button

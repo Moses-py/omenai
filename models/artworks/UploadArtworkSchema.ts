@@ -16,7 +16,7 @@ const artworkUpload = new Schema<ArtworkSchemaTypes>(
     },
     pricing: {
       price: { type: String, required: true },
-      shouldShowPrice: { type: Boolean, required: true },
+      shouldShowPrice: { type: String, required: true },
     },
     art_id: { type: String, default: () => uuidv4(), unique: true },
     gallery_id: { type: String, required: true },

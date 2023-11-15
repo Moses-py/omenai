@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
     const data = await request.json();
 
-    const uploadArt = await Artworkuploads.create(data);
+    const uploadArt = await Artworkuploads.create({ ...data });
 
     if (!uploadArt)
       throw new ServerError("A server error has occured, please try again");
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     );
     if (!uploadArtworkImpression) {
       await Artworkuploads.findOneAndDelete({ art_id: uploadArt.art_id });
-      throw new ServerError("A unexpected error has occured, please try again");
+      throw new ServerError("Unable to complete operation, please try again");
     }
 
     return NextResponse.json(

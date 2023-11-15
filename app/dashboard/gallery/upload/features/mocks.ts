@@ -88,7 +88,7 @@ export const uploadArtworkPriceInputMocks = [
     placeholder: "e.g $1200",
   },
   {
-    name: "display_price",
+    name: "shouldShowPrice",
     type: "select",
     label: "Display price",
     required: true,
