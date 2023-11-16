@@ -20,10 +20,14 @@ export async function POST(request: Request) {
     if (!popular_artworks)
       throw new ServerError("An eunexpected error has occured.");
 
+    const filter_popular_artworks = popular_artworks.filter((art) => {
+      return art.impressions > 0;
+    });
+
     return NextResponse.json(
       {
         message: "Successful",
-        data: popular_artworks,
+        data: filter_popular_artworks,
       },
       { status: 200 }
     );

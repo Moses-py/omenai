@@ -1,15 +1,18 @@
 import { getToken } from "next-auth/jwt";
-import { signOut } from "next-auth/react";
 import { NextRequest, NextResponse } from "next/server";
+import { URLS } from "./constants/middleware_constants/urls";
 
-const userDashboardRegex = new RegExp("/dashboard/user/*");
-const galleryDashboardRegex = new RegExp("/dashboard/gallery/*");
-const userLogin = new RegExp("/auth/login/individual/*");
-const galleryLogin = new RegExp("/auth/login/gallery/*");
-const galleryRegister = new RegExp("/auth/register/gallery/*");
-const userRegister = new RegExp("/auth/register/individial/*");
-const verifyPath = new RegExp("/verify/*");
+const userDashboardRegex = /\/dashboard\/user\/.*/;
+const galleryDashboardRegex = /\/dashboard\/gallery\/.*/;
+const userLogin = /\/auth\/login\/individual\/.*/;
+const galleryLogin = /\/auth\/login\/gallery\/.*/;
+const galleryRegister = /\/auth\/register\/gallery\/.*/;
+const userRegister = /\/auth\/register\/individial\/.*/;
+const verifyPath = /\/verify\/.*/;
 
+function redirect(url: string, request: NextRequest) {
+  return NextResponse.redirect(new URL(url, request.url));
+}
 export async function middleware(request: NextRequest) {
   const token = await getToken({
     req: request,
@@ -17,40 +20,35 @@ export async function middleware(request: NextRequest) {
   });
 
   if (token) {
-    if (token.role === "gallery") {
-      if (galleryLogin.test(request.url) || galleryRegister.test(request.url)) {
-        return NextResponse.redirect(
-          new URL("/dashboard/gallery/overview", request.url)
-        );
-      } else if (userDashboardRegex.test(request.url)) {
-        return NextResponse.redirect(
-          new URL("/auth/login/individual", request.url)
-        );
-      }
-    } else if (token.role === "user") {
-      if (userLogin.test(request.url) || userRegister.test(request.url)) {
-        return NextResponse.redirect(
-          new URL("/dashboard/user/profile", request.url)
-        );
-      } else if (galleryDashboardRegex.test(request.url)) {
-        return NextResponse.redirect(
-          new URL("/auth/login/gallery", request.url)
-        );
-      }
+    switch (token.role) {
+      case "gallery":
+        if (
+          galleryLogin.test(request.url) ||
+          galleryRegister.test(request.url)
+        ) {
+          return redirect(URLS.galleryOverview, request);
+        } else if (userDashboardRegex.test(request.url)) {
+          return redirect(URLS.userLogin, request);
+        }
+        break;
+      case "user":
+        if (userLogin.test(request.url) || userRegister.test(request.url)) {
+          return redirect(URLS.userProfile, request);
+        } else if (galleryDashboardRegex.test(request.url)) {
+          return redirect(URLS.galleryLogin, request);
+        }
+        break;
     }
     if (verifyPath.test(request.url)) {
-      return NextResponse.redirect(new URL("/", request.url));
+      return redirect(URLS.root, request);
     }
   } else {
     if (userDashboardRegex.test(request.url)) {
-      return NextResponse.redirect(
-        new URL("/auth/login/individual", request.url)
-      );
+      return redirect(URLS.userLogin, request);
     } else if (galleryDashboardRegex.test(request.url)) {
-      return NextResponse.redirect(new URL("/auth/login/gallery", request.url));
+      return redirect(URLS.galleryLogin, request);
     }
   }
-
   return NextResponse.next();
 }
 
