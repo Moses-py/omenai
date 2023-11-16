@@ -1,7 +1,6 @@
 "use client";
 
 import { galleryPricingStore } from "@/store/gallery/gallery_pricing/GalleryPricing";
-import { AnimatePresence } from "framer-motion";
 
 export default function PackageTab() {
   const [activeTab, updateActiveTab] = galleryPricingStore((state) => [
@@ -14,7 +13,7 @@ export default function PackageTab() {
         className={`p-2 ${
           activeTab === "monthly"
             ? "bg-white  text-dark"
-            : "bg-transparent text-base-theme "
+            : "bg-transparent text-base-theme"
         }  cursor-pointer rounded-lg`}
         onClick={() => updateActiveTab("monthly")}
       >

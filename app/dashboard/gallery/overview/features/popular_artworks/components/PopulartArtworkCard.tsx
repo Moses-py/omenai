@@ -15,24 +15,22 @@ export default function PopulartArtworkCard({
 }: PopularArtworkCardProps) {
   return (
     <div className="flex justify-between items-center p-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm">
-      <div className=" w-full flex items-center gap-x-3">
+      <div className=" w-auto flex items-center gap-x-3">
         <Image
           src={url}
           alt={title}
-          height={70}
-          width={60}
+          height={100}
+          width={80}
           className="object-top object-contain rounded-lg"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-dark font-normal text-xs sm:text-base">
-            {title.slice(0, 15)}
-          </p>
+          <p className="text-dark font-normal text-xs sm:text-base">{title}</p>
           <span className="text-base-theme text-xs font-light">{artist}</span>
         </div>
       </div>
-      <div>
+      <div className="w-fit">
         <span className="text-base-theme text-xs font-light">
-          {impression_count} impressions
+          {`${impression_count} impressions`}
         </span>
       </div>
     </div>
