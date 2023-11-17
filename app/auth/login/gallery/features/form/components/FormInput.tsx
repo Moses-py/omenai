@@ -31,7 +31,7 @@ export default function FormInput({ ip }: { ip: string }) {
           const session = await getSession();
           if (session?.user) {
             if (session?.user.verified) {
-              router.push("/dashboard/gallery/overview");
+              router.replace("/dashboard/gallery/overview");
               toast.success("Login successful...redirecting!");
             } else {
               await signOut({
