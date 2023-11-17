@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
 const artworkUpload = new Schema<ArtworkSchemaTypes>(
@@ -26,4 +26,4 @@ const artworkUpload = new Schema<ArtworkSchemaTypes>(
 );
 
 export const Artworkuploads =
-  models.Artworkuploads || model("Artworkuploads", artworkUpload);
+  models.Artworkuploads || mongoose.model("Artworkuploads", artworkUpload);
