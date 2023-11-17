@@ -1,4 +1,3 @@
-import React from "react";
 import NotFoundData from "../../../components/NotFoundData";
 import { SalesActivity } from "./components/SalesActivity";
 import { getSalesActivityData } from "@/services/sales/getSalesActivityData";
