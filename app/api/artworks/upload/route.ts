@@ -35,7 +35,11 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message: "Artwork uploaded",
-        data: { id: uploadArt.art_id },
+        data: {
+          id: uploadArt.art_id,
+          _id: uploadArt._id,
+          gallery_id: uploadArt.gallery_id,
+        },
       },
       { status: 200 }
     );

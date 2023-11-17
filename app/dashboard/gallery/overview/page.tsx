@@ -4,9 +4,10 @@ import EditorialRecommendations from "./features/editorials/EditorialRecommendat
 import Highlight from "./features/highlight/Highlight";
 import Orders from "./features/orders/Orders";
 import PopularArtworks from "./features/popular_artworks/PopularArtworks";
-import { SalesActivity } from "./features/sales_activity/SalesActivity";
 import Loader from "./features/popular_artworks/Loader";
 import OverviewComponentCard from "./components/OverviewComponentCard";
+import ActivityWrapper from "./features/sales_activity/ActivityWrapper";
+
 export default function OverviewPage() {
   return (
     <div className="w-full">
@@ -24,7 +25,7 @@ export default function OverviewPage() {
           </Suspense>
         </OverviewComponentCard>
 
-        <SalesActivity />
+        <ActivityWrapper />
         <EditorialRecommendations />
         <Orders />
       </div>

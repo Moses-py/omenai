@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ClipLoader } from "react-spinners";
+
 export default function UploadArtworkImage() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
   const [image, setImage, artworkUploadData, clearData] =
@@ -63,6 +64,8 @@ export default function UploadArtworkImage() {
           router.back();
         }
       }
+    } else {
+      toast.error("Please select an image");
     }
   }
   return (

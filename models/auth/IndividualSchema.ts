@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
 const individualSignupSchema = new Schema<IndividualSchemaTypes>(
@@ -47,4 +47,4 @@ const individualSignupSchema = new Schema<IndividualSchemaTypes>(
 
 export const AccountIndividual =
   models.AccountIndividual ||
-  model("AccountIndividual", individualSignupSchema);
+  mongoose.model("AccountIndividual", individualSignupSchema);
