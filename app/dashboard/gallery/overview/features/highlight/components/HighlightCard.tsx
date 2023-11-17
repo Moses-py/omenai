@@ -2,13 +2,11 @@ import { fetchHighlightData } from "@/services/overview_highlights/fetchHighligh
 import HighlightCardIcon from "./HighlightCardIcon";
 type HightlightCardProps = {
   title: string;
-  value?: string;
   icon: React.ReactNode;
   tag: string;
 };
 export default async function HighlightCard({
   title,
-  value,
   icon,
   tag,
 }: HightlightCardProps) {

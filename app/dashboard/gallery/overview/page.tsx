@@ -25,9 +25,15 @@ export default function OverviewPage() {
           </Suspense>
         </OverviewComponentCard>
 
-        <ActivityWrapper />
+        <Suspense fallback={<Loader />}>
+          <ActivityWrapper />
+        </Suspense>
+
+        <Suspense fallback={<Loader />}>
+          <Orders />
+        </Suspense>
+
         <EditorialRecommendations />
-        <Orders />
       </div>
     </div>
   );
