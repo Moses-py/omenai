@@ -8,7 +8,7 @@ export const inputProperties: Omit<InputProps, "prev" | "onClickPrev">[] = [
   {
     label: "What's the gallery location?",
     type: "text",
-    placeholder: "79, example street, example, Neverland",
+    placeholder: "e.g 79, example street, London, England",
     labelText: "location",
   },
 

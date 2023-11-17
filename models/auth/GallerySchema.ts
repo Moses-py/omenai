@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
 const gallerySignupSchema = new Schema<GallerySchemaTypes>(
@@ -59,4 +59,5 @@ const gallerySignupSchema = new Schema<GallerySchemaTypes>(
 );
 
 export const AccountGallery =
-  models.AccountGallery || model("AccountGallery", gallerySignupSchema);
+  mongoose.models.AccountGallery ||
+  mongoose.model("AccountGallery", gallerySignupSchema);

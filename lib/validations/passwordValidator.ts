@@ -12,11 +12,13 @@ export const validatePassword = <T>(value: T) => {
       .success
   ) {
     errors.push(
-      "Your password should contain at least one lowercase, uppercase and digit characters"
+      "Your password should contain at least one lowercase letter, one uppercase letter and one number"
     );
   }
   if (!schema.regex(/(?=.*[@#$%^&+=!])/gm).safeParse(value).success) {
-    errors.push("At least one special character (@#$%^&+=!) is required");
+    errors.push(
+      "At least one special character ( @ # $ % ^ & + = ! ) is required"
+    );
   }
   return errors;
 };

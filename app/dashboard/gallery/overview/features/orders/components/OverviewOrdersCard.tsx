@@ -17,7 +17,7 @@ export default function OverviewOrdersCard({
   url,
 }: OverviewOrdersCardProps) {
   return (
-    <div className="flex justify-between p-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm">
+    <div className="flex justify-between px-5 py-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm">
       <div className=" flex gap-x-3">
         <Image
           src={url}
@@ -27,19 +27,15 @@ export default function OverviewOrdersCard({
           className="object-top object-contain rounded-lg"
         />
         <div className="flex flex-col gap-y-1">
-          <p className="text-dark font-normal text-xs sm:text-base">
-            {title.slice(0, 15)}
-          </p>
-          <span className="text-base-theme text-xs font-light">{artist}</span>
-          <span className="text-base-theme text-xs font-light">{price}</span>
+          <p className="text-dark font-normal sm:text-base">{title}</p>
+          <span className="text-base-theme font-light">{artist}</span>
+          <span className="text-base-theme font-light">{price}</span>
         </div>
       </div>
-      <div className="flex flex-col gap-y-1">
-        <span className="text-dark font-normal text-xs sm:text-base">
-          {buyer}
-        </span>
-        <span className="text-base-theme text-xs font-light">{order_date}</span>
-        <span className="text-base-theme text-xs font-light underline cursor-pointer">
+      <div className="flex flex-col items-end gap-y-1">
+        <span className="text-dark font-normal  sm:text-base">{buyer}</span>
+        <span className="text-base-theme font-light">{order_date}</span>
+        <span className="text-base-theme font-light underline cursor-pointer">
           view
         </span>
       </div>

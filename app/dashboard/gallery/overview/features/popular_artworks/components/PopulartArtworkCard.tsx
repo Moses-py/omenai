@@ -14,13 +14,13 @@ export default function PopulartArtworkCard({
   impression_count,
 }: PopularArtworkCardProps) {
   return (
-    <div className="flex justify-between items-center p-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm">
+    <div className="flex justify-between items-center px-5 py-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm">
       <div className=" w-auto flex items-center gap-x-3">
         <Image
           src={url}
           alt={title}
-          height={100}
-          width={80}
+          height={80}
+          width={60}
           className="object-top object-contain rounded-lg"
         />
         <div className="flex flex-col gap-y-1">

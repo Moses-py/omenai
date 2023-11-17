@@ -15,14 +15,24 @@ const subscription_type_icon = (
 );
 
 export const highlightCardEl: HighlightCardElProps[] = [
-  { title: "Total artworks", icon: total_artworks_icon, value: "432" },
-  { title: "Total impressions", icon: total_impressions_icon, value: "14440" },
-  { title: "Sold artworks", icon: sold_artworks_icon, value: "206" },
-  { title: "Subscription type", icon: subscription_type_icon, value: "Basic" },
+  { title: "Total artworks", icon: total_artworks_icon, tag: "artworks" },
+  {
+    title: "Total impressions",
+    icon: total_impressions_icon,
+    tag: "impressions",
+  },
+  { title: "Sold artworks", icon: sold_artworks_icon, tag: "sales" },
+  {
+    title: "Subscription type",
+    icon: subscription_type_icon,
+    value: "Basic",
+    tag: "subscription",
+  },
 ];
 
 type HighlightCardElProps = {
   title: string;
   icon: React.ReactNode;
-  value: string;
+  value?: string;
+  tag: string;
 };

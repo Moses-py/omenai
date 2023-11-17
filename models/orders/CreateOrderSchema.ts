@@ -16,4 +16,4 @@ const createOrder = new Schema(
 );
 
 export const CreateOrder =
-  models.CreateOrder || model("CreateOrder", createOrder);
+  mongoose.models.CreateOrder || mongoose.model("CreateOrder", createOrder);

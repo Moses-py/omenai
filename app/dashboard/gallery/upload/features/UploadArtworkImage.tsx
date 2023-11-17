@@ -121,7 +121,7 @@ export default function UploadArtworkImage() {
       </div>
       <div className="mt-4 flex justify-end">
         <button
-          disabled={loading}
+          disabled={loading || !image}
           className="inline-flex justify-center rounded-md border border-transparent disabled:bg-secondary/30 bg-primary px-4 py-2 font-light hover:bg-primary foucs:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2  disabled:text-gray-300 disabled:cursor-not-allowed text-white "
           type="submit"
         >
