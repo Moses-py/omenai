@@ -8,8 +8,6 @@ export const salesDataAlgorithm = (salesData: any) => {
     {}
   );
 
-  // Step 2: Create a new array of objects with calculated values
-
   const monthlySalesData = monthsOrder.map((month) => {
     const revenue = groupedData[month] || 0;
     return {

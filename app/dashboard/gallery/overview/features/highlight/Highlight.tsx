@@ -11,6 +11,7 @@ export default function Highlight() {
             title={item.title}
             value={item.value}
             icon={item.icon}
+            tag={item.tag}
           />
         );
       })}

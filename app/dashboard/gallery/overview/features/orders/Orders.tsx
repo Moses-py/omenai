@@ -1,31 +1,36 @@
+import { getOverviewOrders } from "@/services/orders/getOverviewOrders";
 import OverviewComponentCard from "../../components/OverviewComponentCard";
 import OverviewOrdersCard from "./components/OverviewOrdersCard";
-import { overviewOrdersMock } from "./mocks";
+import NotFoundData from "../../../components/NotFoundData";
+import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 
-export default function Orders() {
+export default async function Orders() {
+  const orders = await getOverviewOrders();
   return (
-    <>
-      <OverviewComponentCard
-        fullWidth={false}
-        title={"Recent orders"}
-        id="tour-footer"
-      >
+    <OverviewComponentCard
+      fullWidth={false}
+      title={"Recent orders"}
+      id="tour-footer"
+    >
+      {orders.data.length === 0 ? (
+        <NotFoundData />
+      ) : (
         <div className="flex flex-col gap-3 w-full">
-          {overviewOrdersMock.map((order, index) => {
+          {orders.data.map((order: any, index: number) => {
             return (
               <OverviewOrdersCard
                 key={index}
-                url={order.url}
-                title={order.title}
-                artist={order.artist}
-                buyer={order.buyer}
-                price={order.price}
-                order_date={order.order_date}
+                url={order.artwork_data.url}
+                title={order.artwork_data.title}
+                artist={order.artwork_data.artist}
+                buyer={order.buyer.name}
+                price={order.artwork_data.pricing.price}
+                order_date={formatIntlDateTime(order.createdAt)}
               />
             );
           })}
         </div>
-      </OverviewComponentCard>
-    </>
+      )}
+    </OverviewComponentCard>
   );
 }

@@ -46,5 +46,5 @@ const individualSignupSchema = new Schema<IndividualSchemaTypes>(
 );
 
 export const AccountIndividual =
-  models.AccountIndividual ||
+  mongoose.models.AccountIndividual ||
   mongoose.model("AccountIndividual", individualSignupSchema);

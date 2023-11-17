@@ -12,7 +12,7 @@ export const validatePrice = (value: string): string[] => {
       .safeParse(value).success
   ) {
     errors.push(
-      "Invalid price format. Please enter a valid price with a currency symbol, e.g., '$15.99'."
+      "Invalid price format. Please enter a valid price with a currency symbol, e.g., '$1599'."
     );
   }
 

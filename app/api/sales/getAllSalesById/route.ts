@@ -1,7 +1,7 @@
-import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { CreateOrder } from "@/models/orders/CreateOrderSchema";
+import { ArtworkImpressions } from "@/models/artworks/ArtworkImpressionSchema";
+import { SalesActivity } from "@/models/sales/SalesActivity";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -9,25 +9,16 @@ export async function POST(request: Request) {
     await connectMongoDB();
 
     const { id } = await request.json();
-
-    const orders = await CreateOrder.find({ gallery_id: id })
-      .sort({ updatedAt: -1 })
-      .limit(3)
-      .populate({ path: "buyer", select: "name" })
-      .populate({ path: "artwork_data", select: "title artist pricing url" })
-      .exec();
-
-    if (!orders) throw new ServerError("No orders were found");
+    const allSales = await SalesActivity.find({ gallery_id: id }, "_id").exec();
 
     return NextResponse.json(
       {
         message: "Successful",
-        data: orders,
+        data: allSales,
       },
       { status: 200 }
     );
   } catch (error) {
-    console.log(error);
     const error_response = handleErrorEdgeCases(error);
 
     return NextResponse.json(

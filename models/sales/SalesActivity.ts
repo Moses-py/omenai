@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 const salesActivity = new Schema(
   {
@@ -11,4 +11,4 @@ const salesActivity = new Schema(
 );
 
 export const SalesActivity =
-  models.SalesActivity || model("SalesActivity", salesActivity);
+  models.SalesActivity || mongoose.model("SalesActivity", salesActivity);
