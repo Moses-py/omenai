@@ -4,8 +4,6 @@ import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 
 import { NextResponse } from "next/server";
-import { AccountIndividual } from "@/models/auth/IndividualSchema";
-import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
 
 export async function POST(request: Request) {
   try {
@@ -13,14 +11,9 @@ export async function POST(request: Request) {
 
     const { id } = await request.json();
 
-    // await AccountIndividual.startSession();
-    // await Artworkuploads.startSession();
-
     const orders = await CreateOrder.find({ gallery_id: id })
       .sort({ updatedAt: -1 })
       .limit(3)
-      .populate({ path: "buyer", select: "name" })
-      .populate({ path: "artwork_data", select: "title artist pricing url" })
       .exec();
 
     if (!orders) throw new ServerError("No orders were found");
