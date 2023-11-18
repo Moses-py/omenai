@@ -13,8 +13,8 @@ export async function POST(request: Request) {
 
     const { id } = await request.json();
 
-    await AccountIndividual.startSession();
-    await Artworkuploads.startSession();
+    // await AccountIndividual.startSession();
+    // await Artworkuploads.startSession();
 
     const orders = await CreateOrder.find({ gallery_id: id })
       .sort({ updatedAt: -1 })
