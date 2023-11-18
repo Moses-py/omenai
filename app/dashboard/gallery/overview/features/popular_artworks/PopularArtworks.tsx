@@ -12,7 +12,7 @@ export default async function PopularArtworks() {
           <NotFoundData />
         </div>
       ) : (
-        <div className="flex flex-col gap-6 w-full" id="tour-search">
+        <div className="flex flex-col gap-3 w-full" id="tour-search">
           {popularArtworks.data.map((artwork: any, index: number) => {
             return (
               <PopulartArtworkCard
