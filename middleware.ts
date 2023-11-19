@@ -6,9 +6,6 @@ const userDashboardRegex = /\/dashboard\/user\/.*/;
 const galleryDashboardRegex = /\/dashboard\/gallery\/.*/;
 const userLogin = /\/auth\/login\/individual\/.*/;
 const galleryLogin = /\/auth\/login\/gallery\/.*/;
-const galleryRegister = /\/auth\/register\/gallery\/.*/;
-const userRegister = /\/auth\/register\/individial\/.*/;
-const verifyPath = /\/verify\/.*/;
 
 function redirect(url: string, request: NextRequest) {
   return NextResponse.redirect(new URL(url, request.url));
@@ -19,36 +16,36 @@ export async function middleware(request: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
+  const isUserDashboard = userDashboardRegex.test(request.url);
+  const isGalleryDashboard = galleryDashboardRegex.test(request.url);
+  const isUserLogin = userLogin.test(request.url);
+  const isGalleryLogin = galleryLogin.test(request.url);
+
   if (token) {
     switch (token.role) {
-      case "gallery":
-        if (
-          galleryLogin.test(request.url) ||
-          galleryRegister.test(request.url)
-        ) {
-          return redirect(URLS.galleryOverview, request);
-        } else if (userDashboardRegex.test(request.url)) {
-          return redirect(URLS.userLogin, request);
-        }
-        break;
       case "user":
-        if (userLogin.test(request.url) || userRegister.test(request.url)) {
-          return redirect(URLS.userProfile, request);
-        } else if (galleryDashboardRegex.test(request.url)) {
-          return redirect(URLS.galleryLogin, request);
+        if (isGalleryDashboard) {
+          return redirect(URLS.userLogin, request);
+        } else if (isUserLogin) {
+          return redirect(URLS.userDashboard, request);
         }
         break;
-    }
-    if (verifyPath.test(request.url)) {
-      return redirect(URLS.root, request);
+      case "gallery":
+        if (isUserDashboard) {
+          return redirect(URLS.galleryLogin, request);
+        } else if (isGalleryLogin) {
+          return redirect(URLS.galleryDashboard, request);
+        }
+        break;
     }
   } else {
-    if (userDashboardRegex.test(request.url)) {
+    if (isUserDashboard) {
       return redirect(URLS.userLogin, request);
-    } else if (galleryDashboardRegex.test(request.url)) {
+    } else if (isGalleryDashboard) {
       return redirect(URLS.galleryLogin, request);
     }
   }
+
   return NextResponse.next();
 }
 
