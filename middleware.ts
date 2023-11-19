@@ -25,14 +25,14 @@ export async function middleware(request: NextRequest) {
     switch (token.role) {
       case "user":
         if (isGalleryDashboard) {
-          return redirect(URLS.userLogin, request);
+          return redirect(URLS.galleryLogin, request);
         } else if (isUserLogin) {
           return redirect(URLS.userDashboard, request);
         }
         break;
       case "gallery":
         if (isUserDashboard) {
-          return redirect(URLS.galleryLogin, request);
+          return redirect(URLS.userLogin, request);
         } else if (isGalleryLogin) {
           return redirect(URLS.galleryDashboard, request);
         }
