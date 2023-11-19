@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
+import { getApiUrl } from "@/config";
 
 type Form = {
   email: string;
@@ -23,26 +24,27 @@ export default function FormInput({ ip }: { ip: string }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const url = getApiUrl();
     e.preventDefault();
     setIsLoading();
-    await signIn("gallery-login", { redirect: false, ...form, ip }).then(
-      async ({ ok, error }: any) => {
-        if (ok) {
-          const session = await getSession();
-          if (session?.user) {
-            if (session?.user.verified) {
-              toast.success("Login successful...redirecting!");
-              router.replace("/dashboard/gallery/overview");
-            } else {
-              await signOut({
-                callbackUrl: `/verify/gallery/${session?.user.id}`,
-              });
-            }
-          }
-        } else toast.error(error);
-        setIsLoading();
-      }
-    );
+    await signIn("gallery-login", {
+      ...form,
+      ip,
+      callbackUrl: `${url}/dashboard/gallery/overview`,
+    }).then(async ({ ok, error }: any) => {
+      if (ok) {
+        const session = await getSession();
+        if (session?.user) {
+          if (session?.user.verified) {
+            toast.success("Login successful...redirecting!");
+          } else
+            await signOut({
+              callbackUrl: `/verify/gallery/${session?.user.id}`,
+            });
+        }
+      } else toast.error(error);
+      setIsLoading();
+    });
   };
   return (
     <form

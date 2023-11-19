@@ -3,7 +3,7 @@ export const URLS = {
   galleryRegister: "/auth/register/gallery",
   userLogin: "/auth/login/individual",
   userRegister: "/auth/register/individual",
-  galleryOverview: "/dashboard/gallery/overview",
-  userProfile: "/dashboard/user/profile",
+  galleryDashboard: "/dashboard/gallery/overview",
+  userDashboard: "/dashboard/user/profile",
   root: "/",
 };
