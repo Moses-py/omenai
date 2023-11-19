@@ -1,6 +1,6 @@
 import { GalleryLoginProvider } from "@/services/login/GalleryLogin";
 import { IndividualLoginProvider } from "@/services/login/IndividualLogin";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 
 export const nextAuthOptions: NextAuthOptions = {
   session: { strategy: "jwt", maxAge: 3600 },
@@ -18,6 +18,18 @@ export const nextAuthOptions: NextAuthOptions = {
       session.user = token as any;
 
       return session;
+    },
+    async signIn() {
+      const session = await getServerSession(nextAuthOptions);
+
+      if (session?.user && !session?.user.verified) {
+        return `/verify/gallery/${session?.user.id}`;
+      } else {
+        // Return false to display a default error message
+        return true;
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+      }
     },
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
