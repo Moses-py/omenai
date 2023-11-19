@@ -34,13 +34,10 @@ export default function FormInput({ ip }: { ip: string }) {
     }).then(async ({ ok, error }: any) => {
       if (ok) {
         const session = await getSession();
-        if (session?.user) {
-          if (session?.user.verified) {
-            toast.success("Login successful...redirecting!");
-          } else
-            await signOut({
-              callbackUrl: `/verify/gallery/${session?.user.id}`,
-            });
+        if (session?.user && !session?.user.verified) {
+          await signOut({
+            callbackUrl: `/verify/gallery/${session?.user.id}`,
+          });
         }
       } else toast.error(error);
       setIsLoading();
