@@ -6,7 +6,6 @@ import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { CreateOrder } from "@/models/orders/CreateOrderSchema";
 
 import { NextResponse } from "next/server";
-export const runtime = "edge";
 export async function POST(request: Request) {
   try {
     await connectMongoDB();

@@ -3,7 +3,6 @@ import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { SalesActivity } from "@/models/sales/SalesActivity";
 import { NextResponse } from "next/server";
-export const runtime = "edge";
 export async function POST(request: Request) {
   try {
     await connectMongoDB();
