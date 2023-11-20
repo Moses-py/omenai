@@ -16,14 +16,6 @@ type Form = {
 export default function FormInput({ ip }: { ip: string }) {
   const router = useRouter();
 
-  const session = useSession();
-
-  useEffect(() => {
-    if (session?.data?.user) {
-      router.replace("/dashboard/gallery/overview");
-    }
-  }, []);
-
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
 
   const [form, setForm] = useState<Form>({ email: "", password: "" });
@@ -42,11 +34,12 @@ export default function FormInput({ ip }: { ip: string }) {
       });
 
       if (ok) {
-        if (session?.data?.user) {
-          if (!session.data.user.verified) {
+        const session = await getSession();
+        if (session?.user) {
+          if (!session.user.verified) {
             // Redirect to verification page
             await signOut({
-              callbackUrl: `/verify/gallery/${session.data.user.id}`,
+              callbackUrl: `/verify/gallery/${session.user.id}`,
             });
           } else {
             toast.success("Login successful...redirecting!");

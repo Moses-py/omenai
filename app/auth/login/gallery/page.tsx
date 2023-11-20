@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/react";
 import Form from "./features/form/Form";
 import ImageBlock from "./features/image/Image";
 
