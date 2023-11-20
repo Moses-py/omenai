@@ -8,7 +8,7 @@ import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import bcrypt from "bcrypt";
 import { NextResponse, NextResponse as res } from "next/server";
-
+export const runtime = 'edge';
 export async function POST(request: Request) {
   try {
     const data = await request.json();

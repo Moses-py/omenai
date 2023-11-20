@@ -25,7 +25,6 @@ export const FormCard = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log(updateData);
     const { isOk, body } = await updateProfile(
       "gallery",
       updateData,

@@ -27,9 +27,6 @@ export default function GalleryDashboardLayout({
             <div className="hidden md:block">
               <PageLayout />
             </div>
-            <div className="block md:hidden">
-              <MobilePageLayout />
-            </div>
 
             <div
               className={`w-full ${

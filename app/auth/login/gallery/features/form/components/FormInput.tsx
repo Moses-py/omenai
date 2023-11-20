@@ -26,37 +26,25 @@ export default function FormInput({ ip }: { ip: string }) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading();
-    try {
-      const { ok, error }: any = await signIn("gallery-login", {
-        ...form,
-        ip,
-        redirect: false,
-      });
-
-      if (ok) {
-        const session = await getSession();
-        if (session?.user) {
-          if (!session.user.verified) {
-            // Redirect to verification page
-            await signOut({
-              callbackUrl: `/verify/gallery/${session.user.id}`,
-            });
-          } else {
+    await signIn("gallery-login", { redirect: false, ...form, ip })
+      .then(async ({ ok, error }: any) => {
+        if (ok) {
+          const session = await getSession();
+          if (session?.user) {
             toast.success("Login successful...redirecting!");
-            router.replace("/dashboard/gallery/overview");
-            // No need for explicit redirection, as callbackUrl handles it
+            if (session?.user.verified)
+              router.replace("/dashboard/gallery/overview");
+            else {
+              await signOut({
+                callbackUrl: `/verify/gallery/${session?.user.id}`,
+              });
+            }
           }
-        }
-      } else {
-        toast.error(error);
-      }
-    } catch (error) {
-      console.error("Authentication error:", error);
-      // Handle the error as needed
-    } finally {
-      setIsLoading();
-    }
+        } else toast.error(error);
+      })
+      .finally(() => setIsLoading());
   };
+
   return (
     <form
       className="container flex flex-col gap-[1rem]"
