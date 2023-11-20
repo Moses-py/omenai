@@ -1,12 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { galleryLoginStore } from "@/store/auth/login/GalleryLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
-import { getApiUrl } from "@/config";
 
 type Form = {
   email: string;
@@ -16,6 +16,14 @@ type Form = {
 export default function FormInput({ ip }: { ip: string }) {
   const router = useRouter();
 
+  const session = useSession();
+
+  useEffect(() => {
+    if (session?.data?.user) {
+      router.replace("/dashboard/gallery/overview");
+    }
+  }, []);
+
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
 
   const [form, setForm] = useState<Form>({ email: "", password: "" });
@@ -24,24 +32,37 @@ export default function FormInput({ ip }: { ip: string }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    const url = getApiUrl();
     e.preventDefault();
     setIsLoading();
-    await signIn("gallery-login", {
-      ...form,
-      ip,
-      callbackUrl: `${url}/dashboard/gallery/overview`,
-    }).then(async ({ ok, error }: any) => {
+    try {
+      const { ok, error }: any = await signIn("gallery-login", {
+        ...form,
+        ip,
+        redirect: false,
+      });
+
       if (ok) {
-        const session = await getSession();
-        if (session?.user && !session?.user.verified) {
-          await signOut({
-            callbackUrl: `/verify/gallery/${session?.user.id}`,
-          });
+        if (session?.data?.user) {
+          if (!session.data.user.verified) {
+            // Redirect to verification page
+            await signOut({
+              callbackUrl: `/verify/gallery/${session.data.user.id}`,
+            });
+          } else {
+            toast.success("Login successful...redirecting!");
+            router.replace("/dashboard/gallery/overview");
+            // No need for explicit redirection, as callbackUrl handles it
+          }
         }
-      } else toast.error(error);
+      } else {
+        toast.error(error);
+      }
+    } catch (error) {
+      console.error("Authentication error:", error);
+      // Handle the error as needed
+    } finally {
       setIsLoading();
-    });
+    }
   };
   return (
     <form

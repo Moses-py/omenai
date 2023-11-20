@@ -6,7 +6,6 @@ import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 
 export default async function Orders() {
   const orders = await getOverviewOrders();
-  console.log(orders);
   return (
     <OverviewComponentCard
       fullWidth={false}
