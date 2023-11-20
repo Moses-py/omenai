@@ -36,14 +36,15 @@ export const InputCard = (props: Props) => {
       <div className={clsx("flex items-center justify-between py-1 px-1")}>
         <input
           type="text"
+          disabled={labelText === "gallery" || labelText === "email"}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             handleChange(labelText, e.target.value)
           }
           className={clsx(
             `w-full border-0 border-b ${
-              labelText === "email" && "text-base-theme/40 cursor-not-allowed"
+              labelText === "email" && "text-base-theme/40"
             } ${
-              labelText === "gallery" && "text-base-theme/40 cursor-not-allowed"
+              labelText === "gallery" && "text-base-theme/40"
             } border-b-base-theme/20 focus:ring-0 focus:outline-none focus:border-b-dark ring-0 text-base-theme placeholder:text-secondary/40 p-2`,
             className
           )}
