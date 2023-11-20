@@ -1,8 +1,7 @@
-import React from "react";
 import { UserBanner } from "./features/GalleryBanner";
 import GalleryInfo from "./features/GalleryInfo";
 
-export default function page() {
+export default async function page() {
   return (
     <div>
       <UserBanner />

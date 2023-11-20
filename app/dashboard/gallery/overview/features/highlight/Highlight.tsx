@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Loader from "../popular_artworks/Loader";
+import Loader from "../../../components/Loader";
 import HighlightCard from "./components/HighlightCard";
 import { highlightCardEl } from "./mocks";
 

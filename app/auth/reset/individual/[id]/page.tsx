@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { IndividualLogo } from "@/components/logo/Logo";
 import PasswordBlock from "./components/PasswordBlock";
-import { getAllTokens } from "@/services/verify/getAllTokens";
 
 export default async function ResetPassword({
   params,
@@ -28,24 +27,3 @@ export default async function ResetPassword({
     </div>
   );
 }
-
-// export async function generateStaticParams() {
-//   const result: Promise<any> = getAllTokens();
-
-//   const results = await result;
-//   if (results === undefined) {
-//     return [].map(() => {
-//       return {
-//         id: "",
-//       };
-//     });
-//   } else {
-//     return results.tokens.map((token: any) => {
-//       return {
-//         id: token.code,
-//       };
-//     });
-//   }
-// }
-
-// export const revalidate = 1;
