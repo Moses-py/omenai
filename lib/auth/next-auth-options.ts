@@ -19,19 +19,7 @@ export const nextAuthOptions: NextAuthOptions = {
 
       return session;
     },
-    async signIn() {
-      const session = await getServerSession(nextAuthOptions);
 
-      if (session?.user && !session?.user.verified) {
-        // return `/verify/gallery/${session?.user.id}`;
-        return false;
-      } else {
-        // Return false to display a default error message
-        return true;
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
-      }
-    },
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
       if (url.startsWith("/")) return `${baseUrl}${url}`;
