@@ -27,24 +27,3 @@ export default async function ResetPassword({
     </div>
   );
 }
-
-// export async function generateStaticParams() {
-//   const result: Promise<any> = getAllTokens();
-
-//   const results = await result;
-//   if (results === null) {
-//     return [].map(() => {
-//       return {
-//         id: "",
-//       };
-//     });
-//   } else {
-//     return results.tokens.map((token: any) => {
-//       return {
-//         id: token.code,
-//       };
-//     });
-//   }
-// }
-
-// export const revalidate = 1;

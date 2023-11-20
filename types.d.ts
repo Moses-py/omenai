@@ -103,3 +103,9 @@ interface Image {
   bucketId: string;
   fileId: string;
 }
+
+type GalleryProfileUpdateData = {
+  location?: string;
+  admin?: string;
+  description?: string;
+};
