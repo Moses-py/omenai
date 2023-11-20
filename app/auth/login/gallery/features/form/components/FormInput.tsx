@@ -43,6 +43,7 @@ export default function FormInput({ ip }: { ip: string }) {
             });
           } else {
             toast.success("Login successful...redirecting!");
+            router.refresh();
             router.replace("/dashboard/gallery/overview");
             // No need for explicit redirection, as callbackUrl handles it
           }

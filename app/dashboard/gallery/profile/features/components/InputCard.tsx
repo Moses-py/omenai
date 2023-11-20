@@ -45,7 +45,7 @@ export const InputCard = (props: Props) => {
               labelText === "email" && "text-base-theme/40"
             } ${
               labelText === "gallery" && "text-base-theme/40"
-            } border-b-base-theme/20 focus:ring-0 focus:outline-none focus:border-b-dark ring-0 text-base-theme placeholder:text-secondary/40 p-2`,
+            } border-b-base-theme/20 focus:ring-0 focus:outline-none disabled:cursor-not-allowed focus:border-b-dark ring-0 text-base-theme placeholder:text-secondary/40 p-2`,
             className
           )}
           {...rest}
