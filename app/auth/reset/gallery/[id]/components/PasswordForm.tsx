@@ -58,7 +58,7 @@ export default function PasswordForm({ id }: IdProps) {
         toast.error("Passwords do not match");
         setIsLoading();
       } else {
-        const response = await resetPassword("individual", {
+        const response = await resetPassword("gallery", {
           password: passwordData.password,
           id,
         });
@@ -66,7 +66,7 @@ export default function PasswordForm({ id }: IdProps) {
         if (!response.isOk) toast.error(response.body.message);
         else {
           toast.success(response.body.message);
-          router.replace("/auth/login/individual");
+          router.replace("/auth/login/gallery");
         }
         setIsLoading();
       }
