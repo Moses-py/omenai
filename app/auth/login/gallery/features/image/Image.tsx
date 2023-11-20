@@ -1,6 +1,20 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function ImageBlock() {
+  const router = useRouter();
+
+  const session = useSession();
+
+  useEffect(() => {
+    if (session?.data?.user) {
+      router.replace("/dashboard/gallery/overview");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <aside className="h-full w-full relative flex-1 hidden md:block rounded-xl">
       <Image
