@@ -54,6 +54,10 @@ const gallerySignupSchema = new Schema<GallerySchemaTypes>(
       type: String,
       default: () => uuidv4(),
     },
+    logo: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

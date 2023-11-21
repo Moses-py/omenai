@@ -12,4 +12,5 @@ declare global {
 interface UserType extends GallerySchemaTypes, IndividualSchemaTypes {
   id: string;
   verified: boolean;
+  logo: string;
 }
