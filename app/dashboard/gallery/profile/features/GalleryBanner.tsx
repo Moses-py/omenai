@@ -4,6 +4,8 @@ import Image from "next/image";
 
 export const UserBanner = () => {
   const session = useSession();
+
+  const { logo } = session.data!.user;
   return (
     <div className="my-5 mx-5 lg:mx-0 flex items-center flex-col justify-center">
       <Image
@@ -17,7 +19,7 @@ export const UserBanner = () => {
       <div className="py-[1.5rem] bg-gray-400 rounded-xl w-[95%] -mt-10 xs:px-5 flex  xs:flex-row flex-col items-center justify-between">
         <div className="flex gap-3">
           <Image
-            src={"/images/5.jpeg"}
+            src={logo !== "" ? logo : "/logo/avatar.png"}
             alt="user avatar"
             width={45}
             height={45}

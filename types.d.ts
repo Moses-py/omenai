@@ -48,6 +48,7 @@ type GallerySchemaTypes = {
   gallery_verified: boolean;
   verified: boolean;
   role: string;
+  logo?: string;
 };
 
 type IndividualSchemaTypes = {

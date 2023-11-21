@@ -41,6 +41,7 @@ export async function POST(request: Request) {
       gallery_verified,
       name,
       role,
+      logo,
     } = user;
 
     return res.json(
@@ -55,6 +56,7 @@ export async function POST(request: Request) {
         name,
         email,
         role,
+        logo,
       },
       { status: 201 }
     );
