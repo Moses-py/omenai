@@ -22,10 +22,10 @@ export default function PageLayout() {
     <div
       className={` h-screen hidden fixed left-0 top-0 sm:block ${
         open ? "xl:w-72 md:w-56" : "w-24"
-      } p-5 pt-8 duration-200 border-r border-r-base-theme/10 bg-white`}
+      } p-5 pt-8 duration-200 border-r border-r-dark bg-dark`}
     >
       <div
-        className="bg-white absolute -right-3 top-9 z-50 border border-1 border-base-theme/20  cursor-pointer rounded-full w-fit"
+        className="bg-white absolute -right-3 top-9 z-[100] border border-1 border-dark  cursor-pointer rounded-full w-fit"
         id="expand"
       >
         <BsArrowLeftShort
@@ -43,7 +43,7 @@ export default function PageLayout() {
         <div className="flex flex-col gap-y-8 mt-12" id="navigation-items">
           {/* General navigation */}
           <div>
-            <h4 className={`text-base-theme font-normal ${!open && "text-xs"}`}>
+            <h4 className={`text-white font-normal ${!open && "text-xs"}`}>
               General
             </h4>
             <ul className="flex flex-col gap-y-1">
@@ -62,7 +62,7 @@ export default function PageLayout() {
           </div>
           {/* Account pages */}
           <div>
-            <h4 className={`text-base-theme font-normal ${!open && "text-xs"}`}>
+            <h4 className={`text-white font-normal ${!open && "text-xs"}`}>
               Account
             </h4>
             <ul className="flex flex-col gap-y-1">
