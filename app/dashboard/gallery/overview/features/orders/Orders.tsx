@@ -6,6 +6,9 @@ import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 
 export default async function Orders() {
   const orders = await getOverviewOrders();
+  const limitedOrders = orders.data.filter(
+    (order: any) => order.status === "pending"
+  );
   return (
     <OverviewComponentCard
       fullWidth={false}
@@ -16,7 +19,7 @@ export default async function Orders() {
         <NotFoundData />
       ) : (
         <div className="flex flex-col gap-3 w-full">
-          {orders.data.map((order: any, index: number) => {
+          {limitedOrders.slice(0, 2).map((order: any, index: number) => {
             return (
               <OverviewOrdersCard
                 key={index}
@@ -26,6 +29,7 @@ export default async function Orders() {
                 buyer={order.buyer.name}
                 price={order.artwork_data.pricing.price}
                 order_date={formatIntlDateTime(order.createdAt)}
+                status={order.status}
               />
             );
           })}
