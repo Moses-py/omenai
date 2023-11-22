@@ -1,6 +1,11 @@
-import NoOrder from "./components/NoOrder";
-export default function page() {
+import { getOverviewOrders } from "@/services/orders/getOverviewOrders";
+import OrdersGroup from "./components/OrdersGroup";
+
+export default async function Orders() {
+  const orders = await getOverviewOrders();
   return (
-    <NoOrder />
+    <>
+      <OrdersGroup orders={orders} />
+    </>
   );
 }

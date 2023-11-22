@@ -1,6 +1,7 @@
 import { getApiUrl } from "@/config";
 import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { getServerSession } from "next-auth";
+import { getSession } from "next-auth/react";
 
 export async function getOverviewOrders() {
   const session = await getServerSession(nextAuthOptions);
