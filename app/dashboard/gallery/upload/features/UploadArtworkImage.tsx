@@ -30,6 +30,7 @@ export default function UploadArtworkImage() {
     setLoading(true);
     if (image) {
       const fileUploaded = await uploadImage(image);
+      console.log(fileUploaded);
 
       if (fileUploaded) {
         let file: { bucketId: string; fileId: string } = {

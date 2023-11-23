@@ -20,8 +20,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "Impression count updated",
-        data: updateImpression,
+        message: "Liked :)",
       },
       { status: 200 }
     );
