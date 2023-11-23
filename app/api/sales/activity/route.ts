@@ -17,7 +17,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "Sales data addede",
+        message: "Sales data added",
       },
       { status: 200 }
     );

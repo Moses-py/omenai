@@ -1,5 +1,4 @@
 import { getAllArtworksById } from "@/services/artworks/fetchAllArtworksById";
-import React from "react";
 import { ArtworkImage } from "./components/ArtworkImage";
 import NotFoundData from "../components/NotFoundData";
 

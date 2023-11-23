@@ -144,11 +144,7 @@ export default function LogoPickerModal() {
               disabled={loading || !logo}
               className="px-3 py-2 bg-primary rounded-lg disabled:grayscale disabled:cursor-not-allowed text-white font-normal text-base hover:grayscale duration-200"
             >
-              {loading ? (
-                <ClipLoader size={20} color="#fff" />
-              ) : (
-                "Upload artwork"
-              )}
+              {loading ? <ClipLoader size={20} color="#fff" /> : "Upload logo"}
             </button>
           </div>
         </div>

@@ -15,15 +15,9 @@ export default function OverviewPage() {
       <Highlight />
 
       <div className="grid lg:grid-cols-2 gap-x-[1rem]">
-        <OverviewComponentCard
-          fullWidth={false}
-          title="Most Popular artworks"
-          id="tour-search"
-        >
-          <Suspense fallback={<Loader />}>
-            <PopularArtworks />
-          </Suspense>
-        </OverviewComponentCard>
+        <Suspense fallback={<Loader />}>
+          <PopularArtworks />
+        </Suspense>
 
         <Suspense fallback={<Loader />}>
           <ActivityWrapper />

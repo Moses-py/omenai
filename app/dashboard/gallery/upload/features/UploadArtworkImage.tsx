@@ -25,12 +25,21 @@ export default function UploadArtworkImage() {
   const session = useSession();
   const router = useRouter();
 
+  const acceptedFileTypes = ["jpg", "jpeg", "png"];
+
   async function handleArtworkUpload(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     if (image) {
+      const type = image.type.split("/");
+      if (!acceptedFileTypes.includes(type[1])) {
+        toast.error(
+          "File type unsupported. Supported file types are: JPEG, JPG, and PNG"
+        );
+        setLoading(false);
+        return;
+      }
       const fileUploaded = await uploadImage(image);
-      console.log(fileUploaded);
 
       if (fileUploaded) {
         let file: { bucketId: string; fileId: string } = {
@@ -41,6 +50,9 @@ export default function UploadArtworkImage() {
         const fileData = storage.getFilePreview(
           process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
           file.fileId
+          // 400,
+          // 400,
+          // "center"
         );
 
         const data = createUploadedArtworkData(

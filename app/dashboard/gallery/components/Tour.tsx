@@ -95,7 +95,7 @@ const Tour = () => {
 
   // Set once tour is viewed, skipped or closed
   const setTourViewed = () => {
-    // localStorage.setItem("tour", "1");
+    localStorage.setItem("tour", "1");
   };
 
   const callback = (data: {

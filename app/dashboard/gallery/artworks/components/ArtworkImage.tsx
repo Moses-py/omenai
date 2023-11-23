@@ -33,14 +33,6 @@ export const ArtworkImage = ({
       };
       addLike();
     }
-    // else {
-    //   toast.success("Clicked again");
-    //   const addLike = async () => {
-    //     const likedArtwork = await updateArtworkImpressions(art_id);
-    //     if (likedArtwork?.isOk) toast.success(likedArtwork.body.message);
-    //   };
-    //   addLike();
-    // }
   }, [clicked]);
 
   async function handleLikeClick() {
@@ -51,7 +43,7 @@ export const ArtworkImage = ({
     });
   }
   return (
-    <div className="relative flex items-end w-fit rounded-md mb-4">
+    <div className="relative flex items-end max-w-[400px] w-auto rounded-md mb-4">
       <FaHeart
         className={`absolute top-5 right-5 z-30 text-sm ${
           clicked.liked ? "text-red-600" : "text-white"
