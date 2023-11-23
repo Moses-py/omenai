@@ -40,7 +40,7 @@ export default function OverviewOrdersCard({
         <span className="text-base-theme font-light">{order_date}</span>
         <span className="text-base-theme font-light">{status}</span>
         <Link
-          href=""
+          href="/dashboard/gallery/orders"
           className="text-primary font-light underline cursor-pointer"
         >
           View order
