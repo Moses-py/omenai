@@ -46,7 +46,7 @@ export default function NavigationItem({
             </IconWrapper>
             <p
               className={`text-xs p-2 text-white font-light ${
-                !open && !mobile && "scale-0"
+                !open && !mobile && "scale-0 hidden"
               } duration-200`}
             >
               {title}
@@ -78,7 +78,7 @@ export default function NavigationItem({
             </IconWrapper>
             <p
               className={`text-xs p-2 text-white  font-light ${
-                !open && !mobile && "scale-0"
+                !open && !mobile && "scale-0 hidden"
               } duration-200`}
             >
               {title}
