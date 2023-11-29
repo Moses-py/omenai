@@ -1,11 +1,15 @@
-import { getOverviewOrders } from "@/services/orders/getOverviewOrders";
-import OrdersGroup from "./components/OrdersGroup";
+"use client";
+import { useState } from "react";
+import OrderTab from "./components/OrderTab";
+import Pending from "./components/PendingPage";
+import HistoryPage from "./components/HistoryPage";
 
-export default async function Orders() {
-  const orders = await getOverviewOrders();
+export default function Orders() {
+  const[tab, setTab] = useState("pending");
   return (
     <>
-      <OrdersGroup orders={orders} />
+      <OrderTab tab={tab} setTab={setTab} />
+      <div>{tab === "pending" ? <Pending /> : <HistoryPage />}</div>
     </>
   );
 }
