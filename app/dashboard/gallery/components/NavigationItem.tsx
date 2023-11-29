@@ -37,14 +37,16 @@ export default function NavigationItem({
             onClick={onClick}
             className={`p-2 ${
               (open || mobile) && "gap-x-4 "
-            } group flex items-center w-fullrounded-md`}
+            } group flex items-center w-fitrounded-md`}
           >
-            <IconWrapper className={`group-hover:bg-primary duration-300 `}>
+            <IconWrapper
+              className={`group-hover:bg-primary bg-white duration-300 `}
+            >
               {icon}
             </IconWrapper>
             <p
-              className={`text-xs p-2-theme  font-light ${
-                !open && !mobile && "scale-0"
+              className={`text-xs p-2 text-white font-light ${
+                !open && !mobile && "scale-0 hidden"
               } duration-200`}
             >
               {title}
@@ -65,18 +67,18 @@ export default function NavigationItem({
             href={url}
             className={`p-2 ${
               (open || mobile) && "gap-x-4"
-            } group flex items-center w-fullrounded-md`}
+            } group flex items-center w-fitrounded-md`}
           >
             <IconWrapper
               className={`group-hover:bg-primary duration-300 ${
-                pathname.startsWith(url) && "bg-primary"
+                pathname.startsWith(url) ? "bg-primary" : "bg-white"
               }`}
             >
               {icon}
             </IconWrapper>
             <p
-              className={`text-xs p-2-theme  font-light ${
-                !open && !mobile && "scale-0"
+              className={`text-xs p-2 text-white  font-light ${
+                !open && !mobile && "scale-0 hidden"
               } duration-200`}
             >
               {title}

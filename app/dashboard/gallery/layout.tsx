@@ -33,7 +33,7 @@ export default function GalleryDashboardLayout({
 
             <div
               className={`w-full ${
-                open ? "xl:ml-[18.5rem] md:ml-[14.5rem]" : "md:ml-[6.5rem] ml-0"
+                open ? "xl:ml-[19rem] md:ml-[15rem]" : "md:ml-[7rem] ml-0"
               } relative duration-200`}
             >
               <Appbar />

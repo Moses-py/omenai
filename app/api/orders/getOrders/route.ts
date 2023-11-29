@@ -13,7 +13,6 @@ export async function POST(request: Request) {
 
     const orders = await CreateOrder.find({ gallery_id: id })
       .sort({ updatedAt: -1 })
-      .limit(3)
       .exec();
 
     if (!orders) throw new ServerError("No orders were found");

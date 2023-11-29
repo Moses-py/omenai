@@ -1,6 +1,7 @@
+import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
+import { ArtworkImpressions } from "@/models/artworks/ArtworkImpressionSchema";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -9,15 +10,18 @@ export async function POST(request: Request) {
 
     const { id } = await request.json();
 
-    const allArtworks = await Artworkuploads.find(
-      { gallery_id: id },
-      "artist title url art_id"
-    ).exec();
+    const updateImpression = await ArtworkImpressions.updateOne(
+      { art_id: id },
+      { $dec: { impressions: 1 } }
+    );
+
+    if (!updateImpression)
+      throw new ServerError("An unexpected error has occured.");
 
     return NextResponse.json(
       {
-        message: "Successful",
-        data: allArtworks,
+        message: "Unliked :)",
+        data: updateImpression,
       },
       { status: 200 }
     );

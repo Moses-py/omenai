@@ -1,6 +1,7 @@
 import { TfiPackage } from "react-icons/tfi";
 import { BsCreditCard2Front } from "react-icons/bs";
 import { RiAuctionLine } from "react-icons/ri";
+import { IoAlbumsOutline } from "react-icons/io5";
 import {
   CiUser,
   CiSettings,
@@ -9,22 +10,17 @@ import {
   CiExport,
 } from "react-icons/ci";
 
-const overview = (
-  <CiGrid41 className="text-base-theme group-hover:text-white" />
-);
-const order = <TfiPackage className="text-base-theme group-hover:text-white" />;
+const overview = <CiGrid41 className="text-dark group-hover:text-white" />;
+const order = <TfiPackage className="text-dark group-hover:text-white" />;
 const subscription = (
-  <BsCreditCard2Front className="text-base-theme group-hover:text-white" />
+  <BsCreditCard2Front className="text-dark group-hover:text-white" />
 );
-const auction = (
-  <RiAuctionLine className="text-base-theme group-hover:text-white" />
-);
-const upload = <CiExport className="text-base-theme group-hover:text-white" />;
-const profile = <CiUser className="text-base-theme group-hover:text-white" />;
-const settings = (
-  <CiSettings className="text-base-theme group-hover:text-white" />
-);
-const logout = <CiLogout className="text-base-theme group-hover:text-white" />;
+const auction = <RiAuctionLine className="text-dark group-hover:text-white" />;
+const upload = <CiExport className="text-dark group-hover:text-white" />;
+const profile = <CiUser className="text-dark group-hover:text-white" />;
+const settings = <CiSettings className="text-dark group-hover:text-white" />;
+const logout = <CiLogout className="text-dark group-hover:text-white" />;
+const album = <IoAlbumsOutline className="text-dark group-hover:text-white" />;
 
 export const navMockData: NavMockData = {
   general: [
@@ -44,6 +40,11 @@ export const navMockData: NavMockData = {
       title: "Upload artwork",
       icon: upload,
       url: "/dashboard/gallery/upload",
+    },
+    {
+      title: "My artworks",
+      icon: album,
+      url: "/dashboard/gallery/artworks",
     },
   ],
   account: [

@@ -40,6 +40,8 @@ const config: Config = {
       screens: {
         xs: "460px",
         xxs: "320px",
+        xl: "1280px",
+        "2xl": "1440px",
       },
       fontFamily: {
         sans: ["var(--font-outfit)"],
