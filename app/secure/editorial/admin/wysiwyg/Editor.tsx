@@ -7,7 +7,7 @@ import SunEditor from "suneditor-react";
 import SunEditorCore from "suneditor/src/lib/core";
 import "suneditor/dist/css/suneditor.min.css"; // Import Sun Editor's CSS File
 
-const MyComponent = () => {
+const Editor = () => {
   const editor = useRef<SunEditorCore>();
 
   // The sunEditor parameter will be set to the core suneditor instance when this function is called
@@ -16,7 +16,6 @@ const MyComponent = () => {
   };
   return (
     <div>
-      <p> My Other Contents </p>
       <SunEditor
         getSunEditorInstance={getSunEditorInstance}
         placeholder="Start typing..."
@@ -162,4 +161,4 @@ const MyComponent = () => {
     </div>
   );
 };
-export default MyComponent;
+export default Editor;
