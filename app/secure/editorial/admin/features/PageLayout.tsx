@@ -4,12 +4,12 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import { signOut } from "next-auth/react";
 import { toast } from "sonner";
 
-import { editorialAdminNavigations } from "../store/EditorialAdminNavigations";
+import { editorialAdminStore } from "../store/EditorialAdminStore";
 import NavigationItem from "./NavigationItem";
 import { editorialNavMockData } from "../mocks/NavigationMockData";
 
 export default function PageLayout() {
-  const [open, setOpen] = editorialAdminNavigations((state) => [
+  const [open, setOpen] = editorialAdminStore((state) => [
     state.open,
     state.setOpen,
   ]);

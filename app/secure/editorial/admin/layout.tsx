@@ -4,7 +4,7 @@ import PageLayout from "./features/PageLayout";
 
 import { useWindowSize } from "usehooks-ts";
 import NoMobileView from "@/app/dashboard/gallery/components/NoMobileView";
-import { editorialAdminNavigations } from "./store/EditorialAdminNavigations";
+import { editorialAdminStore } from "./store/EditorialAdminStore";
 import Appbar from "./features/Appbar";
 
 export default function EditorialDashboardLayout({
@@ -12,9 +12,7 @@ export default function EditorialDashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [open] = editorialAdminNavigations((state: { open: any }) => [
-    state.open,
-  ]);
+  const [open] = editorialAdminStore((state: { open: any }) => [state.open]);
   const { width } = useWindowSize();
 
   return (

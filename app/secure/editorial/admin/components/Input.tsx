@@ -10,6 +10,7 @@ const Input = ({
   name,
   onchange,
   required,
+  value,
 }: Input) => {
   return (
     <>
@@ -32,6 +33,7 @@ const Input = ({
               } placeholder:text-base-theme `}
               placeholder={placeholder}
               onChange={onchange}
+              defaultValue={value}
             />
           </div>
         </Timeline.Content>

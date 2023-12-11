@@ -13,7 +13,7 @@ export const form_data = [
     placeholder: "Give a short summary",
     type: "text",
     name: "summary",
-    required: true,
+    required: false,
   },
   {
     label: "Slug",
@@ -23,7 +23,7 @@ export const form_data = [
     placeholder: "Slug e.g post-1",
     type: "text",
     name: "slug",
-    required: true,
+    required: false,
   },
   {
     label: "Minutes read",
@@ -33,7 +33,7 @@ export const form_data = [
     placeholder: "e.g 5",
     type: "text",
     name: "minutes",
-    required: true,
+    required: false,
   },
   {
     label: "Cover image",
@@ -43,24 +43,4 @@ export const form_data = [
     name: "cover",
     required: false,
   },
-];
-
-export const blog_category = [
-  "Technology",
-  "Games",
-  "Anime",
-  "Sports",
-  "Travel",
-  "Wildlife",
-  "Foods",
-];
-
-export const category_listing = [
-  { name: "Technology", image: "tech" },
-  { name: "Games", image: "games" },
-  { name: "Anime", image: "anime" },
-  { name: "Sports", image: "sports" },
-  { name: "Travel", image: "travel" },
-  { name: "Wildlife", image: "wildlife" },
-  { name: "Foods", image: "foods" },
 ];

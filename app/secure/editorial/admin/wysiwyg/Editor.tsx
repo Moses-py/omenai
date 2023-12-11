@@ -6,9 +6,15 @@ import React, { useRef, useEffect } from "react";
 import SunEditor from "suneditor-react";
 import SunEditorCore from "suneditor/src/lib/core";
 import "suneditor/dist/css/suneditor.min.css"; // Import Sun Editor's CSS File
+import { editorialAdminStore } from "../store/EditorialAdminStore";
 
 const Editor = () => {
   const editor = useRef<SunEditorCore>();
+
+  const [updateEditorialData, editorialData] = editorialAdminStore((state) => [
+    state.updateEditorialData,
+    state.editorialData,
+  ]);
 
   // The sunEditor parameter will be set to the core suneditor instance when this function is called
   const getSunEditorInstance = (sunEditor: SunEditorCore) => {
@@ -17,9 +23,10 @@ const Editor = () => {
   return (
     <div>
       <SunEditor
+        onChange={(e) => updateEditorialData("content", e)}
         getSunEditorInstance={getSunEditorInstance}
         placeholder="Start typing..."
-        height="500px"
+        height="400px"
         width="100%"
         setOptions={{
           defaultStyle: "font-family: arial; font-size: 16px;",
@@ -41,10 +48,8 @@ const Editor = () => {
             ["outdent", "indent"],
             ["align", "horizontalRule", "list", "lineHeight"],
             ["table", "link", "image", "video", "audio"],
-            ["imageGallery"],
-            ["fullScreen", "showBlocks", "codeView"],
+            ["fullScreen"],
             ["preview", "print"],
-            ["save", "template"],
             ["-left", "#fix", "dir_ltr", "dir_rtl"],
             // (min-width:992px)
             [
@@ -76,12 +81,8 @@ const Editor = () => {
                   "-right",
                   ":i-More Misc-default.more_vertical",
                   "fullScreen",
-                  "showBlocks",
-                  "codeView",
                   "preview",
                   "print",
-                  "save",
-                  "template",
                 ],
                 [
                   "-right",
@@ -92,7 +93,6 @@ const Editor = () => {
                   "video",
                   "audio",
                   "math",
-                  "imageGallery",
                 ],
               ],
             ],
@@ -139,19 +139,14 @@ const Editor = () => {
                   "video",
                   "audio",
                   "math",
-                  "imageGallery",
                 ],
                 ["-right", "dir"],
                 [
                   "-right",
                   ":i-More Misc-default.more_vertical",
                   "fullScreen",
-                  "showBlocks",
-                  "codeView",
                   "preview",
                   "print",
-                  "save",
-                  "template",
                 ],
               ],
             ],

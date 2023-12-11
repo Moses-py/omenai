@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Tooltip } from "flowbite-react";
 import IconWrapper from "@/app/dashboard/gallery/components/IconWrapper";
-import { editorialAdminNavigations } from "../store/EditorialAdminNavigations";
+import { editorialAdminStore } from "../store/EditorialAdminStore";
 
 type ItemProps = {
   title: string;
@@ -19,7 +19,7 @@ export default function NavigationItem({
   mobile,
   onClick,
 }: ItemProps) {
-  const [open] = editorialAdminNavigations((state) => [state.open]);
+  const [open] = editorialAdminStore((state) => [state.open]);
 
   const pathname = usePathname();
   return (
