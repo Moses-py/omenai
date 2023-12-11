@@ -1,23 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { editorialAdminStore } from "../store/EditorialAdminStore";
 
 export default function ImageUpload() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
-  const [image, setImage] = useState<File | null>(null);
+
+  const [cover, setCover] = editorialAdminStore((state) => [
+    state.cover,
+    state.setCover,
+  ]);
   return (
     <div>
-      <div className="w-[300px] h-[300px]">
-        {image ? (
+      <div className="w-[600px] h-[300px]">
+        {cover ? (
           <Image
-            src={URL.createObjectURL(image)}
+            src={URL.createObjectURL(cover as File)}
             alt="uploaded image"
-            width={200}
-            height={200}
-            className="w-[300px] h-[300px] object-cover object-top mt-2 filter hover:grayscale transition-all duration-200 rounded-lg cursor-not-allowed"
+            width={600}
+            height={300}
+            className="w-[600px] h-[300px] object-cover object-top mt-2 filter hover:grayscale transition-all duration-200 rounded-lg cursor-not-allowed"
             onClick={() => {
-              setImage(null);
+              setCover(undefined);
             }}
           />
         ) : (
@@ -53,7 +58,7 @@ export default function ImageUpload() {
           onChange={(e) => {
             // Check if input is actaully an image
             if (!e.target.files![0].type.startsWith("image/")) return;
-            setImage(e.target.files![0]);
+            setCover(e.target.files![0]);
           }}
         />
       </div>

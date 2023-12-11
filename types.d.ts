@@ -140,3 +140,11 @@ interface Image {
   bucketId: string;
   fileId: string;
 }
+
+type EditorialFormData = {
+  title: string;
+  summary?: string;
+  slug?: string;
+  minutes?: string;
+  content: string;
+};
