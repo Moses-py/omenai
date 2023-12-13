@@ -35,10 +35,10 @@ const ArticleCard = ({ image, date, title, summary, minutes }: Props) => {
               </h1>
             </Link>
 
-            <p className="text-gray-600 text-[14px]">{summary}</p>
+            <p className="text-base-theme text-[16px]">{summary}</p>
           </div>
           <div className="flex justify-between items-center">
-            <p className="text-base-theme text-base">{date}</p>
+            <p className="text-base-theme text-[14px]">{date}</p>
             <p className="text-gray-600 text-[14px]">463 views</p>
           </div>
           {/* <div className="flex justify-end w-full">

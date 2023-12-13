@@ -1,8 +1,8 @@
-import React from "react";
-import { blogMockData } from "../mocks/blockMockData";
 import ArticleCard from "../components/ArticleCard";
+import { listEditorials } from "../lib/getAllBlogArticles";
 
-export default function EditorialAdmin() {
+export default async function EditorialAdmin() {
+  const editorials = await listEditorials();
   return (
     <div>
       <h1 className="text-base-theme text-md font-medium mx-5">
@@ -10,11 +10,11 @@ export default function EditorialAdmin() {
       </h1>
       <>
         <div className=" w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1rem]">
-          {blogMockData.map((data, index) => {
+          {editorials!.map((data, index) => {
             return (
               <ArticleCard
-                key={index}
-                image={data.image}
+                key={data.id}
+                image={data.image?.href}
                 date={data.date}
                 title={data.title}
                 summary={data.summary}
