@@ -8,9 +8,10 @@ type Props = {
   title: string;
   summary: string;
   minutes: string;
+  id: string;
 };
 
-const ArticleCard = ({ image, date, title, summary, minutes }: Props) => {
+const ArticleCard = ({ image, date, title, summary, minutes, id }: Props) => {
   return (
     <>
       <div className="px-5 py-8 bg-white flex flex-col gap-[1rem] h-full w-full ">
@@ -29,7 +30,7 @@ const ArticleCard = ({ image, date, title, summary, minutes }: Props) => {
             <p className="text-base-theme text-base">{minutes} minutes read</p>
           </div>
           <div className="flex flex-col gap-2">
-            <Link href={"/"}>
+            <Link href={`/secure/editorial/${id}/${title}`}>
               <h1 className="text-sm lg:text-[1.5rem] leading-tight font-medium ">
                 {title}
               </h1>

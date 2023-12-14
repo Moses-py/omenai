@@ -6,7 +6,7 @@ import { FormEvent, useState } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 // Style imports
-import Input from "../components/Input";
+import Input from "../../../components/Input";
 import { form_data } from "../mocks/formdata";
 import ImageUpload from "./ImageUpload";
 import Editor from "../wysiwyg/Editor";

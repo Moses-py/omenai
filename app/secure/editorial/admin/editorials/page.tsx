@@ -1,4 +1,4 @@
-import ArticleCard from "../components/ArticleCard";
+import ArticleCard from "../../../components/ArticleCard";
 import { listEditorials } from "../lib/getAllBlogArticles";
 
 export default async function EditorialAdmin() {
@@ -19,6 +19,7 @@ export default async function EditorialAdmin() {
                 title={data.title}
                 summary={data.summary}
                 minutes={data.minutes}
+                id={data.id}
               />
             );
           })}
