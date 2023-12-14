@@ -16,16 +16,6 @@ export const form_data = [
     required: false,
   },
   {
-    label: "Slug",
-    description:
-      "Select a slug for this editorial post, such as post-1, post-2, etc.",
-
-    placeholder: "Slug e.g post-1",
-    type: "text",
-    name: "slug",
-    required: false,
-  },
-  {
     label: "Minutes read",
     description:
       "How long would it take an average reader to consume this article",

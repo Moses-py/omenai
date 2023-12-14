@@ -24,6 +24,7 @@
     "bcrypt": "^5.1.1",
     "clsx": "^2.0.0",
     "crypto-random-string": "^5.0.0",
+    "dompurify": "^3.0.6",
     "encoding": "^0.1.13",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
@@ -60,6 +61,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/dompurify": "^3.0.5",
     "@types/nodemailer": "^6.4.11",
     "@types/quill": "^2.0.14",
     "@types/react-inner-image-zoom": "^3.0.3",
