@@ -16,6 +16,7 @@ export const getEditorialData = async (rawEditorialData: {
         date: docs.date,
         summary: docs.summary,
         minutes: docs.minutes,
+        views: docs.views,
       };
     } else {
       return {
@@ -26,6 +27,7 @@ export const getEditorialData = async (rawEditorialData: {
         date: docs.date,
         summary: docs.summary,
         minutes: docs.minutes,
+        views: docs.views,
       };
     }
   });

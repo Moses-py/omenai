@@ -21,6 +21,7 @@ export default async function getEditorialDocument(doc_id: string) {
         image: {
           href: image.href,
         },
+        views: documentPromise.views,
       };
     } else {
       return {
@@ -30,6 +31,7 @@ export default async function getEditorialDocument(doc_id: string) {
         date: documentPromise.data,
         minutes: documentPromise.minutes,
         content: documentPromise.content,
+        views: documentPromise.views,
       };
     }
   } catch (error) {
