@@ -9,9 +9,18 @@ type Props = {
   summary: string;
   minutes: string;
   id: string;
+  views: number;
 };
 
-const ArticleCard = ({ image, date, title, summary, minutes, id }: Props) => {
+const ArticleCard = ({
+  image,
+  date,
+  title,
+  summary,
+  minutes,
+  id,
+  views,
+}: Props) => {
   return (
     <>
       <div className="px-5 py-8 bg-white flex flex-col gap-[1rem] h-full w-full ">
@@ -25,9 +34,18 @@ const ArticleCard = ({ image, date, title, summary, minutes, id }: Props) => {
         ) : (
           <NoCover />
         )}
-        <div className="flex flex-col gap-[1.2rem]">
-          <div className="flex justify-between items-center">
-            <p className="text-base-theme text-base">{minutes} minutes read</p>
+        <div className="flex flex-col gap-[1rem]">
+          <div className="flex gap-2 items-center">
+            <p className="text-base-theme/60 text-[14px]">{date}</p>
+            <span className="font-bold">•</span>
+
+            <p className="text-base-theme text-base">
+              <span className="italic">by</span>{" "}
+              <span className="font-bold uppercase text-[14px]">
+                Olabisi Onabanjo
+              </span>
+            </p>
+            {/* <span className="font-bold">•</span> */}
           </div>
           <div className="flex flex-col gap-2">
             <Link href={`/secure/editorial/${id}/${title}`}>
@@ -39,14 +57,10 @@ const ArticleCard = ({ image, date, title, summary, minutes, id }: Props) => {
             <p className="text-base-theme text-[16px]">{summary}</p>
           </div>
           <div className="flex justify-between items-center">
-            <p className="text-base-theme text-[14px]">{date}</p>
-            <p className="text-gray-600 text-[14px]">463 views</p>
+            <p className="text-base-theme/60 ">{minutes} minutes read</p>
+
+            <p className="text-base-theme/60 text-[14px]">{views} views</p>
           </div>
-          {/* <div className="flex justify-end w-full">
-            <button className="text-white text-[16px] px-[25px] py-[10px] rounded-lg bg-dark hover:bg-dark/50 duration-300">
-              <Link href={`/`}>Read more</Link>
-            </button>
-          </div> */}
         </div>
       </div>
     </>

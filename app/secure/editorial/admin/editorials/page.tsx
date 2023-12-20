@@ -1,3 +1,4 @@
+import NotFoundData from "@/app/dashboard/gallery/components/NotFoundData";
 import ArticleCard from "../../../components/ArticleCard";
 import { listEditorials } from "../lib/getAllBlogArticles";
 
@@ -5,25 +6,32 @@ export default async function EditorialAdmin() {
   const editorials = await listEditorials();
   return (
     <div>
-      <h1 className="text-base-theme text-md font-medium mx-5">
+      <h1 className="text-base-theme text-sm font-medium mx-5">
         My Editorials
       </h1>
       <>
-        <div className=" w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1rem]">
-          {editorials!.map((data, index) => {
-            return (
-              <ArticleCard
-                key={data.id}
-                image={data.image?.href}
-                date={data.date}
-                title={data.title}
-                summary={data.summary}
-                minutes={data.minutes}
-                id={data.id}
-              />
-            );
-          })}
-        </div>
+        {editorials?.length === 0 ? (
+          <div className="w-full h-[calc(100vh-12rem)] grid place-items-center">
+            <NotFoundData />
+          </div>
+        ) : (
+          <div className=" w-full grid  lg:grid-cols-3 2xl:grid-cols-4 gap-[1rem]">
+            {editorials!.map((data, index) => {
+              return (
+                <ArticleCard
+                  key={data.id}
+                  image={data.image?.href}
+                  date={data.date}
+                  title={data.title}
+                  summary={data.summary}
+                  minutes={data.minutes}
+                  id={data.id}
+                  views={data.views}
+                />
+              );
+            })}
+          </div>
+        )}
       </>
     </div>
   );

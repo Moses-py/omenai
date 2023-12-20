@@ -2,11 +2,12 @@
 
 // Typescript Version
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import SunEditor from "suneditor-react";
 import SunEditorCore from "suneditor/src/lib/core";
 import "suneditor/dist/css/suneditor.min.css"; // Import Sun Editor's CSS File
 import { editorialAdminStore } from "../store/EditorialAdminStore";
+import plugins from "suneditor/src/plugins";
 
 const Editor = () => {
   const editor = useRef<SunEditorCore>();
@@ -29,7 +30,21 @@ const Editor = () => {
         height="400px"
         width="100%"
         setOptions={{
-          defaultStyle: "font-family: arial; font-size: 16px;",
+          defaultStyle:
+            "font-family: arial; font-size: 16px; padding: 1rem 10px 10rem 1rem",
+          font: [
+            "Arial",
+            "Comic Sans MS",
+            "Courier New",
+            "Impact",
+            "Georgia",
+            "tahoma",
+            "Trebuchet MS",
+            "Verdana",
+            "Garamond",
+            "Open Sans",
+          ],
+          plugins: plugins,
           buttonList: [
             // Default
             ["undo", "redo"],

@@ -1,8 +1,11 @@
+"use client";
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import DOMPurify from "dompurify";
+import { useEffect } from "react";
+import { useEffectOnce } from "usehooks-ts";
+import { updateDocView } from "../../admin/lib/updateEditorialViews";
 
 /* eslint-disable @next/next/no-img-element */
 type EditorialDataTypes = {
@@ -12,9 +15,12 @@ type EditorialDataTypes = {
 export default function EditorialData({
   singleEditorialData,
 }: EditorialDataTypes) {
+  useEffectOnce(() => {
+    updateDocView(singleEditorialData?.id, singleEditorialData?.views);
+  });
   return (
     <>
-      <section className="container relative w-full h-full ">
+      <section className="sm:container relative w-full h-full ">
         {singleEditorialData?.image && (
           <div className="w-full relative h-[70dvh]">
             <img
@@ -38,15 +44,22 @@ export default function EditorialData({
             </div>
 
             <div className="flex justify-between flex-col lg:flex-row items-center my-[1rem]">
-              <div className="flex justify-evenly gap-5 my-[1rem]">
-                {/* Name */}
-                <span className="text-base-theme">
+              <div className="flex gap-2 items-center">
+                {/* <p className="text-base-theme/60 text-[14px]">
+                  {singleEditorialData?.date}
+                </p>
+                <span className="font-bold">•</span> */}
+
+                <p className="text-base-theme text-base">
+                  <span className="font-bold uppercase">Olabisi Onabanjo</span>
+                </p>
+                <span className="font-bold">•</span>
+                <p className="text-base-theme/60 text-[14px] uppercase">
                   {singleEditorialData?.minutes} minutes read
-                </span>
-                {/* Date */}
+                </p>
               </div>
               {/* Socials */}
-              <div className="flex gap-5 my-[1rem]">
+              <div className="flex gap-5 items-center my-[1rem]">
                 <span className="text-base-theme">
                   {singleEditorialData?.date}
                 </span>
@@ -65,19 +78,19 @@ export default function EditorialData({
             {/* hr */}
             <hr className="my-[1rem] border-base-theme/20" />
             {/* Summary */}
-            <div className="flex justify-center text-center my-[3rem] ">
+            {/* <div className="flex justify-center text-center my-[3rem] ">
               <blockquote className="italic text-[16px] lg:text-[24px] w-full md:w-3/4 lg:w-1/2 font-extralight">
                 <span>&quot;</span>
                 {singleEditorialData?.summary}
                 <span>&quot;</span>
               </blockquote>
-            </div>
-            <div className="flex justify-center">
+            </div> */}
+            <div className="flex justify-center my-10">
               <div
                 dangerouslySetInnerHTML={{
                   __html: singleEditorialData.content,
                 }}
-                className="text-left text-[1.2rem] font-light w-full lg:w-5/6 leading-9 "
+                className="text-left text-[1.2rem] font-light w-full leading-9 "
               />
             </div>
           </div>
