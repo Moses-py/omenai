@@ -7,7 +7,7 @@ export default async function GalleryLogin() {
 
   return (
     <section className="h-[100vh] w-full grid place-items-center">
-      <div className="container w-full sm:w-[80%] h-full sm:h-[80%] md:flex sm:ring-1 sm:ring-secondary/20 relative rounded-xl">
+      <div className=" w-full h-full md:flex sm:ring-1 sm:ring-secondary/20 relative rounded-xl">
         {/* Image section */}
         <ImageBlock />
         {/* Form section */}

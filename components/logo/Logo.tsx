@@ -37,8 +37,8 @@ export const IndividualLogo = ({ className }: LogoProps) => {
         <Image
           src={"/omenai_logo.png"}
           alt="omenai logo"
-          width={120}
-          height={30}
+          width={130}
+          height={50}
         />
       </Link>
     </>
