@@ -6,11 +6,13 @@ import DesktopNavbar from "@/components/navbar/desktop/DesktopNavbar";
 
 export default function PricingPage() {
   return (
-    <div className="sm:container p-5">
+    <div className="">
       <DesktopNavbar />
-      <Landing />
-      <PackageCard />
-      <Faq />
+      <div className="sm:container p-5">
+        <Landing />
+        <PackageCard />
+        <Faq />
+      </div>
     </div>
   );
 }
