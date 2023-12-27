@@ -5,3 +5,8 @@
 body {
   box-sizing: border-box;
 }
+
+/* .custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #ff0101 #f0f0f0;
+} */
