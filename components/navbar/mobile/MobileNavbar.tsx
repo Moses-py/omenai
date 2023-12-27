@@ -12,11 +12,11 @@ export default function MobileNavbar() {
   ]);
   return (
     <div
-      className={`h-screen w-full absolute z-40 bg-white top-0 ${
+      className={`h-screen w-full fixed z-40 bg-white top-0 ${
         openSideNav ? "left-0" : "left-[-100%]"
       } duration-300`}
     >
-      <div className="flex justify-between py-6 px-4">
+      <div className="flex justify-between items-center py-6 px-4">
         <IndividualLogo />
         <div className="lg:hidden block">
           <TfiClose onClick={() => updateOpenSideNav(false)} />
