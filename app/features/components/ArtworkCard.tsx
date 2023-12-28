@@ -4,20 +4,24 @@ export default function ArtworkCard({
   image,
   artist,
   name,
-  price,
+  pricing,
 }: {
   image: string;
   artist: string;
   name: string;
-  price: string;
+  pricing: {
+    price: string;
+    shouldShowPrice: "Yes" | "No";
+  };
 }) {
   return (
-    <div className="flex flex-col gap-y-4 cursor-pointer h-[400px] justify-end mx-2">
+    <div className="flex flex-col gap-y-4 cursor-pointer w-full h-[400px] justify-end px-2">
       <img
         src={image}
         alt={image}
         className="w-auto max-w-[400px] h-auto aspect-auto object-top object-contain"
       />
+
       <div>
         <div className="flex justify-between items-center">
           <p className="font-medium text-dark text-[18px]">
@@ -30,7 +34,11 @@ export default function ArtworkCard({
           {name.substring(0, 20)}
           {name.length > 20 && "..."}
         </p>
-        <p className="font-bold  text-dark">{price}</p>
+        {pricing.shouldShowPrice === "Yes" ? (
+          <p className="font-bold  text-dark">{pricing.price}</p>
+        ) : (
+          <p className="underline font-medium">Price on request</p>
+        )}
       </div>
     </div>
   );

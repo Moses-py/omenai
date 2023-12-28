@@ -11,7 +11,7 @@ function SampleNextArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className="grid place-items-center p-2 md:p-3 rounded-full ring-1 ring-base-theme mx-16 absolute z-10 bottom-[-5rem] right-0"
+      className="grid place-items-center p-2 md:p-3 rounded-full ring-1 cursor-pointer ring-base-theme mx-16 absolute z-10 bottom-[-4rem] right-[-4rem]"
       onClick={onClick}
     >
       <IoIosArrowForward className="text-sm" />
@@ -23,22 +23,21 @@ function SamplePrevArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className="grid place-items-center p-2 md:p-3 rounded-full ring-1 ring-base-theme mx-16 absolute z-10 bottom-[-5rem] left-0"
+      className="grid place-items-center p-2 md:p-3 rounded-full ring-1 cursor-pointer ring-base-theme mx-16 absolute z-10 bottom-[-4rem] left-[-4rem]"
       onClick={onClick}
     >
       <IoIosArrowBack className="text-sm" />
     </div>
   );
 }
-export default function ArtworkSlides({ artworks }: { artworks: any }) {
+export default function ArtworkSlides({ artworks }: { artworks: any[] }) {
   var settings = {
+    adaptiveHeight: true,
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 8,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "30px",
+    slidesToScroll: 4,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     swipeToSlide: true,
@@ -102,21 +101,18 @@ export default function ArtworkSlides({ artworks }: { artworks: any }) {
     ],
   };
   return (
-    // <div className="flex items-end overflow-x-scroll gap-x-5 my-4 custom-scrollbar">
     <Slider {...settings}>
-      {artworks.data.map((artwork: any, index: number) => {
+      {artworks.map((artwork: any, index: number) => {
         return (
           <ArtworkCard
             image={artwork.url}
             key={index}
             artist={artwork.artist}
             name={artwork.title}
-            price={artwork.pricing.price}
+            pricing={artwork.pricing}
           />
         );
       })}
     </Slider>
-
-    // </div>
   );
 }
