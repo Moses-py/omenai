@@ -5,13 +5,13 @@ import Pill from "./components/Pill";
 import { useIndividualAuthStore } from "@/store/auth/register/IndividualAuthStore";
 import { ClipLoader, FadeLoader } from "react-spinners";
 let artTypes = [
-  "Surrealism",
-  "Minimalism",
-  "Sculpture",
   "Painting",
-  "Installation art",
-  "Abstract art",
-  "Perfomance art",
+  "Drawing",
+  "Photography",
+  "Print",
+  "Design/Decorative art",
+  "Sculpture",
+  "Contemporary art",
   "Pop art",
 ];
 function Preferences() {

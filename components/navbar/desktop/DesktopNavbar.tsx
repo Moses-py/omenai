@@ -6,8 +6,11 @@ import NavbarActionButtons from "../ui/NavbarActionButtons";
 import { CiMenuFries } from "react-icons/ci";
 import MobileNavbar from "../mobile/MobileNavbar";
 import { actionStore } from "@/store/actions/ActionStore";
+import { useSession } from "next-auth/react";
+import LoggedInUser from "../ui/LoggedInUser";
 export default function DesktopNavbar() {
   const [updateOpenSideNav] = actionStore((state) => [state.updateOpenSideNav]);
+  const session = useSession();
 
   return (
     <>
@@ -37,9 +40,17 @@ export default function DesktopNavbar() {
           {/* Search bar */}
           <NavbarInput />
           {/* Action buttons */}
-          <div className=" sm:block hidden">
-            <NavbarActionButtons />
-          </div>
+          {session.status === "authenticated" &&
+            session.data.user.role === "user" && (
+              <div className="sm:block hidden">
+                <LoggedInUser user={session.data?.user.name} />
+              </div>
+            )}
+          {session.status === "unauthenticated" && (
+            <div className=" sm:block hidden">
+              <NavbarActionButtons />
+            </div>
+          )}
         </div>
       </nav>
       <hr className="border-dark/30" />

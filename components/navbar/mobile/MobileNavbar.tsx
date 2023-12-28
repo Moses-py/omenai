@@ -5,11 +5,15 @@ import NavbarActionButtons from "../ui/NavbarActionButtons";
 import NavbarLink from "../ui/NavbarLink";
 import { IndividualLogo } from "@/components/logo/Logo";
 import { TfiClose } from "react-icons/tfi";
+import { useSession } from "next-auth/react";
+import LoggedInUser from "../ui/LoggedInUser";
 export default function MobileNavbar() {
   const [openSideNav, updateOpenSideNav] = actionStore((state) => [
     state.openSideNav,
     state.updateOpenSideNav,
   ]);
+  const session = useSession();
+
   return (
     <div
       className={`h-screen w-full fixed z-40 bg-white top-0 ${
@@ -39,9 +43,17 @@ export default function MobileNavbar() {
       </div>
 
       <hr className="border-dark/20 mt-4" />
-      <div className="p-4 sm:hidden block">
-        <NavbarActionButtons />
-      </div>
+      {session.status === "authenticated" &&
+        session.data.user.role === "user" && (
+          <div className="block sm:hidden p-4">
+            <LoggedInUser user={session.data!.user.name} />
+          </div>
+        )}
+      {session.status === "unauthenticated" && (
+        <div className=" block sm:hidden">
+          <NavbarActionButtons />
+        </div>
+      )}
     </div>
   );
 }
