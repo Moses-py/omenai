@@ -10,3 +10,25 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #ff0101 #f0f0f0;
 } */
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2a9edf;
+  border-radius: 50%;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00a2ff;
+}

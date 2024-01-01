@@ -1,25 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import { IoHeartOutline } from "react-icons/io5";
-export default function ArtworkCard({
+export default function TrendingArtworkCard({
   image,
   artist,
   name,
-  pricing,
+  impressions,
 }: {
   image: string;
   artist: string;
   name: string;
-  pricing?: {
-    price: string;
-    shouldShowPrice: "Yes" | "No";
-  };
+  impressions: number;
 }) {
   return (
     <div className="flex flex-col gap-y-4 cursor-pointer w-full h-[500px] justify-end px-2">
       <img
         src={image}
         alt={image}
-        className="w-fit max-w-[250px] max-h-[500px] h-auto aspect-auto object-top object-contain"
+        className="w-auto max-w-[250px] max-h-[500px] h-auto aspect-auto object-top object-contain"
       />
 
       <div className="mb-[3rem]">
@@ -28,17 +25,15 @@ export default function ArtworkCard({
             {artist.substring(0, 20)}
             {artist.length > 20 && "..."}
           </p>
-          <IoHeartOutline className="text-[24px] text-dark cursor-pointer" />
+          <span className="flex space-x-1 items-center">
+            <span className="text-xs text-dark">{impressions}</span>
+            <IoHeartOutline className="text-[24px] text-dark cursor-pointer" />
+          </span>
         </div>
         <p className="font-normal text-base-theme italic">
           {name.substring(0, 20)}
           {name.length > 20 && "..."}
         </p>
-        {pricing?.price && pricing.shouldShowPrice === "Yes" ? (
-          <p className="font-bold  text-dark">{pricing.price}</p>
-        ) : (
-          <p className="underline font-medium">Price on request</p>
-        )}
       </div>
     </div>
   );

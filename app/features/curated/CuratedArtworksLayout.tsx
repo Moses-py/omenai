@@ -1,5 +1,6 @@
 import { fetchCuratedArtworks } from "@/services/artworks/fetchedCuratedArtworks";
 import ArtworkSlides from "../components/ArtworkSlides";
+import ArtworkCard from "../components/ArtworkCard";
 
 export default async function CuratedArtworksLayout() {
   const userCuratedArtworks = await fetchCuratedArtworks();
@@ -7,11 +8,23 @@ export default async function CuratedArtworksLayout() {
   return (
     <>
       {userCuratedArtworks !== undefined && userCuratedArtworks.length > 0 && (
-        <div className=" mt-8 p-5 relative mb-[8rem]">
+        <div className=" mt-8 p-4 relative mb-[8rem]">
           <h1 className="text-dark font-normal text-[24px] sm:text-md mb-4">
             Curated picks: Just for you
           </h1>
-          <ArtworkSlides artworks={userCuratedArtworks} />
+          <div className="flex relative overflow-x-scroll w-full space-x-2">
+            {userCuratedArtworks.map((artwork: any, index: number) => {
+              return (
+                <ArtworkCard
+                  image={artwork.url}
+                  key={index}
+                  artist={artwork.artist}
+                  name={artwork.title}
+                  pricing={artwork.pricing}
+                />
+              );
+            })}
+          </div>
         </div>
       )}
     </>
