@@ -6,6 +6,9 @@ import CuratedArtworkClientWrapper from "./features/curated/CuratedArtworkClient
 import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { getServerSession } from "next-auth";
 import CuratedArtworksLayout from "./features/curated/CuratedArtworksLayout";
+import Editorials from "./features/editorials/Editorials";
+import TrendingArtworks from "./features/trending/TrendingArtworks";
+import Footer from "@/components/footer/Footer";
 
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
@@ -16,6 +19,9 @@ export default async function Home() {
       {session?.user.role === "user" ? <CuratedArtworksLayout /> : null}
       <ArtsByMedium />
       <LatestArtworks />
+      <Editorials />
+      <TrendingArtworks />
+      <Footer />
     </main>
   );
 }

@@ -45,7 +45,7 @@ const ShuffleHero = () => {
                 <p className="mx-4">Live arts</p>
               </Marquee>
             </div>
-            <button className="bg-dark border-2 my-5 text-white font-medium py-2 px-4 rounded transition-all w-fit uppercase hover:border-dark hover:text-dark duration-150 active:scale-95">
+            <button className="bg-dark border-2 my-5 text-white font-normal py-2 px-4 rounded transition-all w-fit uppercase hover:text-dark duration-200 active:scale-95 hover:border-dark hover:bg-white">
               Shop now
             </button>
           </div>

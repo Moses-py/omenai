@@ -8,7 +8,7 @@ type ArtsByMediumCardProps = {
 export default function ArtsByMediumCard({ name, tag }: ArtsByMediumCardProps) {
   return (
     <div className="p-1">
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col space-y-3 mb-[3rem]">
         <Image
           src={`/art_mediums/${tag}.jpg`}
           alt={`${tag} art image`}
