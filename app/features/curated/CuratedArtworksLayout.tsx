@@ -8,8 +8,8 @@ export default async function CuratedArtworksLayout() {
   return (
     <>
       {userCuratedArtworks !== undefined && userCuratedArtworks.length > 0 && (
-        <div className=" mt-8 p-4 relative mb-[8rem]">
-          <h1 className="text-dark font-normal text-[24px] sm:text-md mb-4">
+        <div className=" mt-8 p-4 relative mb-[4rem]">
+          <h1 className="text-dark font-normal text-[20px] sm:text-md mb-4">
             Curated picks: Just for you
           </h1>
           <div className="flex relative overflow-x-scroll w-full space-x-2">

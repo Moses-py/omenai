@@ -1,5 +1,7 @@
-import { MenuCard, Navbar, ProfileInfo, Sidebar } from "./features";
+import DesktopNavbar from "@/components/navbar/desktop/DesktopNavbar";
 import NextTopLoader from "nextjs-toploader";
+import Banner from "./LayoutDesign/Banner";
+import NavigationChipTabs from "./LayoutDesign/NavigationTabs";
 
 export default function UserLayout({
   children,
@@ -7,23 +9,16 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-[#F8F9FA]">
+    <div className="">
       <NextTopLoader color="#6246EA" height={6} />
 
-      <Navbar />
+      <DesktopNavbar />
 
-      <main className="flex">
-        <div className="flex-initial md:w-[250px] lg:w-[350px]  p-2 hidden md:block">
-          <Sidebar />
-        </div>
-
-        <div className="flex-1 p-2">
-          <ProfileInfo />
-          {children}
-        </div>
+      <main className="">
+        <Banner />
+        <NavigationChipTabs />
+        {children}
       </main>
-
-      <MenuCard />
     </div>
   );
 }
