@@ -11,50 +11,15 @@ import { motion } from "framer-motion";
 import { IndividualLogo } from "../logo/Logo";
 const Footer = () => {
   return (
-    <footer className="bg-white">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="bg-white w-full">
+      <div className="w-full px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-teal-600 mb-8">
           <IndividualLogo />
         </div>
-        <div className="lg:flex lg:items-start lg:gap-8">
+        <div className="w-full">
           <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
-            <div className="col-span-2">
-              <div>
-                <h2 className="text-lg font-bold text-dark">
-                  Get the latest news!
-                </h2>
-
-                <p className="mt-4 text-dark/70">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                  non cupiditate quae nam molestias.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-span-2 lg:col-span-3 lg:flex lg:items-end">
-              <form className="w-full">
-                <label htmlFor="UserEmail" className="sr-only">
-                  {" "}
-                  Email{" "}
-                </label>
-
-                <div className="border border-dark/20 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
-                  <input
-                    type="email"
-                    id="UserEmail"
-                    placeholder="john@rhcp.com"
-                    className="w-full border-none focus:border-transparent focus:ring-transparent sm:"
-                  />
-
-                  <button className="mt-1 w-full bg-primary px-6 py-3  font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0">
-                    Sign Up
-                  </button>
-                </div>
-              </form>
-            </div>
-
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Services</p>
+              <p className="text-sm font-bold text-dark">Services</p>
 
               <ul className="mt-6 space-y-4 ">
                 <li>
@@ -62,8 +27,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    1on1 Coaching{" "}
+                    Omenai for Galleries
                   </a>
                 </li>
 
@@ -72,8 +36,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Company Review{" "}
+                    Auctions
                   </a>
                 </li>
 
@@ -82,8 +45,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Accounts Review{" "}
+                    Fairs and shows
                   </a>
                 </li>
 
@@ -92,8 +54,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    HR Consulting{" "}
+                    Buy
                   </a>
                 </li>
 
@@ -102,15 +63,14 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    SEO Optimisation{" "}
+                    Sell
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Company</p>
+              <p className="text-sm font-bold text-dark">Company</p>
 
               <ul className="mt-6 space-y-4 ">
                 <li>
@@ -118,8 +78,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    About{" "}
+                    About
                   </a>
                 </li>
 
@@ -128,8 +87,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Meet the Team{" "}
+                    Meet the Team
                   </a>
                 </li>
 
@@ -138,15 +96,14 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Accounts Review{" "}
+                    Contact us
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Helpful Links</p>
+              <p className="text-sm font-bold text-dark">Helpful Links</p>
 
               <ul className="mt-6 space-y-4 ">
                 <li>
@@ -154,8 +111,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Contact{" "}
+                    Editorials
                   </a>
                 </li>
 
@@ -164,8 +120,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    FAQs{" "}
+                    FAQs
                   </a>
                 </li>
 
@@ -174,15 +129,14 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Live Chat{" "}
+                    Pricing
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Legal</p>
+              <p className="text-sm font-bold text-dark">Legal</p>
 
               <ul className="mt-6 space-y-4 ">
                 <li>
@@ -190,8 +144,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Accessibility{" "}
+                    Terms & conditions
                   </a>
                 </li>
 
@@ -200,8 +153,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Returns Policy{" "}
+                    Returns Policy
                   </a>
                 </li>
 
@@ -210,8 +162,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Refund Policy{" "}
+                    Refund Policy
                   </a>
                 </li>
 
@@ -220,15 +171,14 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Hiring Statistics{" "}
+                    Privacy policy
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="col-span-2 sm:col-span-1">
-              <p className="font-medium text-gray-900">Downloads</p>
+              <p className="text-sm font-bold text-dark">Downloads</p>
 
               <ul className="mt-6 space-y-4 ">
                 <li>
@@ -236,8 +186,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    Marketing Calendar{" "}
+                    Marketing Calendar
                   </a>
                 </li>
 
@@ -246,8 +195,7 @@ const Footer = () => {
                     href="#"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    {" "}
-                    SEO Infographics{" "}
+                    SEO Infographics
                   </a>
                 </li>
               </ul>
@@ -376,7 +324,7 @@ const Footer = () => {
         <div className="mt-8 border-t border-gray-100 pt-8">
           <div className="sm:flex sm:justify-between">
             <p className="text-xs text-gray-500">
-              &copy; 2022. Company Name. All rights reserved.
+              &copy; 2024. Omenai Inc. All rights reserved.
             </p>
 
             <ul className="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
@@ -385,8 +333,7 @@ const Footer = () => {
                   href="#"
                   className="text-gray-500 transition hover:opacity-75"
                 >
-                  {" "}
-                  Terms & Conditions{" "}
+                  Terms & Conditions
                 </a>
               </li>
 
@@ -395,8 +342,7 @@ const Footer = () => {
                   href="#"
                   className="text-gray-500 transition hover:opacity-75"
                 >
-                  {" "}
-                  Privacy Policy{" "}
+                  Privacy Policy
                 </a>
               </li>
 
@@ -405,8 +351,7 @@ const Footer = () => {
                   href="#"
                   className="text-gray-500 transition hover:opacity-75"
                 >
-                  {" "}
-                  Cookies{" "}
+                  Cookies
                 </a>
               </li>
             </ul>

@@ -9,6 +9,7 @@ import CuratedArtworksLayout from "./features/curated/CuratedArtworksLayout";
 import Editorials from "./features/editorials/Editorials";
 import TrendingArtworks from "./features/trending/TrendingArtworks";
 import Footer from "@/components/footer/Footer";
+import Newsletter from "@/components/footer/Newsletter";
 
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
@@ -21,6 +22,7 @@ export default async function Home() {
       <LatestArtworks />
       <Editorials />
       <TrendingArtworks />
+      <Newsletter />
       <Footer />
     </main>
   );

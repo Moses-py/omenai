@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Profile() {
+export default function Settings() {
   return <div>page</div>;
 }
