@@ -10,18 +10,18 @@ export async function POST(request: Request) {
 
     const { id } = await request.json();
 
-    const updateImpression = await ArtworkImpressions.updateOne(
+    const foundImpression = await ArtworkImpressions.findOne(
       { art_id: id },
-      { $dec: { impressions: 1 } }
+      "like_IDs"
     );
 
-    if (!updateImpression)
+    if (!foundImpression)
       throw new ServerError("An unexpected error has occured.");
 
     return NextResponse.json(
       {
-        message: "Unliked :)",
-        data: updateImpression,
+        message: "arwork found",
+        data: foundImpression,
       },
       { status: 200 }
     );

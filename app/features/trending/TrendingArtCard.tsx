@@ -12,11 +12,11 @@ export default function TrendingArtworkCard({
   impressions: number;
 }) {
   return (
-    <div className="flex flex-col gap-y-4 cursor-pointer w-full h-[500px] justify-end px-2">
+    <div className="flex flex-col gap-y-4 cursor-pointer w-auto h-[500px] justify-end px-2">
       <img
         src={image}
         alt={image}
-        className="w-auto max-w-[250px] max-h-[500px] h-auto aspect-auto object-top object-contain"
+        className="w-auto max-w-[200px] max-h-[500px] h-auto aspect-auto object-top object-contain"
       />
 
       <div className="mb-[3rem]">

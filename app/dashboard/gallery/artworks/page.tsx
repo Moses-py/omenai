@@ -1,6 +1,6 @@
 import { getAllArtworksById } from "@/services/artworks/fetchAllArtworksById";
-import { ArtworkImage } from "./components/ArtworkImage";
-import NotFoundData from "../components/NotFoundData";
+import { ArtworkImage } from "../../../../components/artworks/ArtworkImage";
+import NotFoundData from "../../../../components/notFound/NotFoundData";
 
 export default async function MyArtworks() {
   const artworks = await getAllArtworksById();

@@ -1,6 +1,6 @@
 import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 import { AnimatePresence, motion } from "framer-motion";
-import NotFoundData from "../../components/NotFoundData";
+import NotFoundData from "../../../../../components/notFound/NotFoundData";
 import OverviewOrdersCard from "../../overview/features/orders/components/OverviewOrdersCard";
 
 export default function PendingOrders({ orders }: { orders: any }) {

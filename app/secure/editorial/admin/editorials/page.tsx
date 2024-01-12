@@ -1,4 +1,4 @@
-import NotFoundData from "@/app/dashboard/gallery/components/NotFoundData";
+import NotFoundData from "@/components/notFound/NotFoundData";
 import ArticleCard from "../../../components/ArticleCard";
 import { listEditorials } from "../lib/getAllBlogArticles";
 
