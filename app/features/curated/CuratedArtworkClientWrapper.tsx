@@ -1,10 +1,11 @@
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import CuratedArtworksLayout from "./CuratedArtworksLayout";
+import { useEffectOnce } from "usehooks-ts";
+import { useRouter } from "next/navigation";
 
-export default async function CuratedArtworkClientWrapper() {
-  const session = await getServerSession(nextAuthOptions);
+export default function CuratedArtworkClientWrapper() {
   return (
-    <>{session?.user.role === "user" ? <CuratedArtworksLayout /> : null}</>
+    <>
+      <CuratedArtworksLayout />
+    </>
   );
 }

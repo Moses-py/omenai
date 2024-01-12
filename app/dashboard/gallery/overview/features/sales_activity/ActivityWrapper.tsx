@@ -1,4 +1,4 @@
-import NotFoundData from "../../../components/NotFoundData";
+import NotFoundData from "../../../../../../components/notFound/NotFoundData";
 import { SalesActivity } from "./components/SalesActivity";
 import { getSalesActivityData } from "@/services/sales/getSalesActivityData";
 import OverviewComponentCard from "../../components/OverviewComponentCard";

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const tabs = ["Saves", "Bids", "Profile", "Settings"];
+const tabs = ["Saves", "Orders", "Bids", "Settings"];
 
 const NavigationChipTabs = () => {
   //   const [selected, setSelected] = useState(tabs[0]);

@@ -46,13 +46,13 @@ const LoggedInUserDropDown = ({ user }: { user: string | undefined }) => {
             setSelectedTab={setSelected}
             setOpen={setOpen}
             Icon={RiAuctionLine}
-            text="Bids"
+            text="Orders"
           />
           <Option
             setSelectedTab={setSelected}
             setOpen={setOpen}
             Icon={CgProfile}
-            text="Profile"
+            text="Bids"
           />
           <Option
             setSelectedTab={setSelected}

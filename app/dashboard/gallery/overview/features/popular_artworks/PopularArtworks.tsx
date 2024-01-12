@@ -1,4 +1,4 @@
-import NotFoundData from "../../../components/NotFoundData";
+import NotFoundData from "../../../../../../components/notFound/NotFoundData";
 import OverviewComponentCard from "../../components/OverviewComponentCard";
 import PopulartArtworkCard from "./components/PopulartArtworkCard";
 import { fetchPopularArtworks } from "@/services/artworks/fetchPopularArtworks";

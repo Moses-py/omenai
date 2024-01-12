@@ -2,7 +2,7 @@ import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 import { sortOrdersDataByDate } from "@/utils/sortOrdersDataByDate";
 import { AnimatePresence, motion } from "framer-motion";
 import OverviewOrdersCard from "../../overview/features/orders/components/OverviewOrdersCard";
-import NotFoundData from "../../components/NotFoundData";
+import NotFoundData from "../../../../../components/notFound/NotFoundData";
 
 export default function OrderHistory({ orders }: { orders: any }) {
   const history = sortOrdersDataByDate(orders.data);

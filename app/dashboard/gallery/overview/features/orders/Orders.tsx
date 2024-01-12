@@ -1,7 +1,7 @@
 import { getOverviewOrders } from "@/services/orders/getOverviewOrders";
 import OverviewComponentCard from "../../components/OverviewComponentCard";
 import OverviewOrdersCard from "./components/OverviewOrdersCard";
-import NotFoundData from "../../../components/NotFoundData";
+import NotFoundData from "../../../../../../components/notFound/NotFoundData";
 import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 
 export default async function Orders() {
