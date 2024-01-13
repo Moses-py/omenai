@@ -7,11 +7,17 @@ import { updateArtworkImpressions } from "@/services/artworks/updateArtworkImpre
 import { toast } from "sonner";
 import { useState } from "react";
 import { useUpdateEffect } from "usehooks-ts";
+import { formatPrice } from "@/utils/priceFormatter";
+import Link from "next/link";
 type ArtworkImageProps = {
   url: string;
   title: string;
   author: string;
   art_id: string;
+  pricing?: {
+    price: string;
+    shouldShowPrice: "Yes" | "No" | string;
+  };
 };
 
 export const ArtworkImage = ({
@@ -19,6 +25,7 @@ export const ArtworkImage = ({
   title,
   author,
   art_id,
+  pricing,
 }: ArtworkImageProps) => {
   const [clicked, setClick] = useState({
     liked: false,
@@ -58,10 +65,21 @@ export const ArtworkImage = ({
         hideHint
         className="rounded-md"
       />
-      <div className="absolute bottom-0 text-white px-3 py-2 z-20 bg-dark/50 w-full rounded-md cursor-pointer">
+      <Link
+        href={`/artwork/${title}`}
+        className="absolute bottom-0 text-white px-3 py-2 z-20 bg-dark/50 w-full rounded-md cursor-pointer"
+      >
         <p className="font-bold text-[1.1rem]">{title}</p>
         <p className="text-xs text-[#fafafa]">{author}</p>
-      </div>
+        {pricing?.price &&
+          (pricing?.price && pricing.shouldShowPrice === "Yes" ? (
+            <p className="font-bold  text-white">
+              {formatPrice(pricing.price)}
+            </p>
+          ) : (
+            <p className="underline font-medium">Price on request</p>
+          ))}
+      </Link>
     </div>
   );
 };

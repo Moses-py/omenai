@@ -2,11 +2,12 @@ import Loader from "@/components/loader/Loader";
 import Dimensions from "./Dimensions";
 import { GrCertificate } from "react-icons/gr";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
-import { ProductBoxTypes } from "./ProductBox";
 import { formatPrice } from "@/utils/priceFormatter";
 
-type ArtworkDetailTypes = {};
-export default function ArtworkDetail({ data }: ProductBoxTypes) {
+type ArtworkDetailTypes = {
+  data: ArtworkResultTypes;
+};
+export default function ArtworkDetail({ data }: ArtworkDetailTypes) {
   return (
     <div className="flex flex-col gap-y-4">
       <div className="">

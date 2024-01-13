@@ -1,5 +1,5 @@
+import ArtworkCard from "@/components/artworks/ArtworkCard";
 import { fetchCuratedArtworks } from "@/services/artworks/fetchedCuratedArtworks";
-import ArtworkCard from "../../../components/artworks/ArtworkCard";
 
 export default async function CuratedArtworksLayout() {
   const userCuratedArtworks = await fetchCuratedArtworks();

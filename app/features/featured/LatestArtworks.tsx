@@ -1,7 +1,5 @@
 import { fetchAllArtworks } from "@/services/artworks/fetchAllArtworks";
 import ArtworkCard from "../../../components/artworks/ArtworkCard";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 
 export default async function LatestArtworks() {
   const artworks = await fetchAllArtworks();
