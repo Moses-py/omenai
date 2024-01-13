@@ -1,12 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { nextAuthOptions } from "@/lib/auth/next-auth-options";
-import { fetchSingleArtworkImpression } from "@/services/artworks/fetchSingleArtworkImpression";
-import { getServerSession } from "next-auth";
 import { IoHeartOutline } from "react-icons/io5";
-import ArtworkLike from "../../app/features/components/ArtworkLike";
 import Link from "next/link";
 import { formatPrice } from "@/utils/priceFormatter";
-export default async function ArtworkCard({
+export default function ArtworkCard({
   image,
   artist,
   name,
@@ -17,7 +13,7 @@ export default async function ArtworkCard({
   name: string;
   pricing?: {
     price: string;
-    shouldShowPrice: "Yes" | "No";
+    shouldShowPrice: "Yes" | "No" | string;
   };
 }) {
   return (

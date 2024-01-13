@@ -83,7 +83,13 @@ type ArtworkDimensions = {
 
 type ArtworkPricing = {
   price: string;
-  shouldShowPrice: string;
+  shouldShowPrice: "Yes" | "No" | string;
+};
+
+type ArtworkResultTypes = ArtworkSchemaTypes & {
+  _id: string;
+  updatedAt: string;
+  createdAt: string;
 };
 
 type ArtworkUploadStateTypes = {
@@ -97,7 +103,7 @@ type ArtworkUploadStateTypes = {
   width: string;
   depth?: string;
   price: string;
-  shouldShowPrice: string;
+  shouldShowPrice: "Yes" | "No" | string;
 };
 
 interface Image {

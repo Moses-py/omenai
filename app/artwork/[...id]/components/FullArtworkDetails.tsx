@@ -1,6 +1,7 @@
-import { ProductBoxTypes } from "./ProductBox";
-
-export default function FullArtworkDetails({ data }: ProductBoxTypes) {
+type FullArtworkDetailsType = {
+  data: ArtworkResultTypes;
+};
+export default function FullArtworkDetails({ data }: FullArtworkDetailsType) {
   return (
     <div className=" p-5 xl:p-[1.5rem] my-5">
       <h3 className="text-dark/70 underline font-semibold md:text-sm text-base mb-4">

@@ -31,8 +31,8 @@ export default function DesktopNavbar() {
         <div className="flex items-center justify-between my-4">
           {/* Links */}
           <ul className="hidden lg:flex space-x-6 w-fit">
-            <NavbarLink disabled={false} text={"Artists"} link={"/"} />
-            <NavbarLink disabled={false} text={"Artworks"} link={"/"} />
+            <NavbarLink disabled={true} text={"Artists"} link={"/"} />
+            <NavbarLink disabled={false} text={"Artworks"} link={"/catalog"} />
             <NavbarLink disabled={true} text={"Auctions"} link={"/"} />
             <NavbarLink disabled={true} text={"Fairs"} link={"/"} />
             <NavbarLink disabled={true} text={"Shows"} link={"/"} />

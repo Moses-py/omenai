@@ -8,6 +8,8 @@ type ActionStoreTypes = {
   updateRecoveryModal: (label: RouteIdentifier) => void;
   openSideNav: boolean;
   updateOpenSideNav: (val: boolean) => void;
+  filterModal: boolean;
+  toggleFilterModal: (value: boolean) => void;
 };
 
 export const actionStore = create<ActionStoreTypes>((set, get) => ({
@@ -22,5 +24,9 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
   openSideNav: false,
   updateOpenSideNav: (val: boolean) => {
     set({ openSideNav: val });
+  },
+  filterModal: false,
+  toggleFilterModal: (value: boolean) => {
+    set({ filterModal: value });
   },
 }));

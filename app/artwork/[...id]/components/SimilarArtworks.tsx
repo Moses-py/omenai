@@ -34,7 +34,7 @@ export default async function SimilarArtworks({
                 _id: string;
                 pricing: {
                   price: string;
-                  shouldShowPrice: "Yes" | "No";
+                  shouldShowPrice: "Yes" | "No" | string;
                 };
               },
               index: any
