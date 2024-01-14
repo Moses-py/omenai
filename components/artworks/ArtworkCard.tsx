@@ -27,7 +27,7 @@ export default function ArtworkCard({
 
         <div className="mb-[3rem]">
           <div className="flex justify-between items-center">
-            <p className="font-medium text-dark text-[18px]">
+            <p className="font-medium text-dark text-[16px]">
               {artist.substring(0, 20)}
               {artist.length > 20 && "..."}
             </p>

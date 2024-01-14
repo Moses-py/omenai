@@ -8,11 +8,11 @@ type EmailData = {
   token: string;
 };
 export const sendIndividualMail = async ({ name, email, token }: EmailData) => {
-  await sendMailVerification({
-    to: email,
-    subject: "Verify your Omenai account.",
-    html: render(UserVerificationEmail(name, token), {
-      pretty: true,
-    }),
-  });
+  // await sendMailVerification({
+  //   to: email,
+  //   subject: "Verify your Omenai account.",
+  //   html: render(UserVerificationEmail(name, token), {
+  //     pretty: true,
+  //   }),
+  // });
 };
