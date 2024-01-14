@@ -1,4 +1,5 @@
 import { getApiUrl } from "@/config";
+import { revalidatePath } from "next/cache";
 
 export async function uploadArtworkData(
   data: Omit<ArtworkSchemaTypes, "art_id">
@@ -20,6 +21,7 @@ export async function uploadArtworkData(
       return response;
     });
 
+    // revalidatePath("/catalog");
     return response;
   } catch (error: any) {
     console.log(error);

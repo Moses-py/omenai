@@ -9,11 +9,11 @@ type EmailData = {
   token: string;
 };
 export const sendGalleryMail = async ({ name, email, token }: EmailData) => {
-  await sendMailVerification({
-    to: email,
-    subject: "Verify your Omenai Gallery account.",
-    html: render(GalleryVerificationEmail(name, token), {
-      pretty: true,
-    }),
-  });
+  // await sendMailVerification({
+  //   to: email,
+  //   subject: "Verify your Omenai Gallery account.",
+  //   html: render(GalleryVerificationEmail(name, token), {
+  //     pretty: true,
+  //   }),
+  // });
 };
