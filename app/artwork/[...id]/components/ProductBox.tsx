@@ -1,4 +1,5 @@
 import ArtworkDetail from "./ArtworkDetail";
+import FullArtworkDetails from "./FullArtworkDetails";
 import ImageBox from "./ImageBox";
 
 type ProductBoxTypes = {
@@ -17,6 +18,7 @@ export default function ProductBox({ data }: ProductBoxTypes) {
         {/* Data */}
         <div className="w-full h-full">
           <ArtworkDetail data={data} />
+          <FullArtworkDetails data={data} />
         </div>
       </div>
     </div>

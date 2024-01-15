@@ -1,8 +1,6 @@
-import { fetchAllArtworkImpressions } from "@/services/artworks/fetchArtworkImpressions";
 import TrendingArtworkCard from "./TrendingArtCard";
 
-export default async function TrendingArtworks() {
-  const artworks = await fetchAllArtworkImpressions();
+export default function TrendingArtworks({ artworks }: { artworks: any }) {
   return (
     <>
       {artworks.data.length > 0 && (

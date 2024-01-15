@@ -6,7 +6,7 @@ export default function EditorialGridItemLarge({
   editorial: EditorialItemProps;
 }) {
   return (
-    <div className="w-full h-full">
+    <div className="w-auto h-auto">
       <EditorialItem
         title={editorial.title}
         date={editorial.date}
