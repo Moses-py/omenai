@@ -26,7 +26,7 @@ export default function EditorialItem({
           <img
             src={image}
             alt={"article_image"}
-            className="w-full h-auto max-h-full object-cover object-center"
+            className="w-full h-full max-h-full object-cover object-center"
           />
         ) : (
           <NoCover />

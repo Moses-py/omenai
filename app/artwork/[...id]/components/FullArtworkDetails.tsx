@@ -3,13 +3,13 @@ type FullArtworkDetailsType = {
 };
 export default function FullArtworkDetails({ data }: FullArtworkDetailsType) {
   return (
-    <div className=" p-5 xl:p-[1.5rem] my-5">
-      <h3 className="text-dark/70 underline font-semibold md:text-sm text-base mb-4">
-        About this artwork
+    <div className=" my-5">
+      <h3 className="text-dark/70 underline font-semibold text-base mb-4">
+        More about this artwork
       </h3>
-      <div className="w-full border border-dark/20 grid grid-cols-12">
-        <div className="col-span-6 md:col-span-4 lg:col-span-3">
-          <ul className=" flex flex-col justify-center gap-y-3 py-4 pl-4 font-semibold">
+      <div className="w-full grid grid-cols-12">
+        <div className="col-span-6 md:col-span-4">
+          <ul className="w-full flex flex-col justify-center gap-y-3 py-4 font-semibold">
             <li>Materials</li>
             <li>Width</li>
             <li>Height</li>
@@ -20,7 +20,7 @@ export default function FullArtworkDetails({ data }: FullArtworkDetailsType) {
             <li>Year</li>
           </ul>
         </div>
-        <div className="col-span-6 md:col-span-8 lg:col-span-9">
+        <div className="col-span-6 md:col-span-8">
           <ul className=" flex flex-col text-dark/70 justify-center gap-y-3 py-4">
             <li>{data.materials}</li>
             <li>{data.dimensions.width}</li>

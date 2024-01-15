@@ -1,9 +1,9 @@
 import Link from "next/link";
 import EditorialsGrid from "./components/EditorialsGrid";
 
-export default function Editorials() {
+export default function Editorials({ editorials }: { editorials: any }) {
   return (
-    <div className="p-2 mt-8 relative mb-[4rem]">
+    <div className="p-2 relative my-[10rem]">
       <div className="flex justify-between items-center">
         <h1 className="text-dark font-normal text-[20px] sm:text-md">
           Omenai editorials
@@ -15,7 +15,7 @@ export default function Editorials() {
           View all editorials
         </Link>
       </div>
-      <EditorialsGrid />
+      <EditorialsGrid editorials={editorials} />
     </div>
   );
 }

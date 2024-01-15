@@ -9,9 +9,11 @@ import { MdEmail } from "react-icons/md";
 
 import { motion } from "framer-motion";
 import { IndividualLogo } from "../logo/Logo";
+import Newsletter from "./Newsletter";
 const Footer = () => {
   return (
     <footer className="bg-white w-full">
+      <Newsletter />
       <div className="w-full px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-teal-600 mb-8">
           <IndividualLogo />

@@ -2,14 +2,13 @@ import ArtworkCard from "@/components/artworks/ArtworkCard";
 import NotFoundData from "@/components/notFound/NotFoundData";
 import { fetchArtworksByCriteria } from "@/services/artworks/fetchArtworksByCriteria";
 
-export default async function SimilarArtworks({
-  medium,
+export default function SimilarArtworks({
   title,
+  artworksByCriteria,
 }: {
-  medium: string;
   title: string;
+  artworksByCriteria: any;
 }) {
-  const artworksByCriteria = await fetchArtworksByCriteria(medium);
   const artworks = artworksByCriteria.data.filter((artwork: any) => {
     return artwork.title !== title;
   });
