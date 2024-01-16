@@ -3,7 +3,7 @@
 import NotFoundData from "@/components/notFound/NotFoundData";
 import { useSearchParams } from "next/navigation";
 
-export default function SearchResultWrapper() {
+export default function NotFoundSearchResult() {
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get("searchTerm");
 

@@ -1,31 +1,48 @@
 "use client";
 
-import NotFoundData from "@/components/notFound/NotFoundData";
+import { fetchSearchKeyWordResults } from "@/services/search/fetchSearchKeywordResults";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import NotFoundSearchResult from "./NotFoundSearchResult";
+import SearchResultDetails from "./SearchResultDetails";
 
 export default function SearchResultWrapper() {
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get("searchTerm");
+  const [searchResults, setSearchResults] = useState<
+    | (Pick<
+        ArtworkSchemaTypes,
+        "art_id" | "artist" | "pricing" | "title" | "url"
+      > & { _id: string })[]
+    | []
+    | "pending"
+  >("pending");
 
-  //   useEffect(() => {}, []);
+  useEffect(() => {
+    setSearchResults("pending");
+    const getResults = async () => {
+      const data = await fetchSearchKeyWordResults(searchTerm as string);
+      if (data !== undefined) setSearchResults(data.data);
+
+      if (data === undefined)
+        toast.error("An error has occured, please try again");
+    };
+
+    getResults();
+  }, [searchTerm]);
 
   return (
     <>
       <div className="w-full">
-        <div className="px-5 py-8">
-          <h1 className="text-sm md:text-md lg:text-lg font-medium text-dark/80">
-            No results found for term{" "}
-            <span className="text-primary">&apos;{searchTerm}&apos;</span>
-          </h1>
-          <h2 className="text-base md:text-sm lg:text-md font-normal text-base-theme">
-            Try checking for spelling errors or try another search term.
-          </h2>
-        </div>
-        <hr className=" border-dark/30" />
-        <div className="w-full h-[40vh] md:h-[50vh] grid place-items-center">
-          <NotFoundData />
-        </div>
+        {searchResults.length === 0 ? (
+          <NotFoundSearchResult />
+        ) : (
+          <SearchResultDetails
+            data={searchResults}
+            searchTerm={searchTerm as string}
+          />
+        )}
       </div>
     </>
   );

@@ -6,7 +6,7 @@ export default function EditorialGridItemsList({
   editorials: EditorialItemProps[];
 }) {
   return (
-    <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-3">
+    <div className="grid xxm:grid-cols-2 xl:grid-cols-3 sm:gap-3">
       {editorials.map((editorial, index) => {
         return (
           <EditorialItem

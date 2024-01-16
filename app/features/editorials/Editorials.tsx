@@ -3,8 +3,8 @@ import EditorialsGrid from "./components/EditorialsGrid";
 
 export default function Editorials({ editorials }: { editorials: any }) {
   return (
-    <div className="p-2 relative my-[10rem]">
-      <div className="flex justify-between items-center">
+    <div className="p-1 sm:p-4 relative my-[4rem] md:my-[8rem]">
+      <div className="flex justify-between items-center p-2">
         <h1 className="text-dark font-normal text-[20px] sm:text-md">
           Omenai editorials
         </h1>

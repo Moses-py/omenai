@@ -9,22 +9,28 @@ import { RiAuctionLine } from "react-icons/ri";
 import { CiSettings } from "react-icons/ci";
 import Link from "next/link";
 import { UserDashboardNavigationStore } from "@/store/user/navigation/NavigationStore";
+import { MdAccountCircle } from "react-icons/md";
 
 const LoggedInUserDropDown = ({ user }: { user: string | undefined }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = UserDashboardNavigationStore((state) => [
-    state.selected,
-    state.setSelected,
-  ]);
+  const [selected, setSelected] = UserDashboardNavigationStore(
+    (state: { selected: any; setSelected: any }) => [
+      state.selected,
+      state.setSelected,
+    ]
+  );
 
   return (
-    <div className="px-2 py-4 flex items-center justify-center bg-white">
+    <div className=" py-4 flex items-center justify-center bg-white">
       <motion.div animate={open ? "open" : "closed"} className="relative">
         <button
           onClick={() => setOpen((pv) => !pv)}
-          className="flex items-center gap-2 px-3 py-2 rounded-sm text-dark transition-colors"
+          className="flex items-center gap-2 pl-3 py-2 rounded-sm text-dark transition-colors"
         >
-          <span className="font-normal">{user}</span>
+          <span className="sm:block hidden font-normal">{user}</span>
+          <span className="sm:hidden block">
+            <MdAccountCircle className="text-md" />
+          </span>
           <motion.span variants={iconVariants}>
             <FiChevronDown />
           </motion.span>
@@ -33,8 +39,8 @@ const LoggedInUserDropDown = ({ user }: { user: string | undefined }) => {
         <motion.ul
           initial={wrapperVariants.closed}
           variants={wrapperVariants}
-          style={{ originY: "top", translateX: "-50%" }}
-          className="flex flex-col gap-2 p-2 rounded-lg text-dark bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden z-50 ring-1 ring-dark/20"
+          style={{ originY: "top", translateX: "-100%" }}
+          className="flex flex-col gap-2 p-2 rounded-lg text-dark bg-white shadow-xl absolute top-[120%] left-[100%] w-48 overflow-hidden z-50 ring-1 ring-dark/20"
         >
           <Option
             setSelectedTab={setSelected}

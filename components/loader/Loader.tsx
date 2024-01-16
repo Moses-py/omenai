@@ -1,8 +1,8 @@
 "use client";
 import { Variants, motion } from "framer-motion";
 
-const Loader = () => {
-  return <BarLoader />;
+const Loader = ({ theme }: { theme: "dark" | "light" }) => {
+  return <BarLoader theme={theme} />;
 };
 
 const variants = {
@@ -22,7 +22,7 @@ const variants = {
   },
 } as Variants;
 
-const BarLoader = () => {
+const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
   return (
     <motion.div
       transition={{
@@ -34,23 +34,43 @@ const BarLoader = () => {
     >
       <motion.div
         variants={variants}
-        className="h-8 w-2 bg-white group-hover:bg-dark"
+        className={`h-8 w-2 ${
+          theme === "dark"
+            ? "bg-dark group-hover:bg-white"
+            : "bg-white group-hover:bg-dark"
+        }`}
       />
       <motion.div
         variants={variants}
-        className="h-8 w-2 bg-white group-hover:bg-dark"
+        className={`h-8 w-2 ${
+          theme === "dark"
+            ? "bg-dark group-hover:bg-white"
+            : "bg-white group-hover:bg-dark"
+        }`}
       />
       <motion.div
         variants={variants}
-        className="h-8 w-2 bg-white group-hover:bg-dark"
+        className={`h-8 w-2 ${
+          theme === "dark"
+            ? "bg-dark group-hover:bg-white"
+            : "bg-white group-hover:bg-dark"
+        }`}
       />
       <motion.div
         variants={variants}
-        className="h-8 w-2 bg-white group-hover:bg-dark"
+        className={`h-8 w-2 ${
+          theme === "dark"
+            ? "bg-dark group-hover:bg-white"
+            : "bg-white group-hover:bg-dark"
+        }`}
       />
       <motion.div
         variants={variants}
-        className="h-8 w-2 bg-white group-hover:bg-dark"
+        className={`h-8 w-2 ${
+          theme === "dark"
+            ? "bg-dark group-hover:bg-white"
+            : "bg-white group-hover:bg-dark"
+        }`}
       />
     </motion.div>
   );

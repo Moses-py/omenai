@@ -67,17 +67,22 @@ export const ArtworkImage = ({
       />
       <Link
         href={`/artwork/${title}`}
-        className="absolute bottom-0 text-white px-3 py-2 z-20 bg-dark/50 w-full rounded-md cursor-pointer"
+        className="absolute bottom-0 flex justify-between items-center gap-y-[0.1rem] text-white px-2 py-1 z-20 bg-dark/50 w-full rounded-md cursor-pointer"
       >
-        <p className="font-bold text-[1.1rem]">{title}</p>
-        <p className="text-xs text-[#fafafa]">{author}</p>
+        <div className="flex-col flex gap-y-[0.1rem]">
+          <span className="font-bold text-base">{title}</span>
+          <span className="text-xs text-[#fafafa]">{author}</span>
+        </div>
+
         {pricing?.price &&
           (pricing?.price && pricing.shouldShowPrice === "Yes" ? (
-            <p className="font-bold  text-white">
+            <span className="font-bold text-xs text-white">
               {formatPrice(pricing.price)}
-            </p>
+            </span>
           ) : (
-            <p className="underline font-medium">Price on request</p>
+            <span className="underline font-medium text-xs">
+              Price on request
+            </span>
           ))}
       </Link>
     </div>
