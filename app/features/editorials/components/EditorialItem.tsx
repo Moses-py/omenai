@@ -26,17 +26,17 @@ export default function EditorialItem({
           <img
             src={image}
             alt={"article_image"}
-            className="w-full h-full max-h-full object-cover object-center"
+            className="w-full h-[300px] sm:h-[400px] object-cover object-center"
           />
         ) : (
           <NoCover />
         )}
         <div className="flex flex-col gap-[1rem] mx-0">
-          <div className="flex gap-2 items-center">
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
             <p className="text-base-theme/60 text-[14px]">{date}</p>
-            <span className="font-bold">•</span>
+            {/* <span className="font-bold">•</span> */}
 
-            <p className="text-base-theme text-base">
+            <p className="text-base-theme text-[14px]">
               <span className="italic">by</span>{" "}
               <span className="font-bold uppercase text-[14px]">
                 Olabisi Onabanjo

@@ -42,12 +42,12 @@ export default function DesktopNavbar() {
           {/* Action buttons */}
           {session.status === "authenticated" &&
             session.data.user.role === "user" && (
-              <div className="sm:block hidden">
+              <div className="">
                 <LoggedInUser user={session.data?.user.name} />
               </div>
             )}
           {session.status === "unauthenticated" && (
-            <div className=" sm:block hidden">
+            <div className="">
               <NavbarActionButtons />
             </div>
           )}

@@ -42,7 +42,7 @@ export default function MobileNavbar() {
         </ul>
       </div>
 
-      <hr className="border-dark/20 mt-4" />
+      {/* <hr className="border-dark/20 mt-4" />
       {session.status === "authenticated" &&
         session.data.user.role === "user" && (
           <div className="block sm:hidden p-4">
@@ -53,7 +53,7 @@ export default function MobileNavbar() {
         <div className=" block sm:hidden">
           <NavbarActionButtons />
         </div>
-      )}
+      )} */}
     </div>
   );
 }
