@@ -30,6 +30,7 @@
     "flowbite": "^2.0.0",
     "flowbite-react": "^0.6.4",
     "framer-motion": "^10.16.4",
+    "fs": "^0.0.1-security",
     "lottie-react": "^2.4.0",
     "mongoose": "^7.5.3",
     "next": "^14.0.4",
