@@ -14,7 +14,10 @@ export default function DesktopNavbar() {
 
   return (
     <>
-      <nav className="pt-5 px-4 lg:px-8 text-base text-black font-medium relative">
+      <nav
+        className="pt-5 px-4 lg:px-8 text-base text-black font-medium relative"
+        id="navbar"
+      >
         <div className="flex justify-between items-center">
           <IndividualLogo />
           <div className="lg:hidden block">
@@ -25,7 +28,11 @@ export default function DesktopNavbar() {
           <ul className="lg:flex space-x-6 hidden">
             <NavbarLink disabled={false} text={"Buy artworks"} link={"/"} />
             <NavbarLink disabled={false} text={"Sell Artworks"} link={"/"} />
-            <NavbarLink disabled={false} text={"View editorials"} link={"/"} />
+            <NavbarLink
+              disabled={false}
+              text={"View editorials"}
+              link={"/articles"}
+            />
           </ul>
         </div>
         <div className="flex items-center justify-between my-4">

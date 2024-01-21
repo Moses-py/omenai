@@ -48,7 +48,7 @@ const ArticleCard = ({
             {/* <span className="font-bold">•</span> */}
           </div>
           <div className="flex flex-col gap-2">
-            <Link href={`/secure/editorial/${id}/${title}`}>
+            <Link href={`/articles/${id}/${title}`}>
               <h1 className="text-sm lg:text-[1.5rem] leading-tight font-medium ">
                 {title}
               </h1>

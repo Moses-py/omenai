@@ -30,7 +30,11 @@ export default function MobileNavbar() {
         <ul className="flex flex-col space-y-4 px-4">
           <NavbarLink disabled={false} text={"Buy artworks"} link={"/"} />
           <NavbarLink disabled={false} text={"Sell Artworks"} link={"/"} />
-          <NavbarLink disabled={false} text={"View editorials"} link={"/"} />
+          <NavbarLink
+            disabled={false}
+            text={"View editorials"}
+            link={"/articles"}
+          />
         </ul>
         <hr className="border-dark/20 my-4" />
         <ul className="flex flex-col space-y-4 px-4 w-fit">

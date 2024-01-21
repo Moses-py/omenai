@@ -2,6 +2,7 @@
 import { IoHeartOutline } from "react-icons/io5";
 import Link from "next/link";
 import { formatPrice } from "@/utils/priceFormatter";
+
 export default function ArtworkCard({
   image,
   artist,
