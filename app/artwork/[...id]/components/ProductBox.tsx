@@ -4,9 +4,10 @@ import ImageBox from "./ImageBox";
 
 type ProductBoxTypes = {
   data: ArtworkResultTypes;
+  sessionId: string | undefined;
 };
 
-export default function ProductBox({ data }: ProductBoxTypes) {
+export default function ProductBox({ data, sessionId }: ProductBoxTypes) {
   return (
     <div className="md:container p-3 xl:p-[1.5rem] my-5">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -17,7 +18,7 @@ export default function ProductBox({ data }: ProductBoxTypes) {
 
         {/* Data */}
         <div className="w-full h-full">
-          <ArtworkDetail data={data} />
+          <ArtworkDetail data={data} sessionId={sessionId} />
           <FullArtworkDetails data={data} />
         </div>
       </div>

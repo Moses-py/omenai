@@ -1,6 +1,12 @@
 import TrendingArtworkCard from "./TrendingArtCard";
 
-export default function TrendingArtworks({ artworks }: { artworks: any }) {
+export default function TrendingArtworks({
+  artworks,
+  sessionId,
+}: {
+  artworks: any;
+  sessionId: string | undefined;
+}) {
   return (
     <>
       {artworks.data.length > 0 && (
@@ -17,6 +23,9 @@ export default function TrendingArtworks({ artworks }: { artworks: any }) {
                   image={artwork.url}
                   artist={artwork.artist}
                   impressions={artwork.impressions}
+                  likeIds={artwork.like_IDs}
+                  sessionId={sessionId}
+                  art_id={artwork.art_id}
                 />
               );
             })}

@@ -16,21 +16,21 @@ export async function POST(request: Request) {
     if (!uploadArt)
       throw new ServerError("A server error has occured, please try again");
 
-    const impressionData = {
-      artist: uploadArt.artist,
-      title: uploadArt.title,
-      art_id: uploadArt.art_id,
-      gallery_id: uploadArt.gallery_id,
-      url: uploadArt.url,
-    };
+    // const impressionData = {
+    //   artist: uploadArt.artist,
+    //   title: uploadArt.title,
+    //   art_id: uploadArt.art_id,
+    //   gallery_id: uploadArt.gallery_id,
+    //   url: uploadArt.url,
+    // };
 
-    const uploadArtworkImpression = await ArtworkImpressions.create(
-      impressionData
-    );
-    if (!uploadArtworkImpression) {
-      await Artworkuploads.findOneAndDelete({ art_id: uploadArt.art_id });
-      throw new ServerError("Unable to complete operation, please try again");
-    }
+    // const uploadArtworkImpression = await ArtworkImpressions.create(
+    //   impressionData
+    // );
+    // if (!uploadArtworkImpression) {
+    //   await Artworkuploads.findOneAndDelete({ art_id: uploadArt.art_id });
+    //   throw new ServerError("Unable to complete operation, please try again");
+    // }
 
     return NextResponse.json(
       {

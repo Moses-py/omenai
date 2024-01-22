@@ -1,7 +1,11 @@
 import ArtworkCard from "@/components/artworks/ArtworkCard";
 import { fetchCuratedArtworks } from "@/services/artworks/fetchedCuratedArtworks";
 
-export default async function CuratedArtworksLayout() {
+export default async function CuratedArtworksLayout({
+  sessionId,
+}: {
+  sessionId: string | undefined;
+}) {
   const userCuratedArtworks = await fetchCuratedArtworks();
 
   return (
@@ -20,6 +24,10 @@ export default async function CuratedArtworksLayout() {
                   artist={artwork.artist}
                   name={artwork.title}
                   pricing={artwork.pricing}
+                  impressions={artwork.impressions}
+                  likeIds={artwork.like_IDs}
+                  sessionId={sessionId}
+                  art_id={artwork.art_id}
                 />
               );
             })}

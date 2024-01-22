@@ -14,7 +14,7 @@ import { listEditorials } from "./secure/editorial/admin/lib/getAllBlogArticles"
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
   const artworks = await fetchAllArtworkImpressions();
-  const allaArtworks = await fetchAllArtworks();
+  const allArtworks = await fetchAllArtworks();
   const editorials = await listEditorials();
 
   return (
@@ -22,11 +22,21 @@ export default async function Home() {
       <DesktopNavbar />
       <ShuffleHero />
       {session?.user && session?.user.role === "user" ? (
-        <CuratedArtworkClientWrapper />
+        <CuratedArtworkClientWrapper
+          sessionId={
+            session?.user.role === "user" ? session?.user.id : undefined
+          }
+        />
       ) : null}
-      <TrendingArtworks artworks={artworks} />
+      <TrendingArtworks
+        artworks={artworks}
+        sessionId={session?.user.role === "user" ? session?.user.id : undefined}
+      />
       {/* <ArtsByMedium /> */}
-      <LatestArtworks artworks={allaArtworks} />
+      <LatestArtworks
+        artworks={allArtworks}
+        sessionId={session?.user.role === "user" ? session?.user.id : undefined}
+      />
       <Editorials editorials={editorials} />
 
       <Footer />

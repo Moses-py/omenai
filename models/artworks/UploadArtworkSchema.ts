@@ -21,6 +21,8 @@ const artworkUpload = new Schema<ArtworkSchemaTypes>(
     art_id: { type: String, default: () => uuidv4(), unique: true },
     gallery_id: { type: String, required: true },
     url: { type: String, required: true, unique: true },
+    impressions: { type: Number, default: 0 },
+    like_IDs: { type: Schema.Types.Mixed, default: [] },
   },
   { timestamps: true }
 );

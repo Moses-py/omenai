@@ -3,11 +3,14 @@ import Dimensions from "./Dimensions";
 import { GrCertificate } from "react-icons/gr";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { formatPrice } from "@/utils/priceFormatter";
+import { IoHeartOutline } from "react-icons/io5";
+import { GiCheckMark } from "react-icons/gi";
 
 type ArtworkDetailTypes = {
   data: ArtworkResultTypes;
+  sessionId: string | undefined;
 };
-export default function ArtworkDetail({ data }: ArtworkDetailTypes) {
+export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
   return (
     <div className="flex flex-col gap-y-4">
       <div className="">
@@ -43,11 +46,29 @@ export default function ArtworkDetail({ data }: ArtworkDetailTypes) {
           : null}
       </h1>
 
-      <button className="w-full bg-dark py-3 underline text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group">
-        {data.pricing.shouldShowPrice === "Yes"
-          ? "Purchase artwork"
-          : "Request price"}
-      </button>
+      <div className="flex sm:flex-row flex-col gap-2">
+        <button className="w-full bg-dark py-3 underline text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group">
+          {data.pricing.shouldShowPrice === "Yes"
+            ? "Purchase artwork"
+            : "Request price"}
+        </button>
+
+        {(sessionId === undefined ||
+          (sessionId && !data.like_IDs?.includes(sessionId))) && (
+          <button className="w-full py-3 justify-center flex items-center gap-2 underline text-dark text-base hover:bg-dark hover:text-white border border-dark duration-300 group">
+            <IoHeartOutline /> <span>Save artwork</span>
+          </button>
+        )}
+        {sessionId !== undefined && data.like_IDs?.includes(sessionId) && (
+          <button
+            disabled
+            className="w-full py-3 border flex justify-center items-center gap-2 border-dark/30 cursor-not-allowed underline text-dark/50 text-base group"
+          >
+            <GiCheckMark />
+            <span>Artwork saved</span>
+          </button>
+        )}
+      </div>
     </div>
   );
 }

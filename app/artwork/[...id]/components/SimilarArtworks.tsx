@@ -5,9 +5,11 @@ import { fetchArtworksByCriteria } from "@/services/artworks/fetchArtworksByCrit
 export default function SimilarArtworks({
   title,
   artworksByCriteria,
+  sessionId,
 }: {
   title: string;
   artworksByCriteria: any;
+  sessionId: string | undefined;
 }) {
   const artworks = artworksByCriteria.data.filter((artwork: any) => {
     return artwork.title !== title;
@@ -35,6 +37,9 @@ export default function SimilarArtworks({
                   price: string;
                   shouldShowPrice: "Yes" | "No" | string;
                 };
+                impressions: number;
+                like_IDs: string[];
+                art_id: string;
               },
               index: any
             ) => {
@@ -45,6 +50,10 @@ export default function SimilarArtworks({
                   name={art.title}
                   artist={art.artist}
                   pricing={art.pricing}
+                  impressions={art.impressions}
+                  likeIds={art.like_IDs}
+                  sessionId={sessionId}
+                  art_id={art.art_id}
                 />
               );
             }
