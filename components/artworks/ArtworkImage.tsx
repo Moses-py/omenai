@@ -3,10 +3,7 @@
 import { FaHeart } from "react-icons/fa";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import InnerImageZoom from "react-inner-image-zoom";
-import { updateArtworkImpressions } from "@/services/artworks/updateArtworkImpressions";
-import { toast } from "sonner";
-import { useState } from "react";
-import { useUpdateEffect } from "usehooks-ts";
+
 import { formatPrice } from "@/utils/priceFormatter";
 import Link from "next/link";
 type ArtworkImageProps = {
@@ -27,35 +24,10 @@ export const ArtworkImage = ({
   art_id,
   pricing,
 }: ArtworkImageProps) => {
-  const [clicked, setClick] = useState({
-    liked: false,
-  });
-
-  useUpdateEffect(() => {
-    if (clicked.liked) {
-      toast.success("Clicked");
-      const addLike = async () => {
-        const likedArtwork = await updateArtworkImpressions(art_id);
-        if (likedArtwork?.isOk) toast.success(likedArtwork.body.message);
-      };
-      addLike();
-    }
-  }, [clicked]);
-
-  async function handleLikeClick() {
-    setClick((prev) => {
-      return {
-        liked: !prev.liked,
-      };
-    });
-  }
   return (
     <div className="relative flex items-end max-w-[400px] w-auto rounded-md mb-4">
       <FaHeart
-        className={`absolute top-5 right-5 z-30 text-sm ${
-          clicked.liked ? "text-red-600" : "text-white"
-        } cursor-pointer`}
-        onClick={handleLikeClick}
+        className={`absolute top-5 right-5 z-30 text-sm text-white cursor-pointer`}
       />
       <InnerImageZoom
         src={url}

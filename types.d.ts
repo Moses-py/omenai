@@ -73,6 +73,8 @@ type ArtworkSchemaTypes = {
   pricing: ArtworkPricing;
   art_id: string;
   gallery_id: string;
+  impressions?: number;
+  like_IDs?: string[];
 };
 
 type ArtworkDimensions = {

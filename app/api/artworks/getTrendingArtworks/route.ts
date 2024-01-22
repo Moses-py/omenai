@@ -2,13 +2,14 @@ import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { ArtworkImpressions } from "@/models/artworks/ArtworkImpressionSchema";
+import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
     await connectMongoDB();
 
-    const allTrendingArtworks = await ArtworkImpressions.find().sort({
+    const allTrendingArtworks = await Artworkuploads.find().sort({
       impressions: -1,
     });
 
