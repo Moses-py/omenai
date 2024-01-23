@@ -7,27 +7,21 @@ import Editorials from "./features/editorials/Editorials";
 import TrendingArtworks from "./features/trending/TrendingArtworks";
 import Footer from "@/components/footer/Footer";
 import CuratedArtworkClientWrapper from "./features/curated/CuratedArtworkClientWrapper";
-import { fetchAllArtworkImpressions } from "@/services/artworks/fetchArtworkImpressions";
-import { fetchAllArtworks } from "@/services/artworks/fetchAllArtworks";
-import { listEditorials } from "./secure/editorial/admin/lib/getAllBlogArticles";
-import { useQuery } from "@tanstack/react-query";
+
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
-  // const artworks = await fetchAllArtworkImpressions();
-  // const allArtworks = await fetchAllArtworks();
-  const editorials = await listEditorials();
 
   return (
     <main>
       <DesktopNavbar />
       <ShuffleHero />
-      {/* {session?.user && session?.user.role === "user" ? (
+      {session?.user && session?.user.role === "user" ? (
         <CuratedArtworkClientWrapper
           sessionId={
             session?.user.role === "user" ? session?.user.id : undefined
           }
         />
-      ) : null} */}
+      ) : null}
       <TrendingArtworks
         // artworks={artworks}
         sessionId={session?.user.role === "user" ? session?.user.id : undefined}
@@ -35,8 +29,7 @@ export default async function Home() {
       <LatestArtworks
         sessionId={session?.user.role === "user" ? session?.user.id : undefined}
       />
-      <Editorials editorials={editorials} />
-
+      <Editorials />
       <Footer />
     </main>
   );

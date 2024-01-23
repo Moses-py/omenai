@@ -21,6 +21,10 @@ function useLikedState(
       updateArtworkImpressions(art_id, options.state, options.sessionId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["trending"] });
+      queryClient.invalidateQueries({ queryKey: ["curated"] });
+    },
+    onError: () => {
+      setLikedState({ count: initialImpressions, ids: initialLikeIds });
     },
   });
 
