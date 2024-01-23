@@ -2,13 +2,12 @@ import AuthProvider from "@/lib/auth/auth-provider";
 import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import { Outfit, Raleway, Open_Sans, Nunito_Sans } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 import "./globals.css";
-import HomeNavbar from "@/components/navbar/desktop/DesktopNavbar";
-import DesktopNavbar from "@/components/navbar/desktop/DesktopNavbar";
-import Providers from "@/react-query-setup/Provider";
+
+import Providers from "@/react-query-provider/Provider";
 
 const raleway = Nunito_Sans({
   subsets: ["latin"],
