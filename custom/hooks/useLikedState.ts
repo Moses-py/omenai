@@ -1,4 +1,5 @@
 import { updateArtworkImpressions } from "@/services/artworks/updateArtworkImpressions";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 function useLikedState(
@@ -7,9 +8,20 @@ function useLikedState(
   sessionId: string | undefined,
   art_id: string
 ) {
+  const queryClient = useQueryClient();
+
+  // Initialize stateful data
   const [likedState, setLikedState] = useState({
     count: initialImpressions,
     ids: initialLikeIds,
+  });
+
+  const { mutateAsync: updateLikesMutation } = useMutation({
+    mutationFn: (options: { state: boolean; sessionId: string }) =>
+      updateArtworkImpressions(art_id, options.state, options.sessionId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["trending"] });
+    },
   });
 
   const handleLike = async (state: any) => {
@@ -35,11 +47,7 @@ function useLikedState(
 
       // Send async request
       try {
-        const updateLikeInDB = await updateArtworkImpressions(
-          art_id,
-          state,
-          sessionId
-        );
+        const updateLikeInDB = await updateLikesMutation({ state, sessionId });
 
         if (updateLikeInDB === undefined || !updateLikeInDB.isOk) {
           setLikedState({ count: initialImpressions, ids: initialLikeIds });

@@ -10,31 +10,29 @@ import CuratedArtworkClientWrapper from "./features/curated/CuratedArtworkClient
 import { fetchAllArtworkImpressions } from "@/services/artworks/fetchArtworkImpressions";
 import { fetchAllArtworks } from "@/services/artworks/fetchAllArtworks";
 import { listEditorials } from "./secure/editorial/admin/lib/getAllBlogArticles";
-
+import { useQuery } from "@tanstack/react-query";
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
-  const artworks = await fetchAllArtworkImpressions();
-  const allArtworks = await fetchAllArtworks();
+  // const artworks = await fetchAllArtworkImpressions();
+  // const allArtworks = await fetchAllArtworks();
   const editorials = await listEditorials();
 
   return (
-    <main className="">
+    <main>
       <DesktopNavbar />
       <ShuffleHero />
-      {session?.user && session?.user.role === "user" ? (
+      {/* {session?.user && session?.user.role === "user" ? (
         <CuratedArtworkClientWrapper
           sessionId={
             session?.user.role === "user" ? session?.user.id : undefined
           }
         />
-      ) : null}
+      ) : null} */}
       <TrendingArtworks
-        artworks={artworks}
+        // artworks={artworks}
         sessionId={session?.user.role === "user" ? session?.user.id : undefined}
       />
-      {/* <ArtsByMedium /> */}
       <LatestArtworks
-        artworks={allArtworks}
         sessionId={session?.user.role === "user" ? session?.user.id : undefined}
       />
       <Editorials editorials={editorials} />
