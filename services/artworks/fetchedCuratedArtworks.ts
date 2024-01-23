@@ -10,7 +10,7 @@ export const fetchCuratedArtworks = async () => {
     const response = await fetch(`${url}/api/artworks/getAllArtworks`, {
       method: "GET",
     }).then(async (res) => {
-      if (!res.ok) return [];
+      if (!res.ok) return undefined;
       const result = await res.json();
 
       const curated = filterArtObjectsByMedium(
