@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import HomeNavbar from "@/components/navbar/desktop/DesktopNavbar";
 import DesktopNavbar from "@/components/navbar/desktop/DesktopNavbar";
+import Providers from "@/react-query-setup/Provider";
 
 const raleway = Nunito_Sans({
   subsets: ["latin"],
@@ -33,7 +34,10 @@ export default async function RootLayout({
       <body className={`${raleway.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
-        <AuthProvider session={session}>{children}</AuthProvider>
+
+        <AuthProvider session={session}>
+          <Providers>{children}</Providers>
+        </AuthProvider>
       </body>
     </html>
   );
