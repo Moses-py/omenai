@@ -15,13 +15,13 @@ export default async function Home() {
     <main>
       <DesktopNavbar />
       <ShuffleHero />
-      {session?.user && session?.user.role === "user" ? (
+      {/* {session?.user && session?.user.role === "user" ? (
         <CuratedArtworkClientWrapper
           sessionId={
             session?.user.role === "user" ? session?.user.id : undefined
           }
         />
-      ) : null}
+      ) : null} */}
       <TrendingArtworks
         // artworks={artworks}
         sessionId={session?.user.role === "user" ? session?.user.id : undefined}

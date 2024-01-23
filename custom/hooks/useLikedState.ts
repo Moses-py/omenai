@@ -19,9 +19,13 @@ function useLikedState(
   const { mutateAsync: updateLikesMutation } = useMutation({
     mutationFn: (options: { state: boolean; sessionId: string }) =>
       updateArtworkImpressions(art_id, options.state, options.sessionId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["trending"] });
-      queryClient.invalidateQueries({ queryKey: ["curated"] });
+    onSuccess: (data) => {
+      if (data?.isOk) {
+        queryClient.invalidateQueries({ queryKey: ["trending"] });
+        queryClient.invalidateQueries({ queryKey: ["latest"] });
+      } else {
+        setLikedState({ count: initialImpressions, ids: initialLikeIds });
+      }
     },
     onError: () => {
       setLikedState({ count: initialImpressions, ids: initialLikeIds });
@@ -50,16 +54,7 @@ function useLikedState(
       }
 
       // Send async request
-      try {
-        const updateLikeInDB = await updateLikesMutation({ state, sessionId });
-
-        if (updateLikeInDB === undefined || !updateLikeInDB.isOk) {
-          setLikedState({ count: initialImpressions, ids: initialLikeIds });
-        }
-      } catch (error) {
-        // Error has occured with DB update
-        setLikedState({ count: initialImpressions, ids: initialLikeIds });
-      }
+      updateLikesMutation({ state, sessionId });
     }
   };
 
