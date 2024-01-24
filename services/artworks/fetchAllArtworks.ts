@@ -5,6 +5,7 @@ export async function fetchAllArtworks() {
     const url = getApiUrl();
     const response = await fetch(`${url}/api/artworks/getAllArtworks`, {
       method: "GET",
+      cache: "no-store",
     }).then(async (res) => {
       if (!res.ok) return undefined;
       const result = await res.json();
