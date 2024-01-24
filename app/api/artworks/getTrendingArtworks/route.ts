@@ -4,7 +4,7 @@ import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     await connectMongoDB();
 
