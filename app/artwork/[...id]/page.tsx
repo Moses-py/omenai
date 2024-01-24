@@ -1,6 +1,6 @@
 import DesktopNavbar from "@/components/navbar/desktop/DesktopNavbar";
 import ProductBox from "./components/ProductBox";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/artworks/footer/Footer";
 import { fetchSingleArtwork } from "@/services/artworks/fetchSingleArtwork";
 import SimilarArtworks from "./components/SimilarArtworks";
 import { fetchArtworksByCriteria } from "@/services/artworks/fetchArtworksByCriteria";
