@@ -30,7 +30,13 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json(
+      {
+        message: "Successful",
+        data: updateImpression,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
 

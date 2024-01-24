@@ -15,7 +15,6 @@ export default function TrendingArtworks({
       const data = await fetchAllArtworkImpressions();
       return data.data;
     },
-    staleTime: 0,
   });
 
   if (isLoading)

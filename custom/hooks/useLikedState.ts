@@ -2,6 +2,7 @@ import { updateArtworkImpressions } from "@/services/artworks/updateArtworkImpre
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
+
 function useLikedState(
   initialImpressions: number,
   initialLikeIds: string[],
@@ -10,28 +11,27 @@ function useLikedState(
 ) {
   const queryClient = useQueryClient();
 
-  // Initialize stateful data
+  // Initialize stateful data copy of likes data
   const [likedState, setLikedState] = useState({
     count: initialImpressions,
     ids: initialLikeIds,
   });
 
+  // Make async call to update liked state in db
   const { mutateAsync: updateLikesMutation } = useMutation({
     mutationFn: (options: { state: boolean; sessionId: string }) =>
       updateArtworkImpressions(art_id, options.state, options.sessionId),
-    onSuccess: (data) => {
+
+    onSuccess: async (data) => {
       if (data?.isOk) {
-        queryClient.invalidateQueries({ queryKey: ["trending"] });
-        queryClient.invalidateQueries({ queryKey: ["latest"] });
+        await queryClient.invalidateQueries();
       } else {
         setLikedState({ count: initialImpressions, ids: initialLikeIds });
       }
     },
-    onError: () => {
-      setLikedState({ count: initialImpressions, ids: initialLikeIds });
-    },
   });
 
+  // handle onClick like button
   const handleLike = async (state: any) => {
     // Pop up login modal
     // TODO: Create login modal
@@ -40,24 +40,23 @@ function useLikedState(
       toast.error("You need to log in");
     } else {
       if (state) {
-        const pushedId = [...likedState.ids, sessionId];
         setLikedState((prev) => ({
           count: prev.count + 1,
-          ids: pushedId,
+          ids: [...likedState.ids, sessionId],
         }));
       } else {
-        const pulledId = likedState.ids.filter((id) => id !== sessionId);
         setLikedState((prev) => ({
           count: prev.count - 1,
-          ids: pulledId,
+          ids: likedState.ids.filter((id) => id !== sessionId),
         }));
       }
 
-      // Send async request
-      updateLikesMutation({ state, sessionId });
+      // Call useQuery mutation
+      await updateLikesMutation({ state, sessionId });
     }
   };
 
+  // Return stateful copy of like data
   return { likedState, handleLike };
 }
 
