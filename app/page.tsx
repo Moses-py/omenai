@@ -5,9 +5,9 @@ import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { getServerSession } from "next-auth";
 import Editorials from "./features/editorials/Editorials";
 import TrendingArtworks from "./features/trending/TrendingArtworks";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/artworks/footer/Footer";
 import CuratedArtworkClientWrapper from "./features/curated/CuratedArtworkClientWrapper";
-
+export const revalidate = 0;
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
 
