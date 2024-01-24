@@ -15,10 +15,11 @@ export async function updateArtworkImpressions(
         body: JSON.stringify({ id, value, like_id }),
       }
     ).then(async (res) => {
-      const response: { isOk: boolean; body: { message: string } } = {
-        isOk: res.ok,
-        body: await res.json(),
-      };
+      const response: { isOk: boolean; body: { message: string; data: any } } =
+        {
+          isOk: res.ok,
+          body: await res.json(),
+        };
 
       return response;
     });

@@ -15,7 +15,6 @@ export default function LatestArtworks({
       const data = await fetchAllArtworks();
       return data.data;
     },
-    staleTime: 0,
   });
 
   if (isLoading)
