@@ -10,6 +10,10 @@ type ActionStoreTypes = {
   updateOpenSideNav: (val: boolean) => void;
   filterModal: boolean;
   toggleFilterModal: (value: boolean) => void;
+  openLoginModal: boolean;
+  toggleLoginModal: (value: boolean) => void;
+  openLoginModalRecoveryForm: boolean;
+  toggleLoginModalRecoveryForm: (value: boolean) => void;
 };
 
 export const actionStore = create<ActionStoreTypes>((set, get) => ({
@@ -28,5 +32,14 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
   filterModal: false,
   toggleFilterModal: (value: boolean) => {
     set({ filterModal: value });
+  },
+
+  openLoginModal: false,
+  toggleLoginModal: (value: boolean) => {
+    set({ openLoginModal: value });
+  },
+  openLoginModalRecoveryForm: false,
+  toggleLoginModalRecoveryForm: (value: boolean) => {
+    set({ openLoginModalRecoveryForm: value });
   },
 }));

@@ -1,4 +1,5 @@
 import { updateArtworkImpressions } from "@/services/artworks/updateArtworkImpressions";
+import { actionStore } from "@/store/actions/ActionStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -17,6 +18,9 @@ function useLikedState(
     ids: initialLikeIds,
   });
 
+  // Import login toggle store
+  const [toggleLoginModal] = actionStore((state) => [state.toggleLoginModal]);
+
   useEffect(() => {
     setLikedState({ count: initialImpressions, ids: initialLikeIds });
   }, [initialImpressions, initialLikeIds]);
@@ -29,7 +33,6 @@ function useLikedState(
     onSuccess: async (data) => {
       if (data?.isOk) {
         await queryClient.invalidateQueries();
-        await queryClient.invalidateQueries({ queryKey: ["latest"] });
       } else {
         setLikedState({ count: initialImpressions, ids: initialLikeIds });
       }
@@ -42,7 +45,7 @@ function useLikedState(
     // TODO: Create login modal
 
     if (sessionId === undefined) {
-      toast.error("You need to log in");
+      toggleLoginModal(true);
     } else {
       if (state) {
         setLikedState((prev) => ({

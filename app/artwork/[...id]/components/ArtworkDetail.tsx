@@ -1,16 +1,23 @@
-import Loader from "@/components/loader/Loader";
+"use client";
 import Dimensions from "./Dimensions";
 import { GrCertificate } from "react-icons/gr";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { formatPrice } from "@/utils/priceFormatter";
 import { IoHeartOutline } from "react-icons/io5";
 import { GiCheckMark } from "react-icons/gi";
+import useLikedState from "@/custom/hooks/useLikedState";
 
 type ArtworkDetailTypes = {
   data: ArtworkResultTypes;
   sessionId: string | undefined;
 };
 export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
+  const { likedState, handleLike } = useLikedState(
+    data.impressions as number,
+    data.like_IDs as string[],
+    sessionId,
+    data.art_id
+  );
   return (
     <div className="flex flex-col gap-y-4">
       <div className="">
@@ -54,18 +61,21 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
         </button>
 
         {(sessionId === undefined ||
-          (sessionId && !data.like_IDs?.includes(sessionId))) && (
-          <button className="w-full py-3 justify-center flex items-center gap-2 underline text-dark text-base hover:bg-dark hover:text-white border border-dark duration-300 group">
+          (sessionId && !likedState.ids.includes(sessionId))) && (
+          <button
+            onClick={() => handleLike(true)}
+            className="w-full py-3 justify-center flex items-center gap-2 underline text-dark text-base hover:bg-dark hover:text-white border border-dark duration-300 group"
+          >
             <IoHeartOutline /> <span>Save artwork</span>
           </button>
         )}
-        {sessionId !== undefined && data.like_IDs?.includes(sessionId) && (
+        {sessionId !== undefined && likedState.ids.includes(sessionId) && (
           <button
-            disabled
-            className="w-full py-3 border flex justify-center items-center gap-2 border-dark/30 cursor-not-allowed underline text-dark/50 text-base group"
+            onClick={() => handleLike(false)}
+            className="w-full py-3 border flex justify-center items-center gap-2 hover:bg-dark/10 duration-300 border-dark/30 text-dark text-base group"
           >
             <GiCheckMark />
-            <span>Artwork saved</span>
+            <span>Remove from saved</span>
           </button>
         )}
       </div>
