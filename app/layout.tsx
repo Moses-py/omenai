@@ -8,6 +8,8 @@ import { Toaster } from "sonner";
 import "./globals.css";
 
 import Providers from "@/react-query-provider/Provider";
+import LoginModal from "@/components/modal/LoginModal";
+import RecoveryModal from "@/components/modal/RecoveryModal";
 
 const raleway = Nunito_Sans({
   subsets: ["latin"],
@@ -33,8 +35,9 @@ export default async function RootLayout({
       <body className={`${raleway.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
-
         <AuthProvider session={session}>
+          <LoginModal />
+          <RecoveryModal />
           <Providers>{children}</Providers>
         </AuthProvider>
       </body>
