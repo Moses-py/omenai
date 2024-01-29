@@ -5,6 +5,8 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { useEffectOnce } from "usehooks-ts";
 import { updateDocView } from "@/app/secure/editorial/admin/lib/updateEditorialViews";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
+import { getEditorialImageFilePreview } from "@/app/secure/editorial/admin/lib/getEditorialImageFilePreview";
 
 /* eslint-disable @next/next/no-img-element */
 type EditorialDataTypes = {
@@ -18,13 +20,17 @@ export default function EditorialData({
     updateDocView(singleEditorialData?.id, singleEditorialData?.views);
   });
 
+  const image_href =
+    singleEditorialData?.image &&
+    getEditorialImageFilePreview(singleEditorialData.image, 1000);
+
   return (
     <>
       <section className="sm:container relative w-full h-full ">
         {singleEditorialData?.image && (
           <div className="w-full relative h-[70dvh]">
             <img
-              src={singleEditorialData?.image?.href}
+              src={image_href}
               alt="article_image"
               className="absolute inset-0 w-full h-full min-h-[300px] object-cover object-top"
             />

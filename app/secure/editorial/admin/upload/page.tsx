@@ -1,9 +1,9 @@
 "use client";
 
 // Library imports
-import { Label, Select, Timeline } from "flowbite-react";
+import { Timeline } from "flowbite-react";
 import { FormEvent, useState } from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 // Style imports
 import Input from "../../../components/Input";

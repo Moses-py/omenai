@@ -10,7 +10,7 @@ export default async function page() {
       id: editorial.id,
       author: editorial.author,
       date: editorial.date,
-      url: editorial.image.href,
+      url: editorial.image,
     };
   });
 

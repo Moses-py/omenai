@@ -39,9 +39,6 @@ export default function TrendingArtworks({
                   image={artwork.url}
                   artist={artwork.artist}
                   impressions={artwork.impressions}
-                  likeIds={artwork.like_IDs}
-                  sessionId={sessionId}
-                  art_id={artwork.art_id}
                 />
               );
             })}

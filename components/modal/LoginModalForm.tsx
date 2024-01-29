@@ -28,10 +28,13 @@ export default function LoginModalForm() {
     onSuccess: async (data) => {
       if (data?.isOk) {
         await queryClient.invalidateQueries();
+
         router.refresh();
         if (data.message !== "") {
           toast.success(data.message);
         }
+
+        toggleLoginModal(false);
       } else {
         toast.error(data?.message);
       }

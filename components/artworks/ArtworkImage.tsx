@@ -6,6 +6,7 @@ import InnerImageZoom from "react-inner-image-zoom";
 
 import { formatPrice } from "@/utils/priceFormatter";
 import Link from "next/link";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 type ArtworkImageProps = {
   url: string;
   title: string;
@@ -24,13 +25,15 @@ export const ArtworkImage = ({
   art_id,
   pricing,
 }: ArtworkImageProps) => {
+  const image_href = getImageFileView(url, 400);
+
   return (
     <div className="relative flex items-end max-w-[400px] w-auto rounded-md mb-4">
       <FaHeart
         className={`absolute top-5 right-5 z-30 text-sm text-white cursor-pointer`}
       />
       <InnerImageZoom
-        src={url}
+        src={image_href}
         fullscreenOnMobile={false}
         hasSpacer={true}
         zoomType="hover"

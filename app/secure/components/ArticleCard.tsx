@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import NoCover from "./NoCover";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
+import { getEditorialImageFilePreview } from "../editorial/admin/lib/getEditorialImageFilePreview";
 
 type Props = {
   image?: string;
@@ -21,15 +23,17 @@ const ArticleCard = ({
   id,
   views,
 }: Props) => {
+  console.log(image);
+  const image_href = getEditorialImageFilePreview(image as string, 300);
   return (
     <>
       <div className="px-5 py-8 bg-white flex flex-col gap-[1rem] h-full w-full ">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={image}
+            src={image_href}
             alt={"article_image"}
-            className="w-full h-[260px] object-cover object-center rounded-lg"
+            className="w-full h-[260px] object-cover object-top rounded-lg"
           />
         ) : (
           <NoCover />

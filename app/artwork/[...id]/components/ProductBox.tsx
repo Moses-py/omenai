@@ -13,7 +13,7 @@ export default function ProductBox({ data, sessionId }: ProductBoxTypes) {
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         {/* Image */}
         <div className="h-full grid place-items-center">
-          <ImageBox url={data.url} title={data.title} />
+          <ImageBox url={data.url} />
         </div>
 
         {/* Data */}

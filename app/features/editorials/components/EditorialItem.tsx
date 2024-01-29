@@ -1,4 +1,6 @@
 import NoCover from "@/app/secure/components/NoCover";
+import { getEditorialImageFilePreview } from "@/app/secure/editorial/admin/lib/getEditorialImageFilePreview";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 import Link from "next/link";
 
 export type EditorialItemProps = {
@@ -17,6 +19,8 @@ export default function EditorialItem({
   summary,
   id,
 }: EditorialItemProps) {
+  const image_href = getEditorialImageFilePreview(image, 400);
+
   return (
     <>
       {" "}
@@ -24,9 +28,9 @@ export default function EditorialItem({
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={image}
+            src={image_href}
             alt={"article_image"}
-            className="w-full h-[300px] sm:h-[400px] object-cover object-center"
+            className="w-full h-[300px] sm:h-[400px] object-cover object-top"
           />
         ) : (
           <NoCover />
@@ -45,7 +49,7 @@ export default function EditorialItem({
             {/* <span className="font-bold">•</span> */}
           </div>
           <div className="flex flex-col gap-2">
-            <Link href={`/secure/editorial/${id}/${title}`}>
+            <Link href={`articles/${id}/${title}`}>
               <h1 className="text-sm lg:text-[1.5rem] leading-tight font-medium ">
                 {title}
               </h1>
