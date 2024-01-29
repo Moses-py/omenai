@@ -8,6 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { handleSignIn } from "@/services/login/ModalLogin";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
 import { actionStore } from "@/store/actions/ActionStore";
+import { useRouter } from "next/navigation";
 
 export default function LoginModalForm() {
   const queryClient = useQueryClient();
@@ -17,6 +18,7 @@ export default function LoginModalForm() {
   const [loading, setIsLoading] = useState(false);
 
   const [form, setForm] = useState<Form>({ email: "", password: "" });
+  const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -26,10 +28,10 @@ export default function LoginModalForm() {
     onSuccess: async (data) => {
       if (data?.isOk) {
         await queryClient.invalidateQueries();
+        router.refresh();
         if (data.message !== "") {
           toast.success(data.message);
         }
-        toggleLoginModal(false);
       } else {
         toast.error(data?.message);
       }
