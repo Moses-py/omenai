@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 type Input = {
   email: string;
   password: string;
-  ip: string;
 };
 
 type Credentials = Record<keyof Input, any>;
@@ -16,7 +15,6 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
   credentials: {
     email: {},
     password: {},
-    ip: {},
   },
   authorize: async (credentials) => {
     const url = getApiUrl();
@@ -31,7 +29,6 @@ export const IndividualLoginProvider = CredentialsProvider<Credentials>({
         body: JSON.stringify({
           email: credentials.email,
           password: credentials.password,
-          ip: credentials.ip,
         }),
       });
 

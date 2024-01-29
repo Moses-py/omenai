@@ -13,7 +13,7 @@ type Form = {
   password: string;
 };
 
-export default function FormInput({ ip }: { ip: string }) {
+export default function FormInput() {
   const router = useRouter();
 
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
@@ -29,7 +29,6 @@ export default function FormInput({ ip }: { ip: string }) {
     try {
       const { ok, error }: any = await signIn("gallery-login", {
         ...form,
-        ip,
         redirect: false,
       });
 

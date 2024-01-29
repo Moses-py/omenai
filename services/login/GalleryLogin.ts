@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 type Input = {
   email: string;
   password: string;
-  ip: string;
 };
 
 type Credentials = Record<keyof Input, any>;
@@ -14,7 +13,6 @@ export const GalleryLoginProvider = CredentialsProvider<Credentials>({
   credentials: {
     email: {},
     password: {},
-    ip: {},
   },
 
   authorize: async (credentials) => {

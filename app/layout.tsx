@@ -36,9 +36,11 @@ export default async function RootLayout({
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
         <AuthProvider session={session}>
-          <LoginModal />
-          <RecoveryModal />
-          <Providers>{children}</Providers>
+          <Providers>
+            <LoginModal />
+            <RecoveryModal />
+            {children}
+          </Providers>
         </AuthProvider>
       </body>
     </html>

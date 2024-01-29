@@ -2,17 +2,12 @@
 import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
 import { getSession, signIn, signOut } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
 
-type Form = {
-  email: string;
-  password: string;
-};
-
-export default function FormInput({ ip }: { ip: string }) {
+export default function FormInput() {
   const router = useRouter();
   const [setIsLoading] = individualLoginStore((state) => [state.setIsloading]);
 
@@ -26,7 +21,7 @@ export default function FormInput({ ip }: { ip: string }) {
     e.preventDefault();
     setIsLoading();
 
-    await signIn("individual-login", { redirect: false, ...form, ip })
+    await signIn("individual-login", { redirect: false, ...form })
       .then(async ({ ok, error }: any) => {
         if (ok) {
           const session = await getSession();

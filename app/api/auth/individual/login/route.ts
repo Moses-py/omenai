@@ -3,6 +3,7 @@ import {
   RateLimitExceededError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
+import { getIp } from "@/lib/auth/getIp";
 import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
@@ -13,7 +14,9 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    const { email, password, ip } = data;
+    const { email, password } = data;
+
+    const ip = await getIp();
 
     const { success } = await limiter.limit(ip);
 

@@ -1,8 +1,13 @@
 "use client";
 import { actionStore } from "@/store/actions/ActionStore";
 import Link from "next/link";
+import Loader from "../loader/Loader";
 
-export default function LoginModalFormActions() {
+export default function LoginModalFormActions({
+  loading,
+}: {
+  loading: boolean;
+}) {
   const [toggleLoginModal, toggleLoginModalRecoveryForm] = actionStore(
     (state) => [state.toggleLoginModal, state.toggleLoginModalRecoveryForm]
   );
@@ -24,9 +29,10 @@ export default function LoginModalFormActions() {
 
         <button
           type="submit"
-          className=" disabled:cursor-not-allowed disabled:bg-secondary/20 place-items-center w-full px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base "
+          disabled={loading}
+          className=" disabled:cursor-not-allowed grid disabled:bg-white disabled:border disabled:border-dark place-items-center w-full px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base "
         >
-          Login
+          {!loading ? "Login" : <Loader theme="dark" />}
         </button>
       </div>
       <div className="w-full flex justify-center my-2">

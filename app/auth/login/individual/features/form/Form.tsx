@@ -1,7 +1,7 @@
 import Action from "../actions/Action";
 import FormInput from "./components/FormInput";
 import { IndividualLogo } from "@/components/logo/Logo";
-export default function Form({ ip }: { ip: string }) {
+export default function Form() {
   return (
     <div className="flex-1 grid place-items-center h-full font-normal p-5 relative">
       <div className="flex flex-col gap-[1rem] text-secondary w-full">
@@ -14,7 +14,7 @@ export default function Form({ ip }: { ip: string }) {
           <p className="text-base font-normal">Individual account</p>
         </div>
         <div className="lg:px-[2rem] xl:px-[4rem] 2xl:px-[7rem]">
-          <FormInput ip={ip} />
+          <FormInput />
         </div>
       </div>
       <Action />
