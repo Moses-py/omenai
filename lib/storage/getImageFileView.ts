@@ -1,12 +1,16 @@
 import { storage } from "@/appwrite";
 
-export const getImageFileView = (fileId: string, width: number) => {
+export const getImageFileView = (
+  fileId: string,
+  width: number,
+  height?: number
+) => {
   const fileData = storage.getFilePreview(
     process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
     fileId,
 
     width, // width, will be resized using this value.
-    0, // height, ignored when 0
+    height ? height : 0, // height, ignored when 0
     "center", // crop center
     90, // slight compression
     0, // border width

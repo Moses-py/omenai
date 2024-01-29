@@ -8,7 +8,6 @@ export const updateDocView = async (doc_id: string, currentViews: number) => {
       doc_id,
       { views: currentViews + 1 }
     );
-    console.log(update);
   } catch (error) {
     console.log(error);
   }

@@ -23,7 +23,6 @@ const ArticleCard = ({
   id,
   views,
 }: Props) => {
-  console.log(image);
   const image_href = getEditorialImageFilePreview(image as string, 300);
   return (
     <>

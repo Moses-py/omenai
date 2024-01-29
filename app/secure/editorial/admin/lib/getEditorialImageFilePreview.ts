@@ -15,7 +15,7 @@ export const getEditorialImageFilePreview = (fileId: string, width: number) => {
     1, // full opacity
     0, // no rotation
     "FFFFFF", // background color
-    "webp"
+    "jpg"
   );
 
   return fileData.href;

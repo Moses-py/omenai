@@ -31,21 +31,18 @@ export default function LogoPickerModal() {
 
     try {
       if (logo) {
-        console.log("Starting logo update");
         const logoUpdated = await storage.createFile(
           process.env.NEXT_PUBLIC_APPWRITE_LOGO_BUCKET_ID!,
           ID.unique(),
           logo
         );
 
-        console.log("Logo updated");
         if (logoUpdated) {
           let file: { bucketId: string; fileId: string } = {
             bucketId: logoUpdated.bucketId,
             fileId: logoUpdated.$id,
           };
 
-          console.log("Getting logo url");
           const fileData = storage.getFilePreview(
             process.env.NEXT_PUBLIC_APPWRITE_LOGO_BUCKET_ID!,
             file.fileId
@@ -67,7 +64,6 @@ export default function LogoPickerModal() {
       }
     } catch (error) {
       toast.error("An error has occured, try again");
-      console.log(error);
     } finally {
       setLoading(false);
     }
