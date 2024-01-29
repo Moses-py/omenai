@@ -152,7 +152,7 @@ export default function Admin() {
                     >
                       Write your editorial content!
                     </label>
-                    <Editor />
+                    {/* <Editor /> */}
                   </div>
                 </Timeline.Content>
               </Timeline.Item>
