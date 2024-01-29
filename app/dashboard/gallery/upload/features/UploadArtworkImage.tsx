@@ -49,15 +49,24 @@ export default function UploadArtworkImage() {
 
         const fileData = storage.getFilePreview(
           process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
-          file.fileId
-          // 400,
-          // 400,
-          // "center"
+          file.fileId,
+
+          400, // width, will be resized using this value.
+          0, // height, ignored when 0
+          "center", // crop center
+          90, // slight compression
+          0, // border width
+          "FFFFFF", // border color
+          0, // border radius
+          1, // full opacity
+          0, // no rotation
+          "FFFFFF", // background color
+          "webp"
         );
 
         const data = createUploadedArtworkData(
           artworkUploadData,
-          fileData.href,
+          file.fileId,
           session.data!.user.id
         );
 

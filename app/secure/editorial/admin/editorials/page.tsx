@@ -20,7 +20,7 @@ export default async function EditorialAdmin() {
               return (
                 <ArticleCard
                   key={data.id}
-                  image={data.image?.href}
+                  image={data.image}
                   date={data.date}
                   title={data.title}
                   summary={data.summary}

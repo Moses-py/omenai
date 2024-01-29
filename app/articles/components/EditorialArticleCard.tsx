@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import NoCover from "@/app/secure/components/NoCover";
+import { getEditorialImageFilePreview } from "@/app/secure/editorial/admin/lib/getEditorialImageFilePreview";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,6 +19,8 @@ export default function EditorialArticleCard({
   url,
   id,
 }: EditorialArticleCardProps) {
+  const image_href = url && getEditorialImageFilePreview(url, 800);
+
   return (
     <Link
       href={`/articles/${id}/${title}`}
@@ -31,7 +35,7 @@ export default function EditorialArticleCard({
         <div className="w-full h-auto max-h-full">
           {url ? (
             <img
-              src={url}
+              src={image_href}
               alt={title}
               className="h-auto max-h-[500px] w-full object-top object-cover"
             />

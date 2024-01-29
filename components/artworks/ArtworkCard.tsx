@@ -1,12 +1,12 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { IoHeartOutline } from "react-icons/io5";
 import { formatPrice } from "@/utils/priceFormatter";
-import useLikedState from "@/custom/hooks/useLikedState";
-import { IoIosHeart } from "react-icons/io";
+
 import Link from "next/link";
 import LikeComponent from "../likes/LikeComponent";
-
+import Image from "next/image";
+import { blurHash } from "@/utils/blurhash";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 export default function ArtworkCard({
   image,
   artist,
@@ -29,13 +29,18 @@ export default function ArtworkCard({
     shouldShowPrice: "Yes" | "No" | string;
   };
 }) {
+  const image_href = getImageFileView(image, 200);
   return (
     <div>
       <div className="flex flex-col gap-y-4 w-auto h-[500px] justify-end px-1">
         <Link href={`/artwork/${name}`}>
-          <img
-            src={image}
-            alt={image}
+          <Image
+            src={image_href}
+            alt={name + " image"}
+            height={500}
+            width={200}
+            placeholder="blur"
+            blurDataURL={blurHash}
             className="w-auto max-w-[200px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
           />
         </Link>

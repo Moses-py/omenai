@@ -1,5 +1,4 @@
 import { database } from "@/app/secure/editorial/admin/controller/appwrite";
-import { getImage } from "./getImageData";
 
 export default async function getEditorialDocument(doc_id: string) {
   try {
@@ -9,8 +8,8 @@ export default async function getEditorialDocument(doc_id: string) {
       doc_id
     );
     if (documentPromise.cover) {
-      const { bucketId, fileId } = JSON.parse(documentPromise.cover);
-      let image = await getImage(bucketId, fileId);
+      const { fileId } = JSON.parse(documentPromise.cover);
+      // let image = await getImage(bucketId, fileId);
       return {
         title: documentPromise.title,
         id: documentPromise.$id,
@@ -18,9 +17,7 @@ export default async function getEditorialDocument(doc_id: string) {
         date: documentPromise.date,
         minutes: documentPromise.minutes,
         content: documentPromise.content,
-        image: {
-          href: image.href,
-        },
+        image: fileId,
         views: documentPromise.views,
       };
     } else {

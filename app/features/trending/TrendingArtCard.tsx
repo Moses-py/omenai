@@ -1,34 +1,29 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { IoHeartOutline } from "react-icons/io5";
-import { IoIosHeart } from "react-icons/io";
-
-import useLikedState from "@/custom/hooks/useLikedState";
-import LikeComponent from "@/components/likes/LikeComponent";
 import Link from "next/link";
+import Image from "next/image";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 export default function TrendingArtworkCard({
   image,
   artist,
   name,
   impressions,
-  likeIds,
-  sessionId,
-  art_id,
 }: {
   image: string;
   artist: string;
   name: string;
   impressions: number;
-  likeIds: string[];
-  sessionId: string | undefined;
-  art_id: string;
 }) {
+  const image_href = getImageFileView(image, 200);
+
   return (
     <div className="flex flex-col gap-y-4 w-auto h-[500px] justify-end px-1">
       <Link href={`/artwork/${name}`}>
-        <img
-          src={image}
-          alt={image}
+        <Image
+          src={image_href}
+          alt={name + " image"}
+          height={500}
+          width={200}
           className="w-auto max-w-[200px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
         />
       </Link>
