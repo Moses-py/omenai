@@ -27,7 +27,7 @@ export default function TrendingArtworks({
     <>
       {artworks.length > 0 && (
         <div className=" mt-8 p-4 relative mb-[4rem]">
-          <h1 className="text-dark font-normal text-[20px] sm:text-md mb-8">
+          <h1 className="text-dark font-normal text-[20px] sm:text-md mb-4">
             Trending Artworks on Omenai
           </h1>
           <div className=" flex relative overflow-x-scroll w-full space-x-2 ">

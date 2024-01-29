@@ -13,7 +13,6 @@ export default function Editorials() {
       return data;
     },
   });
-  console.log(editorials);
 
   if (isLoading)
     return (

@@ -14,7 +14,6 @@ export default function SimilarArtworks({
   const artworks = artworksByCriteria.data.filter((artwork: any) => {
     return artwork.title !== title;
   });
-  //   console.log(artworks);
   return (
     <div className="w-full h-full p-4 ">
       <h1 className="text-dark/70 underline font-semibold md:text-md text-sm ">

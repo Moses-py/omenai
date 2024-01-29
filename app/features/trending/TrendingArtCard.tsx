@@ -14,7 +14,7 @@ export default function TrendingArtworkCard({
   name: string;
   impressions: number;
 }) {
-  const image_href = getImageFileView(image, 200);
+  const image_href = getImageFileView(image, 300);
 
   return (
     <div className="flex flex-col gap-y-4 w-auto h-[500px] justify-end px-1">
@@ -23,8 +23,8 @@ export default function TrendingArtworkCard({
           src={image_href}
           alt={name + " image"}
           height={500}
-          width={200}
-          className="w-auto max-w-[200px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
+          width={250}
+          className="w-auto max-w-[250px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
         />
       </Link>
 

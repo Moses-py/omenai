@@ -43,7 +43,6 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.log(error);
     const error_response = handleErrorEdgeCases(error);
 
     return NextResponse.json(
