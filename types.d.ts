@@ -37,6 +37,11 @@ type GalleryRegisterData = Omit<GallerySignupData, "confirmPassword">;
 
 type RouteIdentifier = "individual" | "gallery";
 
+type Form = {
+  email: string;
+  password: string;
+};
+
 type GallerySchemaTypes = {
   name: string;
   email: string;
