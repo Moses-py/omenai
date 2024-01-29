@@ -1,11 +1,11 @@
 import DesktopNavbar from "@/components/navbar/desktop/DesktopNavbar";
 import ProductBox from "./components/ProductBox";
-import Footer from "@/components/artworks/footer/Footer";
 import { fetchSingleArtwork } from "@/services/artworks/fetchSingleArtwork";
 import SimilarArtworks from "./components/SimilarArtworks";
 import { fetchArtworksByCriteria } from "@/services/artworks/fetchArtworksByCriteria";
 import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { getServerSession } from "next-auth";
+import Footer from "@/components/footer/Footer";
 
 export default async function page({ params }: { params: { id: string } }) {
   const session = await getServerSession(nextAuthOptions);
