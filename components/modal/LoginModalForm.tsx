@@ -25,7 +25,6 @@ export default function LoginModalForm() {
     mutationFn: async () => handleSignIn(form),
     onSuccess: async (data) => {
       if (data?.isOk) {
-        await queryClient.invalidateQueries({ queryKey: ["navbar_data"] });
         await queryClient.invalidateQueries();
         if (data.message !== "") {
           toast.success(data.message);

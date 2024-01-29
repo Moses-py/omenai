@@ -32,7 +32,9 @@ function useLikedState(
 
     onSuccess: async (data) => {
       if (data?.isOk) {
-        await queryClient.invalidateQueries();
+        queryClient.invalidateQueries({ queryKey: ["latest"] });
+        queryClient.invalidateQueries({ queryKey: ["trending"] });
+        queryClient.invalidateQueries({ queryKey: ["curated"] });
       } else {
         setLikedState({ count: initialImpressions, ids: initialLikeIds });
       }
