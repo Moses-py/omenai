@@ -1,7 +1,6 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import Image from "next/image";
 import { getImageFileView } from "@/lib/storage/getImageFileView";
 export default function TrendingArtworkCard({
   image,
@@ -19,11 +18,9 @@ export default function TrendingArtworkCard({
   return (
     <div className="flex flex-col gap-y-4 w-auto h-[500px] justify-end px-1">
       <Link href={`/artwork/${name}`}>
-        <Image
+        <img
           src={image_href}
           alt={name + " image"}
-          height={500}
-          width={250}
           className="w-auto max-w-[250px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
         />
       </Link>
