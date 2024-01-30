@@ -37,15 +37,17 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
         <MdOutlineWorkspacePremium />
         <p>{data.rarity} work</p>
       </div>
-      <div className="flex gap-x-2 items-center">
-        <GrCertificate />
-        <p>
-          Includes a{" "}
-          <span className="font-bold underline">
-            Certificate of Authenticity
-          </span>
-        </p>
-      </div>
+      {data.certificate_of_authenticity === "Yes" && (
+        <div className="flex gap-x-2 items-center">
+          <GrCertificate />
+          <p>
+            Includes a{" "}
+            <span className="font-bold underline">
+              Certificate of Authenticity
+            </span>
+          </p>
+        </div>
+      )}
 
       <h1 className="lg:text-md text-sm font-bold">
         {data.pricing.shouldShowPrice === "Yes"

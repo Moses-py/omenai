@@ -80,12 +80,20 @@ type ArtworkSchemaTypes = {
   gallery_id: string;
   impressions?: number;
   like_IDs?: string[];
+  artist_birthyear: string;
+  artist_country_origin: string;
+  certificate_of_authenticity: string;
+  artwork_description?: string;
+  framing: string;
+  signature: string;
+  carrier: string;
 };
 
 type ArtworkDimensions = {
   width: string;
   height: string;
   depth?: string;
+  weight: string;
 };
 
 type ArtworkPricing = {
@@ -109,8 +117,16 @@ type ArtworkUploadStateTypes = {
   height: string;
   width: string;
   depth?: string;
+  weight: string;
   price: string;
   shouldShowPrice: "Yes" | "No" | string;
+  artist_birthyear: string;
+  artist_country_origin: string;
+  certificate_of_authenticity: string;
+  artwork_description?: string;
+  framing: string;
+  signature: string;
+  carrier: string;
 };
 
 interface Image {

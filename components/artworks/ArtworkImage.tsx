@@ -7,10 +7,14 @@ import InnerImageZoom from "react-inner-image-zoom";
 import { formatPrice } from "@/utils/priceFormatter";
 import Link from "next/link";
 import { getImageFileView } from "@/lib/storage/getImageFileView";
+import LikeComponent from "../likes/LikeComponent";
 type ArtworkImageProps = {
   url: string;
   title: string;
   author: string;
+  impressions: number;
+  likeIds: string[];
+  sessionId: string | undefined;
   art_id: string;
   pricing?: {
     price: string;
@@ -22,6 +26,9 @@ export const ArtworkImage = ({
   url,
   title,
   author,
+  impressions,
+  likeIds,
+  sessionId,
   art_id,
   pricing,
 }: ArtworkImageProps) => {
@@ -29,9 +36,16 @@ export const ArtworkImage = ({
 
   return (
     <div className="relative flex items-end max-w-[400px] w-auto rounded-md mb-4">
-      <FaHeart
-        className={`absolute top-5 right-5 z-30 text-sm text-white cursor-pointer`}
-      />
+      {pricing?.price && (
+        <div className="absolute top-5 right-5 z-10">
+          <LikeComponent
+            impressions={impressions}
+            likeIds={likeIds}
+            sessionId={sessionId}
+            art_id={art_id}
+          />
+        </div>
+      )}
       <InnerImageZoom
         src={image_href}
         fullscreenOnMobile={false}

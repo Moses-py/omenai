@@ -33,9 +33,17 @@ export const galleryArtworkUploadStore = create<GalleryArtworkUploadTypes>(
       materials: "",
       width: "",
       height: "",
+      weight: "",
       price: "",
       shouldShowPrice: "",
       depth: "",
+      artist_birthyear: "",
+      artist_country_origin: "",
+      certificate_of_authenticity: "",
+      artwork_description: "",
+      framing: "",
+      signature: "",
+      carrier: "",
     },
     updateArtworkUploadData: (label: string, value: string) => {
       const data: Record<string, any> = get().artworkUploadData;
@@ -60,8 +68,16 @@ export const galleryArtworkUploadStore = create<GalleryArtworkUploadTypes>(
           width: "",
           height: "",
           price: "",
+          weight: "",
           shouldShowPrice: "",
           depth: "",
+          artist_birthyear: "",
+          artist_country_origin: "",
+          certificate_of_authenticity: "",
+          artwork_description: "",
+          framing: "",
+          signature: "",
+          carrier: "",
         },
       });
       set({ image: null });
@@ -75,6 +91,9 @@ export const galleryArtworkUploadStore = create<GalleryArtworkUploadTypes>(
       height: "",
       price: "",
       depth: "",
+      weight: "",
+      artist_birthyear: "",
+      artwork_description: "",
     },
     updateErrorField: (label: string, value: string) => {
       const data: Record<string, any> = get().errorFields;

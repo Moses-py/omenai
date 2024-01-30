@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { galleryArtworkUploadStore } from "@/store/gallery/gallery_artwork_upload/GalleryArtworkUpload";
 import { FormEvent, useRef, useState } from "react";
@@ -47,23 +48,6 @@ export default function UploadArtworkImage() {
           fileId: fileUploaded.$id,
         };
 
-        const fileData = storage.getFilePreview(
-          process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
-          file.fileId,
-
-          400, // width, will be resized using this value.
-          0, // height, ignored when 0
-          "center", // crop center
-          90, // slight compression
-          0, // border width
-          "FFFFFF", // border color
-          0, // border radius
-          1, // full opacity
-          0, // no rotation
-          "FFFFFF", // background color
-          "webp"
-        );
-
         const data = createUploadedArtworkData(
           artworkUploadData,
           file.fileId,
@@ -92,14 +76,12 @@ export default function UploadArtworkImage() {
   }
   return (
     <form onSubmit={handleArtworkUpload}>
-      <div className="w-full h-[40vh]">
+      <div className="w-full h-[60vh] grid place-items-center">
         {image ? (
-          <Image
+          <img
             src={URL.createObjectURL(image)}
             alt="uploaded image"
-            width={200}
-            height={200}
-            className="w-full h-[40vh] object-cover mt-2 filter hover:grayscale transition-all duration-200 rounded-lg cursor-not-allowed"
+            className="w-auto h-auto max-h-[60vh] max-w-full object-cover mt-2 filter hover:grayscale transition-all duration-200 rounded-lg cursor-not-allowed"
             onClick={() => {
               setImage(null);
             }}
@@ -107,7 +89,7 @@ export default function UploadArtworkImage() {
         ) : (
           <button
             type="button"
-            className="w-full h-full border border-dark/10 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-base-theme focus-visible:ring-offset-2 hover:border-base-theme"
+            className="w-[300px] h-[300px] border border-dark/30 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-base-theme focus-visible:ring-offset-2 hover:border-base-theme"
             onClick={() => {
               imagePickerRef.current?.click();
             }}

@@ -32,12 +32,12 @@ export default function ArtworkCard({
   const image_href = getImageFileView(image, 300);
   return (
     <div>
-      <div className="flex flex-col gap-y-4 w-auto h-[500px] justify-end px-1">
+      <div className="flex flex-col gap-y-4 w-auto h-full max-h-[500px] justify-end px-1">
         <Link href={`/artwork/${name}`}>
           <img
             src={image_href}
             alt={name + " image"}
-            className="w-auto max-w-[250px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
+            className="w-auto max-w-[200px] max-h-[500px] h-auto aspect-auto object-top object-contain cursor-pointer"
           />
         </Link>
 

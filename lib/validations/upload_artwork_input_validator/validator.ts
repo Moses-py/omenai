@@ -2,6 +2,7 @@ import { validatePrice } from "./validatePrice";
 import { validateMeasurement } from "./validateMeasurement";
 import { validateYear } from "./validateYear";
 import { validateBasicText } from "./validateText";
+import { validateWeight } from "./validateWeight";
 
 type ValidationFunction = (value: string) => string[];
 
@@ -15,6 +16,9 @@ export const validate = (label: string, value: string) => {
     depth: (value: string) => validateMeasurement(value),
     width: (value: string) => validateMeasurement(value),
     price: (value: string) => validatePrice(value),
+    weight: (value: string) => validateWeight(value),
+    artist_birthyear: (value: string) => validateYear(value),
+    artwork_description: (value: string) => validateBasicText(value),
   };
 
   const validationFunction = validationFunctions[label];

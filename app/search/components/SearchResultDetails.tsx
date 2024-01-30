@@ -6,14 +6,22 @@ type SearchResultDetailsProps = {
   data:
     | (Pick<
         ArtworkSchemaTypes,
-        "art_id" | "artist" | "pricing" | "title" | "url"
+        | "art_id"
+        | "artist"
+        | "pricing"
+        | "title"
+        | "url"
+        | "impressions"
+        | "like_IDs"
       > & { _id: string })[]
     | "pending";
   searchTerm: string;
+  sessionId: string | undefined;
 };
 export default function SearchResultDetails({
   data,
   searchTerm,
+  sessionId,
 }: SearchResultDetailsProps) {
   return (
     <div>
@@ -40,14 +48,10 @@ export default function SearchResultDetails({
                   author={artwork.artist}
                   art_id={artwork.art_id}
                   pricing={artwork.pricing}
+                  impressions={artwork.impressions as number}
+                  likeIds={artwork.like_IDs as string[]}
+                  sessionId={undefined}
                 />
-                //   <ArtworkCard
-                //     key={index}
-                //     image={artwork.url}
-                //     artist={artwork.artist}
-                //     name={artwork.title}
-                //     pricing={artwork.pricing}
-                //   />
               );
             })}
           </div>

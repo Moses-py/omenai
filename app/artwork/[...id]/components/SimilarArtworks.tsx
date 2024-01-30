@@ -16,7 +16,7 @@ export default function SimilarArtworks({
   });
   return (
     <div className="w-full h-full p-4 ">
-      <h1 className="text-dark/70 underline font-semibold md:text-md text-sm ">
+      <h1 className="text-dark/70 underline font-semibold md:text-md text-sm mb-8">
         Similar artworks
       </h1>
       {artworks.length === 0 ? (
