@@ -1,5 +1,4 @@
 import { getApiUrl } from "@/config";
-import { revalidatePath } from "next/cache";
 
 export async function uploadArtworkData(
   data: Omit<ArtworkSchemaTypes, "art_id">

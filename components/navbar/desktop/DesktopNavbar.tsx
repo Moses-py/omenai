@@ -53,7 +53,8 @@ export default function DesktopNavbar() {
                 <LoggedInUser user={session.data?.user.name} />
               </div>
             )}
-          {session.status === "unauthenticated" && (
+          {((session.data && session.data.user.role === "gallery") ||
+            session.status === "unauthenticated") && (
             <div className="">
               <NavbarActionButtons />
             </div>

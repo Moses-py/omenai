@@ -1,3 +1,4 @@
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 import Image from "next/image";
 
 /* eslint-disable @next/next/no-img-element */
@@ -13,14 +14,15 @@ export default function PopulartArtworkCard({
   artist,
   impression_count,
 }: PopularArtworkCardProps) {
+  const image_url = getImageFileView(url, 100);
   return (
     <div className="flex justify-between items-center px-5 py-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm">
       <div className=" w-auto flex items-center gap-x-3">
         <Image
-          src={url}
+          src={image_url}
           alt={title}
-          height={80}
-          width={60}
+          height={100}
+          width={100}
           className="object-top object-contain rounded-lg"
         />
         <div className="flex flex-col gap-y-1">

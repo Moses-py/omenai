@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, models } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
 const artworkUpload = new Schema<ArtworkSchemaTypes>(
@@ -12,6 +12,7 @@ const artworkUpload = new Schema<ArtworkSchemaTypes>(
     dimensions: {
       height: { type: String, required: true },
       width: { type: String, required: true },
+      weight: { type: String, required: true },
       depth: { type: String, required: false },
     },
     pricing: {
@@ -23,6 +24,13 @@ const artworkUpload = new Schema<ArtworkSchemaTypes>(
     url: { type: String, required: true, unique: true },
     impressions: { type: Number, default: 0 },
     like_IDs: { type: Schema.Types.Mixed, default: [] },
+    artist_birthyear: { type: String, required: true },
+    artist_country_origin: { type: String, required: true },
+    certificate_of_authenticity: { type: String, required: true },
+    artwork_description: { type: String },
+    framing: { type: String, required: true },
+    signature: { type: String, required: true },
+    carrier: { type: String, required: true },
   },
   { timestamps: true }
 );

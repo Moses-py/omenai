@@ -1,3 +1,4 @@
+import { getImageFileView } from "@/lib/storage/getImageFileView";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,11 +20,13 @@ export default function OverviewOrdersCard({
   url,
   status,
 }: OverviewOrdersCardProps) {
+  const image_url = getImageFileView(url, 200);
+
   return (
     <div className="flex justify-between items-center px-5 py-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm w-full">
       <div className=" flex gap-x-3">
         <Image
-          src={url}
+          src={image_url}
           alt={title}
           height={70}
           width={60}

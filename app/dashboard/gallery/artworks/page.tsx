@@ -33,6 +33,9 @@ export default async function MyArtworks() {
                   title={art.title}
                   author={art.artist}
                   art_id={art.art_id}
+                  impressions={0}
+                  likeIds={[]}
+                  sessionId={undefined}
                 />
               );
             }

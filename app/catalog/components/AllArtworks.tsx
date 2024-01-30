@@ -5,7 +5,10 @@ import NotFoundData from "@/components/notFound/NotFoundData";
 type AllArtworksTypes = {
   data: ArtworkResultTypes[];
 };
-export default function AllArtworks({ data }: AllArtworksTypes) {
+export default function AllArtworks({
+  data,
+  sessionId,
+}: AllArtworksTypes & { sessionId: string | undefined }) {
   return (
     <div className="p-4">
       {data.length === 0 ? (
@@ -24,6 +27,9 @@ export default function AllArtworks({ data }: AllArtworksTypes) {
                   author={art.artist}
                   art_id={art.art_id}
                   pricing={art.pricing}
+                  impressions={art.impressions as number}
+                  likeIds={art.like_IDs as string[]}
+                  sessionId={sessionId}
                 />
               </div>
             );

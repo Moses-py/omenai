@@ -1,16 +1,19 @@
-import { uploadArtworkDetailInputMocks } from "../mocks";
+import {
+  uploadArtistDetailsInputMocks,
+  uploadArtworkDimensionInputMocks,
+} from "../mocks";
 import ArtworkSelectInput from "./ArtworkSelectInput";
 import ArtworkTextInput from "./ArtworkTextInput";
 
-export default function ArtworkInfoInputGroup() {
+export default function ArtistInfoInputGroup() {
   return (
     <div className="my-10">
       <h2 className="text-primary font-normal text-base my-4">
-        Artwork details
+        Artist information
       </h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 ">
-        {uploadArtworkDetailInputMocks.map((input, index) => {
-          if (input.type === "text" || input.type === "textarea") {
+      <div className="grid grid-cols-3 gap-5 ">
+        {uploadArtistDetailsInputMocks.map((input, index) => {
+          if (input.type === "text") {
             return (
               <ArtworkTextInput
                 key={index}
@@ -18,7 +21,6 @@ export default function ArtworkInfoInputGroup() {
                 placeholder={input.placeholder}
                 name={input.name}
                 required={input.required}
-                type={input.type}
               />
             );
           } else {

@@ -1,10 +1,12 @@
+import { countries } from "../countryList";
+
 export const uploadArtworkDetailInputMocks = [
   {
-    name: "artist",
+    name: "title",
     type: "text",
-    label: "Artist",
+    label: "Title",
     required: true,
-    placeholder: "Full name",
+    placeholder: "Add artwork title or 'unknown'",
   },
   {
     name: "year",
@@ -12,13 +14,6 @@ export const uploadArtworkDetailInputMocks = [
     label: "Year",
     required: true,
     placeholder: "YYYY",
-  },
-  {
-    name: "title",
-    type: "text",
-    label: "Title",
-    required: true,
-    placeholder: "Add artwork title or 'unknown'",
   },
   {
     name: "medium",
@@ -54,6 +49,34 @@ export const uploadArtworkDetailInputMocks = [
     required: true,
     placeholder: "Add materials",
   },
+  {
+    name: "certificate_of_authenticity",
+    type: "select",
+    label: "Certificate of authenticity",
+    required: true,
+    options: ["Yes", "No"],
+  },
+  {
+    name: "signature",
+    type: "select",
+    label: "Signature",
+    required: true,
+    options: ["By artist", "By gallery", "No signature"],
+  },
+  {
+    name: "framing",
+    type: "select",
+    label: "Framing",
+    required: true,
+    options: ["Framed", "Rolled"],
+  },
+  {
+    name: "artwork_description",
+    type: "textarea",
+    label: "Artwork description (optional)",
+    required: false,
+    placeholder: "Describe the artwork",
+  },
 ];
 
 export const uploadArtworkDimensionInputMocks = [
@@ -72,9 +95,16 @@ export const uploadArtworkDimensionInputMocks = [
     placeholder: "e.g 24cm",
   },
   {
+    name: "weight",
+    type: "text",
+    label: "Weight",
+    required: true,
+    placeholder: "e.g 10kg",
+  },
+  {
     name: "depth",
     type: "text",
-    label: "Depth",
+    label: "Depth (optional)",
     required: false,
     placeholder: "e.g 24cm",
   },
@@ -93,5 +123,36 @@ export const uploadArtworkPriceInputMocks = [
     label: "Display price",
     required: true,
     options: ["Yes", "No"],
+  },
+  {
+    name: "carrier",
+    type: "select",
+    label: "Preferred shipping carrier",
+    required: true,
+    options: ["USPS", "UPS", "FedEx", "Maersk", "DHL", "CMA CGM"],
+  },
+];
+
+export const uploadArtistDetailsInputMocks = [
+  {
+    name: "artist",
+    type: "text",
+    label: "Artist name",
+    required: true,
+    placeholder: "Artist full name",
+  },
+  {
+    name: "artist_birthyear",
+    type: "text",
+    label: "Birth year",
+    required: true,
+    placeholder: "Artist's birth year",
+  },
+  {
+    name: "artist_country_origin",
+    type: "select",
+    label: "Country of origin",
+    required: true,
+    options: countries,
   },
 ];

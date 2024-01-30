@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import NotFoundSearchResult from "./NotFoundSearchResult";
 import SearchResultDetails from "./SearchResultDetails";
+import { useSession } from "next-auth/react";
 
 export default function SearchResultWrapper() {
   const searchParams = useSearchParams();
@@ -13,7 +14,13 @@ export default function SearchResultWrapper() {
   const [searchResults, setSearchResults] = useState<
     | (Pick<
         ArtworkSchemaTypes,
-        "art_id" | "artist" | "pricing" | "title" | "url"
+        | "art_id"
+        | "artist"
+        | "pricing"
+        | "title"
+        | "url"
+        | "impressions"
+        | "like_IDs"
       > & { _id: string })[]
     | []
     | "pending"
@@ -32,6 +39,8 @@ export default function SearchResultWrapper() {
     getResults();
   }, [searchTerm]);
 
+  const session = useSession();
+
   return (
     <>
       <div className="w-full">
@@ -41,6 +50,11 @@ export default function SearchResultWrapper() {
           <SearchResultDetails
             data={searchResults}
             searchTerm={searchTerm as string}
+            sessionId={
+              session.data?.user.role === "user"
+                ? session?.data.user.user_id
+                : undefined
+            }
           />
         )}
       </div>
