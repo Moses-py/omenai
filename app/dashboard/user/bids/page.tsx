@@ -1,9 +1,12 @@
-import React from "react";
+import { UserBanner } from "./features/UserBanner";
+import GalleryInfo from "./features/UserInfo";
 
-export default function Profile() {
+export default async function page() {
   return (
-    <div className="w-full h-[50vh] grid place-items-center">
-      <p>Coming soon. Stay tuned.</p>
+    <div className="container">
+      <UserBanner />
+
+      <GalleryInfo />
     </div>
   );
 }

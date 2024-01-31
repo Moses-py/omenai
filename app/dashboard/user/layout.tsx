@@ -15,8 +15,11 @@ export default function UserLayout({
       <DesktopNavbar />
 
       <main className="">
-        <Banner />
-        <NavigationChipTabs />
+        <div className="sticky top-0 left-0 bg-white z-20">
+          <Banner />
+          <NavigationChipTabs />
+        </div>
+
         {children}
       </main>
     </div>

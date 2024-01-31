@@ -1,14 +1,16 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { CiUser } from "react-icons/ci";
+import { toast } from "sonner";
 
-type BannerProps = {
-  user: string;
-  email: string;
-};
 export default function Banner() {
   const user = useSession();
+
+  function handleSignout() {
+    signOut({ callbackUrl: "/" });
+    toast.success("Successfully signed out...redirecting");
+  }
   return (
     <>
       <div className="flex justify-between items-center px-2 sm:px-5 py-5">
@@ -26,7 +28,7 @@ export default function Banner() {
             </p>
           </div>
         </div>
-        <div className="">
+        <div className="" onClick={() => handleSignout()}>
           <button className="px-2 py-1 sm:px-4 sm:py-2 md:px-5 md:py-3 rounded-full border text-xs border-dark hover:border-dark/30">
             Logout
           </button>
