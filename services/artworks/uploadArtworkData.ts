@@ -20,7 +20,6 @@ export async function uploadArtworkData(
       return response;
     });
 
-    // revalidatePath("/catalog");
     return response;
   } catch (error: any) {
     console.log(error);

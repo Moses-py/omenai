@@ -56,7 +56,7 @@ export const ArtworkImage = ({
       />
       <Link
         href={`/artwork/${title}`}
-        className="absolute bottom-0 flex justify-between items-center gap-y-[0.1rem] text-white px-2 py-1 z-20 bg-dark/50 w-full rounded-md cursor-pointer"
+        className="absolute bottom-0 flex justify-between items-center gap-y-[0.1rem] text-white px-2 py-1 z-10 bg-dark/50 w-full rounded-md cursor-pointer"
       >
         <div className="flex-col flex gap-y-[0.1rem]">
           <span className="font-bold text-base">{title}</span>
