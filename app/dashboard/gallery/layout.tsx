@@ -6,6 +6,7 @@ import Appbar from "./components/Appbar";
 import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/GalleryNavigation";
 import { useWindowSize } from "usehooks-ts";
 import NoMobileView from "./components/NoMobileView";
+import Providers from "@/react-query-provider/Provider";
 export default function GalleryDashboardLayout({
   children,
 }: {

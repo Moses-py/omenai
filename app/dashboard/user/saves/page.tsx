@@ -1,10 +1,7 @@
 import { ArtworkImage } from "@/components/artworks/ArtworkImage";
-import Loader from "@/components/loader/Loader";
 import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { fetchUserSaveArtworks } from "@/services/artworks/fetchUserSavedArtworks";
-import { useQuery } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 export default async function Saves() {

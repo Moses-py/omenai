@@ -6,6 +6,7 @@ import { formatPrice } from "@/utils/priceFormatter";
 import { IoHeartOutline } from "react-icons/io5";
 import { GiCheckMark } from "react-icons/gi";
 import useLikedState from "@/custom/hooks/useLikedState";
+import { useRouter } from "next/navigation";
 
 type ArtworkDetailTypes = {
   data: ArtworkResultTypes;
@@ -18,6 +19,14 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
     sessionId,
     data.art_id
   );
+
+  const router = useRouter();
+
+  function handleBuyButtonClick() {
+    if (data.pricing.shouldShowPrice === "Yes") {
+      router.push(`/purchase/${data.title}`);
+    }
+  }
   return (
     <div className="flex flex-col gap-y-4">
       <div className="">
@@ -56,7 +65,10 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
       </h1>
 
       <div className="flex sm:flex-row flex-col gap-2">
-        <button className="w-full bg-dark py-3 underline text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group">
+        <button
+          onClick={handleBuyButtonClick}
+          className="w-full bg-dark py-3 underline text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group"
+        >
           {data.pricing.shouldShowPrice === "Yes"
             ? "Purchase artwork"
             : "Request price"}

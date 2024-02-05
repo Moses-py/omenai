@@ -23,7 +23,7 @@ export default function OverviewOrdersCard({
   const image_url = getImageFileView(url, 200);
 
   return (
-    <div className="flex justify-between items-center px-5 py-3 rounded-lg ring-1 ring-base-theme/10 shadow-sm w-full">
+    <div className="flex justify-between items-center px-5 py-3 rounded-lg ring-1 ring-dark/10 shadow-sm w-full">
       <div className=" flex gap-x-3">
         <Image
           src={image_url}
@@ -34,17 +34,17 @@ export default function OverviewOrdersCard({
         />
         <div className="flex flex-col gap-y-2">
           <p className="text-dark font-normal sm:text-base">{title}</p>
-          <span className="text-base-theme font-light">{artist}</span>
-          <span className="text-base-theme font-light">{price}</span>
+          <span className="text-dark font-light">{artist}</span>
+          <span className="text-dark font-light">{price}</span>
         </div>
       </div>
       <div className="flex flex-col items-end gap-y-1">
         <span className="text-dark font-normal  sm:text-base">{buyer}</span>
-        <span className="text-base-theme font-light">{order_date}</span>
-        <span className="text-base-theme font-light">{status}</span>
+        <span className="text-dark font-light">{order_date}</span>
+        <span className="text-dark font-light">{status}</span>
         <Link
           href="/dashboard/gallery/orders"
-          className="text-primary font-light underline cursor-pointer"
+          className="text-dark/80 font-light underline cursor-pointer"
         >
           View order
         </Link>

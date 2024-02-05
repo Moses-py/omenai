@@ -1,8 +1,8 @@
 import { getApiUrl } from "@/config";
-import { nextAuthOptions } from "@/lib/auth/next-auth-options";
-import { getServerSession } from "next-auth";
+
+import { getSession } from "next-auth/react";
 export async function getArtworkHighlightData() {
-  const session = await getServerSession(nextAuthOptions);
+  const session = await getSession();
   try {
     const url = getApiUrl();
     const response = await fetch(`${url}/api/artworks/getAllArtworksbyId`, {
@@ -11,14 +11,11 @@ export async function getArtworkHighlightData() {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(async (res) => {
-      if (!res.ok) return undefined;
-      const result = await res.json();
-
-      return result;
     });
+    if (!response.ok) return undefined;
+    const result = await response.json();
 
-    return response;
+    return result;
   } catch (error: any) {
     console.log(error);
   }
