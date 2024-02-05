@@ -4,9 +4,9 @@ import EditorialRecommendations from "./features/editorials/EditorialRecommendat
 import Highlight from "./features/highlight/Highlight";
 import Orders from "./features/orders/Orders";
 import PopularArtworks from "./features/popular_artworks/PopularArtworks";
-import Loader from "../components/Loader";
 import OverviewComponentCard from "./components/OverviewComponentCard";
 import ActivityWrapper from "./features/sales_activity/ActivityWrapper";
+import Loader from "@/components/loader/Loader";
 
 export default function OverviewPage() {
   return (
@@ -15,15 +15,17 @@ export default function OverviewPage() {
       <Highlight />
 
       <div className="grid lg:grid-cols-2 gap-x-[1rem]">
-        <Suspense fallback={<Loader />}>
-          <PopularArtworks />
-        </Suspense>
+        <div className="">
+          <Suspense fallback={<Loader theme="dark" />}>
+            <PopularArtworks />
+          </Suspense>
+        </div>
 
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader theme="dark" />}>
           <ActivityWrapper />
         </Suspense>
 
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader theme="dark" />}>
           <Orders />
         </Suspense>
 

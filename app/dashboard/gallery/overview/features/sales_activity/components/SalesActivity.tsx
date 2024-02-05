@@ -12,57 +12,6 @@ import {
   Area,
 } from "recharts";
 
-const data = [
-  {
-    name: "January",
-    revenue: 240,
-  },
-  {
-    name: "February",
-    revenue: 139,
-  },
-  {
-    name: "March",
-    revenue: 980,
-  },
-  {
-    name: "April",
-    revenue: 390,
-  },
-  {
-    name: "May",
-    revenue: 480,
-  },
-  {
-    name: "June",
-    revenue: 380,
-  },
-  {
-    name: "July",
-    revenue: 530,
-  },
-  {
-    name: "August",
-    revenue: 750,
-  },
-  {
-    name: "September",
-    revenue: 240,
-  },
-  {
-    name: "October",
-    revenue: 590,
-  },
-  {
-    name: "November",
-    revenue: 430,
-  },
-  {
-    name: "December",
-    revenue: 890,
-  },
-];
-
 export function SalesActivity({ activityData }: any) {
   return (
     <div

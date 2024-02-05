@@ -34,7 +34,7 @@ const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
     >
       <motion.div
         variants={variants}
-        className={`h-6 w-2 ${
+        className={`h-5 w-1 ${
           theme === "dark"
             ? "bg-dark group-hover:bg-white"
             : "bg-white group-hover:bg-dark"
@@ -42,7 +42,7 @@ const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
       />
       <motion.div
         variants={variants}
-        className={`h-6 w-2 ${
+        className={`h-5 w-1 ${
           theme === "dark"
             ? "bg-dark group-hover:bg-white"
             : "bg-white group-hover:bg-dark"
@@ -50,7 +50,7 @@ const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
       />
       <motion.div
         variants={variants}
-        className={`h-6 w-2 ${
+        className={`h-5 w-1 ${
           theme === "dark"
             ? "bg-dark group-hover:bg-white"
             : "bg-white group-hover:bg-dark"
@@ -58,7 +58,7 @@ const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
       />
       <motion.div
         variants={variants}
-        className={`h-6 w-2 ${
+        className={`h-5 w-1 ${
           theme === "dark"
             ? "bg-dark group-hover:bg-white"
             : "bg-white group-hover:bg-dark"
@@ -66,7 +66,7 @@ const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
       />
       <motion.div
         variants={variants}
-        className={`h-6 w-2 ${
+        className={`h-5 w-1 ${
           theme === "dark"
             ? "bg-dark group-hover:bg-white"
             : "bg-white group-hover:bg-dark"
