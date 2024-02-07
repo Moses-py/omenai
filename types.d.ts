@@ -64,6 +64,16 @@ type IndividualSchemaTypes = {
   preferences: string[];
   verified: boolean;
   role: string;
+  address?: IndividualAddressTypes;
+};
+
+type IndividualAddressTypes = {
+  address_line: string;
+  city: string;
+  country: string;
+  state: string;
+  zip: string;
+  [key: string]: string;
 };
 
 type ArtworkSchemaTypes = {
