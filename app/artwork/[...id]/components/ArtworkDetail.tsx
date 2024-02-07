@@ -7,6 +7,7 @@ import { IoHeartOutline } from "react-icons/io5";
 import { GiCheckMark } from "react-icons/gi";
 import useLikedState from "@/custom/hooks/useLikedState";
 import { useRouter } from "next/navigation";
+import { actionStore } from "@/store/actions/ActionStore";
 
 type ArtworkDetailTypes = {
   data: ArtworkResultTypes;
@@ -20,10 +21,13 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
     data.art_id
   );
 
+  const [toggleLoginModal] = actionStore((state) => [state.toggleLoginModal]);
+
   const router = useRouter();
 
   function handleBuyButtonClick() {
-    if (data.pricing.shouldShowPrice === "Yes") {
+    if (sessionId === undefined) toggleLoginModal(true);
+    else if (data.pricing.shouldShowPrice === "Yes") {
       router.push(`/purchase/${data.title}`);
     }
   }

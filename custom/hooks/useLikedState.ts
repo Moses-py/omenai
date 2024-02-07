@@ -2,7 +2,6 @@ import { updateArtworkImpressions } from "@/services/artworks/updateArtworkImpre
 import { actionStore } from "@/store/actions/ActionStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
 
 function useLikedState(
   initialImpressions: number,

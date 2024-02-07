@@ -1,3 +1,4 @@
+import { country_and_states } from "@/app/purchase/[...id]/countryAndStateList";
 import { create } from "zustand";
 
 type ActionStoreTypes = {
@@ -14,6 +15,10 @@ type ActionStoreTypes = {
   toggleLoginModal: (value: boolean) => void;
   openLoginModalRecoveryForm: boolean;
   toggleLoginModalRecoveryForm: (value: boolean) => void;
+  selectedCountry: string;
+  countryStates: string[];
+  setSelectedCountry: (country: string) => void;
+  setCountryStates: () => void;
 };
 
 export const actionStore = create<ActionStoreTypes>((set, get) => ({
@@ -41,5 +46,17 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
   openLoginModalRecoveryForm: false,
   toggleLoginModalRecoveryForm: (value: boolean) => {
     set({ openLoginModalRecoveryForm: value });
+  },
+  selectedCountry: "",
+  setSelectedCountry: (country: string) => {
+    set({ selectedCountry: country });
+  },
+  countryStates: [],
+  setCountryStates: () => {
+    const selectedCountry = get().selectedCountry;
+    const country_states = country_and_states.find((countries) => {
+      return countries.country === selectedCountry;
+    });
+    set({ countryStates: country_states?.states });
   },
 }));

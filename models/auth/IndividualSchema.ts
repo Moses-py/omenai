@@ -41,6 +41,16 @@ const individualSignupSchema = new Schema<IndividualSchemaTypes>(
       type: String,
       default: "user",
     },
+    address: {
+      type: Schema.Types.Mixed,
+      default: {
+        address_line: "",
+        city: "",
+        country: "",
+        state: "",
+        zip: "",
+      },
+    },
   },
   { timestamps: true }
 );

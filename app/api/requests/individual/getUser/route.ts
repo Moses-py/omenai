@@ -8,7 +8,7 @@ import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   try {
     await connectMongoDB();
     let id;
@@ -19,14 +19,14 @@ export async function GET(request: Request) {
       throw new BadRequestError("Invalid JSON in request body");
     }
 
-    const isVerified = await AccountIndividual.findOne(
+    const user = await AccountIndividual.findOne(
       { user_id: id },
-      "verified"
+      "address"
     ).exec();
 
-    if (!isVerified) throw new NotFoundError("Account not found");
+    if (!user) throw new NotFoundError("Account not found");
 
-    return NextResponse.json({ data: isVerified.verified }, { status: 200 });
+    return NextResponse.json({ data: user }, { status: 200 });
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
 
