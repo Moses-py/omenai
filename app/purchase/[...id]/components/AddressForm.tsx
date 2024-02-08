@@ -4,27 +4,62 @@ import AddressTextInput from "./AddressTextInput";
 import { userDetails, userLocation } from "../AddressInputFieldMocks";
 import AddressSelectInput from "./AddressSelectInput";
 import { orderStore } from "@/store/orders/ordersStore";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 import { indexAddress } from "../indexAddressOptions";
+import { createShippingOrder } from "@/services/orders/createShippingOrder";
+import { toast } from "sonner";
+import Loader from "@/components/loader/Loader";
 
 type AddressFormTypes = {
   userAddress: IndividualAddressTypes;
+  gallery_id: string;
+  art_id: string;
 };
-export default function AddressForm({ userAddress }: AddressFormTypes) {
+export default function AddressForm({
+  userAddress,
+  gallery_id,
+  art_id,
+}: AddressFormTypes) {
   const [address] = orderStore((state) => [state.address]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [save_shipping_address, setSaveShippingAddress] =
+    useState<boolean>(false);
   const session = useSession();
+
+  async function handleOrderSubmission(e: FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    let shipping_address;
+    if (userAddress.address_line === "") shipping_address = address;
+    else shipping_address = userAddress;
+
+    const createdShippingOrder = await createShippingOrder(
+      session.data!.user.id,
+      art_id,
+      gallery_id,
+      save_shipping_address,
+      shipping_address
+    );
+
+    if (createdShippingOrder === undefined) {
+      toast.error(
+        "An error was encountered while trying to create your order, please try again"
+      );
+      setLoading(false);
+    } else {
+      toast.success(
+        "Order successfully created. We'll get back to you within 24 to 48 hrs"
+      );
+      setLoading(false);
+    }
+  }
 
   return (
     <>
       <div className="w-full my-[2rem]">
         <h1 className="text-sm mb-[2rem] font-medium">Shipping Information</h1>
-        <form
-          onSubmit={(e: FormEvent) => {
-            e.preventDefault();
-            console.log(address);
-          }}
-        >
+        <form onSubmit={handleOrderSubmission}>
           <div className="">
             {userDetails.map((detail, index) => {
               return (
@@ -80,17 +115,18 @@ export default function AddressForm({ userAddress }: AddressFormTypes) {
                   type="checkbox"
                   name="save address"
                   id="save_address"
-                  onChange={(e) => console.log(e.target.checked)}
+                  onChange={(e) => setSaveShippingAddress(e.target.checked)}
                 />
                 <label htmlFor="age">Save my address</label>
               </div>
             </div>
             <div className="w-fit my-4">
               <button
+                disabled={loading}
                 type="submit"
-                className="w-full px-5 bg-dark py-3 text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group"
+                className="w-full px-5 disabled:cursor-not-allowed disabled:bg-white disabled:border disabled:border-dark bg-dark py-3 text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group"
               >
-                Request price quote
+                {!loading ? "Request price quote" : <Loader theme="dark" />}
               </button>
             </div>
           </div>
