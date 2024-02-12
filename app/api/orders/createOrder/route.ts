@@ -1,3 +1,4 @@
+import { ForbiddenError } from "@/custom/errors/dictionary/errorDictionary";
 import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
@@ -32,32 +33,46 @@ export async function POST(request: Request) {
     if (!buyerData || !artwork)
       throw new ServerError("An error was encountered. Please try again");
 
-    const createOrder = await CreateOrder.create({
-      gallery_id,
-      artwork_data: artwork,
-      buyer: buyerData,
-      shipping_address,
+    const isOrderPresent = await CreateOrder.findOne({
+      "buyer.email": buyerData.email,
+      "artwork_data.title": artwork.title,
     });
 
-    if (!createOrder)
-      throw new ServerError(
-        "An error was encountered while creating this order. Please try again"
+    if (isOrderPresent)
+      throw new ForbiddenError(
+        "Order already exists and is being processed, Please be patient."
       );
+    else {
+      const createOrder = await CreateOrder.create({
+        gallery_id,
+        artwork_data: artwork,
+        buyer: buyerData,
+        shipping_address,
+        shipping_quote: {
+          shipping_fees: "",
+          taxes: "",
+        },
+      });
 
-    if (save_shipping_address) {
-      await AccountIndividual.updateOne(
-        { user_id: buyer_id },
-        { $set: { address: shipping_address } }
+      if (!createOrder)
+        throw new ServerError(
+          "An error was encountered while creating this order. Please try again"
+        );
+
+      if (save_shipping_address) {
+        await AccountIndividual.updateOne(
+          { user_id: buyer_id },
+          { $set: { address: shipping_address } }
+        );
+      }
+
+      return NextResponse.json(
+        {
+          message: "Order created",
+        },
+        { status: 200 }
       );
     }
-
-    return NextResponse.json(
-      {
-        message: "Order created",
-        data: { ...createOrder },
-      },
-      { status: 200 }
-    );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);
 

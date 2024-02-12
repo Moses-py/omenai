@@ -4,8 +4,17 @@ import Loader from "../../components/Loader";
 import OrderHistory from "./OrderHistory";
 import PendingOrders from "./PendingOrders";
 import OrdersTab from "./OrdersTab";
+import { ObjectId } from "mongoose";
 
-export default function OrdersGroup({ orders }: { orders: any }) {
+export default function OrdersGroup({
+  orders,
+}: {
+  orders: CreateOrderModelTypes[] & {
+    createdAt: string;
+    updatedAt: string;
+    _id: ObjectId;
+  };
+}) {
   const [tab, setTab] = useState("pending");
 
   return (

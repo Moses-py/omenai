@@ -19,10 +19,8 @@ export const createShippingOrder = async (
         shipping_address,
       }),
     });
-    if (!res.ok) return undefined;
     const result = await res.json();
-
-    return result;
+    return { isOk: res.ok, message: result.message };
   } catch (error: any) {
     console.log(error);
   }

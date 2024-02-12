@@ -13,6 +13,8 @@ type ActionStoreTypes = {
   toggleFilterModal: (value: boolean) => void;
   openLoginModal: boolean;
   toggleLoginModal: (value: boolean) => void;
+  openOrderReceivedModal: boolean;
+  toggleOrderReceivedModal: (value: boolean) => void;
   openLoginModalRecoveryForm: boolean;
   toggleLoginModalRecoveryForm: (value: boolean) => void;
   selectedCountry: string;
@@ -42,6 +44,10 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
   openLoginModal: false,
   toggleLoginModal: (value: boolean) => {
     set({ openLoginModal: value });
+  },
+  openOrderReceivedModal: false,
+  toggleOrderReceivedModal: (value: boolean) => {
+    set({ openOrderReceivedModal: value });
   },
   openLoginModalRecoveryForm: false,
   toggleLoginModalRecoveryForm: (value: boolean) => {

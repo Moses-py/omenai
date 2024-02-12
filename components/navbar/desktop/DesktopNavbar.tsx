@@ -26,11 +26,24 @@ export default function DesktopNavbar() {
           <MobileNavbar />
 
           <ul className="lg:flex space-x-6 hidden">
-            <NavbarLink disabled={false} text={"Buy artworks"} link={"/"} />
-            <NavbarLink disabled={false} text={"Sell Artworks"} link={"/"} />
             <NavbarLink
               disabled={false}
-              text={"View editorials"}
+              text={"Buy artworks"}
+              link={"/artworks"}
+            />
+            <NavbarLink
+              disabled={false}
+              text={"Omenai for galleries"}
+              link={"/dashboard/gallery/overview"}
+            />
+            <NavbarLink
+              disabled={false}
+              text={"Omnenai shop"}
+              link={"https://omenai.shop"}
+            />
+            <NavbarLink
+              disabled={false}
+              text={"Omenai editorials"}
               link={"/articles"}
             />
           </ul>

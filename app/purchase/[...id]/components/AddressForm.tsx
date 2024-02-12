@@ -1,5 +1,4 @@
 "use client";
-import { Checkbox, Label } from "flowbite-react";
 import AddressTextInput from "./AddressTextInput";
 import { userDetails, userLocation } from "../AddressInputFieldMocks";
 import AddressSelectInput from "./AddressSelectInput";
@@ -10,6 +9,8 @@ import { indexAddress } from "../indexAddressOptions";
 import { createShippingOrder } from "@/services/orders/createShippingOrder";
 import { toast } from "sonner";
 import Loader from "@/components/loader/Loader";
+
+import { actionStore } from "@/store/actions/ActionStore";
 
 type AddressFormTypes = {
   userAddress: IndividualAddressTypes;
@@ -25,6 +26,11 @@ export default function AddressForm({
   const [loading, setLoading] = useState<boolean>(false);
   const [save_shipping_address, setSaveShippingAddress] =
     useState<boolean>(false);
+
+  const [toggleOrderReceivedModal] = actionStore((state) => [
+    state.toggleOrderReceivedModal,
+  ]);
+
   const session = useSession();
 
   async function handleOrderSubmission(e: FormEvent) {
@@ -42,15 +48,11 @@ export default function AddressForm({
       shipping_address
     );
 
-    if (createdShippingOrder === undefined) {
-      toast.error(
-        "An error was encountered while trying to create your order, please try again"
-      );
+    if (!createdShippingOrder!.isOk) {
+      toast.error(createdShippingOrder!.message);
       setLoading(false);
     } else {
-      toast.success(
-        "Order successfully created. We'll get back to you within 24 to 48 hrs"
-      );
+      toggleOrderReceivedModal(true);
       setLoading(false);
     }
   }

@@ -10,6 +10,7 @@ import "./globals.css";
 import Providers from "@/react-query-provider/Provider";
 import LoginModal from "@/components/modal/LoginModal";
 import RecoveryModal from "@/components/modal/RecoveryModal";
+import { OrderReceivedModal } from "@/components/modal/OrderConfirmedModal";
 
 const raleway = Nunito_Sans({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default async function RootLayout({
           <Providers>
             <LoginModal />
             <RecoveryModal />
+            <OrderReceivedModal />
             {children}
           </Providers>
         </AuthProvider>

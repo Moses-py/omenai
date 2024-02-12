@@ -28,11 +28,24 @@ export default function MobileNavbar() {
       </div>
       <div className="my-4">
         <ul className="flex flex-col space-y-4 px-4">
-          <NavbarLink disabled={false} text={"Buy artworks"} link={"/"} />
-          <NavbarLink disabled={false} text={"Sell Artworks"} link={"/"} />
           <NavbarLink
             disabled={false}
-            text={"View editorials"}
+            text={"Buy artworks"}
+            link={"/artworks"}
+          />
+          <NavbarLink
+            disabled={false}
+            text={"Omenai for galleries"}
+            link={"/dashboard/gallery/overview"}
+          />
+          <NavbarLink
+            disabled={false}
+            text={"Omnenai shop"}
+            link={"https://omenai.shop"}
+          />
+          <NavbarLink
+            disabled={false}
+            text={"Omenai editorials"}
             link={"/articles"}
           />
         </ul>
