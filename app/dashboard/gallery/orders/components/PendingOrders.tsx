@@ -1,9 +1,18 @@
 import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 import { AnimatePresence, motion } from "framer-motion";
 import NotFoundData from "../../../../../components/notFound/NotFoundData";
-import OverviewOrdersCard from "../../overview/features/orders/components/OverviewOrdersCard";
+import OverviewOrdersCard from "../../components/OverviewOrdersCard";
+import { ObjectId } from "mongoose";
 
-export default function PendingOrders({ orders }: { orders: any }) {
+export default function PendingOrders({
+  orders,
+}: {
+  orders: CreateOrderModelTypes[] & {
+    createdAt: string;
+    updatedAt: string;
+    _id: ObjectId;
+  };
+}) {
   return (
     <AnimatePresence key={1}>
       <motion.div
@@ -13,11 +22,11 @@ export default function PendingOrders({ orders }: { orders: any }) {
         transition={{ duration: 0.33 }}
         className="w-full"
       >
-        {orders.data.length === 0 ? (
+        {orders.length === 0 ? (
           <NotFoundData />
         ) : (
           <div className="flex flex-col gap-3 w-full">
-            {orders.data.map((order: any, index: number) => {
+            {orders.map((order: any, index: number) => {
               return (
                 <>
                   <OverviewOrdersCard
@@ -29,6 +38,7 @@ export default function PendingOrders({ orders }: { orders: any }) {
                     price={order.artwork_data.pricing.price}
                     order_date={formatIntlDateTime(order.createdAt)}
                     status={order.status}
+                    order_id={order.order_id}
                   />
                   <hr className="h-px my-2 bg-base-theme/10 border-0 dark:bg-gray-700" />
                 </>

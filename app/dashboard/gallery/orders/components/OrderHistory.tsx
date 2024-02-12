@@ -1,11 +1,12 @@
 import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 import { sortOrdersDataByDate } from "@/utils/sortOrdersDataByDate";
 import { AnimatePresence, motion } from "framer-motion";
-import OverviewOrdersCard from "../../overview/features/orders/components/OverviewOrdersCard";
+import OverviewOrdersCard from "../../components/OverviewOrdersCard";
 import NotFoundData from "../../../../../components/notFound/NotFoundData";
+import { ObjectId } from "mongoose";
 
 export default function OrderHistory({ orders }: { orders: any }) {
-  const history = sortOrdersDataByDate(orders.data);
+  const history = sortOrdersDataByDate(orders);
   return (
     <AnimatePresence key={2}>
       <motion.div
@@ -36,6 +37,7 @@ export default function OrderHistory({ orders }: { orders: any }) {
                             price={order.artwork_data.pricing.price}
                             order_date={formatIntlDateTime(order.updatedAt)}
                             status={order.status}
+                            order_id={order.order_id}
                           />
                           <hr className="h-px my-2 bg-base-theme/10 border-0 dark:bg-gray-700" />
                         </>

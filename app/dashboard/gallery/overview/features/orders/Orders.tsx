@@ -1,6 +1,6 @@
 import { getOverviewOrders } from "@/services/orders/getOverviewOrders";
 import OverviewComponentCard from "../../components/OverviewComponentCard";
-import OverviewOrdersCard from "./components/OverviewOrdersCard";
+import OverviewOrdersCard from "../../../components/OverviewOrdersCard";
 import NotFoundData from "../../../../../../components/notFound/NotFoundData";
 import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 
@@ -30,6 +30,7 @@ export default async function Orders() {
                 price={order.artwork_data.pricing.price}
                 order_date={formatIntlDateTime(order.createdAt)}
                 status={order.status}
+                order_id={order.order_id}
               />
             );
           })}

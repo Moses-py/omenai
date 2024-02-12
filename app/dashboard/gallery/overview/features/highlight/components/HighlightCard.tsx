@@ -12,7 +12,6 @@ export default function HighlightCard({ tag }: HightlightCardProps) {
     queryKey: [`highlight`, tag],
     queryFn: async () => {
       const data = await fetchHighlightData(tag);
-      console.log(data);
       return data;
     },
   });

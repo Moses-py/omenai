@@ -139,6 +139,28 @@ type ArtworkUploadStateTypes = {
   carrier: string;
 };
 
+type CreateOrderModelTypes = {
+  artwork_data: Pick<
+    ArtworkSchemaTypes,
+    "artist" | "pricing" | "title" | "url"
+  > & { _id: ObjectId };
+  buyer: {
+    name: string;
+    email: string;
+    _id: ObjectId;
+  };
+  gallery_id: string;
+  order_id: string;
+  status: string;
+  shipping_address: IndividualAddressTypes;
+  shipping_quote: ShippingQuoteTypes;
+};
+
+type ShippingQuoteTypes = {
+  shipping_fees: string;
+  taxes: string;
+};
+
 interface Image {
   bucketId: string;
   fileId: string;

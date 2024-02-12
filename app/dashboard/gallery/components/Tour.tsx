@@ -142,6 +142,7 @@ const Tour = () => {
         callback={callback}
         showSkipButton={true}
         showProgress={true}
+        key={1}
         styles={{
           tooltipContainer: {
             textAlign: "left",

@@ -5,7 +5,7 @@ export default async function Orders() {
   const orders = await getOverviewOrders();
   return (
     <>
-      <OrdersGroup orders={orders} />
+      <OrdersGroup orders={orders.data} />
     </>
   );
 }
