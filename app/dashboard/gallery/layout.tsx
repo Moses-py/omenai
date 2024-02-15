@@ -7,6 +7,8 @@ import { galleryNavigationActions } from "@/store/gallery/gallery_navigation/Gal
 import { useWindowSize } from "usehooks-ts";
 import NoMobileView from "./components/NoMobileView";
 import Providers from "@/react-query-provider/Provider";
+import { ShippingQuoteModal } from "./modals/ShippingQuoteUpdateModal";
+import { UploadTrackingIDModal } from "./modals/ProvideTrackingIDModal";
 export default function GalleryDashboardLayout({
   children,
 }: {
@@ -39,6 +41,8 @@ export default function GalleryDashboardLayout({
             >
               <Appbar />
               <div className="h-auto rounded-lg relative my-5 px-5">
+                <ShippingQuoteModal />
+                <UploadTrackingIDModal />
                 {children}
               </div>
             </div>

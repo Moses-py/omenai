@@ -38,6 +38,7 @@ export default function OrderHistory({ orders }: { orders: any }) {
                             order_date={formatIntlDateTime(order.updatedAt)}
                             status={order.status}
                             order_id={order.order_id}
+                            state="history"
                           />
                           <hr className="h-px my-2 bg-base-theme/10 border-0 dark:bg-gray-700" />
                         </>

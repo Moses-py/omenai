@@ -39,6 +39,11 @@ export default function PendingOrders({
                     order_date={formatIntlDateTime(order.createdAt)}
                     status={order.status}
                     order_id={order.order_id}
+                    shipping_address={order.shipping_address}
+                    state="pending"
+                    payment_information={order.payment_information}
+                    tracking_information={order.tracking_information}
+                    shipping_quote={order.shipping_quote}
                   />
                   <hr className="h-px my-2 bg-base-theme/10 border-0 dark:bg-gray-700" />
                 </>

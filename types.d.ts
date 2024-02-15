@@ -154,11 +154,26 @@ type CreateOrderModelTypes = {
   status: string;
   shipping_address: IndividualAddressTypes;
   shipping_quote: ShippingQuoteTypes;
+  payment_information: PaymentStatusTypes;
+  tracking_information: TrackingInformationTypes;
+};
+
+type TrackingInformationTypes = {
+  tracking_id: string;
+  tracking_link: string;
+};
+type PaymentStatusTypes = {
+  status: "pending" | "completed";
+  transaction_value: string;
+  transaction_date: string;
+  transaction_reference: string;
 };
 
 type ShippingQuoteTypes = {
+  package_carrier: string;
   shipping_fees: string;
   taxes: string;
+  additional_information?: string;
 };
 
 interface Image {
