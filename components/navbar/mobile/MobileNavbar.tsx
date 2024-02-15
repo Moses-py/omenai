@@ -40,7 +40,7 @@ export default function MobileNavbar() {
           />
           <NavbarLink
             disabled={false}
-            text={"Omnenai shop"}
+            text={"Omenai shop"}
             link={"https://omenai.shop"}
           />
           <NavbarLink

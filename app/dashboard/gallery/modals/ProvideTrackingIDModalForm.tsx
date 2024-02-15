@@ -1,0 +1,92 @@
+"use client";
+
+import Loader from "@/components/loader/Loader";
+import { updateOrderTrackingData } from "@/services/orders/updateTrackingInformation";
+import { actionStore } from "@/store/actions/ActionStore";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { toast } from "sonner";
+
+export default function UploadTrackingInformationModalForm() {
+  const [toggleUploadTrackingInfoModal, current_order_id] = actionStore(
+    (state) => [state.toggleUploadTrackingInfoModal, state.current_order_id]
+  );
+  const [tracking_info, setTrackingInfo] = useState<TrackingInformationTypes>({
+    tracking_link: "",
+    tracking_id: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  function handleInputChange(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = e.target;
+    setTrackingInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  const router = useRouter();
+
+  const handleSubmitTrackingInfo = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const response = await updateOrderTrackingData(
+      tracking_info,
+      current_order_id
+    );
+    if (!response?.isOk) {
+      toast.error(response?.message);
+      setLoading(false);
+    } else {
+      setLoading(false);
+      toast.success(response.message);
+      toggleUploadTrackingInfoModal(false);
+      router.refresh();
+    }
+  };
+
+  return (
+    <div>
+      <h1 className="text-sm font-bold mb-4">Tracking information</h1>
+      <form className="w-full" onSubmit={handleSubmitTrackingInfo}>
+        <div className="space-y-2 mb-2 flex flex-col w-full">
+          <div className="relative w-full h-auto">
+            <label htmlFor="shipping">Package tracking link</label>
+            <input
+              onChange={handleInputChange}
+              name="tracking_link"
+              type="text"
+              required
+              placeholder="Please provide a link to track this order"
+              className="px-3 py-2 border border-dark/20 rounded-md w-full focus:border-none focus:ring-1 focus:ring-dark focus:outline-none"
+            />
+          </div>
+        </div>
+        <div className="space-y-2 mb-2 flex flex-col w-full">
+          <div className="relative w-full h-auto">
+            <label htmlFor="shipping">Tracking ID</label>
+            <input
+              onChange={handleInputChange}
+              name="tracking_id"
+              type="text"
+              required
+              className="px-3 py-2 border border-dark/20 rounded-md w-full focus:border-none focus:ring-1 focus:ring-dark focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div className="w-full flex justify-end items-end mt-5">
+          <button
+            disabled={loading}
+            type="submit"
+            className="px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-400 hover:bg-green-800 rounded-md bg-green-600 duration-300 grid place-items-center"
+          >
+            {loading ? <Loader theme="dark" /> : " Submit tracking information"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}

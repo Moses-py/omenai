@@ -52,6 +52,16 @@ export async function POST(request: Request) {
           shipping_fees: "",
           taxes: "",
         },
+        payment_information: {
+          status: "pending",
+          transaction_value: "",
+          transaction_date: "",
+          transaction_reference: "",
+        },
+        tracking_information: {
+          tracking_id: "",
+          tracking_link: "",
+        },
       });
 
       if (!createOrder)

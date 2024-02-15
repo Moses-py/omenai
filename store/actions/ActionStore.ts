@@ -15,12 +15,29 @@ type ActionStoreTypes = {
   toggleLoginModal: (value: boolean) => void;
   openOrderReceivedModal: boolean;
   toggleOrderReceivedModal: (value: boolean) => void;
+  openGalleryOrderActionModal: boolean;
+  toggleGalleryOrderActionModal: (value: boolean) => void;
+  openUploadTrackingInfoModal: boolean;
+  toggleUploadTrackingInfoModal: (value: boolean) => void;
   openLoginModalRecoveryForm: boolean;
   toggleLoginModalRecoveryForm: (value: boolean) => void;
   selectedCountry: string;
   countryStates: string[];
   setSelectedCountry: (country: string) => void;
   setCountryStates: () => void;
+  galleryOrderActionModalData: {
+    buyer: string;
+    shipping_address: IndividualAddressTypes;
+    order_id: string;
+  };
+  updateGalleryOrderActionModalData: (
+    buyer: string,
+    shipping_address: IndividualAddressTypes,
+    order_id: string
+  ) => void;
+  clearGalleryOrderActionModalData: () => void;
+  current_order_id: string;
+  update_current_order_id: (id: string) => void;
 };
 
 export const actionStore = create<ActionStoreTypes>((set, get) => ({
@@ -28,14 +45,17 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
     type: "individual",
     value: false,
   },
+
   updateRecoveryModal: (label: RouteIdentifier) => {
     const modalState = get().recoveryModal;
     set({ recoveryModal: { type: label, value: !modalState.value } });
   },
+
   openSideNav: false,
   updateOpenSideNav: (val: boolean) => {
     set({ openSideNav: val });
   },
+
   filterModal: false,
   toggleFilterModal: (value: boolean) => {
     set({ filterModal: value });
@@ -45,18 +65,32 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
   toggleLoginModal: (value: boolean) => {
     set({ openLoginModal: value });
   },
+
   openOrderReceivedModal: false,
   toggleOrderReceivedModal: (value: boolean) => {
     set({ openOrderReceivedModal: value });
   },
+
+  openGalleryOrderActionModal: false,
+  toggleGalleryOrderActionModal: (value: boolean) => {
+    set({ openGalleryOrderActionModal: value });
+  },
+
+  openUploadTrackingInfoModal: false,
+  toggleUploadTrackingInfoModal: (value: boolean) => {
+    set({ openUploadTrackingInfoModal: value });
+  },
+
   openLoginModalRecoveryForm: false,
   toggleLoginModalRecoveryForm: (value: boolean) => {
     set({ openLoginModalRecoveryForm: value });
   },
+
   selectedCountry: "",
   setSelectedCountry: (country: string) => {
     set({ selectedCountry: country });
   },
+
   countryStates: [],
   setCountryStates: () => {
     const selectedCountry = get().selectedCountry;
@@ -64,5 +98,45 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
       return countries.country === selectedCountry;
     });
     set({ countryStates: country_states?.states });
+  },
+
+  galleryOrderActionModalData: {
+    buyer: "",
+    shipping_address: {
+      address_line: "",
+      city: "",
+      country: "",
+      state: "",
+      zip: "",
+    },
+    order_id: "",
+  },
+  updateGalleryOrderActionModalData: (
+    buyer: string,
+    shipping_address: IndividualAddressTypes,
+    order_id: string
+  ) => {
+    set({ galleryOrderActionModalData: { buyer, shipping_address, order_id } });
+  },
+
+  clearGalleryOrderActionModalData: () => {
+    set({
+      galleryOrderActionModalData: {
+        buyer: "",
+        shipping_address: {
+          address_line: "",
+          city: "",
+          country: "",
+          state: "",
+          zip: "",
+        },
+        order_id: "",
+      },
+    });
+  },
+
+  current_order_id: "",
+  update_current_order_id: (id: string) => {
+    set({ current_order_id: id });
   },
 }));

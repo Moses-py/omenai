@@ -31,6 +31,7 @@ export default async function Orders() {
                 order_date={formatIntlDateTime(order.createdAt)}
                 status={order.status}
                 order_id={order.order_id}
+                state="overview"
               />
             );
           })}
