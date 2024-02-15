@@ -45,7 +45,7 @@ const config: Config = {
         "2xl": "1440px",
       },
       fontFamily: {
-        sans: ["var(--font-quattrocento_sans)"],
+        sans: ["var(--font-nunito_sans)"],
       },
 
       backgroundImage: {

@@ -12,12 +12,10 @@ import LoginModal from "@/components/modal/LoginModal";
 import RecoveryModal from "@/components/modal/RecoveryModal";
 import { OrderReceivedModal } from "@/components/modal/OrderConfirmedModal";
 
-const raleway = Nunito_Sans({
+const nunito_sans = Nunito_Sans({
   subsets: ["latin"],
-  variable: "--font-open_sans",
+  variable: "--font-nunito_sans",
   weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -33,7 +31,7 @@ export default async function RootLayout({
   const session = await getServerSession(nextAuthOptions);
   return (
     <html lang="en">
-      <body className={`${raleway.className} flex flex-col justify-center`}>
+      <body className={`${nunito_sans.className} flex flex-col justify-center`}>
         <NextTopLoader color="#6246EA" height={6} />
         <Toaster richColors position="top-center" visibleToasts={1} />
         <AuthProvider session={session}>
