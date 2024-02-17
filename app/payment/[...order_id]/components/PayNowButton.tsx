@@ -30,40 +30,20 @@ export default function PayNowButton({ art_id }: { art_id: string }) {
     checkLock();
   }, []);
 
-  const { mutateAsync: updateLockStatus } = useMutation({
-    mutationFn: async (options: { art_id: string; user_id: string }) => {
-      await createOrderLock(options.art_id, options.user_id);
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ["load_order_purchase_data"],
-      });
-    },
-  });
-
   async function handleClickPayNow() {
     setLoading(true);
-    const isOrderStillLocked = await checkLockStatus(
-      art_id,
-      session.data!.user.id
-    );
-    if (isOrderStillLocked?.isOk) {
-      if (isOrderStillLocked.data.locked) {
-        toast.error(
-          "Sorry, another user is currently performing a payment transaction on this artwork"
-        );
-        setLoading(false);
-        router.refresh();
-      } else {
-        await updateLockStatus({
-          art_id: art_id,
-          user_id: session.data!.user.id,
-        });
-        setLoading(false);
+    const lock = await createOrderLock(art_id, session.data!.user.id);
+    if (lock?.isOk) {
+      if (lock.data.lock_data.user_id === session.data!.user.id) {
         router.replace("/payment/paymentPortal");
+      } else {
+        toast.error(
+          "A user is currently processing a purchase transaction on this artwork. Please check back in a few minutes for a status update"
+        );
       }
+      setLoading(false);
     } else {
-      throw new Error("An error was encountered");
+      throw new Error("An error has occured");
     }
   }
 

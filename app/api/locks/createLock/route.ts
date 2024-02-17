@@ -14,18 +14,27 @@ export async function POST(request: Request) {
     const { user_id, art_id } = await request.json();
     const checkIfLockActive = await LockMechanism.findOne({ art_id });
 
-    if (checkIfLockActive)
-      throw new ForbiddenError(
-        "A user is currently processing a transaction on this artwork. Please refersh your page after a few minutes to check on the status"
+    if (checkIfLockActive) {
+      return NextResponse.json(
+        {
+          message:
+            "A user is currently processing a transaction on this artwork. Please refersh your page after a few minutes to check on the status",
+          data: { lock_data: checkIfLockActive },
+        },
+        { status: 200 }
       );
+    }
     const createLock = await LockMechanism.create({ art_id, user_id });
 
     if (!createLock)
       throw new ServerError("An error was encountered. Please try again");
 
+    const getLock = await LockMechanism.findOne({ art_id });
+
     return NextResponse.json(
       {
         message: "Lock acquired",
+        data: { lock_data: getLock },
       },
       { status: 200 }
     );
