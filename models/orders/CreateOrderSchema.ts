@@ -18,6 +18,7 @@ const createOrder = new Schema<CreateOrderModelTypes>(
       type: Schema.Types.Mixed,
       required: true,
     },
+    lock_purchase: { type: Boolean, required: true, default: () => false },
   },
   { timestamps: true }
 );

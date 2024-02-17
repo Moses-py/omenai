@@ -37,7 +37,7 @@ export default function NavigationItem({
             onClick={onClick}
             className={`p-2 ${
               (open || mobile) && "gap-x-4 "
-            } group flex items-center w-fitrounded-md`}
+            } group flex items-center w-fit rounded-md`}
           >
             <IconWrapper
               className={`group-hover:bg-primary bg-white duration-300 `}

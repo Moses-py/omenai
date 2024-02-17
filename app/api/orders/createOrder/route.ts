@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
     const artwork = await Artworkuploads.findOne(
       { art_id },
-      "title artist pricing url"
+      "title artist pricing url art_id"
     ).exec();
 
     if (!buyerData || !artwork)
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     const isOrderPresent = await CreateOrder.findOne({
       "buyer.email": buyerData.email,
-      "artwork_data.title": artwork.title,
+      "artwork_data.art_id": artwork.art_id,
     });
 
     if (isOrderPresent)

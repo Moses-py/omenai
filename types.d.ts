@@ -142,7 +142,7 @@ type ArtworkUploadStateTypes = {
 type CreateOrderModelTypes = {
   artwork_data: Pick<
     ArtworkSchemaTypes,
-    "artist" | "pricing" | "title" | "url"
+    "artist" | "pricing" | "title" | "url" | "art_id"
   > & { _id: ObjectId };
   buyer: {
     name: string;
@@ -156,6 +156,7 @@ type CreateOrderModelTypes = {
   shipping_quote: ShippingQuoteTypes;
   payment_information: PaymentStatusTypes;
   tracking_information: TrackingInformationTypes;
+  lock_purchase: boolean;
 };
 
 type TrackingInformationTypes = {
