@@ -6,11 +6,16 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
 
 export default function FormInput() {
   const router = useRouter();
   const [setIsLoading] = individualLoginStore((state) => [state.setIsloading]);
-
+  const [redirect_uri, set_redirect_uri] = useLocalStorage(
+    "redirect_uri_on_login",
+    ""
+  );
+  const url = useReadLocalStorage("redirect_uri_on_login") as string;
   const [form, setForm] = useState<Form>({ email: "", password: "" });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +32,14 @@ export default function FormInput() {
           const session = await getSession();
           if (session?.user) {
             toast.success("Login successful...redirecting!");
-            if (session?.user.verified) router.replace("/");
-            else {
+            if (session?.user.verified) {
+              if (url !== "") {
+                router.replace(url);
+                set_redirect_uri("");
+              } else {
+                router.replace("/");
+              }
+            } else {
               await signOut({
                 callbackUrl: `/verify/individual/${session?.user.id}`,
               });
