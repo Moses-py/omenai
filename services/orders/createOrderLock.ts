@@ -1,16 +1,13 @@
 import { getApiUrl } from "@/config";
 
-export const updateOrderLockStatus = async (
-  art_id: string,
-  lock_status: boolean
-) => {
+export const createOrderLock = async (art_id: string, user_id: string) => {
   const url = getApiUrl();
   try {
-    const res = await fetch(`${url}/api/orders/updateOrderLockStatus`, {
+    const res = await fetch(`${url}/api/locks/createLock`, {
       method: "POST",
       body: JSON.stringify({
         art_id,
-        lock_status,
+        user_id,
       }),
     });
     const result = await res.json();

@@ -1,12 +1,13 @@
 import { getApiUrl } from "@/config";
 
-export const retrieveOrderLockStatus = async (order_id: string) => {
+export const checkLockStatus = async (art_id: string, user_id: string) => {
   const url = getApiUrl();
   try {
-    const res = await fetch(`${url}/api/orders/retrieveOrderLockStatus`, {
+    const res = await fetch(`${url}/api/locks/checkLock`, {
       method: "POST",
       body: JSON.stringify({
-        order_id,
+        art_id,
+        user_id,
       }),
     });
     const result = await res.json();

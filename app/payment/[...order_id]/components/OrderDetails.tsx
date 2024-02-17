@@ -40,11 +40,7 @@ export default function OrderDetails({ order_id }: { order_id: string }) {
   return (
     <div className="grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 my-[3rem] p-5 gap-4">
       <div className="col-span-1 xl:col-span-2">
-        <PayNowButton
-          order_id={order_id}
-          lock_status={order.lock_purchase}
-          art_id={order.artwork_data.art_id}
-        />
+        <PayNowButton art_id={order.artwork_data.art_id} />
       </div>
 
       <div className="w-full cols-span-1 h-full">
