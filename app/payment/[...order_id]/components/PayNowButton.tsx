@@ -1,30 +1,38 @@
 "use client";
 import Loader from "@/components/loader/Loader";
-import { retrieveOrderLockStatus } from "@/services/orders/retrieveOrderLockStatus";
-import { updateOrderLockStatus } from "@/services/orders/updateOrderLockStatus";
+import { checkLockStatus } from "@/services/orders/checkLockStatus";
+import { createOrderLock } from "@/services/orders/createOrderLock";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Tooltip } from "flowbite-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { notFound, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { CiLock } from "react-icons/ci";
 import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
-export default function PayNowButton({
-  lock_status,
-  art_id,
-  order_id,
-}: {
-  lock_status: boolean;
-  art_id: string;
-  order_id: string;
-}) {
+export default function PayNowButton({ art_id }: { art_id: string }) {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const session = useSession();
   const [loading, setLoading] = useState(false);
+  const [locked, setLocked] = useState(false);
+
+  useEffect(() => {
+    const checkLock = async () => {
+      const lock_status = await checkLockStatus(art_id, session.data!.user.id);
+      if (lock_status?.isOk) {
+        setLocked(lock_status.data.locked);
+      } else {
+        throw new Error("Something went wrong, please try again");
+      }
+    };
+
+    checkLock();
+  }, []);
 
   const { mutateAsync: updateLockStatus } = useMutation({
-    mutationFn: async (options: { art_id: string; lock_status: boolean }) => {
-      await updateOrderLockStatus(options.art_id, options.lock_status);
+    mutationFn: async (options: { art_id: string; user_id: string }) => {
+      await createOrderLock(options.art_id, options.user_id);
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -35,10 +43,12 @@ export default function PayNowButton({
 
   async function handleClickPayNow() {
     setLoading(true);
-    const isOrderStillLocked = await retrieveOrderLockStatus(order_id);
-    console.log(isOrderStillLocked);
+    const isOrderStillLocked = await checkLockStatus(
+      art_id,
+      session.data!.user.id
+    );
     if (isOrderStillLocked?.isOk) {
-      if (isOrderStillLocked.data.lock_purchase) {
+      if (isOrderStillLocked.data.locked) {
         toast.error(
           "Sorry, another user is currently performing a payment transaction on this artwork"
         );
@@ -47,11 +57,13 @@ export default function PayNowButton({
       } else {
         await updateLockStatus({
           art_id: art_id,
-          lock_status: true,
+          user_id: session.data!.user.id,
         });
         setLoading(false);
         router.replace("/payment/paymentPortal");
       }
+    } else {
+      throw new Error("An error was encountered");
     }
   }
 
@@ -67,20 +79,18 @@ export default function PayNowButton({
             animation="duration-500"
             trigger="hover"
             className={`w-[400px] bg-dark text-[0.9rem] text-white p-2 relative ${
-              !lock_status && "hidden"
+              !locked && "hidden"
             }`}
           >
             <button
               onClick={handleClickPayNow}
-              disabled={lock_status || loading}
+              disabled={locked || loading}
               className="w-fit px-5 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-dark disabled:border-dark bg-dark py-3 text-white text-base hover:bg-white hover:text-dark disabled:hover:border-none hover:border-dark hover:border duration-150 grid place-items-center group"
             >
               {loading ? <Loader theme="dark" /> : "Proceed to payment"}
             </button>
           </Tooltip>
-          {lock_status && (
-            <CiLock className="absolute right-[-15px] top-[-5px]" />
-          )}
+          {locked && <CiLock className="absolute right-[-15px] top-[-5px]" />}
         </div>
 
         <p className="font-bold text-red-600 lg:w-1/2">

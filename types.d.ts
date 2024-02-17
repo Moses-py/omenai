@@ -177,6 +177,12 @@ type ShippingQuoteTypes = {
   additional_information?: string;
 };
 
+type LockModelTypes = {
+  lock_id: string;
+  user_id: string;
+  art_id: string;
+};
+
 interface Image {
   bucketId: string;
   fileId: string;
