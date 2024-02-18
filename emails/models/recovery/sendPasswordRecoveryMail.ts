@@ -17,11 +17,11 @@ export const sendPasswordRecoveryMail = async ({
   route,
 }: EmailData) => {
   // Set up resend here instead
-  // await sendMailVerification({
-  //   to: email,
-  //   subject: "Reset your password",
-  //   html: render(PasswordRecoveryEmail(name, token, route, gallery_name), {
-  //     pretty: true,
-  //   }),
-  // });
+  await sendMailVerification({
+    to: email,
+    subject: "Reset your password",
+    html: render(PasswordRecoveryEmail(name, token, route, gallery_name), {
+      pretty: true,
+    }),
+  });
 };
