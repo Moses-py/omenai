@@ -5,6 +5,7 @@ import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 
 import { NextResponse } from "next/server";
 import { sendOrderAcceptedMail } from "@/emails/models/orders/orderAcceptedMail";
+import { sendOrderDeclinedMail } from "@/emails/models/orders/orderDeclinedMail";
 
 export async function POST(request: Request) {
   try {
@@ -12,27 +13,26 @@ export async function POST(request: Request) {
 
     const { data, order_id } = await request.json();
 
-    const updateOrders = await CreateOrder.findOneAndUpdate(
+    const declineOrder = await CreateOrder.findOneAndUpdate(
       { order_id },
       {
-        $set: {
-          shipping_quote: data,
-          order_accepted: { status: "accepted", reason: "" },
-        },
-      }
+        $set: { order_accepted: { status: data.status, reason: data.reason } },
+      },
+      { new: true }
     );
 
-    if (!updateOrders) throw new ServerError("Quote could not be updated");
+    if (!declineOrder) throw new ServerError("An error occured");
 
-    await sendOrderAcceptedMail({
-      name: updateOrders.buyer.name,
-      email: updateOrders.buyer.email,
-      artwork_data: updateOrders.artwork_data,
+    await sendOrderDeclinedMail({
+      name: declineOrder.buyer.name,
+      email: declineOrder.buyer.email,
+      reason: declineOrder.order_accepted.reason,
+      artwork_data: declineOrder.artwork_data,
     });
 
     return NextResponse.json(
       {
-        message: "Successfully updated quote data",
+        message: "Successfully declined order",
       },
       { status: 200 }
     );

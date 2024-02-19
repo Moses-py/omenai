@@ -1,10 +1,14 @@
 import { ForbiddenError } from "@/custom/errors/dictionary/errorDictionary";
 import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
+import { sendOrderRequestReceivedMail } from "@/emails/models/orders/orderRequestReceived";
+import { sendOrderRequestToGalleryMail } from "@/emails/models/orders/orderRequestToGallery";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
+import { AccountGallery } from "@/models/auth/GallerySchema";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { CreateOrder } from "@/models/orders/CreateOrderSchema";
+import { getCurrentDate } from "@/utils/getCurrentDate";
 
 import { NextResponse } from "next/server";
 
@@ -23,6 +27,10 @@ export async function POST(request: Request) {
     const buyerData = await AccountIndividual.findOne(
       { user_id: buyer_id },
       "_id name email"
+    ).exec();
+    const gallery_data = await AccountGallery.findOne(
+      { gallery_id },
+      "name email"
     ).exec();
 
     const artwork = await Artworkuploads.findOne(
@@ -62,6 +70,10 @@ export async function POST(request: Request) {
           tracking_id: "",
           tracking_link: "",
         },
+        order_accepted: {
+          status: "",
+          reason: "",
+        },
       });
 
       if (!createOrder)
@@ -75,6 +87,21 @@ export async function POST(request: Request) {
           { $set: { address: shipping_address } }
         );
       }
+
+      const date = getCurrentDate();
+      await sendOrderRequestToGalleryMail({
+        name: gallery_data.name,
+        email: gallery_data.email,
+        buyer: buyerData.name,
+        date,
+        artwork_data: artwork,
+      });
+
+      await sendOrderRequestReceivedMail({
+        name: buyerData.name,
+        email: buyerData.email,
+        artwork_data: artwork,
+      });
 
       return NextResponse.json(
         {

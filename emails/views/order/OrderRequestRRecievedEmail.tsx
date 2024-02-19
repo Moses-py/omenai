@@ -1,3 +1,4 @@
+import { getApiUrl } from "@/config";
 import {
   Body,
   Button,
@@ -13,7 +14,14 @@ import {
   Text,
 } from "@react-email/components";
 
-const UserVerificationEmail = (username: string, token: string) => {
+const OrderRequestReceivedEmail = (
+  username: string,
+  artwork_data: Pick<
+    ArtworkSchemaTypes,
+    "title" | "artist" | "art_id" | "pricing" | "url"
+  >
+) => {
+  const url = getApiUrl();
   return (
     <Html>
       <Head />
@@ -25,31 +33,57 @@ const UserVerificationEmail = (username: string, token: string) => {
                 "https://cloud.appwrite.io/v1/storage/buckets/655c43e6901e0f772192/files/omenai_logo/view?project=655231c3469bf1ef8d8f"
               }
               width="120"
-              height="30"
+              height="20"
               alt="Omenai logo"
               className="mx-auto my-10"
             />
+
             <Heading className="text-black text-[24px] font-normal text-center p-0 mb-[20px] mx-0">
-              Welcome on board to <strong>Omenai</strong>
+              Order request received
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
-              Hello {username},
+              Hello <strong>{username}</strong>,
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              We, at <strong>Omenai Inc.</strong>, are thrilled to have you on
-              board and eagerly await the beginning of your journey with us
+              I hope this email finds you well. <br />
+              Thank you for expressing your interest in purchasing the{" "}
+              <Link
+                href={`${url}/artwork/${artwork_data.title}`}
+                className="underline text-blue-800 italic font-medium"
+              >
+                {artwork_data.title}
+              </Link>{" "}
+              artwork from our store.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Your email verification token is located below. Enter this code
-              into the designated input field on the verification page. Please
-              be aware that the validity of this token will expire in{" "}
-              <strong>10 minutes.</strong>
+              I am writing to confirm that we have received your order request.
+              Our team is currently in the process of calculating the applicable
+              shipping fees and taxes to your location. We aim to provide you
+              with an accurate quote within the next 24 to 48 hours.
             </Text>
-            <Section className="text-center mt-[32px] mb-[32px]">
-              <Text className="text-black text-[14px] font-bold leading-[24px]">
-                <strong>{token}</strong>
-              </Text>
-            </Section>
+            <Text className="text-black text-[14px] leading-[24px]">
+              Once we have finalized the details, we will promptly reach out to
+              you with the quote and outline the next steps to proceed with your
+              order.
+            </Text>
+            <Text className="text-black text-[14px] leading-[24px]">
+              Should you have any questions or require further assistance in the
+              meantime, please do not hesitate to contact us at{" "}
+              <Link
+                href="mailto:contact@omenani.net"
+                className="underline text-blue-800 italic"
+              >
+                contact@omeani.net
+              </Link>
+              .
+            </Text>
+            <Text className="text-black text-[14px] leading-[24px]">
+              Thank you for choosing Omenai. We look forward to serving you.
+            </Text>
+            <Text className="text-black text-[14px] leading-[24px]">
+              Best regards, <br />
+              Moses from Omenai
+            </Text>
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-secondary text-[12px] leading-[24px]">
               Please be advised that the information contained within this email
@@ -72,4 +106,4 @@ const UserVerificationEmail = (username: string, token: string) => {
   );
 };
 
-export default UserVerificationEmail;
+export default OrderRequestReceivedEmail;

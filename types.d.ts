@@ -156,9 +156,13 @@ type CreateOrderModelTypes = {
   shipping_quote: ShippingQuoteTypes;
   payment_information: PaymentStatusTypes;
   tracking_information: TrackingInformationTypes;
-  lock_purchase: boolean;
+  order_accepted: OrderAcceptedStatusTypes;
 };
 
+type OrderAcceptedStatusTypes = {
+  status: "accepted" | "declined" | "";
+  reason?: string;
+};
 type TrackingInformationTypes = {
   tracking_id: string;
   tracking_link: string;

@@ -19,6 +19,7 @@ type OverviewOrdersCardProps = {
   payment_information?: PaymentStatusTypes;
   tracking_information?: TrackingInformationTypes;
   shipping_quote?: ShippingQuoteTypes;
+  order_accepted?: OrderAcceptedStatusTypes;
 };
 export default function OverviewOrdersCard({
   title,
@@ -34,6 +35,7 @@ export default function OverviewOrdersCard({
   payment_information,
   tracking_information,
   shipping_quote,
+  order_accepted,
 }: OverviewOrdersCardProps) {
   const image_url = getImageFileView(url, 200);
 
@@ -42,11 +44,13 @@ export default function OverviewOrdersCard({
     toggleGalleryOrderActionModal,
     toggleUploadTrackingInfoModal,
     update_current_order_id,
+    toggleDeclineOrderModal,
   ] = actionStore((state) => [
     state.updateGalleryOrderActionModalData,
     state.toggleGalleryOrderActionModal,
     state.toggleUploadTrackingInfoModal,
     state.update_current_order_id,
+    state.toggleDeclineOrderModal,
   ]);
 
   function handleAcceptOrderRequest() {
@@ -57,6 +61,11 @@ export default function OverviewOrdersCard({
   function handleUploadTrackingInformationRequest() {
     update_current_order_id(order_id);
     toggleUploadTrackingInfoModal(true);
+  }
+
+  function handleDeclineOrderRequest() {
+    update_current_order_id(order_id);
+    toggleDeclineOrderModal(true);
   }
 
   return (
@@ -107,12 +116,19 @@ export default function OverviewOrdersCard({
                 </>
               ) : (
                 <>
-                  <button className="px-4 py-2 text-white rounded-md bg-red-600 hover:bg-red-800 duration-300 grid place-items-center">
-                    Decline order request
+                  <button
+                    disabled={order_accepted!.status === "declined"}
+                    onClick={handleDeclineOrderRequest}
+                    className="px-4 py-2 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 text-white rounded-md bg-red-600 hover:bg-red-800 duration-300 grid place-items-center"
+                  >
+                    {order_accepted!.status === "declined"
+                      ? "Order has been declined"
+                      : "Decline order request"}
                   </button>
                   <button
+                    disabled={order_accepted!.status === "declined"}
                     onClick={handleAcceptOrderRequest}
-                    className="px-4 py-2 text-white hover:bg-green-800 rounded-md bg-green-600 duration-300 grid place-items-center"
+                    className="px-4 py-2 text-white disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 hover:bg-green-800 rounded-md bg-green-600 duration-300 grid place-items-center"
                   >
                     Provide shipping quote
                   </button>
