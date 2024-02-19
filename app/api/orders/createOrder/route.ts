@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
     const buyerData = await AccountIndividual.findOne(
       { user_id: buyer_id },
-      "_id name email"
+      "_id name email user_id"
     ).exec();
     const gallery_data = await AccountGallery.findOne(
       { gallery_id },

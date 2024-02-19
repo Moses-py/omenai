@@ -15,6 +15,8 @@ import {
 
 const OrderAcceptedEmail = (
   name: string,
+  order_id: string,
+  user_id: string,
   artwork_data: Pick<
     ArtworkSchemaTypes,
     "title" | "artist" | "art_id" | "pricing" | "url"
@@ -64,9 +66,9 @@ const OrderAcceptedEmail = (
             <div className="w-full grid place-items-center text-center">
               <Link
                 className="w-fit bg-black text-white text-center px-5 cursor-pointer py-3"
-                href={`${url}/dashboard/gallery/orders`}
+                href={`${url}/payment/${order_id}?id_key=${user_id}`}
               >
-                Pay now!
+                Pay for this artwork
               </Link>
             </div>
             <Text className="text-black text-[14px] leading-[24px]">

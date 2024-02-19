@@ -19,7 +19,8 @@ export async function POST(request: Request) {
           shipping_quote: data,
           order_accepted: { status: "accepted", reason: "" },
         },
-      }
+      },
+      { new: true }
     );
 
     if (!updateOrders) throw new ServerError("Quote could not be updated");
@@ -27,6 +28,8 @@ export async function POST(request: Request) {
     await sendOrderAcceptedMail({
       name: updateOrders.buyer.name,
       email: updateOrders.buyer.email,
+      order_id: updateOrders.order_id,
+      user_id: updateOrders.buyer.user_id,
       artwork_data: updateOrders.artwork_data,
     });
 

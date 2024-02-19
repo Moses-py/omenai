@@ -147,6 +147,7 @@ type CreateOrderModelTypes = {
   buyer: {
     name: string;
     email: string;
+    user_id: string;
     _id: ObjectId;
   };
   gallery_id: string;
