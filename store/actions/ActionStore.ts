@@ -19,6 +19,8 @@ type ActionStoreTypes = {
   toggleGalleryOrderActionModal: (value: boolean) => void;
   openUploadTrackingInfoModal: boolean;
   toggleUploadTrackingInfoModal: (value: boolean) => void;
+  openDeclineOrderModal: boolean;
+  toggleDeclineOrderModal: (value: boolean) => void;
   openLoginModalRecoveryForm: boolean;
   toggleLoginModalRecoveryForm: (value: boolean) => void;
   selectedCountry: string;
@@ -79,6 +81,10 @@ export const actionStore = create<ActionStoreTypes>((set, get) => ({
   openUploadTrackingInfoModal: false,
   toggleUploadTrackingInfoModal: (value: boolean) => {
     set({ openUploadTrackingInfoModal: value });
+  },
+  openDeclineOrderModal: false,
+  toggleDeclineOrderModal: (value: boolean) => {
+    set({ openDeclineOrderModal: value });
   },
 
   openLoginModalRecoveryForm: false,

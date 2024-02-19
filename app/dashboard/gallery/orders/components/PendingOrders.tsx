@@ -44,6 +44,7 @@ export default function PendingOrders({
                     payment_information={order.payment_information}
                     tracking_information={order.tracking_information}
                     shipping_quote={order.shipping_quote}
+                    order_accepted={order.order_accepted}
                   />
                   <hr className="h-px my-2 bg-base-theme/10 border-0 dark:bg-gray-700" />
                 </>
