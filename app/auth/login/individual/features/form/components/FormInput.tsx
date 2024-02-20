@@ -34,11 +34,12 @@ export default function FormInput() {
             toast.success("Login successful...redirecting!");
             if (session?.user.verified) {
               if (url !== "") {
-                set_redirect_uri("");
                 router.replace(url);
+                set_redirect_uri("");
               } else {
-                router.refresh();
+                set_redirect_uri("");
                 router.replace("/");
+                router.refresh();
               }
             } else {
               await signOut({
