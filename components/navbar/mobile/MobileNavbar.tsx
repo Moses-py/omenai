@@ -40,6 +40,11 @@ export default function MobileNavbar() {
           />
           <NavbarLink
             disabled={false}
+            text={"Pricing for galleries"}
+            link={"/gallery/pricing"}
+          />
+          <NavbarLink
+            disabled={false}
             text={"Omenai shop"}
             link={"https://omenai.shop"}
           />

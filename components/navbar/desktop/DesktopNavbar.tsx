@@ -13,9 +13,9 @@ export default function DesktopNavbar() {
   const session = useSession();
 
   return (
-    <>
+    <div className="sticky top-0 bg-white z-20">
       <nav
-        className="pt-5 px-4 lg:px-8 text-base text-black font-medium relative"
+        className="pt-5 px-4 lg:px-8 text-base text-black font-medium "
         id="navbar"
       >
         <div className="flex justify-between items-center">
@@ -38,6 +38,11 @@ export default function DesktopNavbar() {
             />
             <NavbarLink
               disabled={false}
+              text={"Pricing for galleries"}
+              link={"/gallery/pricing"}
+            />
+            <NavbarLink
+              disabled={false}
               text={"Omenai shop"}
               link={"https://omenai.shop"}
             />
@@ -48,7 +53,7 @@ export default function DesktopNavbar() {
             />
           </ul>
         </div>
-        <div className="flex items-center justify-between my-4">
+        <div className="flex items-center justify-between my-2">
           {/* Links */}
           <ul className="hidden lg:flex space-x-6 w-fit">
             <NavbarLink disabled={true} text={"Artists"} link={"/"} />
@@ -74,7 +79,7 @@ export default function DesktopNavbar() {
           )}
         </div>
       </nav>
-      <hr className="border-dark/30" />
-    </>
+      <hr className="border-dark/10" />
+    </div>
   );
 }

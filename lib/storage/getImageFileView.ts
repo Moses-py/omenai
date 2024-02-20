@@ -3,7 +3,8 @@ import { storage } from "@/appwrite";
 export const getImageFileView = (
   fileId: string,
   width: number,
-  height?: number
+  height?: number,
+  format?: string
 ) => {
   const fileData = storage.getFilePreview(
     process.env.NEXT_PUBLIC_APPWRITE_BUCKET_ID!,
@@ -19,7 +20,7 @@ export const getImageFileView = (
     1, // full opacity
     0, // no rotation
     "FFFFFF", // background color
-    "webp"
+    format ? format : "webp"
   );
 
   return fileData.href;
