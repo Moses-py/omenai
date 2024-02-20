@@ -8,6 +8,11 @@ import { GiCheckMark } from "react-icons/gi";
 import useLikedState from "@/custom/hooks/useLikedState";
 import { useRouter } from "next/navigation";
 import { actionStore } from "@/store/actions/ActionStore";
+import { requestPrice } from "@/services/requests/requestPrice";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
+import { useState } from "react";
+import Loader from "@/components/loader/Loader";
 
 type ArtworkDetailTypes = {
   data: ArtworkResultTypes;
@@ -21,14 +26,44 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
     data.art_id
   );
 
+  const [loading, setLoading] = useState(false);
+
   const [toggleLoginModal] = actionStore((state) => [state.toggleLoginModal]);
 
   const router = useRouter();
+  const session = useSession();
 
-  function handleBuyButtonClick() {
+  async function handleBuyButtonClick() {
     if (sessionId === undefined) toggleLoginModal(true);
-    else if (data.pricing.shouldShowPrice === "Yes") {
-      router.push(`/purchase/${data.title}`);
+    else {
+      if (data.pricing.shouldShowPrice === "Yes") {
+        router.push(`/purchase/${data.title}`);
+      } else {
+        setLoading(true);
+        const artwork_data = {
+          title: data.title,
+          artist: data.artist,
+          art_id: data.art_id,
+          url: data.url,
+          medium: data.medium,
+          pricing: data.pricing,
+        };
+        const res = await requestPrice(
+          artwork_data,
+          session.data!.user.email,
+          session.data!.user.name
+        );
+
+        if (res?.isOk) {
+          toast.success("Price data sent. Please check your email inbox");
+          setLoading(false);
+        } else {
+          toast.error(
+            "Something went wrong, please try again or contact us for assistance."
+          );
+          setLoading(false);
+        }
+      }
     }
   }
   return (
@@ -70,12 +105,17 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
 
       <div className="flex sm:flex-row flex-col gap-2">
         <button
+          disabled={loading}
           onClick={handleBuyButtonClick}
-          className="w-full bg-dark py-3 underline text-white text-base hover:bg-white hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group"
+          className="w-full bg-dark py-3 underline text-white text-base hover:bg-white disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group"
         >
-          {data.pricing.shouldShowPrice === "Yes"
-            ? "Purchase artwork"
-            : "Request price"}
+          {loading ? (
+            <Loader theme="dark" />
+          ) : data.pricing.shouldShowPrice === "Yes" ? (
+            "Purchase artwork"
+          ) : (
+            "Request price"
+          )}
         </button>
 
         {(sessionId === undefined ||

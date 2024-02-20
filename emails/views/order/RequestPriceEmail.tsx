@@ -1,11 +1,11 @@
 import { storage } from "@/appwrite";
 import { getApiUrl } from "@/config";
+import { getImageFileView } from "@/lib/storage/getImageFileView";
+import { formatPrice } from "@/utils/priceFormatter";
 import {
   Body,
-  Button,
   Container,
   Head,
-  Heading,
   Hr,
   Html,
   Img,
@@ -14,13 +14,11 @@ import {
   Text,
 } from "@react-email/components";
 
-const OrderRequestToGalleryMail = (
+const RequestPriceEmail = (
   name: string,
-  buyer: string,
-  date: string,
   artwork_data: Pick<
     ArtworkSchemaTypes,
-    "title" | "artist" | "art_id" | "pricing" | "url"
+    "title" | "artist" | "art_id" | "pricing" | "url" | "medium"
   >
 ) => {
   const url = getApiUrl();
@@ -43,43 +41,23 @@ const OrderRequestToGalleryMail = (
               alt="Omenai logo"
               className="mx-auto mt-10"
             />
-
-            <Heading className="text-black text-[24px] font-normal text-center p-0 mb-[20px] mx-0">
-              You have an order request
-            </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
               Hello <strong>{name}</strong>,
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              I hope this email finds you well. <br />
-              This is to inform you that a user has recently expressed interest
-              in purchasing one of the artworks you have uploaded to our
-              platform. Specifically, there has been an order request for the{" "}
+              Thank you for your interest in{" "}
               <Link
                 href={`${url}/artwork/${artwork_data.title}`}
                 className="underline text-blue-800 italic font-medium"
               >
                 {artwork_data.title}
               </Link>{" "}
-              artwork.
+              on our platform. We have received your request for the base price
+              of this artwork, and we're delighted to provide you with the
+              requested information.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              As a valued member of our platform, we want to ensure that you are
-              promptly informed of any potential sales opportunities. Therefore,
-              we kindly request that you log in to your gallery dashboard to
-              review and take necessary actions on this order request.
-            </Text>
-            <div className="w-full grid place-items-center text-center">
-              <Link
-                className="w-fit bg-black text-white text-center px-5 cursor-pointer py-3"
-                href={`${url}/dashboard/gallery/orders`}
-              >
-                View order on your dashboard
-              </Link>
-            </div>
-
-            <Text className="text-black text-[14px] leading-[24px]">
-              Here are the details of the order request:
+              Here are the details of the artwork:
             </Text>
 
             <Img
@@ -87,57 +65,50 @@ const OrderRequestToGalleryMail = (
               alt="artwork_image"
               className="mx-auto mt-10 max-w-[200px] w-auto aspect-auto max-h-[250px] h-auto"
             />
+
             <div className="my-0">
               <ul>
                 <li>
                   <Text className="text-black text-[14px] leading-[24px]">
-                    Artwork: {artwork_data.title}
+                    Artwork: <strong> {artwork_data.title}</strong>
                   </Text>
                 </li>
                 <li>
                   <Text className="text-black text-[14px] leading-[24px]">
-                    Requested by: {buyer}
+                    Artist name: <strong>{artwork_data.artist}</strong>
                   </Text>
                 </li>
                 <li>
                   <Text className="text-black text-[14px] leading-[24px]">
-                    Requested date: {date}
+                    Medium: <strong>{artwork_data.medium}</strong>
+                  </Text>
+                </li>
+                <li>
+                  <Text className="text-black text-[14px] leading-[24px]">
+                    Base price:{" "}
+                    <strong>{formatPrice(artwork_data.pricing.price)}</strong>
                   </Text>
                 </li>
               </ul>
             </div>
-            <Text className="text-black text-[14px] leading-[24px]">
-              Upon logging into your dashboard, you will be able to:
-            </Text>
-            <div className="my-0">
-              <ul>
-                <li>
-                  <Text className="text-black text-[14px] leading-[24px]">
-                    Review the order details.
-                  </Text>
-                </li>
-                <li>
-                  <Text className="text-black text-[14px] leading-[24px]">
-                    Accept or decline the order request.
-                  </Text>
-                </li>
-                <li>
-                  <Text className="text-black text-[14px] leading-[24px]">
-                    Provide a quote for the artwork, including shipping fees and
-                    any applicable taxes.
-                  </Text>
-                </li>
-              </ul>
+            <div className="w-full grid place-items-center text-center">
+              <Link
+                className="w-fit bg-black text-white text-center px-5 cursor-pointer py-3"
+                href={`${url}/purchase/${artwork_data.title}`}
+              >
+                Purchase this artwork
+              </Link>
             </div>
+
             <Text className="text-black text-[14px] leading-[24px]">
-              Please note that timely responses to order requests are crucial in
-              ensuring a positive user experience and facilitating successful
-              transactions.
+              Please note that the base price provided is for the artwork itself
+              and does not include any additional fees such as shipping or
+              taxes.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Should you encounter any difficulties or have any questions
-              regarding this order request, please do not hesitate to reach out
-              to our support team for assistance at{" "}
+              If you have any further questions about the artwork please don't
+              hesitate to contact us. We're here to assist you in any way we
+              can.{" "}
               <Link
                 href="mailto:contact@omenani.net"
                 className="underline text-blue-800 italic"
@@ -147,9 +118,14 @@ const OrderRequestToGalleryMail = (
               .
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Thank you for your continued partnership with our platform. We
-              appreciate your dedication to showcasing your artworks and serving
-              our community of art enthusiasts.
+              Thank you again for your interest in{" "}
+              <Link
+                href={`${url}/artwork/${artwork_data.title}`}
+                className="underline text-blue-800 italic font-medium"
+              >
+                {artwork_data.title}
+              </Link>
+              . We look forward to the possibility of serving you further.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
               Best regards, <br />
@@ -177,4 +153,4 @@ const OrderRequestToGalleryMail = (
   );
 };
 
-export default OrderRequestToGalleryMail;
+export default RequestPriceEmail;
