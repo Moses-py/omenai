@@ -1,79 +1,10 @@
 "use client";
-import { Variants, motion } from "framer-motion";
-
-const Loader = ({ theme }: { theme: "dark" | "light" }) => {
-  return <BarLoader theme={theme} />;
-};
-
-const variants = {
-  initial: {
-    scaleY: 0.5,
-    opacity: 0,
-  },
-  animate: {
-    scaleY: 1,
-    opacity: 1,
-    transition: {
-      repeat: Infinity,
-      repeatType: "mirror",
-      duration: 1,
-      ease: "circIn",
-    },
-  },
-} as Variants;
-
-const BarLoader = ({ theme }: { theme: "light" | "dark" }) => {
+import Lottie from "lottie-react";
+import animationData from "../../json/loader.json";
+export default function Loader({ theme }: { theme?: string }) {
   return (
-    <motion.div
-      transition={{
-        staggerChildren: 0.25,
-      }}
-      initial="initial"
-      animate="animate"
-      className="flex gap-1"
-    >
-      <motion.div
-        variants={variants}
-        className={`h-5 w-1 ${
-          theme === "dark"
-            ? "bg-dark group-hover:bg-white"
-            : "bg-white group-hover:bg-dark"
-        }`}
-      />
-      <motion.div
-        variants={variants}
-        className={`h-5 w-1 ${
-          theme === "dark"
-            ? "bg-dark group-hover:bg-white"
-            : "bg-white group-hover:bg-dark"
-        }`}
-      />
-      <motion.div
-        variants={variants}
-        className={`h-5 w-1 ${
-          theme === "dark"
-            ? "bg-dark group-hover:bg-white"
-            : "bg-white group-hover:bg-dark"
-        }`}
-      />
-      <motion.div
-        variants={variants}
-        className={`h-5 w-1 ${
-          theme === "dark"
-            ? "bg-dark group-hover:bg-white"
-            : "bg-white group-hover:bg-dark"
-        }`}
-      />
-      <motion.div
-        variants={variants}
-        className={`h-5 w-1 ${
-          theme === "dark"
-            ? "bg-dark group-hover:bg-white"
-            : "bg-white group-hover:bg-dark"
-        }`}
-      />
-    </motion.div>
+    <div className=" h-2">
+      <Lottie animationData={animationData} className="w-[250px] text-dark" />
+    </div>
   );
-};
-
-export default Loader;
+}

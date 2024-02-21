@@ -1,5 +1,5 @@
 "use client";
-import Loader from "@/components/loader/Loader";
+import Loader from "@/components/loader/LoaderAnimation";
 import { fetchHighlightData } from "@/services/overview_highlights/fetchHighlightData";
 import { useQuery } from "@tanstack/react-query";
 type HightlightCardProps = {

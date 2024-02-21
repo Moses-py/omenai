@@ -13,7 +13,7 @@ export default function DesktopNavbar() {
   const session = useSession();
 
   return (
-    <div className="sticky top-0 bg-white z-20">
+    <div className="sticky top-0 bg-white z-30">
       <nav
         className="pt-5 px-4 lg:px-8 text-base text-black font-medium "
         id="navbar"

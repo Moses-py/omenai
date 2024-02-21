@@ -15,7 +15,7 @@ export default function NavbarLink({ disabled, text, link }: NavbarLinkProps) {
     <>
       {disabled ? (
         <>
-          <li className="relative text-base text-dark/40 font-normal">
+          <li className="relative text-[0.9rem] text-dark/40 font-normal">
             <p className="cursor-not-allowed" aria-disabled>
               {text}
             </p>
@@ -23,7 +23,7 @@ export default function NavbarLink({ disabled, text, link }: NavbarLinkProps) {
           </li>
         </>
       ) : (
-        <li className="text-base w-fit text-black font-normal flex flex-col group">
+        <li className="text-[0.9rem] w-fit text-black font-normal flex flex-col group">
           <Link href={link} onClick={() => updateOpenSideNav(false)}>
             {text}
           </Link>

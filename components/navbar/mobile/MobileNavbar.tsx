@@ -16,7 +16,7 @@ export default function MobileNavbar() {
 
   return (
     <div
-      className={`h-screen w-full fixed z-40 bg-white top-0 ${
+      className={`h-screen w-full fixed z-50 bg-white top-0 ${
         openSideNav ? "left-0" : "left-[-100%]"
       } duration-300`}
     >

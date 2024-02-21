@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 import { CiLock } from "react-icons/ci";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 export default function PayNowButton({ art_id }: { art_id: string }) {
-  const queryClient = useQueryClient();
   const router = useRouter();
   const session = useSession();
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function PayNowButton({ art_id }: { art_id: string }) {
     };
 
     checkLock();
-  }, []);
+  }, [art_id, session.data]);
 
   async function handleClickPayNow() {
     setLoading(true);
@@ -67,7 +67,11 @@ export default function PayNowButton({ art_id }: { art_id: string }) {
               disabled={locked || loading}
               className="w-fit px-5 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-dark disabled:border-dark bg-dark py-3 text-white text-base hover:bg-white hover:text-dark disabled:hover:border-none hover:border-dark hover:border duration-150 grid place-items-center group"
             >
-              {loading ? <Loader theme="dark" /> : "Proceed to payment"}
+              {loading ? (
+                <LoaderAnimation theme="dark" />
+              ) : (
+                "Proceed to payment"
+              )}
             </button>
           </Tooltip>
           {locked && <CiLock className="absolute right-[-15px] top-[-5px]" />}

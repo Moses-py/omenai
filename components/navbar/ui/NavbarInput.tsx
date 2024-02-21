@@ -21,7 +21,7 @@ export default function NavbarInput() {
     <div className="relative flex-grow sm:mr-6 lg:mx-6">
       <input
         type="text"
-        className="w-full py-[0.3rem] px-3 border-0 ring-1 ring-dark/30 focus:border-0 focus:ring-dark rounded-sm placeholder:text-base placeholder:font-light"
+        className="w-full py-[0.3rem] px-3 border-0 ring-1 text-[0.9rem] ring-dark/30 focus:border-0 focus:ring-dark rounded-sm placeholder:text-base placeholder:font-light"
         placeholder="Search by artwork or artist"
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}

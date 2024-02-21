@@ -40,7 +40,8 @@ export default function ComponentWrapper({ order_id }: { order_id: string }) {
     } else {
       setIsLoggedIn(true);
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session.data?.user, user_id_key]);
 
   return (
     <div className="w-full h-screen">
