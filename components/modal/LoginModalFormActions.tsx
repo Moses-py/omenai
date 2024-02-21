@@ -2,6 +2,7 @@
 import { actionStore } from "@/store/actions/ActionStore";
 import Link from "next/link";
 import Loader from "../loader/Loader";
+import LoaderAnimation from "../loader/LoaderAnimation";
 
 export default function LoginModalFormActions({
   loading,
@@ -32,7 +33,7 @@ export default function LoginModalFormActions({
           disabled={loading}
           className=" disabled:cursor-not-allowed grid disabled:bg-white disabled:border disabled:border-dark place-items-center w-full px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base "
         >
-          {!loading ? "Login" : <Loader theme="dark" />}
+          {!loading ? "Login" : <LoaderAnimation theme="dark" />}
         </button>
       </div>
       <div className="w-full flex justify-center my-2">

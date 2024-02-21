@@ -10,6 +10,8 @@ import { CiSettings } from "react-icons/ci";
 import Link from "next/link";
 import { UserDashboardNavigationStore } from "@/store/user/navigation/NavigationStore";
 import { MdAccountCircle } from "react-icons/md";
+import { signOut } from "next-auth/react";
+import { toast } from "sonner";
 
 const LoggedInUserDropDown = ({ user }: { user: string | undefined }) => {
   const [open, setOpen] = useState(false);
@@ -27,7 +29,9 @@ const LoggedInUserDropDown = ({ user }: { user: string | undefined }) => {
           onClick={() => setOpen((pv) => !pv)}
           className="flex items-center gap-2 pl-3 py-2 rounded-sm text-dark transition-colors"
         >
-          <span className="sm:block hidden font-normal">{user}</span>
+          <span className="sm:block hidden font-normal text-[0.9rem]">
+            {user}
+          </span>
           <span className="sm:hidden block">
             <MdAccountCircle className="text-md" />
           </span>
@@ -40,7 +44,7 @@ const LoggedInUserDropDown = ({ user }: { user: string | undefined }) => {
           initial={wrapperVariants.closed}
           variants={wrapperVariants}
           style={{ originY: "top", translateX: "-100%" }}
-          className="flex flex-col gap-2 p-2 rounded-lg text-dark bg-white shadow-xl absolute top-[120%] left-[100%] w-48 overflow-hidden z-50 ring-1 ring-dark/20"
+          className="flex flex-col gap-2 p-2 rounded-lg text-dark bg-white shadow-xl absolute top-[120%] left-[100%] w-48 overflow-hidden z-40 ring-1 ring-dark/20"
         >
           <Option
             setSelectedTab={setSelected}
@@ -89,15 +93,18 @@ const Option = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   setSelectedTab: (label: string) => void;
 }) => {
+  function handleSignout() {
+    signOut({ callbackUrl: "/" });
+    toast.success("Successfully signed out...redirecting");
+    setOpen(false);
+  }
   return (
     <>
       {text === "Logout" ? (
         <>
           <motion.li
             variants={itemVariants}
-            onClick={() => {
-              setOpen(false);
-            }}
+            onClick={handleSignout}
             className="flex items-center gap-2 w-full p-2 text-base font-normal whitespace-nowrap rounded-md hover:bg-primary text-slate-700 hover:text-white transition-colors cursor-pointer"
           >
             <motion.span variants={actionIconVariants}>

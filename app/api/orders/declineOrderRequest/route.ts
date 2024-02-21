@@ -16,7 +16,10 @@ export async function POST(request: Request) {
     const declineOrder = await CreateOrder.findOneAndUpdate(
       { order_id },
       {
-        $set: { order_accepted: { status: data.status, reason: data.reason } },
+        $set: {
+          order_accepted: { status: data.status, reason: data.reason },
+          status: "completed",
+        },
       },
       { new: true }
     );

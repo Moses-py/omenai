@@ -84,7 +84,7 @@ export default function OverviewOrdersCard({
           <span className="text-dark font-bold">{price}</span>
         </div>
       </div>
-      <div className="flex flex-col items-end gap-y-1">
+      <div className="flex flex-col items-end gap-y-1 text-[14px]">
         <span className="text-dark font-normal">
           Order ID: <span className="font-bold">{order_id}</span>
         </span>

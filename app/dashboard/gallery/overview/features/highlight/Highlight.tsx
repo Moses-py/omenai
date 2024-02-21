@@ -1,8 +1,6 @@
-import { Suspense } from "react";
 import HighlightCard from "./components/HighlightCard";
 import { highlightCardEl } from "./mocks";
 import HighlightCardIcon from "./components/HighlightCardIcon";
-import Loader from "@/components/loader/Loader";
 
 export default function Highlight() {
   return (

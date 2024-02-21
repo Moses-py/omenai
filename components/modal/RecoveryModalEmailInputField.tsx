@@ -4,6 +4,7 @@ import { verifyEmailAccount } from "@/services/password/verifyEmailAccount";
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
 import Loader from "../loader/Loader";
+import LoaderAnimation from "../loader/LoaderAnimation";
 
 export default function RecoveryModalEmailInputField() {
   const [loading, setIsloading] = useState(false);
@@ -38,7 +39,7 @@ export default function RecoveryModalEmailInputField() {
         disabled={loading}
         className=" disabled:cursor-not-allowed grid disabled:bg-white disabled:border disabled:border-dark place-items-center w-full sm:w-fit px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base "
       >
-        {!loading ? "Send reset link" : <Loader theme="dark" />}
+        {!loading ? "Send reset link" : <LoaderAnimation theme="dark" />}
       </button>
     </form>
   );

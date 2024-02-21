@@ -1,9 +1,12 @@
-import React from "react";
+import OrdersGroup from "./components/OrdersGroup";
+import { getOrdersForUser } from "@/services/orders/getOrdersForUser";
 
-export default function Bids() {
+export default async function Orders() {
+  const orders = await getOrdersForUser();
+  if (!orders?.isOk) throw new Error("Something went wrong, please try again");
   return (
-    <div className="w-full h-[50vh] grid place-items-center">
-      <p>No order records available.</p>
-    </div>
+    <>
+      <OrdersGroup orders={orders.data} />
+    </>
   );
 }

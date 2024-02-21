@@ -1,6 +1,7 @@
 "use client";
 
 import Loader from "@/components/loader/Loader";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 import { updateShippingQuote } from "@/services/orders/updateShippingQuote";
 import { actionStore } from "@/store/actions/ActionStore";
 import { useRouter } from "next/navigation";
@@ -130,7 +131,11 @@ export default function ShippingQuoteModalDataForm() {
             type="submit"
             className="px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-400 hover:bg-green-800 rounded-md bg-green-600 duration-300 grid place-items-center"
           >
-            {loading ? <Loader theme="dark" /> : " Accept order request"}
+            {loading ? (
+              <LoaderAnimation theme="dark" />
+            ) : (
+              " Accept order request"
+            )}
           </button>
         </div>
       </form>

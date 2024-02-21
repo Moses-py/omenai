@@ -1,8 +1,8 @@
 import { formatIntlDateTime } from "@/utils/formatIntlDateTime";
 import { sortOrdersDataByDate } from "@/utils/sortOrdersDataByDate";
 import { AnimatePresence, motion } from "framer-motion";
-import OverviewOrdersCard from "../../components/OverviewOrdersCard";
 import NotFoundData from "../../../../../components/notFound/NotFoundData";
+import OrdersCard from "./OrdersCard";
 
 export default function OrderHistory({ orders }: { orders: any }) {
   const history = sortOrdersDataByDate(orders);
@@ -28,12 +28,11 @@ export default function OrderHistory({ orders }: { orders: any }) {
                       if (order.status !== "completed") return null;
                       return (
                         <>
-                          <OverviewOrdersCard
+                          <OrdersCard
                             key={index}
                             url={order.artwork_data.url}
                             title={order.artwork_data.title}
                             artist={order.artwork_data.artist}
-                            buyer={order.buyer.name}
                             price={order.artwork_data.pricing.price}
                             order_date={formatIntlDateTime(order.updatedAt)}
                             status={order.status}
