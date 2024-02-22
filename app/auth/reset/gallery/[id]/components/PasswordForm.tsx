@@ -15,7 +15,7 @@ import {
   ReactPortal,
   useState,
 } from "react";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 import { toast } from "sonner";
 
 type IdProps = {
@@ -114,9 +114,9 @@ export default function PasswordForm({ id }: IdProps) {
         <div className="self-end">
           <button
             disabled={isLoading}
-            className="grid disabled:cursor-not-allowed disabled:bg-secondary/20 place-items-center rounded-md bg-black px-4 py-2 text-white hover:bg-black/90"
+            className="grid disabled:cursor-not-allowed disabled:bg-dark/20 place-items-center rounded-md bg-black px-4 py-2 text-white hover:bg-black/90"
           >
-            {isLoading ? <ClipLoader size={20} color="#fff" /> : "Update"}
+            {isLoading ? <LoaderAnimation theme="dark" /> : "Update"}
           </button>
         </div>
       </form>

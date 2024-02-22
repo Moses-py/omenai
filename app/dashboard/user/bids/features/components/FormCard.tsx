@@ -7,7 +7,7 @@ import { galleryProfileUpdate } from "@/store/gallery/gallery_profile_update/Gal
 import { updateProfile } from "@/services/update/updateProfile";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 export const FormCard = () => {
   const session = useSession();
@@ -71,9 +71,9 @@ export const FormCard = () => {
         //     !updateData.description) ||
         //   isLoading
         // }
-        className="disabled:cursor-not-allowed disabled:bg-secondary/20 place-items-center px-8 py-2 bg-primary hover:bg-primary/50 rounded-full text-white text-base"
+        className="disabled:cursor-not-allowed disabled:bg-dark/20 place-items-center px-8 py-2 bg-primary hover:bg-primary/50 rounded-full text-white text-base"
       >
-        {isLoading ? <ClipLoader size={20} color="#fff" /> : "Save edit data"}
+        {isLoading ? <LoaderAnimation theme="dark" /> : "Save edit data"}
       </button> */}
     </form>
   );

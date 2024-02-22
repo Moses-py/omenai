@@ -17,7 +17,7 @@ export default function PricingCardItem({
   features,
 }: PricingCardItemProps) {
   return (
-    <div className="w-full rounded-lg text-dark border border-base-theme/20 shadow-sm">
+    <div className="w-full rounded-lg text-dark border border-dark/20 shadow-sm">
       {/* Plan name and popularity tag (optional) */}
       <div className="p-8 w-full flex flex-col gap-3">
         <div className="flex justify-between items-center">
@@ -44,14 +44,14 @@ export default function PricingCardItem({
             {plan === "Free" ? "Active" : "Subscribe"}
           </button>
           {plan !== "Free" && (
-            <button className="bg-white border border-base-theme/30 rounded-md w-full py-2">
+            <button className="bg-white border border-dark/30 rounded-md w-full py-2">
               Contact sales team
             </button>
           )}
         </div>
       </div>
       {/* Divider */}
-      <hr className="border-base-theme/20" />
+      <hr className="border-dark/20" />
 
       {/* Features */}
       <div className="flex-col flex gap-2 p-8">

@@ -8,7 +8,7 @@ export default function NotFoundData() {
         animationData={animationData}
         className="w-[150px] h-[150px] text-primary"
       />
-      <p className="text-base-theme font-light">No available data</p>
+      <p className="text-dark font-light">No available data</p>
     </div>
   );
 }

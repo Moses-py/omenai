@@ -16,7 +16,7 @@ export default function Editorials() {
 
   if (isLoading)
     return (
-      <div className="h-[40vh] w-full place-items-center grid">
+      <div className="h-[20vh] w-full place-items-center grid">
         <Loader theme={"dark"} />
       </div>
     );
@@ -30,7 +30,7 @@ export default function Editorials() {
               Omenai editorials
             </h1>
             <Link
-              href={""}
+              href={"/articles"}
               className="text-dark font-normal sm:text-base underline break-words"
             >
               View all editorials

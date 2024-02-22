@@ -47,7 +47,7 @@ export const useIndividualAuthStore = create<IndividualAuthStoreTypes>(
     updatePreference: (value: string) => {
       const pref = new Set(get().preferences);
 
-      pref.has(value) ? pref.delete(value) : pref.size < 3 && pref.add(value);
+      pref.has(value) ? pref.delete(value) : pref.size < 5 && pref.add(value);
 
       set({ preferences: Array.from(pref) });
     },

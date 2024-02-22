@@ -29,7 +29,7 @@ export default function RecoveryModalEmailInputField() {
     >
       <input
         type="text"
-        className="flex-1 w-full ring-1 ring-secondary/20 focus:ring-primary px-4 py-1 rounded-md placeholder:text-xs"
+        className="flex-1 w-full ring-1 ring-dark/20 focus:ring-primary px-4 py-1 rounded-md placeholder:text-xs"
         placeholder="Email address"
         required
         onChange={(e) => setEmail(e.target.value)}

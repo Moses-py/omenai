@@ -19,7 +19,7 @@ export default function TrendingArtworks({
 
   if (isLoading)
     return (
-      <div className="h-[40vh] w-full place-items-center grid">
+      <div className="h-[20vh] w-full place-items-center grid">
         <Loader theme={"dark"} />
       </div>
     );
@@ -32,6 +32,7 @@ export default function TrendingArtworks({
           </h1>
           <div className=" flex relative overflow-x-scroll w-full">
             {artworks.map((artwork: any, index: number) => {
+              if (artwork.impressions === 0) return null;
               return (
                 <TrendingArtworkCard
                   key={index}

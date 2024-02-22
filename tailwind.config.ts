@@ -13,19 +13,18 @@ const config: Config = {
       center: true,
     },
     fontSize: {
-      xs: "0.85rem",
+      xs: "0.875rem",
       base: "1rem",
-      sm: "1.33rem",
-      md: "1.77rem",
-      lg: "2.37rem",
-      xl: "3.16rem",
-      "2xl": "4.21rem",
+      sm: "1.2rem",
+      md: "1.44rem",
+      lg: "1.728rem",
+      xl: "2.074rem",
+      "2xl": "2.488rem",
+      "3xl": "2.986rem",
     },
     extend: {
       colors: {
         primary: "#2A9EDF",
-        secondary: "#535353",
-        "base-theme": "#67748E",
         dark: "#15171E",
         gray: {
           200: "#47748E",

@@ -43,7 +43,7 @@ export default function PendingOrders({
                     tracking_information={order.tracking_information}
                     shipping_quote={order.shipping_quote}
                   />
-                  <hr className="h-px my-2 bg-base-theme/10 border-0 dark:bg-gray-700" />
+                  <hr className="h-px my-2 bg-dark/10 border-0 dark:bg-gray-700" />
                 </>
               );
             })}

@@ -1,7 +1,7 @@
 "use client";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 import { actionStore } from "@/store/actions/ActionStore";
 import { individualLoginStore } from "@/store/auth/login/IndividualLoginStore";
-import { ClipLoader } from "react-spinners";
 
 export default function FormActions() {
   const [updateRecoveryModal] = actionStore((state) => [
@@ -24,9 +24,9 @@ export default function FormActions() {
       <button
         disabled={isLoading}
         type="submit"
-        className="grid self-end disabled:cursor-not-allowed disabled:bg-secondary/20 place-items-center w-full sm:w-fit px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base"
+        className="grid self-end disabled:cursor-not-allowed disabled:bg-gray-400 place-items-center w-full sm:w-fit px-4 py-2 bg-dark hover:bg-dark/50 duration-300 text-white text-base"
       >
-        {isLoading ? <ClipLoader size={20} color="#fff" /> : "Login"}
+        {isLoading ? <LoaderAnimation theme="dark" /> : "Login"}
       </button>
     </div>
   );

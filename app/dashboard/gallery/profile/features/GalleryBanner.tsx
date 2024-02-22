@@ -27,10 +27,10 @@ export const UserBanner = () => {
           />
 
           <div className="">
-            <p className="text-base-theme font-normal text-base">
+            <p className="text-dark font-normal text-base">
               {session.data?.user.name}
             </p>
-            <p className="text-base-theme text-xs font-light">
+            <p className="text-dark text-xs font-light">
               {session.data?.user.location}
             </p>
           </div>

@@ -2,7 +2,7 @@
 import { useGalleryAuthStore } from "@/store/auth/register/GalleryAuthStore";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 export default function FormConfirm() {
   const [decrementCurrentGallerySignupFormIndex, isLoading] =
@@ -35,7 +35,7 @@ export default function FormConfirm() {
         </p>
         <div className="flex gap-4 justify-end my-5">
           <button
-            className={` rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+            className={`  px-[1.5rem] py-[0.4rem] mt-[1rem] bg-dark text-white hover:bg-dark/50 transition-all ease-linear duration-200`}
             type={"button"}
             onClick={decrementCurrentGallerySignupFormIndex}
           >
@@ -43,10 +43,10 @@ export default function FormConfirm() {
           </button>
           <button
             disabled={isLoading}
-            className="rounded-full disabled:bg-gray-400 disabled:cursor-not-allowed px-[1.5rem] py-[0.4rem] mt-[1rem] flex justify-center items-end bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+            className=" disabled:bg-gray-400 disabled:cursor-not-allowed px-[1.5rem] py-[0.4rem] mt-[1rem] flex justify-center items-end bg-dark text-white hover:bg-dark transition-all ease-linear duration-300"
             type={"submit"}
           >
-            {isLoading ? <ClipLoader size={20} /> : "Submit"}
+            {isLoading ? <LoaderAnimation theme="dark" /> : "Submit"}
           </button>
         </div>
       </div>

@@ -39,10 +39,10 @@ const ArticleCard = ({
         )}
         <div className="flex flex-col gap-[1rem]">
           <div className="flex gap-2 items-center">
-            <p className="text-base-theme/60 text-[14px]">{date}</p>
+            <p className="text-dark/60 text-[14px]">{date}</p>
             <span className="font-bold">•</span>
 
-            <p className="text-base-theme text-base">
+            <p className="text-dark text-base">
               <span className="italic">by</span>{" "}
               <span className="font-bold uppercase text-[14px]">
                 Olabisi Onabanjo
@@ -57,12 +57,12 @@ const ArticleCard = ({
               </h1>
             </Link>
 
-            <p className="text-base-theme text-[16px]">{summary}</p>
+            <p className="text-dark text-[16px]">{summary}</p>
           </div>
           <div className="flex justify-between items-center">
-            <p className="text-base-theme/60 ">{minutes} minutes read</p>
+            <p className="text-dark/60 ">{minutes} minutes read</p>
 
-            <p className="text-base-theme/60 text-[14px]">{views} views</p>
+            <p className="text-dark/60 text-[14px]">{views} views</p>
           </div>
         </div>
       </div>

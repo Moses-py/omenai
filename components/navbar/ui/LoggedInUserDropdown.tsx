@@ -105,7 +105,7 @@ const Option = ({
           <motion.li
             variants={itemVariants}
             onClick={handleSignout}
-            className="flex items-center gap-2 w-full p-2 text-base font-normal whitespace-nowrap rounded-md hover:bg-primary text-slate-700 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-2 w-full p-2 text-base font-normal whitespace-nowrap rounded-md hover:bg-dark text-slate-700 hover:text-white transition-colors cursor-pointer"
           >
             <motion.span variants={actionIconVariants}>
               <Icon />
@@ -121,7 +121,7 @@ const Option = ({
               setSelectedTab(text.toLowerCase());
               setOpen(false);
             }}
-            className="flex items-center gap-2 w-full p-2 text-base font-normal whitespace-nowrap rounded-md hover:bg-primary text-slate-700 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-2 w-full p-2 text-base font-normal whitespace-nowrap rounded-md hover:bg-dark text-slate-700 hover:text-white transition-colors cursor-pointer"
           >
             <motion.span variants={actionIconVariants}>
               <Icon />

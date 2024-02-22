@@ -3,23 +3,26 @@ import ArtworkCard from "@/components/artworks/ArtworkCard";
 import Loader from "@/components/loader/Loader";
 import { fetchCuratedArtworks } from "@/services/artworks/fetchedCuratedArtworks";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
 export default function CuratedArtworksLayout({
   sessionId,
 }: {
   sessionId: string | undefined;
 }) {
+  const session = useSession();
   const { data: userCuratedArtworks, isLoading } = useQuery({
     queryKey: ["curated"],
     queryFn: async () => {
-      const data = await fetchCuratedArtworks();
-      return data;
+      const data = await fetchCuratedArtworks(session);
+      if (data?.isOk) return data.data;
+      else return [];
     },
   });
 
   if (isLoading)
     return (
-      <div className="h-[40vh] w-full place-items-center grid">
+      <div className="h-[20vh] w-full place-items-center grid">
         <Loader theme={"dark"} />
       </div>
     );

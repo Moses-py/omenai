@@ -5,7 +5,7 @@ import FormInput from "./components/FormInput";
 export default function Form() {
   return (
     <div className="flex-1 grid place-items-center h-full font-normal p-5 relative">
-      <div className="flex flex-col gap-[1rem] text-secondary w-full">
+      <div className="flex flex-col gap-[1rem] text-dark w-full">
         <div className="flex flex-col gap-8 text-center items-center">
           <GalleryLogo />
 

@@ -11,7 +11,7 @@ export default async function VerifyEmail({
 }) {
   // Check if gallery is verified and then redirect
   return (
-    <div className="w-full h-full font-secondary p-5">
+    <div className="w-full h-full font-dark p-5">
       <div className="container lg:w-50% my-4">
         {/* Header */}
         <div className="flex xxs:flex-row flex-col gap-y-4 justify-between items-center">

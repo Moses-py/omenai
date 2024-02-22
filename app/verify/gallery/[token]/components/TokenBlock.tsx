@@ -6,7 +6,7 @@ import { verifyAuthStore } from "@/store/auth/verify/VerifyAuthStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 import { Toaster, toast } from "sonner";
 type TokenProps = {
   token: string;
@@ -87,7 +87,7 @@ export default function TokenBlock({ token }: TokenProps) {
           className=" disabled:bg-gray-400 grid place-items-center disabled:cursor-not-allowed px-4 py-2 bg-black text-white rounded-md transition-all ease-linear duration-200"
           type={"submit"}
         >
-          {isLoading ? <ClipLoader size={20} color="#fff" /> : "Submit"}
+          {isLoading ? <LoaderAnimation theme="dark" /> : "Submit"}
         </button>
       </form>
       <p>

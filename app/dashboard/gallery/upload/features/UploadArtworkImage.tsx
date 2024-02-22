@@ -10,7 +10,7 @@ import { storage } from "@/appwrite";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 export default function UploadArtworkImage() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
@@ -89,7 +89,7 @@ export default function UploadArtworkImage() {
         ) : (
           <button
             type="button"
-            className="w-[300px] h-[300px] border border-dark/30 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-base-theme focus-visible:ring-offset-2 hover:border-base-theme"
+            className="w-[300px] h-[300px] border border-dark/30 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2 hover:border-dark"
             onClick={() => {
               imagePickerRef.current?.click();
             }}
@@ -126,10 +126,10 @@ export default function UploadArtworkImage() {
       <div className="mt-4 flex justify-end">
         <button
           disabled={loading || !image}
-          className="inline-flex justify-center rounded-md border border-transparent disabled:bg-secondary/30 bg-primary px-4 py-2 font-light hover:bg-primary foucs:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2  disabled:text-gray-300 disabled:cursor-not-allowed text-white "
+          className="inline-flex justify-center rounded-md border border-transparent disabled:bg-dark/30 bg-primary px-4 py-2 font-light hover:bg-primary foucs:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2  disabled:text-gray-300 disabled:cursor-not-allowed text-white "
           type="submit"
         >
-          {loading ? <ClipLoader size={20} color="#fff" /> : "Upload artwork"}
+          {loading ? <LoaderAnimation theme="dark" /> : "Upload artwork"}
         </button>
       </div>
     </form>

@@ -15,7 +15,7 @@ export default function NotFoundSearchResult() {
             No results found for term{" "}
             <span className="text-blue-600">&apos;{searchTerm}&apos;</span>
           </h1>
-          <h2 className="text-base md:text-sm lg:text-md font-normal text-base-theme">
+          <h2 className="text-base md:text-sm lg:text-md font-normal text-dark">
             Try checking for spelling errors or try another search term.
           </h2>
         </div>

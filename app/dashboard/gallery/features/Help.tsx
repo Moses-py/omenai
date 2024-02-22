@@ -2,7 +2,7 @@ import { TfiHelpAlt } from "react-icons/tfi";
 import IconWrapper from "../components/IconWrapper";
 export default function Help() {
   return (
-    <div className="rounded-lg p-4 bg-[url(/images/white_curved.jpg)] flex flex-col gap-y-1 text-base-theme">
+    <div className="rounded-lg p-4 bg-[url(/images/white_curved.jpg)] flex flex-col gap-y-1 text-dark">
       <IconWrapper>
         <TfiHelpAlt />
       </IconWrapper>

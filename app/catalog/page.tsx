@@ -17,8 +17,8 @@ export default async function page() {
     <main className="relative">
       <DesktopNavbar />
       <ArtsByMedium />
-      <Filter />
-      <FilterModal />
+      {/* <Filter /> */}
+      {/* <FilterModal /> */}
       <AllArtworks
         data={artworks.data}
         sessionId={session?.user.role === "user" ? session?.user.id : undefined}

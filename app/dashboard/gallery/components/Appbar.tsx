@@ -13,7 +13,7 @@ export default function Appbar() {
   const session = useSession();
   return (
     <>
-      <div className="flex justify-between items-center w-full px-5 rounded-md sticky top-0 z-10 bg-white py-5 border-b border-base-theme/10 ">
+      <div className="flex justify-between items-center w-full px-5 rounded-md sticky top-0 z-10 bg-white py-5 border-b border-dark/10 ">
         <DashboardIndicator
           admin_name={session.data?.user.admin}
           gallery_name={session.data?.user.name}

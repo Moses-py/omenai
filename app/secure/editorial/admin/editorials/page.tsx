@@ -6,9 +6,7 @@ export default async function EditorialAdmin() {
   const editorials = await listEditorials();
   return (
     <div>
-      <h1 className="text-base-theme text-sm font-medium mx-5">
-        My Editorials
-      </h1>
+      <h1 className="text-dark text-sm font-medium mx-5">My Editorials</h1>
       <>
         {editorials?.length === 0 ? (
           <div className="w-full h-[calc(100vh-12rem)] grid place-items-center">

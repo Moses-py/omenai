@@ -19,7 +19,7 @@ export default function LatestArtworks({
 
   if (isLoading)
     return (
-      <div className="h-[40vh] w-full place-items-center grid">
+      <div className="h-[20vh] w-full place-items-center grid">
         <Loader theme={"dark"} />
       </div>
     );
