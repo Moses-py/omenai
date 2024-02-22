@@ -11,7 +11,7 @@ export default function DashboardIndicator({ admin_name }: AppbarTypes) {
   return (
     <div className="w-full flex justify-between items-center">
       <div className="text-xs xs:text-base">
-        <p className="text-base-theme">
+        <p className="text-dark">
           <span className="font-light">Editorial dashboard</span> /{" "}
           <span className="font-normal capitalize text-primary">
             {lastPath!.toLowerCase()}

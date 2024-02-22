@@ -29,7 +29,7 @@ export const TextareaCard = (props: Props) => {
             handleChange(name, e.target.value)
           }
           className={clsx(
-            "w-full border-0 border-b text-base-theme border-b-base-theme/20 focus:ring-0 focus:outline-none focus:border-b-dark ring-0 placeholder:text-secondary/40 ",
+            "w-full border-0 border-b text-dark border-b-dark/20 focus:ring-0 focus:outline-none focus:border-b-dark ring-0 placeholder:text-dark/40 ",
             className
           )}
           {...rest}

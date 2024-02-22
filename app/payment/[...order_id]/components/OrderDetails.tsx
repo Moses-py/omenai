@@ -58,7 +58,7 @@ export default function OrderDetails({ order_id }: { order_id: string }) {
                   {order.artwork_data.artist.length > 20 && "..."}
                 </p>
               </div>
-              <p className="font-normal text-base-theme text-[20px] italic">
+              <p className="font-normal text-dark text-[20px] italic">
                 {order.artwork_data.title.substring(0, 20)}
                 {order.artwork_data.title.length > 20 && "..."}
               </p>

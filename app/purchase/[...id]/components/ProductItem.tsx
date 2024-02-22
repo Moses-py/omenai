@@ -26,7 +26,7 @@ export default function ProductItem({
                 {artwork.artist.length > 20 && "..."}
               </p>
             </div>
-            <p className="font-normal text-base-theme text-[20px] italic">
+            <p className="font-normal text-dark text-[20px] italic">
               {artwork.title.substring(0, 20)}
               {artwork.title.length > 20 && "..."}
             </p>

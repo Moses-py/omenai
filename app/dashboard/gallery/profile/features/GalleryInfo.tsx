@@ -21,9 +21,7 @@ export default function GalleryInfo() {
             className=""
           />
         </div>
-        <p className="text-base-theme px-5 lg:px-2 underline">
-          Edit profile logo
-        </p>
+        <p className="text-dark px-5 lg:px-2 underline">Edit profile logo</p>
       </div>
 
       <FormCard />

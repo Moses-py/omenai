@@ -4,7 +4,7 @@ export default function EditorialReply() {
       <h2 className="text-dark text-sm md:text-lg font-light my-3">
         Leave a comment
       </h2>
-      <blockquote className="my-3 text-base-theme">
+      <blockquote className="my-3 text-dark">
         Don&apos;t worry, your email address will not be published
       </blockquote>
       {/* Inputs */}
@@ -13,19 +13,19 @@ export default function EditorialReply() {
           required
           type="text"
           placeholder="Full name"
-          className="border-base-theme/30 rounded-sm p-3 focus:ring-1 focus:ring-dark focus:border-none"
+          className="border-dark/30 rounded-sm p-3 focus:ring-1 focus:ring-dark focus:border-none"
         />
         <input
           required
           type="email"
           placeholder="Email address"
-          className="border-base-theme/30 rounded-sm p-3 focus:ring-1 focus:ring-dark focus:border-none"
+          className="border-dark/30 rounded-sm p-3 focus:ring-1 focus:ring-dark focus:border-none"
         />
         <textarea
           required
           name="comment-box"
           placeholder="Leave a comment"
-          className="border-base-theme/30 rounded-sm p-3 focus:ring-1 focus:ring-dark focus:border-none"
+          className="border-dark/30 rounded-sm p-3 focus:ring-1 focus:ring-dark focus:border-none"
           id=""
           cols={30}
           rows={10}

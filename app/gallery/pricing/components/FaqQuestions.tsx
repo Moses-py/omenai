@@ -4,7 +4,7 @@ import { Accordion } from "flowbite-react";
 
 export default function FaqQuestions() {
   return (
-    <Accordion className="border-base-theme/20 divide-base-theme/20">
+    <Accordion className="border-dark/20 divide-dark/20">
       <Accordion.Panel className=" duration-200 focus:ring-0 first:focus:ring-0 active:focus:ring-0">
         <Accordion.Title className="font-light ">
           What is Flowbite?

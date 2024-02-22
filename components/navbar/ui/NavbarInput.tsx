@@ -27,7 +27,7 @@ export default function NavbarInput() {
         onKeyDown={handleKeyPress}
       />
       <div
-        className="absolute right-0 top-[50%] translate-y-[-50%] text-sm bg-dark text-white w-fit h-full py-1 px-3 cursor-pointer"
+        className="absolute right-0 top-[50%] translate-y-[-50%] text-sm bg-dark text-white w-fit h-full py-2 border border-dark px-3 cursor-pointer"
         onClick={handleIconTrigger}
       >
         <CiSearch />

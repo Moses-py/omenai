@@ -17,7 +17,7 @@ export default function ArtsByMediumCard({ name, tag }: ArtsByMediumCardProps) {
           className="h-[200px] max-w-[400px] object-cover object-top"
         />
         <div className="flex flex-col">
-          <span className="text-xs font-medium text-base-theme italic">
+          <span className="text-xs font-medium text-dark italic">
             Omenai picks
           </span>
           <Link

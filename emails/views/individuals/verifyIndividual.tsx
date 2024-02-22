@@ -51,7 +51,7 @@ const UserVerificationEmail = (username: string, token: string) => {
               </Text>
             </Section>
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
-            <Text className="text-secondary text-[12px] leading-[24px]">
+            <Text className="text-dark text-[12px] leading-[24px]">
               Please be advised that the information contained within this email
               was directed exclusively to{" "}
               <span className="text-black">{username} </span>. In the event that

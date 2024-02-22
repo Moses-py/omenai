@@ -5,7 +5,7 @@ import { GalleryLogo } from "@/components/logo/Logo";
 export default function FormBlock() {
   return (
     <div className="flex-1 grid place-items-center h-full font-normal p-5 relative">
-      <div className="flex flex-col gap-[5rem] text-secondary w-full">
+      <div className="flex flex-col gap-[5rem] text-dark w-full">
         <div className="flex flex-col gap-8 text-center items-center">
           <GalleryLogo />
 

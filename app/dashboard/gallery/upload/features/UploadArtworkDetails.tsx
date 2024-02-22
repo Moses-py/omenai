@@ -34,7 +34,7 @@ export default function UploadArtworkDetails() {
         <div className="w-full flex justify-end mt-2">
           <button
             type="submit"
-            className="rounded-full bg-primary disabled:bg-base-theme disabled:cursor-not-allowed text-white px-4 py-2 flex gap-2 items-center justify-center hover:bg-primary/70"
+            className="rounded-full bg-primary disabled:bg-dark disabled:cursor-not-allowed text-white px-4 py-2 flex gap-2 items-center justify-center hover:bg-primary/70"
           >
             <>
               Next

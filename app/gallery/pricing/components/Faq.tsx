@@ -8,7 +8,7 @@ export default function Faq() {
         <h1 className="text-xl font-bold text-dark">
           Frequently asked questions
         </h1>
-        <p className="text-base font-light text-base-theme my-3">
+        <p className="text-base font-light text-dark my-3">
           Everything you need to know about the product and billing.
         </p>
       </div>

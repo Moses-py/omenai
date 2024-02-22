@@ -38,7 +38,7 @@ export default function EditorialData({
         )}
 
         <div
-          className={`bg-white ring-1 ring-base-theme/20 lg:container mb-5 w-full h-full text-center ${
+          className={`bg-white ring-1 ring-dark/20 lg:container mb-5 w-full h-full text-center ${
             singleEditorialData?.image ? "mt-[-10rem]" : "mt-0"
           }  relative z-30`}
         >
@@ -51,33 +51,31 @@ export default function EditorialData({
 
             <div className="flex justify-between flex-col lg:flex-row items-center my-[1rem]">
               <div className="flex gap-2 items-center">
-                <p className="text-base-theme text-base">
+                <p className="text-dark text-base">
                   <span className="font-bold uppercase">Olabisi Onabanjo</span>
                 </p>
                 <span className="font-bold">•</span>
-                <p className="text-base-theme/60 text-[14px] uppercase">
+                <p className="text-dark/60 text-[14px] uppercase">
                   {singleEditorialData?.minutes} minutes read
                 </p>
               </div>
               {/* Socials */}
               <div className="flex gap-5 items-center my-[1rem]">
-                <span className="text-base-theme">
-                  {singleEditorialData?.date}
-                </span>
+                <span className="text-dark">{singleEditorialData?.date}</span>
                 <Link href={"https://twitter.com"} target="__blank">
-                  <FaXTwitter className="text-base-theme text-base" />
+                  <FaXTwitter className="text-dark text-base" />
                 </Link>
 
                 <Link href={"https://linkedin.com"} target="__blank">
-                  <FaLinkedinIn className="text-base-theme text-base" />
+                  <FaLinkedinIn className="text-dark text-base" />
                 </Link>
                 <Link href={"https://instagram.com"} target="__blank">
-                  <FaInstagram className="text-base-theme text-base" />
+                  <FaInstagram className="text-dark text-base" />
                 </Link>
               </div>
             </div>
             {/* hr */}
-            <hr className="my-[1rem] border-base-theme/20" />
+            <hr className="my-[1rem] border-dark/20" />
 
             <div className="flex justify-center my-10">
               <div

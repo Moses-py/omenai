@@ -37,28 +37,26 @@ export default function EditorialItem({
         )}
         <div className="flex flex-col gap-[1rem] mx-0">
           <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-            <p className="text-base-theme/60 text-[14px]">{date}</p>
+            <p className="text-dark/80 text-xs">{date}</p>
             {/* <span className="font-bold">•</span> */}
 
-            <p className="text-base-theme text-[14px]">
+            <p className="text-dark text-xs">
               <span className="italic">by</span>{" "}
-              <span className="font-bold uppercase text-[14px]">
-                Olabisi Onabanjo
-              </span>
+              <span className="font-bold text-xs">Olabisi Onabanjo</span>
             </p>
             {/* <span className="font-bold">•</span> */}
           </div>
           <div className="flex flex-col gap-2">
             <Link href={`articles/${id}/${title}`}>
-              <h1 className="text-sm lg:text-[1.5rem] leading-tight font-medium ">
+              <h1 className="text-sm lg:text-md leading-tight font-medium ">
                 {title}
               </h1>
             </Link>
 
-            <p className="text-base-theme text-[16px]">{summary}</p>
+            <p className="text-dark text-xs">{summary}</p>
           </div>
           <div className="flex justify-between items-center">
-            <p className="text-base-theme/60 ">{minutes} minutes read</p>
+            <p className="text-dark/60 text-xs">{minutes} minutes read</p>
           </div>
         </div>
       </div>

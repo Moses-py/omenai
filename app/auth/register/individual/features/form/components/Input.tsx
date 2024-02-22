@@ -59,7 +59,7 @@ export default function Input({
         <label htmlFor={labelText}>{label}</label>
         <input
           type={type}
-          className=" border-0 focus:ring-0 border-b-[1px] px-0 border-b-primary outline-none focus:outline-none focus:border-b-secondary transition-all duration-200 ease-in-out ring-0 placeholder:text-secondary/40 py-2"
+          className=" border-0 focus:ring-0 border-b-[1px] px-0 border-b-primary outline-none focus:outline-none focus:border-b-dark transition-all duration-200 ease-in-out ring-0 placeholder:text-dark/40 py-2"
           placeholder={`e.g ${placeholder}`}
           disabled={disabled}
           onChange={onChange}
@@ -81,14 +81,14 @@ export default function Input({
           <button
             className={`${
               currentSignupFormIndex > 0 ? "block" : "hidden"
-            } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-secondary text-white hover:bg-secondary/30 transition-all ease-linear duration-200`}
+            } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-dark text-white hover:bg-dark/30 transition-all ease-linear duration-200`}
             type={"button"}
             onClick={handleClickPrev}
           >
             Back
           </button>
           <button
-            className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-secondary transition-all ease-linear duration-200"
+            className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-dark transition-all ease-linear duration-200"
             type={"button"}
             onClick={() =>
               handleClick(

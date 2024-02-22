@@ -1,26 +1,20 @@
 import { getApiUrl } from "@/config";
-import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import filterArtObjectsByMedium from "@/utils/filterArtObjectsByMedium";
-import { getServerSession } from "next-auth";
+import { SessionContextValue } from "next-auth/react";
 
-export const fetchCuratedArtworks = async () => {
-  const session = await getServerSession(nextAuthOptions);
+export const fetchCuratedArtworks = async (session: SessionContextValue) => {
   try {
     const url = getApiUrl();
-    const response = await fetch(`${url}/api/artworks/getAllArtworks`, {
+    const res = await fetch(`${url}/api/artworks/getAllArtworks`, {
       method: "GET",
-    }).then(async (res) => {
-      if (!res.ok) return undefined;
-      const result = await res.json();
-
-      const curated = filterArtObjectsByMedium(
-        result.data,
-        session!.user.preferences
-      );
-      return curated;
     });
 
-    return response;
+    const result = await res.json();
+    const curated = filterArtObjectsByMedium(
+      result.data,
+      session!.data!.user.preferences
+    );
+    return { isOk: res.ok, data: curated };
   } catch (error: any) {
     console.log(error);
   }

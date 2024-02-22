@@ -6,7 +6,7 @@ export default function Landing() {
         <h1 className="text-md xs:text-lg xl:text-xl font-bold text-dark">
           Simple, transparent pricing
         </h1>
-        <p className="text-base font-light text-base-theme my-3">
+        <p className="text-base font-light text-dark my-3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
           assumenda quia quas. Praesentium consequuntur officia ea! Corrupti
           sapiente sunt eveniet.

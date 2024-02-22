@@ -28,7 +28,7 @@ export default function ImageUpload() {
         ) : (
           <button
             type="button"
-            className="w-full h-full border border-dark/10 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-base-theme focus-visible:ring-offset-2 hover:border-base-theme"
+            className="w-full h-full border border-dark/10 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2 hover:border-dark"
             onClick={() => {
               imagePickerRef.current?.click();
             }}

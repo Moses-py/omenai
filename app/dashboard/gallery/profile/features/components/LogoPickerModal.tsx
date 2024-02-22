@@ -4,7 +4,7 @@ import { Modal } from "flowbite-react";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { galleryLogoUpdate } from "@/store/gallery/gallery_logo_upload/GalleryLogoUpload";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 import { storage } from "@/appwrite";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
@@ -92,7 +92,7 @@ export default function LogoPickerModal() {
             ) : (
               <button
                 type="button"
-                className="w-full h-full border border-dark/10 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-base-theme focus-visible:ring-offset-2 hover:border-base-theme"
+                className="w-full h-full border border-dark/10 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-dark focus-visible:ring-offset-2 hover:border-dark"
                 onClick={() => {
                   logoPickerRef.current?.click();
                 }}
@@ -130,7 +130,7 @@ export default function LogoPickerModal() {
         <div className="flex justify-end px-5 py-8">
           <div className="flex gap-4">
             <button
-              className="px-3 py-2 bg-base-theme hover:bg-base-theme/40 duration-200 rounded-lg text-white font-normal text-base"
+              className="px-3 py-2 bg-dark hover:bg-dark/40 duration-200 rounded-lg text-white font-normal text-base"
               onClick={() => updateModal(false)}
             >
               Cancel
@@ -140,7 +140,7 @@ export default function LogoPickerModal() {
               disabled={loading || !logo}
               className="px-3 py-2 bg-primary rounded-lg disabled:grayscale disabled:cursor-not-allowed text-white font-normal text-base hover:grayscale duration-200"
             >
-              {loading ? <ClipLoader size={20} color="#fff" /> : "Upload logo"}
+              {loading ? <LoaderAnimation theme="dark" /> : "Upload logo"}
             </button>
           </div>
         </div>

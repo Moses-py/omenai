@@ -61,10 +61,10 @@ export default function EditorialRecommendations() {
           </Slider>
           <div className="flex justify-end gap-x-5 my-4">
             <ButtonBack>
-              <BsArrowLeft className="text-md text-base-theme" />
+              <BsArrowLeft className="text-md text-dark" />
             </ButtonBack>
             <ButtonNext>
-              <BsArrowRight className="text-md text-base-theme" />
+              <BsArrowRight className="text-md text-dark" />
             </ButtonNext>
           </div>
         </CarouselProvider>

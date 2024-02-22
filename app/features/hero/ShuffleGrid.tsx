@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { squareData } from "./squares";
 import Marquee from "react-fast-marquee";
+import Link from "next/link";
 
 const ShuffleHero = () => {
   return (
@@ -13,11 +14,11 @@ const ShuffleHero = () => {
             <h1 className="text-sm md:text-md uppercase font-medium">
               Shop your
             </h1>
-            <p className="text-lg md:text-xl font-semibold leading-tight drop-shadow-2xl">
+            <p className="text-xl md:text-2xl font-semibold leading-tight drop-shadow-2xl">
               Favorite artworks and collections
             </p>
 
-            <div className="px-4 md:px-8 my-4 flex-flex-col gap-8 text-[18px]">
+            <div className="px-4 md:px-8 my-4 flex-flex-col gap-8 text-xs">
               <Marquee
                 direction="left"
                 autoFill
@@ -45,9 +46,11 @@ const ShuffleHero = () => {
                 <p className="mx-4">Live arts</p>
               </Marquee>
             </div>
-            <button className="bg-dark border-2 my-5 text-white font-normal py-2 px-4 rounded transition-all w-fit uppercase hover:text-dark duration-200 active:scale-95 hover:border-dark hover:bg-white">
-              Shop now
-            </button>
+            <Link href={"/artworks"} className="w-fit">
+              <button className="bg-dark border my-5 text-white font-normal py-2 px-5 rounded-md transition-all w-fit uppercase hover:text-dark duration-200 active:scale-95 hover:border-dark hover:bg-white">
+                Shop now
+              </button>
+            </Link>
           </div>
         </div>
         <div className="w-full lg:col-span-8">

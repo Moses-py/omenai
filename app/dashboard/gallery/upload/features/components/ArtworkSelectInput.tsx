@@ -26,7 +26,7 @@ export default function ArtworkSelectInput({
       <select
         onChange={(e) => updateArtworkUploadData(name, e.target.value)}
         required={required}
-        className="border-0 border-b bg-transparent ring-0  border-b-dark/20 w-full p-2 focus:border-b-dark focus:ring-0 placeholder:font-light placeholder:text-base-theme text-base-theme"
+        className="border-0 border-b bg-transparent ring-0  border-b-dark/20 w-full p-2 focus:border-b-dark focus:ring-0 placeholder:font-light placeholder:text-dark text-dark"
       >
         <option value="">Select</option>
         {items!.map((item, index) => {
@@ -34,7 +34,7 @@ export default function ArtworkSelectInput({
             <option
               key={index}
               value={item}
-              className="p-3 font-light text-base-theme"
+              className="p-3 font-light text-dark"
             >
               {item}
             </option>

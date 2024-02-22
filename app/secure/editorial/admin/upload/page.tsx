@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { uploadImage } from "../lib/uploadImage";
 import formatDate from "../utils/formatData";
 import { ID, database } from "../controller/appwrite";
-import { ClipLoader } from "react-spinners";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 export default function Admin() {
   const [loading, setLoading] = useState(false);
@@ -86,10 +86,10 @@ export default function Admin() {
                 disabled={loading}
                 type="submit"
                 className={`py-2 px-5 text-white disabled:cursor-not-allowed ${
-                  loading ? "bg-base-theme" : "bg-primary"
-                } hover:bg-base-theme rounded-md`}
+                  loading ? "bg-dark" : "bg-primary"
+                } hover:bg-dark rounded-md`}
               >
-                {loading ? <ClipLoader size={20} color="#fff" /> : "Save"}
+                {loading ? <LoaderAnimation theme="dark" /> : "Save"}
               </button>
             </div>
 
@@ -107,7 +107,7 @@ export default function Admin() {
                             </label>
                             <label
                               htmlFor="label_description"
-                              className=" text-base-theme"
+                              className=" text-dark"
                             >
                               Got a nice cover image for your post?
                             </label>
@@ -146,10 +146,7 @@ export default function Admin() {
                     <label htmlFor="" className="font-light">
                       Content
                     </label>
-                    <label
-                      htmlFor="label_description"
-                      className=" text-base-theme"
-                    >
+                    <label htmlFor="label_description" className=" text-dark">
                       Write your editorial content!
                     </label>
                     {/* <Editor /> */}

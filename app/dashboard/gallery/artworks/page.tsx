@@ -6,9 +6,7 @@ export default async function MyArtworks() {
   const artworks = await getAllArtworksById();
   return (
     <div className="w-full h-full">
-      <h1 className="text-base-theme font-light text-[2rem] my-6">
-        Uploaded artworks
-      </h1>
+      <h1 className="text-dark font-light text-sm my-6">Uploaded artworks</h1>
       {artworks.data.length === 0 ? (
         <div className="w-full h-full grid place-items-center">
           <NotFoundData />

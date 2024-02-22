@@ -11,6 +11,9 @@ export default function AllArtworks({
 }: AllArtworksTypes & { sessionId: string | undefined }) {
   return (
     <div className="p-4">
+      <h1 className="text-dark font-normal text-[20px] sm:text-md mb-8">
+        All arworks
+      </h1>
       {data.length === 0 ? (
         <div className="w-full h-full grid place-items-center">
           <NotFoundData />
