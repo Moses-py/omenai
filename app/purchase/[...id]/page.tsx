@@ -11,11 +11,12 @@ import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { fetchSingleArtworkOnPurchase } from "@/services/artworks/fetchSingleArtworkOnPurchase";
 
 export default async function page({ params }: { params: { id: string } }) {
+  const session = await getServerSession(nextAuthOptions);
   const artwork = await fetchSingleArtworkOnPurchase(
     decodeURIComponent(params.id)
   );
-  if (artwork === undefined) return notFound();
-  const session = await getServerSession(nextAuthOptions);
+  if (!artwork?.isOk) throw new Error("Something went wrong");
+
   const user = await fetchUserData(session!.user.id);
 
   const address: IndividualAddressTypes = user.data.address;

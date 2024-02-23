@@ -29,7 +29,7 @@ export default function DesktopNavbar() {
             <NavbarLink
               disabled={false}
               text={"Buy artworks"}
-              link={"/artworks"}
+              link={"/catalog"}
             />
             <NavbarLink
               disabled={false}

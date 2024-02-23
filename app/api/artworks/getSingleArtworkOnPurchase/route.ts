@@ -2,6 +2,7 @@ import { NotFoundError } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
+import { trimWhiteSpace } from "@/utils/trimWhitePace";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -9,9 +10,10 @@ export async function POST(request: Request) {
     await connectMongoDB();
 
     const { title } = await request.json();
+    const new_title = trimWhiteSpace(title);
 
     const artwork = await Artworkuploads.findOne(
-      { title },
+      { title: new_title },
       "art_id gallery_id title artist pricing url"
     ).exec();
     if (!artwork) throw new NotFoundError("Artwork not found");

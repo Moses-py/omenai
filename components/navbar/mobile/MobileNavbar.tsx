@@ -31,7 +31,7 @@ export default function MobileNavbar() {
           <NavbarLink
             disabled={false}
             text={"Buy artworks"}
-            link={"/artworks"}
+            link={"/catalog"}
           />
           <NavbarLink
             disabled={false}

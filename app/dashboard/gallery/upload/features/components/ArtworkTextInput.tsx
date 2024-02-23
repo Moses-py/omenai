@@ -1,6 +1,7 @@
 "use client";
 import { validate } from "@/lib/validations/upload_artwork_input_validator/validator";
 import { galleryArtworkUploadStore } from "@/store/gallery/gallery_artwork_upload/GalleryArtworkUpload";
+import { trimWhiteSpace } from "@/utils/trimWhitePace";
 import { ChangeEvent, useState } from "react";
 
 type ArtworkTextInputProps = {
@@ -25,14 +26,15 @@ export default function ArtworkTextInput({
   const [errorList, setErrorList] = useState<string[]>([]);
 
   const handleChange = (value: string, label: string) => {
+    const trimmedValue = trimWhiteSpace(value);
     setErrorList([]);
     const { success, errors }: { success: boolean; errors: string[] | [] } =
-      validate(label, value);
+      validate(label, trimmedValue);
     if (!success) {
       setErrorList(errors);
-      updateErrorField(label, value);
+      updateErrorField(label, trimmedValue);
     } else {
-      updateArtworkUploadData(label, value);
+      updateArtworkUploadData(label, trimmedValue);
       updateErrorField(label, "");
     }
   };
