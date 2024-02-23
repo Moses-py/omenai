@@ -76,8 +76,8 @@ export default function AddressForm({
                   disabled={true}
                   defaultValue={
                     detail.name === "name"
-                      ? session.data!.user.name
-                      : session.data!.user.email
+                      ? session.data?.user.name || ""
+                      : session.data?.user.email || ""
                   }
                 />
               );
