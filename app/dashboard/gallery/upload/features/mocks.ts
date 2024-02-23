@@ -69,7 +69,7 @@ export const uploadArtworkDetailInputMocks = [
     type: "select",
     label: "Framing",
     required: true,
-    options: ["Framed", "Rolled"],
+    options: ["Framed", "Not framed"],
   },
   {
     name: "artwork_description",
