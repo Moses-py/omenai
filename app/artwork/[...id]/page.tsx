@@ -6,12 +6,19 @@ import { fetchArtworksByCriteria } from "@/services/artworks/fetchArtworksByCrit
 import { nextAuthOptions } from "@/lib/auth/next-auth-options";
 import { getServerSession } from "next-auth";
 import Footer from "@/components/footer/Footer";
+import { notFound } from "next/navigation";
 
 export default async function page({ params }: { params: { id: string } }) {
   const session = await getServerSession(nextAuthOptions);
 
-  const artworkDetails: { message: string; data: ArtworkResultTypes } =
-    await fetchSingleArtwork(decodeURIComponent(params.id));
+  const artworkDetails:
+    | {
+        isOk: boolean;
+        message: string;
+        data: ArtworkResultTypes;
+      }
+    | undefined = await fetchSingleArtwork(decodeURIComponent(params.id));
+  if (artworkDetails === undefined) return notFound();
   const artworksByCriteria = await fetchArtworksByCriteria(
     artworkDetails.data.medium
   );

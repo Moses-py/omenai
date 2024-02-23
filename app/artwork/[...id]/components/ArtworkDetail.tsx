@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { useState } from "react";
 import Loader from "@/components/loader/Loader";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 type ArtworkDetailTypes = {
   data: ArtworkResultTypes;
@@ -107,10 +108,10 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
         <button
           disabled={loading}
           onClick={handleBuyButtonClick}
-          className="w-full bg-dark py-3 underline text-white text-base hover:bg-white disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 hover:text-dark hover:border hover:border-dark hover:underline duration-300 grid place-items-center group"
+          className="w-full bg-dark py-3 underline text-white text-base hover:bg-white disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 hover:text-dark hover:border  hover:underline duration-300 grid place-items-center group"
         >
           {loading ? (
-            <Loader theme="dark" />
+            <LoaderAnimation theme="dark" />
           ) : data.pricing.shouldShowPrice === "Yes" ? (
             "Purchase artwork"
           ) : (

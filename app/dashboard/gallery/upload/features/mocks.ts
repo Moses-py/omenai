@@ -21,7 +21,7 @@ export const uploadArtworkDetailInputMocks = [
     label: "Medium",
     required: true,
     options: [
-      "Acryllic",
+      "Acrylic",
       "Oil",
       "Fabric",
       "Mixed media",

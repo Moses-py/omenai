@@ -46,7 +46,7 @@ const ShuffleHero = () => {
                 <p className="mx-4">Live arts</p>
               </Marquee>
             </div>
-            <Link href={"/artworks"} className="w-fit">
+            <Link href={"/catalog"} className="w-fit">
               <button className="bg-dark border my-5 text-white font-normal py-2 px-5 rounded-md transition-all w-fit uppercase hover:text-dark duration-200 active:scale-95 hover:border-dark hover:bg-white">
                 Shop now
               </button>
