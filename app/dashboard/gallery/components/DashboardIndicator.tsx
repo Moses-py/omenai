@@ -33,7 +33,7 @@ export default function DashboardIndicator({
       {/* Request verification */}
       {!gallery_verified ? (
         <div className="" id="gallery-verification">
-          <button className="px-3 py-2 bg-primary text-white rounded-lg hover:bg-dark/90">
+          <button className="px-3 py-2 bg-dark text-white rounded-lg hover:bg-dark/90">
             Request gallery verification
           </button>
         </div>

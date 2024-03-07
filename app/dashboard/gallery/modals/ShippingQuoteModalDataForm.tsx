@@ -53,7 +53,7 @@ export default function ShippingQuoteModalDataForm() {
 
   return (
     <div>
-      <h1 className="text-sm font-bold mb-4">Buyer address information</h1>
+      <h1 className="text-sm font-bold mb-2">Buyer address information</h1>
       <div className="font-medium text-dark space-y-2 text-base">
         <p>Name: {galleryOrderActionModalData.buyer}</p>
         <p>
