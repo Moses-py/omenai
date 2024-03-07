@@ -1,7 +1,8 @@
 import { TfiPackage } from "react-icons/tfi";
 import { BsCreditCard2Front } from "react-icons/bs";
-import { RiAuctionLine } from "react-icons/ri";
-import { IoAlbumsOutline } from "react-icons/io5";
+// import { RiAuctionLine } from "react-icons/ri";
+import { IoAlbumsOutline, IoWalletOutline } from "react-icons/io5";
+
 import {
   CiUser,
   CiSettings,
@@ -15,12 +16,13 @@ const order = <TfiPackage className="text-dark group-hover:text-white" />;
 const subscription = (
   <BsCreditCard2Front className="text-dark group-hover:text-white" />
 );
-const auction = <RiAuctionLine className="text-dark group-hover:text-white" />;
+// const auction = <RiAuctionLine className="text-dark group-hover:text-white" />;
 const upload = <CiExport className="text-dark group-hover:text-white" />;
 const profile = <CiUser className="text-dark group-hover:text-white" />;
 const settings = <CiSettings className="text-dark group-hover:text-white" />;
 const logout = <CiLogout className="text-dark group-hover:text-white" />;
-const album = <IoAlbumsOutline className="text-dark group-hover:text-white" />;
+const album = <IoAlbumsOutline />;
+const wallet = <IoWalletOutline className="text-dark group-hover:text-white" />;
 
 export const navMockData: NavMockData = {
   general: [
@@ -32,9 +34,9 @@ export const navMockData: NavMockData = {
       url: "/dashboard/gallery/subscription",
     },
     {
-      title: "Auction room",
-      icon: auction,
-      url: "/dashboard/gallery/auction",
+      title: "My Wallet",
+      icon: wallet,
+      url: "/dashboard/gallery/wallet",
     },
     {
       title: "Upload artwork",
