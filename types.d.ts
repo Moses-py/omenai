@@ -236,3 +236,19 @@ type EditorialFormData = {
   minutes?: string;
   content: string;
 };
+
+type WalletModelSchemaTypes = {
+  owner_id: string;
+  wallet_id: string;
+  available_balance: number;
+  withdrawable_balance: number;
+};
+
+type TransactionModelSchemaTypes = {
+  trans_reference: string;
+  trans_amount: number;
+  trans_owner_id: string;
+  trans_wallet_id: string;
+  trans_type: "deposit" | "withdrawal";
+  trans_date: Date;
+};
