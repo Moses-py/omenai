@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "store/AuthStore.ts",
-    "lib/validations/validatorGroup.ts"
+    "lib/validations/validatorGroup.ts",
+    "app/api/test/route.ts"
   ],
   "exclude": ["node_modules"]
 }
