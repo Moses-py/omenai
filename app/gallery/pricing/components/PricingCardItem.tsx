@@ -1,6 +1,14 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import PricingCardFeatureListItem from "./PricingCardFeatureListItem";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
+import { useSession } from "next-auth/react";
+import { useLocalStorage } from "usehooks-ts";
+import { getApiUrl } from "@/config";
 
 type PricingCardItemProps = {
   plan: string;
@@ -16,8 +24,47 @@ export default function PricingCardItem({
   description,
   features,
 }: PricingCardItemProps) {
+  const [loading, setLoading] = useState(false);
+  const [redirect_uri, set_redirect_uri] = useLocalStorage(
+    "redirect_uri_on_login",
+    ""
+  );
+  const url = getApiUrl();
+  const router = useRouter();
+  const session = useSession();
+  async function handleSubscribe() {
+    if (
+      session?.data?.user === undefined ||
+      (session.data.user && session.data?.user.role !== "gallery")
+    ) {
+      set_redirect_uri(`${url}/gallery/pricing`);
+      toast.error("Please login to your gallery account");
+      router.push("/auth/login/gallery");
+    } else {
+      setLoading(true);
+      const response = await fetch("/api/subscriptions/subscribeUser", {
+        method: "POST",
+        body: JSON.stringify({
+          email: session.data.user.email,
+          name: session.data.user.name,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        toast.error(result.message);
+        setLoading(false);
+      } else {
+        toast.success("Payment link generated...redirecting");
+        const link = result.data.link;
+        setLoading(false);
+        router.push(link);
+      }
+    }
+  }
+
   return (
-    <div className="w-full rounded-lg text-dark border border-dark/20 shadow-sm">
+    <div className="w-fit rounded-lg text-dark border border-dark/20 shadow-sm">
       {/* Plan name and popularity tag (optional) */}
       <div className="p-8 w-full flex flex-col gap-3">
         <div className="flex justify-between items-center">
@@ -38,16 +85,11 @@ export default function PricingCardItem({
         {/* Action buttons */}
         <div className="flex flex-col gap-4 w-full">
           <button
-            disabled={plan === "Free"}
-            className={`bg-primary rounded-md w-full py-2 disabled:bg-gray-400 disabled:text-dark disabled:cursor-pointer text-white`}
+            onClick={handleSubscribe}
+            className={`bg-primary rounded-md w-full py-2 grid place-items-center disabled:bg-gray-400 disabled:text-dark disabled:cursor-pointer text-white`}
           >
-            {plan === "Free" ? "Active" : "Subscribe"}
+            {loading ? <LoaderAnimation theme="dark" /> : "Subscribe"}
           </button>
-          {plan !== "Free" && (
-            <button className="bg-white border border-dark/30 rounded-md w-full py-2">
-              Contact sales team
-            </button>
-          )}
         </div>
       </div>
       {/* Divider */}

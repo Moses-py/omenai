@@ -41,6 +41,7 @@
     "next": "^14.1.0",
     "next-auth": "^4.24.5",
     "nextjs-toploader": "^1.4.2",
+    "node-cron": "^3.0.3",
     "nodemailer": "^6.9.5",
     "postcss": "8.4.29",
     "pure-react-carousel": "^1.30.1",

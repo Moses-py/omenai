@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import FormActions from "./FormActions";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
 
 type Form = {
   email: string;
@@ -15,6 +16,13 @@ type Form = {
 
 export default function FormInput() {
   const router = useRouter();
+
+  const [redirect_uri, set_redirect_uri] = useLocalStorage(
+    "redirect_uri_on_login",
+    ""
+  );
+
+  const url = useReadLocalStorage("redirect_uri_on_login") as string;
 
   const [setIsLoading] = galleryLoginStore((state) => [state.setIsloading]);
 
@@ -41,9 +49,16 @@ export default function FormInput() {
               callbackUrl: `/verify/gallery/${session.user.id}`,
             });
           } else {
-            toast.success("Login successful...redirecting!");
-            router.refresh();
-            router.replace("/dashboard/gallery/overview");
+            if (url === "" || url === null) {
+              set_redirect_uri("");
+              toast.success("Login successful...redirecting!");
+              router.refresh();
+              router.replace("/dashboard/gallery/overview");
+            } else {
+              toast.success("Login successful...Please proceed!");
+              router.replace(url);
+              set_redirect_uri("");
+            }
           }
         }
       } else {

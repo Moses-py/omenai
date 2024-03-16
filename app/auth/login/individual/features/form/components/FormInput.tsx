@@ -33,7 +33,6 @@ export default function FormInput() {
           if (session?.user) {
             toast.success("Login successful...redirecting!");
             if (session?.user.verified) {
-              console.log(url);
               if (url === "" || url === null) {
                 set_redirect_uri("");
                 router.replace("/");
