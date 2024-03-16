@@ -10,7 +10,7 @@ export default function MonthlyPricingPlan() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -300 }}
         transition={{ duration: 0.33 }}
-        className="grid sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-6 p-5"
+        className="flex justify-center w-full gap-6 p-5"
       >
         {monthlyPricingDetails.map((pricing, index) => {
           return (

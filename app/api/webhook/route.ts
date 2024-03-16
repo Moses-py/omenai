@@ -5,7 +5,6 @@ export async function POST(request: Request) {
     const req = await request.json();
 
     if (req.event === "charge.completed") {
-      console.log(req);
       return NextResponse.json(
         {
           message: "successful",
