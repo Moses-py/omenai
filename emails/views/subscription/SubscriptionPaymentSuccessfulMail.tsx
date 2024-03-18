@@ -32,7 +32,7 @@ const SubscriptionPaymentSuccessfulMail = (name: string) => {
             />
 
             <Heading className="text-black text-[20px] font-normal text-center p-0 mb-[40px] mx-0">
-              SUBSCRIPTION RENEWD SUCCESSFULLY
+              SUBSCRIPTION RENEWED SUCCESSFULLY
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
               Hello <strong>{name}</strong>,

@@ -22,6 +22,14 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ status: 200 });
   }
+  if (req.data.status === "pending") {
+    // await sendSubscriptionPaymentFailedMail({
+    //   name: req.data.customer.name,
+    //   email: req.data.customer.email,
+    // });
+
+    return NextResponse.json({ status: 200 });
+  }
   // Verify transaction again
 
   const verify_transaction = await fetch(
@@ -128,5 +136,4 @@ export async function POST(request: Request) {
   } else {
     return NextResponse.json({ status: 200 });
   }
-  return NextResponse.json({ status: 200 });
 }
