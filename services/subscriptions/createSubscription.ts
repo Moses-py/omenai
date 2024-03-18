@@ -16,7 +16,7 @@ export const createSubscription = async (email: string, name: string) => {
         tx_ref: await generateDigit(8),
         payment_plan: process.env.FLW_PAYMENT_PLAN_ID,
         currency: "USD",
-        amount: "30",
+        amount: "50",
         redirect_url: `${url}/verifyTransaction`,
         customer: {
           email: email,
