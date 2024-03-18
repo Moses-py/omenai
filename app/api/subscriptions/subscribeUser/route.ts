@@ -21,6 +21,7 @@ export async function POST(request: Request) {
     // https://api.flutterwave.com/v3/payment-plans
 
     const res = await get_active_subscriptions.json();
+    console.log(res);
 
     // Get subscrption status of user and provide actions for all statuses
 

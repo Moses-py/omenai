@@ -252,3 +252,32 @@ type TransactionModelSchemaTypes = {
   trans_type: "deposit" | "withdrawal";
   trans_date: Date;
 };
+
+type SubscriptionModelSchemaTypes = {
+  customer: SubscriptionCustomer;
+  sub_start_date: string;
+  sub_expiry_date: string;
+  sub_value: string;
+  sub_currency: string;
+  sub_status: "active" | "cancelled" | "expired";
+  sub_payment_type: string;
+  sub_tx_ref: string;
+  sub_flw_ref: string;
+  sub_payment_status: string;
+  sub_card_info: SubscriptionCardDetails;
+};
+
+type SubscriptionCustomer = {
+  name: string;
+  email: string;
+  flw_customer_id: string;
+};
+
+type SubscriptionCardDetails = {
+  first_6digits: string;
+  last_4digits: string;
+  issuer: string;
+  country: string;
+  type: string;
+  expiry: string;
+};
