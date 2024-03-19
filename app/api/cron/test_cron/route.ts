@@ -1,3 +1,4 @@
+import { ServerError } from "@/custom/errors/dictionary/errorDictionary";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { Subscriptions } from "@/models/subscriptions/SubscriptionSchema";
@@ -9,14 +10,17 @@ export async function GET() {
     await connectMongoDB();
     const currentDate = new Date();
 
-    await TestDb.updateMany(
+    const cronTest = await TestDb.updateMany(
       {
         date: { $lte: currentDate },
       },
       { $set: { changed: true } }
     );
 
-    console.log("his cron ran successfully");
+    if (!cronTest)
+      throw new ServerError("Cron did not run due to a db update error");
+
+    console.log(cronTest);
 
     return NextResponse.json(
       { message: "This cron ran successfully" },
