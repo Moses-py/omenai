@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const testdb = new Schema(
   {
     date: {
-      type: String,
+      type: Date,
     },
     changed: { type: Boolean, default: () => false },
   },

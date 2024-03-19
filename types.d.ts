@@ -255,8 +255,8 @@ type TransactionModelSchemaTypes = {
 
 type SubscriptionModelSchemaTypes = {
   customer: SubscriptionCustomer;
-  sub_start_date: string;
-  sub_expiry_date: string;
+  sub_start_date: Date;
+  sub_expiry_date: Date;
   sub_value: string;
   sub_currency: string;
   sub_status: "active" | "cancelled" | "expired";
