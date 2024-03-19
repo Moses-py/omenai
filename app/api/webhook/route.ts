@@ -59,15 +59,18 @@ export async function POST(request: Request) {
       "customer.email": req.data.customer.email,
     });
     // Create new customer subscription
+
+    var subscriptionStartDate = new Date();
+
+    // Calculate subscription end date (current date and time + 30 days - 2 minutes)
+    var subscriptionEndDate = new Date(subscriptionStartDate);
+    subscriptionEndDate.setDate(subscriptionEndDate.getDate() + 30);
+    subscriptionEndDate.setMinutes(subscriptionEndDate.getMinutes() - 2);
     if (!found_customer) {
-      const currentDate = new Date();
-      const expiryDate = new Date(
-        currentDate.getTime() + 30 * 24 * 60 * 60 * 1000 - 2 * 60 * 1000
-      ); // Subtracting 2 minutes
       const subscription_data = {
         sub_card_info: req.data.card,
-        sub_start_date: currentDate,
-        sub_expiry_date: expiryDate,
+        sub_start_date: subscriptionStartDate.toISOString(),
+        sub_expiry_date: subscriptionEndDate.toISOString(),
         sub_status: "active",
         sub_value: req.data.amount,
         sub_currency: req.data.currency,
@@ -102,18 +105,13 @@ export async function POST(request: Request) {
     if (found_customer.sub_payment_status === req.data.status) {
       return NextResponse.json({ status: 200 });
     } else {
-      const currentDate = new Date();
-      const expiryDate = new Date(
-        currentDate.getTime() + 30 * 24 * 60 * 60 * 1000 - 2 * 60 * 1000
-      ); // Subtracting 2 minutes
-
       const update_subscription_data = await Subscriptions.updateOne(
         { "customer.email": req.data.customer.email },
         {
           $set: {
             sub_card_info: req.data.card,
-            sub_start_date: currentDate,
-            sub_expiry_date: expiryDate,
+            sub_start_date: subscriptionStartDate.toISOString(),
+            sub_expiry_date: subscriptionEndDate.toISOString(),
             sub_status: "active",
             sub_value: req.data.amount,
             sub_currency: req.data.currency,

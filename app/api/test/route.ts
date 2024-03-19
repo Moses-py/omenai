@@ -7,8 +7,13 @@ import { NextResponse } from "next/server";
 export async function POST() {
   try {
     await connectMongoDB();
-    const date = new Date();
-    const test = await TestDb.create({ date });
+    var date = new Date();
+
+    // Calculate subscription end date (current date and time + 30 days - 2 minutes)
+    // var currentDate = new Date(date);
+    // currentDate.setDate(currentDate.getDate() + 30);
+    // currentDate.setMinutes(currentDate.getMinutes() - 2);
+    const test = await TestDb.create({ date: date.toISOString() });
     if (!test) throw new ServerError("Something went wrong");
     return NextResponse.json({ message: "Created" }, { status: 200 });
   } catch (error) {
