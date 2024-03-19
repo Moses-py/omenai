@@ -16,6 +16,11 @@ export async function GET() {
       { $set: { changed: true } }
     );
 
-    return NextResponse.json({ status: 200 });
+    console.log("his cron ran successfully");
+
+    return NextResponse.json(
+      { message: "This cron ran successfully" },
+      { status: 200 }
+    );
   } catch (error) {}
 }
