@@ -23,9 +23,8 @@ export const highlightCardEl: HighlightCardElProps[] = [
   },
   { title: "Sold artworks", icon: sold_artworks_icon, tag: "sales" },
   {
-    title: "Subscription type",
+    title: "Subscription",
     icon: subscription_type_icon,
-    value: "Basic",
     tag: "subscription",
   },
 ];

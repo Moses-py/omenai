@@ -81,14 +81,14 @@ export default function Input({
           <button
             className={`${
               currentSignupFormIndex > 0 ? "block" : "hidden"
-            } rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-dark text-white hover:bg-dark/30 transition-all ease-linear duration-200`}
+            } px-[1.5rem] py-[0.4rem] mt-[1rem] bg-dark text-white hover:bg-dark/30 transition-all ease-linear duration-200`}
             type={"button"}
             onClick={handleClickPrev}
           >
             Back
           </button>
           <button
-            className="rounded-full px-[1.5rem] py-[0.4rem] mt-[1rem] bg-primary text-white hover:bg-dark transition-all ease-linear duration-200"
+            className="px-[1.5rem] py-[0.4rem] mt-[1rem] bg-dark text-white hover:bg-dark/30 transition-all ease-linear duration-200"
             type={"button"}
             onClick={() =>
               handleClick(

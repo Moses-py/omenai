@@ -14,7 +14,7 @@ export default function OverviewPage() {
       <Tour />
       <Highlight />
 
-      <div className="grid lg:grid-cols-2 gap-x-[1rem]">
+      <div className="grid lg:grid-cols-2 gap-x-[1rem] pb-4">
         <div className="">
           <Suspense fallback={<Loader theme="dark" />}>
             <PopularArtworks />

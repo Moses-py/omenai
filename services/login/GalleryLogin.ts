@@ -41,6 +41,7 @@ export const GalleryLoginProvider = CredentialsProvider<Credentials>({
         email: data.email,
         role: data.role,
         logo: data.logo,
+        subscription_active: data.subscription_active,
       };
     } catch (error: any) {
       throw new Error(error.message);

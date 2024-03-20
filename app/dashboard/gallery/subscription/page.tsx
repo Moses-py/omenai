@@ -2,16 +2,17 @@
 import { gallerySubscriptionStore } from "@/store/gallery/gallery_subscriptions/GallerySubscriptions";
 import NoSubscriptionTheme from "./features/NoSubscriptionTheme";
 import SubscriptionActiveTheme from "./features/SubscriptionActiveTheme";
-import TogglePage from "./features/components/TogglePage";
+import { useSession } from "next-auth/react";
 export default function Subscription() {
-  const [toggle] = gallerySubscriptionStore((state) => [state.toggle]);
+  const session = useSession();
+
   return (
     <div className="w-full h-full relative">
-      {toggle ? <SubscriptionActiveTheme /> : <NoSubscriptionTheme />}
-
-      <div className="absolute top-0 right-0">
-        <TogglePage />
-      </div>
+      {session.data?.user.subscription_active ? (
+        <SubscriptionActiveTheme />
+      ) : (
+        <NoSubscriptionTheme />
+      )}
     </div>
   );
 }

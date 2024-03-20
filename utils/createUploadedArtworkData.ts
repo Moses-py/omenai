@@ -2,7 +2,7 @@ export function createUploadedArtworkData(
   data: ArtworkUploadStateTypes,
   url: string,
   id: string
-): Omit<ArtworkSchemaTypes, "art_id"> {
+): Omit<ArtworkSchemaTypes, "art_id" | "should_show_on_sub_active"> {
   const updatedArwordData = {
     artist: data.artist,
     dimensions: {

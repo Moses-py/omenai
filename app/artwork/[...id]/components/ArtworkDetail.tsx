@@ -108,7 +108,7 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
         <button
           disabled={loading}
           onClick={handleBuyButtonClick}
-          className="w-full bg-dark py-3 underline text-white text-base hover:bg-white disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 hover:text-dark hover:border  hover:underline duration-300 grid place-items-center group"
+          className="w-full bg-dark px-4 py-2 rounded-md  underline text-white text-base hover:bg-white disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-dark/50 hover:text-dark hover:border  hover:underline duration-300 grid place-items-center group"
         >
           {loading ? (
             <LoaderAnimation theme="dark" />
@@ -123,7 +123,7 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
           (sessionId && !likedState.ids.includes(sessionId))) && (
           <button
             onClick={() => handleLike(true)}
-            className="w-full py-3 justify-center flex items-center gap-2 underline text-dark text-base hover:bg-dark hover:text-white border border-dark duration-300 group"
+            className="w-full px-4 py-2 rounded-md justify-center flex items-center gap-2 underline text-dark text-base hover:bg-dark hover:text-white border border-dark duration-300 group"
           >
             <IoHeartOutline /> <span>Save artwork</span>
           </button>
@@ -131,7 +131,7 @@ export default function ArtworkDetail({ data, sessionId }: ArtworkDetailTypes) {
         {sessionId !== undefined && likedState.ids.includes(sessionId) && (
           <button
             onClick={() => handleLike(false)}
-            className="w-full py-3 border flex justify-center items-center gap-2 hover:bg-dark/10 duration-300 border-dark/30 text-dark text-base group"
+            className="w-full px-4 py-2 rounded-md border flex justify-center items-center gap-2 hover:bg-dark/10 duration-300 border-dark/30 text-dark text-base group"
           >
             <GiCheckMark />
             <span>Remove from saved</span>

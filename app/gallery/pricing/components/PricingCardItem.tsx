@@ -55,10 +55,15 @@ export default function PricingCardItem({
         toast.error(result.message);
         setLoading(false);
       } else {
-        toast.success("Payment link generated...redirecting");
-        const link = result.data.link;
-        setLoading(false);
-        router.push(link);
+        if (result.data.type === "sub_activated") {
+          toast.success(result.message);
+          router.replace("/dashboard/gallery/subscription");
+        } else {
+          toast.success("Payment link generated...redirecting");
+          const link = result.data.link;
+          setLoading(false);
+          router.push(link);
+        }
       }
     }
   }

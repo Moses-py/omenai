@@ -1,6 +1,9 @@
+import { getServerSession } from "next-auth";
 import { getArtworkHighlightData } from "./getArtworkHighlightData";
 import { getImpressionHighlightData } from "./getImpressionHighlightData";
 import { getSalesHighlightData } from "./getSalesHighlightData";
+import { nextAuthOptions } from "@/lib/auth/next-auth-options";
+import { getSubscriptionHighlightData } from "./getSubscriptionHighlightData";
 
 export async function fetchHighlightData(tag: string) {
   if (tag === "artworks") {
@@ -18,7 +21,10 @@ export async function fetchHighlightData(tag: string) {
     return impression_count;
   }
 
-  if (tag === "subscription") return "Basic";
+  if (tag === "subscription") {
+    const result = await getSubscriptionHighlightData();
+    return result;
+  }
 
   if (tag === "sales") {
     const result = await getSalesHighlightData();

@@ -58,6 +58,11 @@ const gallerySignupSchema = new Schema<GallerySchemaTypes>(
       type: String,
       default: "",
     },
+    subscription_active: {
+      type: Boolean,
+      required: true,
+      default: () => false,
+    },
   },
   { timestamps: true }
 );

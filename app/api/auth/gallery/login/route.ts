@@ -44,6 +44,7 @@ export async function POST(request: Request) {
       name,
       role,
       logo,
+      subscription_active,
     } = user;
 
     return res.json(
@@ -59,6 +60,7 @@ export async function POST(request: Request) {
         email,
         role,
         logo,
+        subscription_active,
       },
       { status: 201 }
     );

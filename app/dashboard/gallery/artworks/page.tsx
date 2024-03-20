@@ -8,7 +8,7 @@ export default async function MyArtworks() {
     <div className="w-full h-full">
       <h1 className="text-dark font-light text-sm my-6">Uploaded artworks</h1>
       {artworks.data.length === 0 ? (
-        <div className="w-full h-full grid place-items-center">
+        <div className="w-full h-[80vh] grid place-items-center">
           <NotFoundData />
         </div>
       ) : (

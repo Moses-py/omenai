@@ -23,8 +23,8 @@
       "schedule": "0 0 * * *"
     },
     {
-      "path": "/api/cron/test_cron",
-      "schedule": "0 1 * * *"
+      "path": "/api/cron/check_expired_subscriptions",
+      "schedule": "0 0 * * *"
     }
   ]
 }
