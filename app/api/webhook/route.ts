@@ -1,5 +1,7 @@
 import { sendSubscriptionPaymentFailedMail } from "@/emails/models/subscription/sendSubscriptionPaymentFailedMail";
 import { sendSubscriptionPaymentSuccessfulMail } from "@/emails/models/subscription/sendSubscriptionPaymentSuccessMail";
+import { Artworkuploads } from "@/models/artworks/UploadArtworkSchema";
+import { AccountGallery } from "@/models/auth/GallerySchema";
 import { Subscriptions } from "@/models/subscriptions/SubscriptionSchema";
 import { NextResponse } from "next/server";
 
@@ -93,6 +95,15 @@ export async function POST(request: Request) {
         return NextResponse.json({ status: 401 });
       else {
         // Send subscription started email
+        const update_customer_sub_status = await AccountGallery.updateOne(
+          { email: req.data.customer.email },
+          { $set: { subscription_active: true } }
+        );
+
+        if (!update_customer_sub_status)
+          return NextResponse.json({ status: 401 });
+
+        // const update_artwork_show_on_sub_status = await Artworkuploads.updateMany({gallery_id: })
         await sendSubscriptionPaymentSuccessfulMail({
           name: req.data.customer.name,
           email: req.data.customer.email,
@@ -124,10 +135,16 @@ export async function POST(request: Request) {
       if (!update_subscription_data) return NextResponse.json({ status: 401 });
       else {
         // Send subscription active email
-        await sendSubscriptionPaymentSuccessfulMail({
-          name: req.data.customer.name,
-          email: req.data.customer.email,
-        });
+        const update_customer_sub_status = await AccountGallery.updateOne(
+          { email: req.data.customer.email },
+          { $set: { subscription_active: true } }
+        );
+
+        if (!update_customer_sub_status)
+          await sendSubscriptionPaymentSuccessfulMail({
+            name: req.data.customer.name,
+            email: req.data.customer.email,
+          });
         return NextResponse.json({ status: 200 });
       }
     }

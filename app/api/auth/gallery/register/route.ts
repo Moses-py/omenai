@@ -8,11 +8,8 @@ import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountGallery } from "@/models/auth/GallerySchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import generateString from "@/utils/generateToken";
+import { generateDigit } from "@/utils/generateToken";
 import { NextResponse } from "next/server";
-
-import fs from "fs";
-import path from "path";
 
 export async function POST(request: Request) {
   try {
@@ -30,7 +27,7 @@ export async function POST(request: Request) {
 
     const parsedData = await parseRegisterData(data);
 
-    const email_token = await generateString();
+    const email_token = await generateDigit(6);
 
     const saveData = await AccountGallery.create({
       ...parsedData,
@@ -48,12 +45,6 @@ export async function POST(request: Request) {
 
     if (!storeVerificationCode)
       throw new ServerError("A server error has occured, please try again");
-
-    const dirRelativeToPublicFolder = "images";
-
-    const dir = path.resolve("./public", dirRelativeToPublicFolder);
-
-    const image = `/${dirRelativeToPublicFolder}/5.jpeg`;
 
     await sendGalleryMail({
       name: name,

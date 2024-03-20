@@ -22,7 +22,7 @@ export default function DashboardIndicator({
   return (
     <div className="w-full flex justify-between items-center">
       <div className="text-xs xs:text-base">
-        <p className="font-normal text-dark">{gallery_name} dashboard</p>
+        <p className="font-normal text-dark">{gallery_name} Dashboard</p>
         <p className="text-dark">
           <span className="font-light">Gallery</span>/
           <span className="font-normal capitalize text-primary">

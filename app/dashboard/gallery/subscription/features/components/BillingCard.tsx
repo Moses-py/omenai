@@ -1,9 +1,19 @@
 import Image from "next/image";
 import React from "react";
 
-export default function BillingCard() {
+export default function BillingCard({
+  expiry,
+  first_6digits,
+  last_4digits,
+  type,
+}: {
+  expiry: string;
+  first_6digits: string;
+  last_4digits: string;
+  type: string;
+}) {
   return (
-    <div className="rounded-xl bg-billing-card bg-center bg-cover bg-no-repeat bg-blend-overlay p-8 relative ">
+    <div className="rounded-xl bg-billing-card bg-center bg-cover bg-no-repeat bg-blend-overlay px-8 py-4 relative lg:w-[800px] w-full">
       <div className="absolute inset-0 bg-black/70 rounded-xl" />
       {/* Icon */}
       <div className="flex flex-col gap-y-6 relative z-10 mb-16">
@@ -14,7 +24,9 @@ export default function BillingCard() {
           width={30}
           className="rotate-[-90deg]"
         />
-        <p className="text-sm text-white">**** **** **** 1234</p>
+        <p className="text-base text-white">
+          {first_6digits}** **** {last_4digits}
+        </p>
       </div>
 
       <div className="flex flex-col justify-between gap-4  relative z-10">
@@ -25,24 +37,18 @@ export default function BillingCard() {
           <div className="flex gap-x-12 items-end">
             <div className="flex flex-col gap-1">
               <span className="text-base font-light text-white">
-                Card holder
+                Expiry date
               </span>
-              <p className="text-normal text-sm font-normal text-white">
-                Louvre museum
-              </p>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-base font-light text-white">Expires</span>
-              <p className="text-normal text-sm font-normal text-white">
-                11/12
+              <p className="text-normal text-base font-normal text-white">
+                {expiry}
               </p>
             </div>
           </div>
 
           <div className="self-end">
             <Image
-              src="/images/mastercard.png"
-              alt="mastercard logo"
+              src={`/logo/${type.toLowerCase()}.png`}
+              alt={`${type.toLowerCase()} logo`}
               height={50}
               width={80}
             />

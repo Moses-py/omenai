@@ -39,18 +39,19 @@ export async function POST(request: Request) {
         );
       } else {
         // Activate subscription
-        if (data_filter.plan !== process.env.FLW_PAYMENT_PLAN_ID!) {
+        if (data_filter.plan !== 63747) {
           const get_subscription_payment_link = await createSubscription(
             email,
             name
           );
 
           const response = await get_subscription_payment_link.json();
+          console.log(data_filter);
 
           if (response) {
             return NextResponse.json(
               {
-                message: "Payment link fetch successfully",
+                message: "Payment link fetched successfully",
                 data: response.data,
               },
               { status: 200 }
@@ -58,6 +59,27 @@ export async function POST(request: Request) {
           }
         } else {
           // Activate subscription
+          const reactivate_subscription = await fetch(
+            `https://api.flutterwave.com/v3/subscriptions/${data_filter.id}/activate`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${process.env.FLW_TEST_SECRET_KEY}`,
+              },
+            }
+          );
+          const reactivate_status = await reactivate_subscription.json();
+
+          if (reactivate_status.status === "success") {
+            return NextResponse.json(
+              {
+                message: reactivate_status.message + " redirecting...",
+                data: { type: "sub_activated" },
+              },
+              { status: 200 }
+            );
+          }
         }
       }
     } else {
@@ -66,11 +88,12 @@ export async function POST(request: Request) {
         name
       );
       const response = await get_subscription_payment_link.json();
+      console.log(response);
 
       if (response) {
         return NextResponse.json(
           {
-            message: "Payment link fetch successfully",
+            message: "Payment link fetched successfully",
             data: response.data,
           },
           { status: 200 }

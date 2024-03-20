@@ -54,6 +54,7 @@ type GallerySchemaTypes = {
   verified: boolean;
   role: string;
   logo?: string;
+  subscription_active: boolean;
 };
 
 type IndividualSchemaTypes = {
@@ -97,6 +98,7 @@ type ArtworkSchemaTypes = {
   framing: string;
   signature: string;
   carrier: string;
+  should_show_on_sub_active?: boolean;
 };
 
 type ArtworkDimensions = {

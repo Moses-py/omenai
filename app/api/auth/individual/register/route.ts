@@ -8,7 +8,7 @@ import { parseRegisterData } from "@/lib/auth/parseRegisterData";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
 import { AccountIndividual } from "@/models/auth/IndividualSchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
-import { default as generateString } from "@/utils/generateToken";
+import { generateDigit } from "@/utils/generateToken";
 import { NextResponse, NextResponse as res } from "next/server";
 
 export async function POST(request: Request) {
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
     const parsedData = await parseRegisterData(data);
 
-    const email_token = await generateString();
+    const email_token = await generateDigit(6);
 
     const saveData = await AccountIndividual.create({
       ...parsedData,

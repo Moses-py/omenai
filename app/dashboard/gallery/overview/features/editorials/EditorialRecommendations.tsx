@@ -15,16 +15,7 @@ import { useWindowSize } from "usehooks-ts";
 // @ts-ignore
 export default function EditorialRecommendations() {
   const { width } = useWindowSize();
-  const generateNaturalSlideWidth = () => {
-    if (width >= 1280) return 200;
-    if (width >= 1440) return 130;
-    // if (width >= 1680) return 180;
-    // if (width >= 1024) return 200;
-    if (width >= 1024) return 250;
-    if (width >= 768) return 200;
-    if (width >= 460) return 250;
-    return 300;
-  };
+
   return (
     <div>
       <OverviewComponentCard
@@ -32,43 +23,7 @@ export default function EditorialRecommendations() {
         fullWidth={false}
         title="Latest editorial articles"
       >
-        <CarouselProvider
-          visibleSlides={1}
-          totalSlides={editorialRecommendationMocks.length}
-          step={1}
-          naturalSlideWidth={500}
-          naturalSlideHeight={generateNaturalSlideWidth()}
-          isPlaying
-          interval={5000}
-        >
-          {/* <h4 className="text-dark text-base md:text-sm font-normal my-5">
-          Latest editorial articles
-        </h4> */}
-          <Slider>
-            {editorialRecommendationMocks.map((editorial, index) => {
-              return (
-                <Slide key={index} index={index}>
-                  <EditorialRecommendationSlide
-                    url={editorial.url}
-                    title={editorial.title}
-                    author={editorial.author}
-                    date={editorial.date}
-                    category={editorial.category}
-                  />
-                </Slide>
-              );
-            })}
-          </Slider>
-          <div className="flex justify-end gap-x-5 my-4">
-            <ButtonBack>
-              <BsArrowLeft className="text-md text-dark" />
-            </ButtonBack>
-            <ButtonNext>
-              <BsArrowRight className="text-md text-dark" />
-            </ButtonNext>
-          </div>
-        </CarouselProvider>
-
+        <h4>Editorial data goes here</h4>
         {/* </Carousel> */}
       </OverviewComponentCard>
     </div>

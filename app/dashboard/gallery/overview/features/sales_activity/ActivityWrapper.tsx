@@ -14,7 +14,7 @@ export default async function ActivityWrapper() {
         title={"Sales Activity"}
         id="tour-orders"
       >
-        {activityData.length === 0 ? (
+        {data.data.length === 0 ? (
           <div className="w-full h-full grid pb-10">
             <NotFoundData />
           </div>
