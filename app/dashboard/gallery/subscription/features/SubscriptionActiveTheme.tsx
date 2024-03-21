@@ -43,8 +43,11 @@ export default function SubscriptionActiveTheme() {
           sub_end={subscription_data.sub_expiry_date}
         />
       </div>
-      <SubscriptionStatus />
-      <CancelSubscriptionModal sub_end={subscription_data.sub_expiry_date} />
+      <SubscriptionStatus sub_status={subscription_data.sub_status} />
+      <CancelSubscriptionModal
+        sub_end={subscription_data.sub_expiry_date}
+        id={subscription_data.customer.email}
+      />
     </div>
   );
 }
