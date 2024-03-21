@@ -28,7 +28,7 @@ export default function SubscriptionStatus({
 
       <div className="mt-6">
         {sub_status === "canceled" ? (
-          <button className="px-4 py-2 rounded-md w-fit bg-dark hover:bg-dark/70 flex gap-2 items-center">
+          <button className="px-4 py-2 rounded-md w-fit bg-dark text-white hover:bg-dark/70 flex gap-2 items-center">
             Reactivate Subscription
           </button>
         ) : (

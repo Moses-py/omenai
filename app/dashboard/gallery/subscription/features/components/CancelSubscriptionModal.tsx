@@ -38,7 +38,7 @@ export default function CancelSubscriptionModal({
 
   return (
     <>
-      <Modal dismissible show={openModal} onClose={() => updateOpenModal()}>
+      <Modal dismissible show={openModal}>
         <div className=" p-10">
           <div className="flex flex-col gap-4 font-normal text-[15px]">
             <h2 className="text-red-600 text-md font-semibold">
@@ -68,7 +68,8 @@ export default function CancelSubscriptionModal({
           <div className="flex justify-end mt-8">
             <div className="flex gap-3 text-[15px]">
               <button
-                className="px-6 py-2 text-white bg-dark hover:bg-dark/60 duration-200"
+                disabled={loading}
+                className="px-6 py-2 text-white disabled:cursor-not-allowed bg-dark hover:bg-dark/60 duration-200"
                 onClick={() => updateOpenModal()}
               >
                 Quit

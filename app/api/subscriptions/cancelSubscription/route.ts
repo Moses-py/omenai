@@ -1,9 +1,11 @@
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
+import { Subscriptions } from "@/models/subscriptions/SubscriptionSchema";
 import { NextResponse } from "next/server";
 
-export async function PUT(request: Request) {
+export async function POST(request: Request) {
   try {
+    await connectMongoDB();
     const { email } = await request.json();
 
     const get_all_subscriptions = await fetch(
@@ -39,6 +41,10 @@ export async function PUT(request: Request) {
       await deactivate_subscription.json();
 
     if (deactivate_subscription_response.status === "success") {
+      await Subscriptions.updateOne(
+        { "customer.email": email },
+        { $set: { sub_status: "canceled" } }
+      );
       return NextResponse.json(
         { message: deactivate_subscription_response.message },
         { status: 200 }
