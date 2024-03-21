@@ -1,7 +1,6 @@
 "use client";
 import { actionStore } from "@/store/actions/ActionStore";
 import Link from "next/link";
-import Loader from "../loader/Loader";
 import LoaderAnimation from "../loader/LoaderAnimation";
 
 export default function LoginModalFormActions({
@@ -21,7 +20,7 @@ export default function LoginModalFormActions({
             Forgot password?{" "}
             <span
               onClick={() => toggleLoginModalRecoveryForm(true)}
-              className="text-primary cursor-pointer underline"
+              className="text-primary cursor-pointer font-bold underline"
             >
               Let us help
             </span>
@@ -31,7 +30,7 @@ export default function LoginModalFormActions({
         <button
           type="submit"
           disabled={loading}
-          className=" disabled:cursor-not-allowed grid disabled:bg-white disabled:border disabled:border-dark place-items-center w-full px-4 py-2 bg-primary hover:bg-primary/50 rounded-md text-white text-base "
+          className=" disabled:cursor-not-allowed grid disabled:bg-white disabled:border disabled:border-dark place-items-center w-full px-4 py-2 bg-dark hover:bg-dark/70 rounded-md text-white text-base "
         >
           {!loading ? "Login" : <LoaderAnimation theme="dark" />}
         </button>
