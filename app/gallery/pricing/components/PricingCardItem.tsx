@@ -55,9 +55,10 @@ export default function PricingCardItem({
         toast.error(result.message);
         setLoading(false);
       } else {
+        // TODO: Check this properly, this might be a bug
         if (result.data.type === "sub_activated") {
           toast.success(result.message);
-          router.replace("/dashboard/gallery/subscription");
+          router.push("/dashboard/gallery/subscription");
         } else {
           toast.success("Payment link generated...redirecting");
           const link = result.data.link;

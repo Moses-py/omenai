@@ -1,15 +1,22 @@
 "use client";
-import Loader from "@/components/loader/Loader";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import animationData from "../../../json/order-received.json";
 import { toast } from "sonner";
+import { signOut } from "next-auth/react";
+import { useLocalStorage } from "usehooks-ts";
+import { getApiUrl } from "@/config";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 export default function VerifyTransactionWrapper() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const transaction_id = searchParams.get("transaction_id");
+  const [redirect_uri, set_redirect_uri] = useLocalStorage(
+    "redirect_uri_on_login",
+    ""
+  );
+  const url = getApiUrl();
 
   const { data: verify_data, isLoading } = useQuery({
     queryKey: ["verify_transaction"],
@@ -20,9 +27,11 @@ export default function VerifyTransactionWrapper() {
       });
 
       const result = await response.json();
+      set_redirect_uri(`${url}/dashboard/gallery/subscription`);
       setTimeout(() => {
-        router.push("/dashboard/gallery/subscription");
-      }, 5000);
+        toast.success("Please log back in");
+        signOut({ callbackUrl: "/auth/login/gallery" });
+      }, 3000);
 
       return { message: result.message, isOk: response.ok };
     },
@@ -32,7 +41,7 @@ export default function VerifyTransactionWrapper() {
       <div className="w-full h-[80vh] grid place-items-center">
         <div className="flex flex-col gap-y-1 justify-center items-center">
           <p>Verifying transaction status</p>
-          <Loader theme="dark" />
+          <LoaderAnimation theme="dark" />
         </div>
       </div>
     );
@@ -60,7 +69,10 @@ export default function VerifyTransactionWrapper() {
         </div>
       )}
 
-      <p>Redirecting you in a moment...please wait!!</p>
+      <p>
+        You&apos;ll be required to log back in, redirecting you in a
+        moment...please wait!!
+      </p>
     </div>
   );
 }
