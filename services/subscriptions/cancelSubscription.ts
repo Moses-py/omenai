@@ -4,7 +4,7 @@ export async function cancelSubscription(email: string) {
   try {
     const url = getApiUrl();
     const res = await fetch(`${url}/api/subscriptions/cancelSubscription`, {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify({ email }),
     });
 
