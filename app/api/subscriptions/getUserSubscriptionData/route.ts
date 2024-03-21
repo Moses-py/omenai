@@ -13,7 +13,7 @@ export async function POST(request: Request) {
       {
         "customer.email": email,
       },
-      "sub_start_date sub_expiry_date sub_card_info customer sub_status"
+      "sub_start_date sub_expiry_date sub_card_info customer sub_status id"
     );
 
     if (!subscription_data)

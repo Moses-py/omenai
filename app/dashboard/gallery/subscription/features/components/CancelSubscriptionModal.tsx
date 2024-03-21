@@ -1,18 +1,40 @@
 "use client";
 
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
+import { cancelSubscription } from "@/services/subscriptions/cancelSubscription";
 import { galleryModalStore } from "@/store/gallery/gallery_modals/GalleryModals";
 import { formatISODate } from "@/utils/formatISODate";
 import { Modal } from "flowbite-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { IoWarning } from "react-icons/io5";
+import { toast } from "sonner";
 export default function CancelSubscriptionModal({
   sub_end,
+  id,
 }: {
   sub_end: string;
+  id: string;
 }) {
+  const router = useRouter();
   const [openModal, updateOpenModal] = galleryModalStore((state) => [
     state.openModal,
     state.updateOpenModal,
   ]);
+
+  const [loading, setLoading] = useState(false);
+
+  const cancel_subscription = async () => {
+    setLoading(true);
+    const response = await cancelSubscription(id);
+
+    if (response?.isOk) {
+      setLoading(false);
+      toast.success(response.message);
+      updateOpenModal();
+      router.refresh();
+    }
+  };
 
   return (
     <>
@@ -52,11 +74,16 @@ export default function CancelSubscriptionModal({
                 Quit
               </button>
               <button
-                className="px-6 py-2 text-white bg-red-600 hover:bg-red-600/60 duration-200"
+                disabled={loading}
+                className="px-6 py-2 text-white disabled:cursor-not-allowed bg-red-600 hover:bg-red-600/60 duration-200"
                 color="gray"
-                onClick={() => updateOpenModal()}
+                onClick={cancel_subscription}
               >
-                Cancel Subscription
+                {loading ? (
+                  <LoaderAnimation theme="dark" />
+                ) : (
+                  "Cancel Subscription"
+                )}
               </button>
             </div>
           </div>

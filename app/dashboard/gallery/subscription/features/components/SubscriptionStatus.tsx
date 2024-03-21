@@ -1,7 +1,11 @@
 "use client";
 import { galleryModalStore } from "@/store/gallery/gallery_modals/GalleryModals";
 import { RxCross1 } from "react-icons/rx";
-export default function SubscriptionStatus() {
+export default function SubscriptionStatus({
+  sub_status,
+}: {
+  sub_status: string;
+}) {
   const [updateOpenModal] = galleryModalStore((state) => [
     state.updateOpenModal,
   ]);
@@ -23,13 +27,19 @@ export default function SubscriptionStatus() {
       </div>
 
       <div className="mt-6">
-        <button
-          className="px-4 py-2 rounded-md w-fit bg-red-600 flex gap-2 items-center"
-          onClick={() => updateOpenModal()}
-        >
-          <RxCross1 className="text-sm text-white" />
-          <span className="text-white">Cancel subscription</span>
-        </button>
+        {sub_status === "canceled" ? (
+          <button className="px-4 py-2 rounded-md w-fit bg-dark hover:bg-dark/70 flex gap-2 items-center">
+            Reactivate Subscription
+          </button>
+        ) : (
+          <button
+            className="px-4 py-2 rounded-md w-fit bg-red-600 flex gap-2 items-center"
+            onClick={() => updateOpenModal()}
+          >
+            <RxCross1 className="text-sm text-white" />
+            <span className="text-white">Cancel Subscription</span>
+          </button>
+        )}
       </div>
     </div>
   );
