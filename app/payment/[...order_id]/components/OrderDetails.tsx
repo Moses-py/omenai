@@ -40,7 +40,13 @@ export default function OrderDetails({ order_id }: { order_id: string }) {
   return (
     <div className="grid-cols-1 grid md:grid-cols-2 xl:grid-cols-3 my-[3rem] p-5 gap-4">
       <div className="col-span-1 xl:col-span-2">
-        <PayNowButton art_id={order.artwork_data.art_id} />
+        <PayNowButton
+          art_id={order.artwork_data.art_id}
+          artwork={order.artwork_data.title}
+          amount={total}
+          gallery_id={order.gallery_id}
+          order_id={order_id}
+        />
       </div>
 
       <div className="w-full cols-span-1 h-full">
@@ -93,7 +99,7 @@ export default function OrderDetails({ order_id }: { order_id: string }) {
 
             <div className="flex justify-between items-center font-bold text-[20px] mt-10">
               <p>Grand total</p>
-              <p>{total}</p>
+              <p>${total}</p>
             </div>
             {order.shipping_quote.additional_information && (
               <div className="flex justify-between items-center text-dark my-3">

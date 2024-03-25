@@ -11,7 +11,7 @@ export function calculatePurchaseGrandTotal(
   const total: number = priceValue + taxesValue + feesValue;
 
   // Format total as string with dollar sign
-  const totalString: string = "$" + total.toFixed(2);
+  const totalString: string = total.toFixed(2);
 
   return totalString;
 }

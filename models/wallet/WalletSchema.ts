@@ -5,8 +5,8 @@ const wallet = new Schema<WalletModelSchemaTypes>(
   {
     owner_id: { type: String, required: true },
     wallet_id: { type: String, default: () => uuidv4(), unique: true },
-    available_balance: { type: Number, required: true },
-    withdrawable_balance: { type: Number, required: true },
+    available_balance: { type: Number, default: () => 0 },
+    withdrawable_balance: { type: Number, default: () => 0 },
   },
   { timestamps: true }
 );

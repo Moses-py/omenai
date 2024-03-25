@@ -10,12 +10,30 @@ import { CiLock } from "react-icons/ci";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import LoaderAnimation from "@/components/loader/LoaderAnimation";
+import { purchase_artwork } from "@/services/purchase_artwork/purchase_artwork";
+import { useLocalStorage } from "usehooks-ts";
 
-export default function PayNowButton({ art_id }: { art_id: string }) {
+export default function PayNowButton({
+  art_id,
+  artwork,
+  amount,
+  gallery_id,
+  order_id,
+}: {
+  art_id: string;
+  artwork: string;
+  amount: string;
+  gallery_id: string;
+  order_id: string;
+}) {
   const router = useRouter();
   const session = useSession();
   const [loading, setLoading] = useState(false);
   const [locked, setLocked] = useState(false);
+  const [pur_gid, set_pur_gid] = useLocalStorage("pur_gid", {
+    gid: "",
+    oid: "",
+  });
 
   useEffect(() => {
     const checkLock = async () => {
@@ -35,7 +53,26 @@ export default function PayNowButton({ art_id }: { art_id: string }) {
     const lock = await createOrderLock(art_id, session.data!.user.id);
     if (lock?.isOk) {
       if (lock.data.lock_data.user_id === session.data!.user.id) {
-        router.replace("/payment/paymentPortal");
+        const response = await fetch("/api/purchase", {
+          method: "POST",
+          body: JSON.stringify({
+            email: session.data!.user.email,
+            name: session.data!.user.name,
+            artwork,
+            amount,
+          }),
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+          setLoading(false);
+          set_pur_gid({ gid: gallery_id, oid: order_id });
+          toast.success("Payment link generated");
+          router.replace(result.data.link);
+        } else {
+          setLoading(false);
+          toast.error(result.message);
+        }
       } else {
         toast.error(
           "A user is currently processing a purchase transaction on this artwork. Please check back in a few minutes for a status update"
