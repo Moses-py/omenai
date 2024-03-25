@@ -88,7 +88,6 @@ export async function POST(request: Request) {
         name
       );
       const response = await get_subscription_payment_link.json();
-      console.log(response);
 
       if (response) {
         return NextResponse.json(
