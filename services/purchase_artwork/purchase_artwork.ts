@@ -20,7 +20,7 @@ export const purchase_artwork = async (
       body: JSON.stringify({
         tx_ref: await generateDigit(8),
         currency: "USD",
-        amount: "1",
+        amount: "50",
         redirect_url: `${url}/payment/verifyTransaction`,
         customer: {
           email: email,
