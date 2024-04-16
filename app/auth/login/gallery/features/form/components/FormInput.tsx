@@ -49,11 +49,11 @@ export default function FormInput() {
               callbackUrl: `/verify/gallery/${session.user.id}`,
             });
           } else {
+            toast.success("Login successful...redirecting!");
             if (url === "" || url === null) {
               set_redirect_uri("");
-              toast.success("Login successful...redirecting!");
-              router.refresh();
               router.replace("/dashboard/gallery/overview");
+              router.refresh();
             } else {
               toast.success("Login successful...Please proceed!");
               router.replace(url);
