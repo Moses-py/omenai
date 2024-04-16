@@ -1,11 +1,11 @@
 import {
-  ServerError,
   ForbiddenError,
   NotFoundError,
   RateLimitExceededError,
+  ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
-import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
+import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
 import { getIp } from "@/lib/auth/getIp";
 import { limiter } from "@/lib/auth/limiter";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
@@ -21,53 +21,52 @@ export async function POST(request: Request) {
     const { success } = await limiter.limit(ip);
     if (!success)
       throw new RateLimitExceededError("Too many requests, try again later.");
+
     await connectMongoDB();
 
-    const { author } = await request.json();
+    const { recoveryEmail } = await request.json();
 
-    const { name, email, verified } = await AccountIndividual.findOne(
-      { user_id: author },
-      "name email verified"
+    const data = await AccountIndividual.findOne(
+      { email: recoveryEmail },
+      "email user_id name verified"
     ).exec();
 
-    if (!name || !email)
-      throw new NotFoundError("Unable to authenticate account");
+    if (!data)
+      throw new NotFoundError("Email is not associated to any account");
 
-    if (verified)
-      throw new ForbiddenError(
-        "This action is not permitted. Account already verified"
-      );
+    const { email, user_id, name, verified } = data;
+
+    if (!verified)
+      throw new ForbiddenError("Please verify your account first.");
 
     const email_token = await generateString();
 
     const isVerificationTokenActive = await VerificationCodes.findOne({
-      author,
+      author: user_id,
     });
 
     if (isVerificationTokenActive)
-      await VerificationCodes.deleteOne({
-        author,
-        code: isVerificationTokenActive.code,
-      });
+      throw new ForbiddenError(
+        "Token link active. Please visit link to continue"
+      );
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
-      author,
+      author: user_id,
     });
 
     if (!storeVerificationCode)
       throw new ServerError("A server error has occured, please try again");
 
-    await sendIndividualMail({
-      name,
-      email,
+    await sendPasswordRecoveryMail({
+      name: name,
+      email: email,
       token: email_token,
+      route: "individual",
     });
 
     return NextResponse.json(
-      {
-        message: "Verification code resent",
-      },
+      { message: "Verification link sent" },
       { status: 200 }
     );
   } catch (error) {

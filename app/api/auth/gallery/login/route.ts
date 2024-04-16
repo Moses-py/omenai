@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     return res.json(
       {
-        message: "Login successfull",
+        message: "Login successfu",
         id: gallery_id,
         verified,
         admin,
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
         logo,
         subscription_active,
       },
-      { status: 201 }
+      { status: 200 }
     );
   } catch (error) {
     const error_response = handleErrorEdgeCases(error);

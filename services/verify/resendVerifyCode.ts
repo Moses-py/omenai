@@ -10,7 +10,7 @@ export async function resendCode(
 
     await fetch(`${url}/api/requests/${route}/verify/resend`, {
       method: "POST",
-      body: JSON.stringify(payload),
+      body: JSON.stringify({gallery_id: payload.author}),
       headers: {
         "Content-type": "application/json",
       },

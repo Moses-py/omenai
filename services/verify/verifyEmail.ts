@@ -8,7 +8,7 @@ export async function verifyEmail(
 
   const result = await fetch(`${url}/api/requests/${route}/verifyMail`, {
     method: "POST",
-    body: JSON.stringify(payload),
+    body: JSON.stringify({gallery_id: payload.params, token:payload.token}),
     headers: {
       "Content-type": "application/json",
     },

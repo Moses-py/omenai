@@ -1,9 +1,8 @@
 "use client";
 
-import { verifyEmailAccount } from "@/services/password/verifyEmailAccount";
+import { sendPasswordResetLink } from "@/services/password/sendPasswordResetLink";
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
-import Loader from "../loader/Loader";
 import LoaderAnimation from "../loader/LoaderAnimation";
 
 export default function RecoveryModalEmailInputField() {
@@ -14,7 +13,7 @@ export default function RecoveryModalEmailInputField() {
     e.preventDefault();
     setIsloading(true);
 
-    const data = await verifyEmailAccount("individual", {
+    const data = await sendPasswordResetLink("individual", {
       email,
     });
 

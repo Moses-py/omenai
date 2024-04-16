@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       "verified"
     ).exec();
 
-    if (user.verified) throw new ForbiddenError("This action is not permitted");
+    if (user.verified) throw new ForbiddenError("This action is not permitted, account already verified");
 
     const isTokenActive = await VerificationCodes.findOne({
       author: params,

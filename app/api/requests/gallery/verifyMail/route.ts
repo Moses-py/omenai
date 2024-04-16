@@ -20,25 +20,25 @@ export async function POST(request: Request) {
       throw new RateLimitExceededError("Too many requests, try again later.");
     await connectMongoDB();
 
-    const { params, token } = await request.json();
+    const { gallery_id, token } = await request.json();
 
     const user = await AccountGallery.findOne(
-      { gallery_id: params },
+      { gallery_id },
       "verified"
     ).exec();
 
-    if (user.verified) throw new ForbiddenError("This action is not permitted");
+    if (user.verified) throw new ForbiddenError("This action is not permitted, account already verified");
 
     const isTokenActive = await VerificationCodes.findOne({
-      author: params,
+      author: gallery_id,
       code: token,
     }).exec();
 
     if (!isTokenActive) throw new BadRequestError("Invalid token data");
 
-    await AccountGallery.updateOne({ gallery_id: params }, { verified: true });
+    await AccountGallery.updateOne({ gallery_id }, { verified: true });
 
-    await VerificationCodes.deleteOne({ code: token, author: params });
+    await VerificationCodes.deleteOne({ code: token, author: gallery_id });
 
     return NextResponse.json(
       { message: "Verification was successful. Please login" },

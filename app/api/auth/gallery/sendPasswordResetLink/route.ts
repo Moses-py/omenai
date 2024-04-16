@@ -1,73 +1,64 @@
 import {
-  ServerError,
   ForbiddenError,
   NotFoundError,
-  RateLimitExceededError,
+  ServerError,
 } from "@/custom/errors/dictionary/errorDictionary";
 import { handleErrorEdgeCases } from "@/custom/errors/handler/errorHandler";
-import { sendIndividualMail } from "@/emails/models/individuals/sendIndividualMail";
-import { getIp } from "@/lib/auth/getIp";
-import { limiter } from "@/lib/auth/limiter";
+import { sendPasswordRecoveryMail } from "@/emails/models/recovery/sendPasswordRecoveryMail";
 import { connectMongoDB } from "@/lib/mongo_connect/mongoConnect";
-import { AccountIndividual } from "@/models/auth/IndividualSchema";
+import { AccountGallery } from "@/models/auth/GallerySchema";
 import { VerificationCodes } from "@/models/auth/verification/codeTimeoutSchema";
 import generateString from "@/utils/generateToken";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const ip = await getIp();
-
-    const { success } = await limiter.limit(ip);
-    if (!success)
-      throw new RateLimitExceededError("Too many requests, try again later.");
     await connectMongoDB();
 
-    const { author } = await request.json();
+    const { recoveryEmail } = await request.json();
 
-    const { name, email, verified } = await AccountIndividual.findOne(
-      { user_id: author },
-      "name email verified"
+    const data = await AccountGallery.findOne(
+      { email: recoveryEmail },
+      "email gallery_id admin name verified"
     ).exec();
 
-    if (!name || !email)
-      throw new NotFoundError("Unable to authenticate account");
+    if (!data)
+      throw new NotFoundError("Email is not associated to any account");
 
-    if (verified)
-      throw new ForbiddenError(
-        "This action is not permitted. Account already verified"
-      );
+    const { email, gallery_id, admin, name, verified } = data;
+
+    if (!verified)
+      throw new ForbiddenError("Please verifiy your account first.");
 
     const email_token = await generateString();
 
     const isVerificationTokenActive = await VerificationCodes.findOne({
-      author,
+      author: gallery_id,
     });
 
     if (isVerificationTokenActive)
-      await VerificationCodes.deleteOne({
-        author,
-        code: isVerificationTokenActive.code,
-      });
+      throw new ForbiddenError(
+        "Token link already exists. Please visit link to continue"
+      );
 
     const storeVerificationCode = await VerificationCodes.create({
       code: email_token,
-      author,
+      author: gallery_id,
     });
 
     if (!storeVerificationCode)
       throw new ServerError("A server error has occured, please try again");
 
-    await sendIndividualMail({
-      name,
-      email,
+    await sendPasswordRecoveryMail({
+      name: admin,
+      email: email,
       token: email_token,
+      gallery_name: name,
+      route: "gallery",
     });
 
     return NextResponse.json(
-      {
-        message: "Verification code resent",
-      },
+      { message: "Password reset link has been sent", id: gallery_id },
       { status: 200 }
     );
   } catch (error) {
