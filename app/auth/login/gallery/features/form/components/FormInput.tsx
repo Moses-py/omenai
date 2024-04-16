@@ -2,7 +2,7 @@
 "use client";
 import { galleryLoginStore } from "@/store/auth/login/GalleryLoginStore";
 import { handleKeyPress } from "@/utils/disableSubmitOnEnter";
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -32,6 +32,7 @@ export default function FormInput() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    signOut();
     e.preventDefault();
     setIsLoading();
     try {
