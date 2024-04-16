@@ -32,7 +32,6 @@ export default function FormInput() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    signOut();
     e.preventDefault();
     setIsLoading();
     try {
